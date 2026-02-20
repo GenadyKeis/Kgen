@@ -1874,13 +1874,23 @@ document.querySelectorAll('.quick-nav a').forEach(a => {
       for (let d = 1; d <= 18; d++) {
         renderWeather(d, results[d] || null, null);
       }
+      return true;
     }
+    return false;
   }
 
   // On load: show cache immediately, then fetch fresh data if online
-  renderFromCache();
+  const hadCache = renderFromCache();
   if (navigator.onLine) {
-    fetchWeather();
+    fetchWeather().catch(() => false).then(fetched => {
+      // If fetch got nothing and we had no cache, show "unavailable" placeholders
+      if (!fetched && !hadCache) {
+        for (let d = 1; d <= 18; d++) renderWeather(d, null, null);
+      }
+    });
+  } else if (!hadCache) {
+    // Offline and no cache: show placeholders
+    for (let d = 1; d <= 18; d++) renderWeather(d, null, null);
   }
 })();
 </script>
