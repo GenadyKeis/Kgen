@@ -199,6 +199,32 @@
   }
   .day.open .day-body { display: block; }
 
+  .weather-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    background: #1e2a2e;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--text-dim);
+    border: 1px solid #2a3a3e;
+  }
+  .weather-bar .wx-icon { font-size: 20px; line-height: 1; }
+  .weather-bar .wx-temps { font-weight: 600; color: var(--text); }
+  .weather-bar .wx-hi { color: #e09455; }
+  .weather-bar .wx-lo { color: #6aadcf; }
+  .weather-bar .wx-desc { flex: 1; }
+  .weather-bar .wx-rain { font-size: 11px; }
+  .weather-bar .wx-stale { font-size: 10px; color: var(--text-dim); opacity: 0.6; }
+  .weather-bar.wx-unavailable {
+    justify-content: center;
+    font-size: 12px;
+    opacity: 0.5;
+    padding: 6px 12px;
+  }
+
   .block {
     margin-bottom: 14px;
   }
@@ -1666,6 +1692,195 @@ document.querySelectorAll('.quick-nav a').forEach(a => {
       const el = document.getElementById('day' + (i+1));
       if (el) { el.classList.add('today', 'open'); }
     }
+  }
+})();
+</script>
+
+<script>
+// Weather forecast via Open-Meteo (free, no API key, uses Japan Met Agency data)
+(function() {
+  const DAY_LOCATIONS = {
+    1:  { lat: 35.6762, lon: 139.6503, city: 'Tokyo' },
+    2:  { lat: 35.6762, lon: 139.6503, city: 'Tokyo' },
+    3:  { lat: 35.6762, lon: 139.6503, city: 'Tokyo' },
+    4:  { lat: 35.6762, lon: 139.6503, city: 'Tokyo' },
+    5:  { lat: 34.6851, lon: 135.8048, city: 'Nara' },
+    6:  { lat: 34.2130, lon: 135.6000, city: 'Koyasan' },
+    7:  { lat: 35.0116, lon: 135.7681, city: 'Kyoto' },
+    8:  { lat: 34.3853, lon: 132.4553, city: 'Hiroshima' },
+    9:  { lat: 34.2961, lon: 132.3196, city: 'Miyajima' },
+    10: { lat: 34.4089, lon: 133.2050, city: 'Onomichi' },
+    11: { lat: 34.3853, lon: 132.4553, city: 'Hiroshima' },
+    12: { lat: 33.5902, lon: 130.4017, city: 'Fukuoka' },
+    13: { lat: 33.5194, lon: 130.5244, city: 'Dazaifu' },
+    14: { lat: 32.7503, lon: 129.8779, city: 'Nagasaki' },
+    15: { lat: 32.8032, lon: 130.7079, city: 'Kumamoto' },
+    16: { lat: 33.4497, lon: 129.9681, city: 'Karatsu' },
+    17: { lat: 33.5902, lon: 130.4017, city: 'Fukuoka' },
+    18: { lat: 35.6762, lon: 139.6503, city: 'Tokyo' }
+  };
+
+  const TRIP_DATES = [
+    '2026-04-10','2026-04-11','2026-04-12','2026-04-13','2026-04-14','2026-04-15',
+    '2026-04-16','2026-04-17','2026-04-18','2026-04-19','2026-04-20','2026-04-21',
+    '2026-04-22','2026-04-23','2026-04-24','2026-04-25','2026-04-26','2026-04-27'
+  ];
+
+  const WX_ICONS = {
+    0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️',
+    45: '🌫️', 48: '🌫️',
+    51: '🌦️', 53: '🌦️', 55: '🌧️',
+    61: '🌧️', 63: '🌧️', 65: '🌧️',
+    71: '🌨️', 73: '🌨️', 75: '🌨️', 77: '🌨️',
+    80: '🌦️', 81: '🌧️', 82: '🌧️',
+    85: '🌨️', 86: '🌨️',
+    95: '⛈️', 96: '⛈️', 99: '⛈️'
+  };
+
+  const WX_DESC = {
+    0: 'Clear', 1: 'Mostly clear', 2: 'Partly cloudy', 3: 'Overcast',
+    45: 'Fog', 48: 'Fog',
+    51: 'Light drizzle', 53: 'Drizzle', 55: 'Heavy drizzle',
+    61: 'Light rain', 63: 'Rain', 65: 'Heavy rain',
+    71: 'Light snow', 73: 'Snow', 75: 'Heavy snow', 77: 'Snow grains',
+    80: 'Light showers', 81: 'Showers', 82: 'Heavy showers',
+    85: 'Snow showers', 86: 'Heavy snow showers',
+    95: 'Thunderstorm', 96: 'Thunderstorm + hail', 99: 'Thunderstorm + hail'
+  };
+
+  const CACHE_KEY = 'japan_trip_weather';
+
+  function getCached() {
+    try {
+      const raw = localStorage.getItem(CACHE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch(e) { return null; }
+  }
+
+  function setCache(data) {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({
+        fetched: new Date().toISOString(),
+        days: data
+      }));
+    } catch(e) {}
+  }
+
+  function renderWeather(dayNum, data, staleTime) {
+    const dayEl = document.getElementById('day' + dayNum);
+    if (!dayEl) return;
+    const body = dayEl.querySelector('.day-body');
+    if (!body) return;
+
+    // Remove existing weather bar if any
+    const existing = body.querySelector('.weather-bar');
+    if (existing) existing.remove();
+
+    const bar = document.createElement('div');
+    bar.className = 'weather-bar';
+
+    if (!data) {
+      bar.className = 'weather-bar wx-unavailable';
+      bar.textContent = '🌏 Forecast available ~2 weeks before trip';
+    } else {
+      const icon = WX_ICONS[data.code] || '🌡️';
+      const desc = WX_DESC[data.code] || 'Unknown';
+      const staleStr = staleTime
+        ? ' <span class="wx-stale">(fetched ' + staleTime + ')</span>'
+        : '';
+      bar.innerHTML =
+        '<span class="wx-icon">' + icon + '</span>' +
+        '<span class="wx-temps"><span class="wx-hi">' + Math.round(data.hi) + '°</span> / ' +
+        '<span class="wx-lo">' + Math.round(data.lo) + '°</span></span>' +
+        '<span class="wx-desc">' + desc + '</span>' +
+        '<span class="wx-rain">💧' + data.rain + '%</span>' +
+        staleStr;
+    }
+
+    body.insertBefore(bar, body.firstChild);
+  }
+
+  function formatStaleTime(isoStr) {
+    if (!isoStr) return '';
+    const diff = Date.now() - new Date(isoStr).getTime();
+    const mins = Math.floor(diff / 60000);
+    if (mins < 2) return 'just now';
+    if (mins < 60) return mins + 'min ago';
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return hrs + 'h ago';
+    const days = Math.floor(hrs / 24);
+    return days + 'd ago';
+  }
+
+  function renderFromCache() {
+    const cached = getCached();
+    if (!cached) return false;
+    const stale = formatStaleTime(cached.fetched);
+    for (let d = 1; d <= 18; d++) {
+      renderWeather(d, cached.days[d] || null, stale);
+    }
+    return true;
+  }
+
+  async function fetchWeather() {
+    // Group days by unique lat/lon to minimize API calls
+    const locGroups = {};
+    for (let d = 1; d <= 18; d++) {
+      const loc = DAY_LOCATIONS[d];
+      const key = loc.lat + ',' + loc.lon;
+      if (!locGroups[key]) locGroups[key] = { lat: loc.lat, lon: loc.lon, days: [] };
+      locGroups[key].days.push(d);
+    }
+
+    const results = {};
+
+    for (const key of Object.keys(locGroups)) {
+      const g = locGroups[key];
+      const dates = g.days.map(d => TRIP_DATES[d - 1]);
+      const startDate = dates.reduce((a, b) => a < b ? a : b);
+      const endDate = dates.reduce((a, b) => a > b ? a : b);
+
+      try {
+        const url = 'https://api.open-meteo.com/v1/forecast?' +
+          'latitude=' + g.lat + '&longitude=' + g.lon +
+          '&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weather_code' +
+          '&timezone=Asia/Tokyo&start_date=' + startDate + '&end_date=' + endDate;
+
+        const resp = await fetch(url);
+        if (!resp.ok) continue;
+        const json = await resp.json();
+
+        if (json.daily && json.daily.time) {
+          const dateMap = {};
+          json.daily.time.forEach((dt, i) => {
+            dateMap[dt] = {
+              hi: json.daily.temperature_2m_max[i],
+              lo: json.daily.temperature_2m_min[i],
+              rain: json.daily.precipitation_probability_max[i],
+              code: json.daily.weather_code[i]
+            };
+          });
+          g.days.forEach(d => {
+            const dt = TRIP_DATES[d - 1];
+            if (dateMap[dt]) results[d] = dateMap[dt];
+          });
+        }
+      } catch(e) { /* network error, skip this location */ }
+    }
+
+    // Cache and render
+    if (Object.keys(results).length > 0) {
+      setCache(results);
+      for (let d = 1; d <= 18; d++) {
+        renderWeather(d, results[d] || null, null);
+      }
+    }
+  }
+
+  // On load: show cache immediately, then fetch fresh data if online
+  renderFromCache();
+  if (navigator.onLine) {
+    fetchWeather();
   }
 })();
 </script>

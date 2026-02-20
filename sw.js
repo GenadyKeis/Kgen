@@ -28,8 +28,12 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch: serve from cache first, fall back to network
+// Fetch: let API calls go to network, serve static assets from cache
 self.addEventListener('fetch', event => {
+  if (event.request.url.includes('api.open-meteo.com')) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
   event.respondWith(
     caches.match(event.request)
       .then(cached => cached || fetch(event.request))
