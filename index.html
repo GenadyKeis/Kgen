@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Japan April 2026</title>
+<style>
+  :root {
+    --bg: #1a1a1a;
+    --card: #242424;
+    --card-open: #2a2a2a;
+    --text: #e8e4df;
+    --text-dim: #9a9590;
+    --accent: #d4845a;
+    --accent-dim: #a0623f;
+    --link: #6aadcf;
+    --link-hike: #7cb87a;
+    --link-maps: #e09455;
+    --tag-transit: #3a5a7a;
+    --tag-hike: #3a6a3a;
+    --tag-culture: #6a4a6a;
+    --tag-food: #7a5a3a;
+    --border: #3a3a3a;
+    --today-glow: #d4845a33;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.55;
+    padding-bottom: 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header {
+    padding: 20px 16px 16px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+
+  header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--accent);
+  }
+
+  header .sub {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  .quick-nav {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 10px 16px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .quick-nav::-webkit-scrollbar { display: none; }
+
+  .quick-nav a {
+    flex-shrink: 0;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 12px;
+    background: var(--card);
+    color: var(--text-dim);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .quick-nav a.active { background: var(--accent-dim); color: #fff; border-color: var(--accent); }
+
+  .ref-section {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .ref-toggle {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ref-toggle::before { content: '▸'; transition: transform 0.2s; display: inline-block; }
+  .ref-toggle.open::before { transform: rotate(90deg); }
+  .ref-content {
+    display: none;
+    padding-top: 10px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .ref-content.show { display: block; }
+  .ref-content strong { color: var(--text); }
+
+  .hotel-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .hotel-item {
+    padding: 10px;
+    background: var(--card);
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .hotel-item .hotel-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .hotel-item .dates { color: var(--accent); font-weight: 600; font-size: 11px; }
+  .hotel-item .hotel-details { color: var(--text-dim); font-size: 11px; }
+  .hotel-item .hotel-details a { color: var(--link-maps); text-decoration: none; }
+  .hotel-item .hotel-pin { color: #8cc; font-weight: 600; }
+
+  .day {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+    gap: 12px;
+    transition: background 0.15s;
+  }
+  .day-header:active { background: var(--card); }
+
+  .day-num {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    flex-shrink: 0;
+    background: var(--card);
+    color: var(--text-dim);
+  }
+
+  .day.today .day-num { background: var(--accent); color: #fff; }
+  .day.today .day-header { background: var(--today-glow); }
+
+  .day-info { flex: 1; min-width: 0; }
+  .day-date { font-size: 12px; color: var(--text-dim); }
+  .day-title { font-size: 14px; font-weight: 600; margin-top: 1px; }
+  .day-tags { display: flex; gap: 4px; margin-top: 4px; flex-wrap: wrap; }
+  .tag {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .tag-transit { background: var(--tag-transit); color: #b0d0f0; }
+  .tag-hike { background: var(--tag-hike); color: #b0e0b0; }
+  .tag-culture { background: var(--tag-culture); color: #d0b0d0; }
+  .tag-food { background: var(--tag-food); color: #e0c8a0; }
+
+  .chevron {
+    font-size: 14px;
+    color: var(--text-dim);
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+  .day.open .chevron { transform: rotate(90deg); }
+
+  .day-body {
+    display: none;
+    padding: 0 16px 16px;
+  }
+  .day.open .day-body { display: block; }
+
+  .block {
+    margin-bottom: 14px;
+  }
+  .block-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .block-title.morning { color: #c9a85c; border-color: #c9a85c33; }
+  .block-title.hike { color: var(--link-hike); border-color: #7cb87a33; }
+  .block-title.afternoon { color: #6aadcf; border-color: #6aadcf33; }
+  .block-title.evening { color: #c47aaa; border-color: #c47aaa33; }
+  .block-title.logistics { color: var(--link-maps); border-color: #e0945533; }
+  .block-title.backup { color: #e07070; border-color: #e0707033; }
+
+  .item {
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-left: 2px solid var(--border);
+  }
+  .item-name {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .item-name a { color: var(--link); text-decoration: none; }
+  .item-name a:active { opacity: 0.7; }
+  .item-detail {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+    border: none;
+    min-height: 44px;
+  }
+  .btn:active { opacity: 0.7; }
+
+  .btn-maps {
+    background: #33261a;
+    color: var(--link-maps);
+    border: 1px solid #664a2a;
+  }
+  .btn-info {
+    background: #1a2a3a;
+    color: var(--link);
+    border: 1px solid #2a4a6a;
+  }
+  .btn-hike {
+    background: #1a2a1a;
+    color: var(--link-hike);
+    border: 1px solid #2a5a2a;
+  }
+
+  .transit-box {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border: 1px solid var(--border);
+  }
+  .transit-route {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .transit-detail {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 3px;
+  }
+
+  .note {
+    font-size: 12px;
+    color: var(--accent);
+    background: #2a2018;
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin-top: 8px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .backup-box {
+    background: #2a1a1a;
+    border: 1px solid #4a2a2a;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 8px;
+  }
+  .backup-box .block-title { color: #e07070; }
+
+  .search-container {
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .search-container input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    font-size: 14px;
+    outline: none;
+  }
+  .search-container input:focus { border-color: var(--accent); }
+  .search-container input::placeholder { color: var(--text-dim); }
+
+  .hidden { display: none !important; }
+
+  @media (min-width: 600px) {
+    body { max-width: 600px; margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🇯🇵 Japan — April 2026</h1>
+  <div class="sub">18 days · Tokyo → Osaka → Hiroshima → Fukuoka → Tokyo</div>
+</header>
+
+<div class="search-container">
+  <input type="text" id="search" placeholder="Search places, temples, hikes…" autocomplete="off">
+</div>
+
+<div class="quick-nav" id="quicknav">
+  <a href="#day1">1</a><a href="#day2">2</a><a href="#day3">3</a><a href="#day4">4</a>
+  <a href="#day5">5</a><a href="#day6">6</a><a href="#day7">7</a><a href="#day8">8</a>
+  <a href="#day9">9</a><a href="#day10">10</a><a href="#day11">11</a><a href="#day12">12</a>
+  <a href="#day13">13</a><a href="#day14">14</a><a href="#day15">15</a><a href="#day16">16</a>
+  <a href="#day17">17</a><a href="#day18">18</a>
+</div>
+
+<!-- QUICK REFERENCE -->
+<div class="ref-section">
+  <div class="ref-toggle" onclick="toggleRef(this)">Quick Reference — Flights</div>
+  <div class="ref-content">
+    <strong>✈ Outbound: EL AL LY93</strong> · Booking: <strong>X3YO5U</strong><br>
+    Apr 9 depart TLV 13:25 → Apr 10 arrive Narita T1 07:00 · Seat 38A · 1 checked bag<br><br>
+    <strong>✈ Return: EL AL LY92</strong> · Booking: <strong>X3YO5U</strong><br>
+    Apr 27 depart Narita T1 15:35 → arrive TLV 22:20 same day · Seat 40K · 1 checked bag<br><br>
+    <strong>Check-in deadline:</strong> Be at Narita T1 by 12:30–13:00 (EL AL security checks take extra time).<br>
+    <strong>Last Skyliner:</strong> Depart Keisei Ueno by 11:30.
+  </div>
+</div>
+<div class="ref-section">
+  <div class="ref-toggle" onclick="toggleRef(this)">Quick Reference — Hotels & JR Pass</div>
+  <div class="ref-content">
+    <strong>14-day JR Pass (¥80,000)</strong> — Activate Apr 13, valid through Apr 26.<br>
+    Covers Shinkansen (except Nozomi/Mizuho), JR local, JR ferries.<br><br>
+    <strong>🎫 Seat reservations:</strong> Free with JR Pass. Reserve at any JR ticket office ("Midori no Madoguchi"). Tip: batch-reserve multiple trips in one visit. On Apr 13 (activation), reserve seats for Day 4 (Hikari to Osaka), Day 8 (to Hiroshima), Day 12 (to Hakata), Day 14 (Relay Kamome + Kamome to Nagasaki = 2 reservations), and Day 17 (Sakura + Hikari back to Tokyo = 2 reservations).<br><br>
+    <strong>NOT covered:</strong> Keisei Skyliner (¥2,520×2), Nankai Koyasan (¥3,400), Nishitetsu Dazaifu (¥420), Tokyo local Apr 10–12.<br><br>
+    <div class="hotel-grid">
+      <div class="hotel-item">
+        <div class="hotel-head"><span>APA Hotel Ueno Ekiminami</span><span class="dates">Apr 10–12 (3n)</span></div>
+        <div class="hotel-details">Daito-ku Ueno 6-7-21 · JR Ueno 3 min · Breakfast incl.<br>
+        <a href="tel:+81358077111">📞 +81 3 5807 7111</a> · PIN: <span class="hotel-pin">7768</span></div>
+      </div>
+      <div class="hotel-item">
+        <div class="hotel-head"><span>Osaka Excel Hotel Tokyu</span><span class="dates">Apr 13–16 (4n)</span></div>
+        <div class="hotel-details">Chuo-ku Kyutaro-machi 4-1-15 · Honmachi 5 min · Breakfast incl.<br>
+        <a href="tel:+81662520109">📞 +81 6 6252 0109</a> · PIN: <span class="hotel-pin">6857</span></div>
+      </div>
+      <div class="hotel-item">
+        <div class="hotel-head"><span>Daiwa Roynet Hiroshima-ekimae</span><span class="dates">Apr 17–20 (4n)</span></div>
+        <div class="hotel-details">Higashi-ku Futabanosato 3-5-7 · JR Hiroshima north exit 3–5 min · Reception 13F · Breakfast incl.<br>
+        <a href="tel:+81825541455">📞 +81 82 554 1455</a> · PIN: <span class="hotel-pin">3709</span></div>
+      </div>
+      <div class="hotel-item">
+        <div class="hotel-head"><span>KOKO HOTEL Hakata Station</span><span class="dates">Apr 21–25 (5n)</span></div>
+        <div class="hotel-details">Hakataekimae 3-22-19 · JR Hakata Gate 4 min · ⚠ No breakfast (use station bakeries/conbini)<br>
+        <a href="tel:+81924769111">📞 +81 92 476 9111</a> · PIN: <span class="hotel-pin">1118</span></div>
+      </div>
+      <div class="hotel-item">
+        <div class="hotel-head"><span>APA Hotel Ueno Ekimae</span><span class="dates">Apr 26 (1n)</span></div>
+        <div class="hotel-details">Taito-ku Higashi Ueno 2-18-7 · JR Ueno Central Exit 2 min · Breakfast incl.<br>
+        <a href="tel:+81358120311">📞 +81 3 5812 0311</a> · PIN: <span class="hotel-pin">1548</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ref-section">
+  <div class="ref-toggle" onclick="toggleRef(this)">Pre-Trip Checklist</div>
+  <div class="ref-content">
+    <strong>Before departure:</strong><br>
+    • Buy Nezu Museum tickets in advance<br>
+    • Download Google Maps offline: Tokyo, Osaka, Nara, Kyoto, Hiroshima, Fukuoka, Nagasaki, Kumamoto, Karatsu<br>
+    • Download Google Translate Japanese pack<br>
+    • Set up Suica in Apple Wallet<br>
+    • Download Yamap offline trail maps: Mt. Mitake, Kasuga Forest, Kurama-Kibune, Mt. Misen, Mt. Homan, Mt. Kagami<br><br>
+    <strong>Apr 13–14 from Osaka:</strong><br>
+    • <span style="color: var(--accent);">⚠ Check Kurama-Kibune trail status</span> — <a href="https://eizandensha.co.jp/en/" style="color: var(--link);">Eizan Railway</a> · <a href="https://www.kuramadera.or.jp/" style="color: var(--link);">Kurama-dera</a> · <a href="https://www.japan-guide.com/e/e3933.html" style="color: var(--link);">Japan-guide</a><br>
+    • If Kurama Line suspended → activate Enryaku-ji backup (Day 7)
+  </div>
+</div>
+
+<!-- DAY 1 -->
+<div class="day" id="day1">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">1</div>
+    <div class="day-info">
+      <div class="day-date">Fri Apr 10 · Tokyo</div>
+      <div class="day-title">Arrival & Shopping</div>
+      <div class="day-tags"><span class="tag tag-transit">Travel</span><span class="tag tag-culture">Shopping</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Arrival</div>
+      <div class="note">✈ <strong>EL AL LY93</strong> · Booking: <strong>X3YO5U</strong> · Lands 07:00 Narita T1 · Seat 38A</div>
+      <div class="transit-box">
+        <div class="transit-route">Keisei Skyliner: Narita T1 → Keisei Ueno Station</div>
+        <div class="transit-detail">~41 min · ¥2,520 · Buy Suica at airport. ⚠ Google may suggest JR Narita Express — take Keisei Skyliner instead (faster, cheaper, arrives closer to hotel).</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Narita+Airport+Terminal+1&destination=Keisei+Ueno+Station&travelmode=transit">📍 Directions</a>
+          <a class="btn btn-info" href="https://www.keisei.co.jp/keisei/tetudou/skyliner/us/ae_timetable.php">🕐 Skyliner timetable</a>
+        </div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">Keisei Ueno → APA Hotel Ueno Ekiminami</div>
+        <div class="transit-detail">3 min walk from JR Ueno Hirokoji Exit</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Keisei+Ueno+Station&destination=APA+Hotel+Ueno+Ekiminami&travelmode=walking">🚶 Walk</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title afternoon">Afternoon — Shopping</div>
+      <div class="item">
+        <div class="item-name">Akihabara — Electronics</div>
+        <div class="item-detail">Yodobashi Camera, Map Camera. JR Ueno → Akihabara (3 min, 1 stop)</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=JR+Ueno+Station&destination=Yodobashi+Camera+Akihabara&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name">Ginza — Itoya, Uniqlo, Bic Camera</div>
+        <div class="item-detail">JR Ueno → Yurakucho (7 min) or Metro Ginza Line (10 min)</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=JR+Ueno+Station&destination=Ginza+Itoya&travelmode=transit">📍 Itoya</a>
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=JR+Ueno+Station&destination=Uniqlo+Ginza&travelmode=transit">📍 Uniqlo</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title evening">Evening</div>
+      <div class="item">
+        <div class="item-detail">Ameyoko Street or Atre Ueno (upper floors) for dinner</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=APA+Hotel+Ueno+Ekiminami&destination=Ameyoko+Market+Ueno&travelmode=walking">🚶 Ameyoko</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 2 -->
+<div class="day" id="day2">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">2</div>
+    <div class="day-info">
+      <div class="day-date">Sat Apr 11 · Tokyo</div>
+      <div class="day-title">Mt. Mitake Hiking</div>
+      <div class="day-tags"><span class="tag tag-hike">Hike</span><span class="tag tag-culture">Shrine</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Getting There — 7:30 AM</div>
+      <div class="transit-box">
+        <div class="transit-route">JR Ueno → Mitake Station</div>
+        <div class="transit-detail">Ueno-Tokyo Line → Chūō Rapid → Ōme Line · ~90 min · ~¥950 Suica</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=JR+Ueno+Station&destination=Mitake+Station+Tokyo&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">Mitake Station → Cable Car Base (Takimoto)</div>
+        <div class="transit-detail">Bus ~10 min (¥290) + Cable car ~6 min (¥600 one-way)</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Mitake+Station+Ome&destination=Mitake+Tozan+Railway+Cable+Car&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title morning">Morning</div>
+      <div class="item">
+        <div class="item-name"><a href="https://musashimitakejinja.jp/">Musashi-Mitake Shrine</a></div>
+        <div class="item-detail">2,000+ year mountaintop shrine. Wolf deity guardians. Free, 30 min.</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title hike">Hike — Rock Garden Trail</div>
+      <div class="item">
+        <div class="item-name">Rock Garden (ロックガーデン)</div>
+        <div class="item-detail">3 km loop · ~150m gain · 1.5–2 hrs · Mossy ravine, waterfalls, dense canopy</div>
+        <div class="links">
+          <a class="btn btn-hike" href="https://www.japan-guide.com/e/e3039.html">🗺 Trail info</a>
+          <a class="btn btn-maps" href="https://www.google.com/maps/place/Rock+Garden+Trail,+Ome,+Tokyo">📍 Trailhead</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title hike">Hike — Mt. Hinode Extension</div>
+      <div class="item">
+        <div class="item-name">Mt. Hinode (日の出山) → Tsuru-Tsuru Onsen</div>
+        <div class="item-detail">2.5 km to summit (902m) · ~200m gain · 1–1.5 hrs up · Panoramic Kanto views<br>Descent: 3 km to Tsuru-Tsuru Onsen (¥860, until 19:00)</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Tsuru+Tsuru+Onsen&destination=Musashi-Itsukaichi+Station&travelmode=transit">📍 Onsen → Station</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">Pack bento from Ueno Station (Ecute shops) — limited food on mountain.</div>
+
+  </div>
+</div>
+
+<!-- DAY 3 -->
+<div class="day" id="day3">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">3</div>
+    <div class="day-info">
+      <div class="day-date">Sun Apr 12 · Tokyo</div>
+      <div class="day-title">Museums & Culture</div>
+      <div class="day-tags"><span class="tag tag-culture">Museums</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title morning">Morning — 9:15 AM</div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.tnm.jp/?lang=en">Tokyo National Museum</a></div>
+        <div class="item-detail">5 min walk from hotel. Honkan: Jomon pottery, Heian sculpture, samurai armor. ¥1,000, 2.5–3 hrs.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=APA+Hotel+Ueno+Ekiminami&destination=Tokyo+National+Museum&travelmode=walking">🚶 Walk</a>
+          <a class="btn btn-info" href="https://www.tnm.jp/?lang=en">ℹ️ Hours & tickets</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title afternoon">Afternoon — ~13:00</div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.nezu-muse.or.jp/en/">Nezu Museum</a></div>
+        <div class="item-detail">Metro Ginza Line Ueno → Omotesando (~25 min, ~¥200). Kengo Kuma building, moss garden. ¥1,300, 1.5 hrs.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Tokyo+National+Museum&destination=Nezu+Museum+Tokyo&travelmode=transit">📍 Directions</a>
+          <a class="btn btn-info" href="https://www.nezu-muse.or.jp/en/">🎟 Advance tickets required</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name">Then: <a href="https://www.meijijingu.or.jp/en/">Meiji Jingu</a> OR Yanaka/Nezu backstreets</div>
+        <div class="item-detail">Meiji: 700m cryptomeria approach. Yanaka: walkable from hotel (15–20 min)</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Nezu+Museum+Tokyo&destination=Meiji+Jingu+Shrine&travelmode=transit">📍 Meiji Jingu</a>
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=APA+Hotel+Ueno+Ekiminami&destination=Yanaka+Ginza+Shopping+Street&travelmode=walking">🚶 Yanaka</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">⚠ Evening: Pack for Osaka. Optional takkyubin (~¥2,000–2,500). Activate JR Pass tomorrow at Ueno (opens 7:30 AM).</div>
+
+  </div>
+</div>
+
+<!-- DAY 4 -->
+<div class="day" id="day4">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">4</div>
+    <div class="day-info">
+      <div class="day-date">Mon Apr 13 · Tokyo → Osaka</div>
+      <div class="day-title">Travel + Osaka</div>
+      <div class="day-tags"><span class="tag tag-transit">Shinkansen</span><span class="tag tag-culture">Castle</span><span class="tag tag-food">Dotonbori</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Transfer — ~9:00 AM</div>
+      <div class="note">⚠ Activate JR Pass at JR Ueno Travel Service Center (opens 7:30 AM, less crowded than Tokyo Sta).<br>🎫 Batch-reserve all Shinkansen seats in one visit: Day 4 Hikari (Seat E), Day 8 (Shin-Osaka→Hiroshima), Day 12 (Hiroshima→Hakata), Day 14 (Relay Kamome + Kamome = 2 reservations), Day 17 (Sakura + Hikari = 2 reservations).</div>
+      <div class="transit-box">
+        <div class="transit-route">JR Ueno → Tokyo Sta → Hikari Shinkansen → Shin-Osaka</div>
+        <div class="transit-detail">~2h 50min · JR Pass · ⚠ Select Hikari (not Nozomi — not covered by JR Pass). Window Seat E for Fuji.<br>🎫 Reserve seat at JR Ueno when activating pass. Request Seat E, right side.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Tokyo+Station&destination=Shin-Osaka+Station&travelmode=transit">📍 Tokyo → Shin-Osaka</a>
+        </div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">Shin-Osaka → Osaka Excel Hotel Tokyu</div>
+        <div class="transit-detail">Midosuji Line → Honmachi (~10 min, ¥280). 5 min walk.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Shin-Osaka+Station&destination=Osaka+Excel+Hotel+Tokyu&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title afternoon">Afternoon</div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.osakacastle.net/english/">Osaka Castle</a> — Nishinomaru Garden</div>
+        <div class="item-detail">Subway Sakaisuji-Honmachi → Tanimachi 4-chome (5 min, ¥230), 10 min walk. Possible late cherry blossoms.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Osaka+Excel+Hotel+Tokyu&destination=Osaka+Castle+Nishinomaru+Garden&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.shitennoji.or.jp/english/">Shitennoji</a></div>
+        <div class="item-detail">Japan's oldest official temple (593 AD). ¥300. Walkable from castle (~20 min).</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Osaka+Castle&destination=Shitennoji+Temple&travelmode=walking">🚶 Walk from castle</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title evening">Evening — Dotonbori / Shinsekai</div>
+      <div class="item">
+        <div class="item-detail">Takoyaki, kushikatsu, okonomiyaki. 15 min walk south from hotel. Try Daruma in Shinsekai (counter, ticket machine).</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Osaka+Excel+Hotel+Tokyu&destination=Dotonbori&travelmode=walking">🚶 Dotonbori</a>
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Osaka+Excel+Hotel+Tokyu&destination=Shinsekai+Osaka&travelmode=walking">🚶 Shinsekai</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 5 -->
+<div class="day" id="day5">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">5</div>
+    <div class="day-info">
+      <div class="day-date">Tue Apr 14 · Nara</div>
+      <div class="day-title">Nara Forest Hike + Temples</div>
+      <div class="day-tags"><span class="tag tag-hike">Hike</span><span class="tag tag-culture">Temples</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Getting There — 8:00 AM</div>
+      <div class="transit-box">
+        <div class="transit-route">① Hotel → Kintetsu Osaka-Namba Station</div>
+        <div class="transit-detail">Walk south 15 min. Or subway Sakaisuji-Honmachi → Nippombashi (1 stop), then walk 5 min to Kintetsu Namba.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Osaka+Excel+Hotel+Tokyu&destination=Kintetsu+Osaka-Namba+Station&travelmode=walking">🚶 Walk (15 min)</a>
+        </div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">② Kintetsu Osaka-Namba → Kintetsu-Nara</div>
+        <div class="transit-detail">Kintetsu Nara Line rapid express · ~35 min · ¥680 · Frequent departures. NOT covered by JR Pass.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Kintetsu+Namba+Station+Osaka&destination=Kintetsu+Nara+Station&travelmode=transit">📍 Kintetsu → Nara</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title morning">Morning — 8:45 AM (before tour buses ~10:30)</div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.todaiji.or.jp/en/">Todai-ji</a></div>
+        <div class="item-detail">Great Buddha Hall. Arrive early to beat crowds.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Kintetsu+Nara+Station&destination=Todaiji+Temple&travelmode=walking">🚶 Walk</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.kasugataisha.or.jp/en/">Kasuga Taisha</a></div>
+        <div class="item-detail">Thousands of stone lanterns. Optional Botanical Garden (¥500).</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Todaiji+Temple&destination=Kasuga+Taisha&travelmode=walking">🚶 Walk from Todai-ji</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title hike">Hike — Kasuga Primeval Forest (10:45 AM)</div>
+      <div class="item">
+        <div class="item-name">Kasugayama Driveway Loop (春日山原始林)</div>
+        <div class="item-detail">9 km · ~200m gain · 2.5–3 hrs · UNESCO World Heritage forest, 1,000+ years uncut. Cryptomeria, ferns, moss. Almost no tourists.</div>
+        <div class="links">
+          <a class="btn btn-hike" href="https://www.google.com/maps/place/Kasugayama+Primeval+Forest">🗺 Trail start</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title afternoon">Afternoon — ~14:00</div>
+      <div class="item">
+        <div class="item-detail"><strong>Lunch:</strong> Kakinoha-zushi at Hiraso near Kintetsu-Nara.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/search/Hiraso+kakinoha+sushi+Nara">📍 Hiraso</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name"><a href="https://isuien.or.jp/en/">Isuien Garden</a> (¥1,200) OR Shin-Yakushi-ji</div>
+        <div class="item-detail">Isuien: incl. Neiraku Museum. Shin-Yakushi-ji: 8th-century, Twelve Heavenly Generals.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Kintetsu+Nara+Station&destination=Isuien+Garden+Nara&travelmode=walking">🚶 Isuien</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 6 -->
+<div class="day" id="day6">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">6</div>
+    <div class="day-info">
+      <div class="day-date">Wed Apr 15 · Koyasan</div>
+      <div class="day-title">Sacred Mountain ★</div>
+      <div class="day-tags"><span class="tag tag-culture">Temple</span><span class="tag tag-food">Shojin Ryori</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Getting There — ~7:30 AM</div>
+      <div class="note">⚠ NOT covered by JR Pass. Buy Koyasan World Heritage Ticket (~¥3,400) at Nankai Namba Station. Paper version = 20% off Kongobu-ji.</div>
+      <div class="transit-box">
+        <div class="transit-route">Hotel → Nankai Namba → Gokurakubashi → Koyasan</div>
+        <div class="transit-detail">Subway Honmachi → Namba (5 min, ¥280). Nankai limited express ~80 min. Cable car ~5 min. Bus to Okunoin-mae ~15 min. Arrive ~9:45.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Osaka+Excel+Hotel+Tokyu&destination=Nankai+Namba+Station&travelmode=transit">📍 → Nankai Namba</a>
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Nankai+Namba+Station&destination=Okunoin+Koyasan&travelmode=transit">📍 → Koyasan</a>
+          <a class="btn btn-info" href="https://www.howto-osaka.com/en/ticket/koyasan/">🎟 Ticket info</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title morning">Morning — Okunoin Cemetery (2–2.5 hrs)</div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.japan-guide.com/e/e4901.html">Okunoin</a></div>
+        <div class="item-detail">Start at Ichinohashi Bridge (full 2 km approach). 200,000+ graves, 400-year cedars. Ends at Torodo Hall (10,000 lanterns) and Kobo Daishi Mausoleum.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/place/Ichinohashi+Bridge,+Koyasan">📍 Start: Ichinohashi</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title afternoon">Lunch — Shojin Ryori + Afternoon</div>
+      <div class="item">
+        <div class="item-detail"><strong>Lunch:</strong> Maruman or Hanabishi near Senjuinbashi. ~¥1,500–2,500. Goma-dofu (sesame tofu) specialty.</div>
+      </div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.koyasan.or.jp/en/">Danjo Garan</a> — Konpon Daito pagoda (¥500), Kondo Hall</div>
+        <div class="item-detail">Original monastery center, established 816.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/place/Danjo+Garan,+Koyasan">📍 Location</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.koyasan.or.jp/en/spot/kongoubuji.html">Kongobu-ji</a> — Japan's largest rock garden</div>
+        <div class="item-detail">¥1,000 (¥800 with paper ticket). Banryutei rock garden, Kano fusuma paintings, Willow Room.</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title logistics">Return — ~16:00</div>
+      <div class="item">
+        <div class="item-detail">Bus → Koyasan Station → Cable car → Gokurakubashi. Limited express departures 15:40, 16:47. Back Namba ~18:00–18:30.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 7 -->
+<div class="day" id="day7">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">7</div>
+    <div class="day-info">
+      <div class="day-date">Thu Apr 16 · Kyoto</div>
+      <div class="day-title">Mountain Trail + Temples</div>
+      <div class="day-tags"><span class="tag tag-hike">Hike</span><span class="tag tag-culture">Temples</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Getting There — 8:00 AM</div>
+      <div class="transit-box">
+        <div class="transit-route">① Hotel → JR Osaka Station</div>
+        <div class="transit-detail">Subway Midosuji Line Honmachi → Umeda (~5 min, ¥230). Walk to JR Osaka Station.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Osaka+Excel+Hotel+Tokyu&destination=JR+Osaka+Station&travelmode=transit">📍 → Umeda/Osaka</a>
+        </div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">② JR Osaka → JR Kyoto → Demachiyanagi</div>
+        <div class="transit-detail">JR Special Rapid ~30 min (JR Pass). Then Keihan/bus to Demachiyanagi ~15 min.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=JR+Osaka+Station&destination=Demachiyanagi+Station+Kyoto&travelmode=transit">📍 Osaka → Demachiyanagi</a>
+        </div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">③ Eizan Railway: Demachiyanagi → Kurama</div>
+        <div class="transit-detail">Eizan Kurama Line · ~30 min · ¥430 · NOT covered by JR Pass.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Demachiyanagi+Station+Kyoto&destination=Kurama+Station+Kyoto&travelmode=transit">📍 Eizan → Kurama</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title morning">Morning</div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.kuramadera.or.jp/">Kurama-dera</a></div>
+        <div class="item-detail">770 AD, Ushiwakamaru training site. ¥300 entry.</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title hike">Hike — Kurama → Kibune</div>
+      <div class="item">
+        <div class="item-name">Kurama → Kibune Trail</div>
+        <div class="item-detail">3 km · ~200m gain / 180m descent · 1.5–2 hrs · Dense cedar forest, massive roots, moss. Summit: Okunoin Mao-den.</div>
+        <div class="links">
+          <a class="btn btn-hike" href="https://www.japan-guide.com/e/e3933.html">🗺 Trail info</a>
+          <a class="btn btn-maps" href="https://www.google.com/maps/place/Kurama-dera+Temple">📍 Trailhead</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name"><a href="https://kifunejinja.jp/en/">Kifune Shrine</a></div>
+        <div class="item-detail">Water deity, red lanterns. Far quieter than Fushimi Inari.</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title afternoon">Lunch + Afternoon</div>
+      <div class="item">
+        <div class="item-detail"><strong>Lunch in Kibune:</strong> riverside restaurants. Hirobun or Kifune Club (~¥2,000–3,500).</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Option A: <a href="https://www.japan-guide.com/e/e3909.html">Daitoku-ji</a></div>
+        <div class="item-detail">Zen compound, 20+ sub-temples. Daisen-in, Koto-in. Almost empty weekdays.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Kibuneguchi+Station&destination=Daitoku-ji+Temple+Kyoto&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name">Option B: Ohara</div>
+        <div class="item-detail">Bus 30 min (¥460). Sanzen-in (moss garden), Jakko-in (almost no visitors).</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Kibuneguchi+Station&destination=Sanzen-in+Ohara&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">⚠ Evening: Pack for Hiroshima. Arrange takkyubin (~¥2,500) at hotel front desk.</div>
+
+    <!-- BACKUP PLAN -->
+    <div class="backup-box">
+      <div class="block-title backup">🔄 Backup: Enryaku-ji / Mt. Hiei</div>
+      <div class="item">
+        <div class="item-detail">If Kurama-Kibune trail closed. Same start (Demachiyanagi), take Eizan Main Line instead.</div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">Demachiyanagi → Yase-Hieizanguchi → Cable Car → Ropeway → Summit</div>
+        <div class="transit-detail">Eizan Main Line ~15 min (¥280). Cable car + ropeway ¥900 one-way. Hieizan Free Pass recommended.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Demachiyanagi+Station+Kyoto&destination=Cable+Yase+Station&travelmode=transit">📍 → Cable Yase</a>
+          <a class="btn btn-info" href="https://eizandensha.co.jp/en/">ℹ️ Eizan Railway</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.hieizan.or.jp/en/">Enryaku-ji</a> — Tendai HQ (¥1,000)</div>
+        <div class="item-detail">Todo area: Konpon Chudo (under renovation ~2027), Kaidan-in, Daikodo. 1.5–2 hrs.<br>Walk to Saito (20 min forest trail): Shaka-do (National Treasure). 45 min–1 hr.</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Afternoon options:</div>
+        <div class="item-detail"><strong>A:</strong> Yokawa (shuttle ¥700, most remote, few visitors)<br><strong>B:</strong> Sakamoto Cable Car descent (2 km, Lake Biwa views, ¥870) → Hiyoshi Taisha → JR to Kyoto</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Enryaku-ji+Temple&destination=Sakamoto+Cable+Car&travelmode=walking">🚶 → Sakamoto Cable</a>
+          <a class="btn btn-info" href="https://www.sakamoto-cable.jp/">ℹ️ Sakamoto Cable Car</a>
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Sakamoto-Hieizanguchi+Station&destination=Kyoto+Station&travelmode=transit">📍 Sakamoto → Kyoto</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 8 -->
+<div class="day" id="day8">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">8</div>
+    <div class="day-info">
+      <div class="day-date">Fri Apr 17 · Osaka → Hiroshima</div>
+      <div class="day-title">Travel + Miyajima</div>
+      <div class="day-tags"><span class="tag tag-transit">Shinkansen</span><span class="tag tag-culture">Shrine</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Transfer — ~9:00 AM</div>
+      <div class="transit-box">
+        <div class="transit-route">① Hotel → Shin-Osaka Station</div>
+        <div class="transit-detail">Subway Midosuji Line Honmachi → Shin-Osaka · ~10 min · ¥280.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Osaka+Excel+Hotel+Tokyu&destination=Shin-Osaka+Station&travelmode=transit">📍 → Shin-Osaka</a>
+        </div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">② Hikari Shinkansen: Shin-Osaka → Hiroshima</div>
+        <div class="transit-detail">~1h 25min · JR Pass · ⚠ Select Hikari or Sakura (not Nozomi/Mizuho).<br>🎫 Reserve seat at JR ticket office the day before or morning of.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Shin-Osaka+Station&destination=JR+Hiroshima+Station&travelmode=transit">📍 Shin-Osaka → Hiroshima</a>
+        </div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">JR Hiroshima → Daiwa Roynet Hotel</div>
+        <div class="transit-detail">3–5 min walk, Shinkansen north exit. Reception 13F. 7-Eleven on ground floor.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=JR+Hiroshima+Station&destination=Daiwa+Roynet+Hotel+Hiroshima-ekimae&travelmode=walking">🚶 Walk</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title afternoon">Afternoon — Miyajima (~12:00)</div>
+      <div class="transit-box">
+        <div class="transit-route">JR Hiroshima → Miyajimaguchi → Miyajima Ferry</div>
+        <div class="transit-detail">JR Sanyo ~27 min + JR Ferry ~10 min. All JR Pass. ~40 min total.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=JR+Hiroshima+Station&destination=Miyajima+Island&travelmode=transit">📍 Directions</a>
+          <a class="btn btn-info" href="https://www.miyajima.or.jp/english/event/event_tide.html">🌊 Tide tables</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.itsukushimajinja.jp/en/">Itsukushima Shrine</a> (¥300)</div>
+        <div class="item-detail">Check tide tables for best torii viewing.</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Daisho-in Temple</div>
+        <div class="item-detail">Hundreds of statues, prayer wheels, cave passages. Free. Tomorrow's hike trailhead.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/place/Daisho-in+Temple+Miyajima">📍 Location</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-detail">Try momiji manju + grilled oysters. Last ferry ~22:00.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 9 -->
+<div class="day" id="day9">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">9</div>
+    <div class="day-info">
+      <div class="day-date">Sat Apr 18 · Miyajima</div>
+      <div class="day-title">Mt. Misen Hike</div>
+      <div class="day-tags"><span class="tag tag-hike">Hike</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Early Start — 7:15 AM</div>
+      <div class="transit-box">
+        <div class="transit-route">Hotel → JR Hiroshima → Miyajimaguchi → Miyajima</div>
+        <div class="transit-detail">JR + Ferry. Arrive ~8:00. Head to Daisho-in trailhead.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Daiwa+Roynet+Hotel+Hiroshima-ekimae&destination=Miyajima+Island&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title hike">Hike — Mt. Misen</div>
+      <div class="item">
+        <div class="item-name">UP: Daisho-in Course</div>
+        <div class="item-detail">2.5 km · ~500m gain · 1.5–2 hrs · UNESCO primeval forest, ancient cedars. Near summit: Reikado Hall (flame burning 1,200 years).</div>
+        <div class="links">
+          <a class="btn btn-hike" href="https://www.japan.travel/en/japans-local-treasures/mt-misen-trekking-and-miyajima-2023/">🗺 Trail guide</a>
+          <a class="btn btn-maps" href="https://www.google.com/maps/place/Daisho-in+Temple+Miyajima">📍 Trailhead</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name">SUMMIT: Mt. Misen Observatory (535m)</div>
+        <div class="item-detail">360° Seto Inland Sea views. Bring lunch.</div>
+      </div>
+      <div class="item">
+        <div class="item-name">DOWN: Omoto Course (recommended)</div>
+        <div class="item-detail">3.2 km, quieter. Massive Momi fir trees. Ends at Omoto Shrine.<br><em>Backup: Momijidani Course (2.3 km, steeper) or Ropeway if exhausted.</em></div>
+      </div>
+      <div class="item">
+        <div class="item-detail">Total: ~5 km + summit time = 3.5–4.5 hrs. <strong>Bring water and snacks.</strong></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title afternoon">Afternoon</div>
+      <div class="item">
+        <div class="item-name">Toyokuni Shrine (Senjokaku)</div>
+        <div class="item-detail">Massive wooden hall, Hideyoshi 1587, never completed. ¥100. Almost nobody visits.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/place/Senjokaku+Miyajima">📍 Location</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title evening">Evening — Okonomiyaki</div>
+      <div class="item">
+        <div class="item-detail">Hiroshima-style (layered). Counter seating. Nagata-ya near Peace Park or Okonomimura (building with ~20 stalls).</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Daiwa+Roynet+Hotel+Hiroshima-ekimae&destination=Okonomimura+Hiroshima&travelmode=transit">📍 Okonomimura</a>
+          <a class="btn btn-maps" href="https://www.google.com/maps/search/Nagata-ya+Hiroshima+okonomiyaki">📍 Nagata-ya</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 10 -->
+<div class="day" id="day10">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">10</div>
+    <div class="day-info">
+      <div class="day-date">Sun Apr 19 · Onomichi</div>
+      <div class="day-title">Temple Walk + Seto Inland Sea</div>
+      <div class="day-tags"><span class="tag tag-culture">Temples</span><span class="tag tag-food">Ramen</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Getting There</div>
+      <div class="transit-box">
+        <div class="transit-route">① Hotel → JR Hiroshima → Fukuyama</div>
+        <div class="transit-detail">Walk 3–5 min to station. Sanyo Shinkansen Kodama/Sakura · ~25 min · JR Pass. ⚠ Select Sakura or Kodama (not Nozomi).<br>🎫 Short ride — unreserved car fine, or reserve at station.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Daiwa+Roynet+Hotel+Hiroshima-ekimae&destination=Fukuyama+Station&travelmode=transit">📍 → Fukuyama</a>
+        </div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">② Fukuyama → Onomichi</div>
+        <div class="transit-detail">JR Sanyo Line local · ~20 min · JR Pass.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Fukuyama+Station&destination=Onomichi+Station&travelmode=transit">📍 Fukuyama → Onomichi</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title morning">Morning — Temple Walk</div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.ononavi.jp/en/">Senko-ji Temple</a> + Observatory</div>
+        <div class="item-detail">Ropeway up (¥320 one-way) or walk "Path of Literature." Arrive by 9:00.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Onomichi+Station&destination=Senkoji+Temple+Onomichi&travelmode=walking">🚶 Walk up</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name">Temple Path Downhill</div>
+        <div class="item-detail">~2.5 km, 2–3 hrs. Tenneiji (500 rakan), Jodo-ji (1327 pagoda), Saikoku-ji.</div>
+        <div class="links">
+          <a class="btn btn-hike" href="https://www.japan-guide.com/e/e3453.html">🗺 Temple walk guide</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title afternoon">Lunch + Afternoon</div>
+      <div class="item">
+        <div class="item-detail"><strong>Onomichi ramen:</strong> flat noodles, soy broth, pork back fat. Ichibankan or Tsutafuji near station.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/search/Onomichi+ramen+near+Onomichi+Station">📍 Ramen shops</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-detail">Walk old town: waterfront, Onomichi U2, shotengai.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 11 -->
+<div class="day" id="day11">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">11</div>
+    <div class="day-info">
+      <div class="day-date">Mon Apr 20 · Hiroshima</div>
+      <div class="day-title">Mitaki-dera + Peace Memorial</div>
+      <div class="day-tags"><span class="tag tag-culture">Temple</span><span class="tag tag-culture">Museum</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title morning">Morning — Mitaki-dera</div>
+      <div class="transit-box">
+        <div class="transit-route">Hotel → JR Hiroshima → JR Mitaki</div>
+        <div class="transit-detail">JR Kabe Line ~6 min. Then 15 min forest walk to temple.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Daiwa+Roynet+Hotel+Hiroshima-ekimae&destination=Mitaki-dera+Temple+Hiroshima&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name">Mitaki-dera Temple</div>
+        <div class="item-detail">Three waterfalls, streams, thick forest. Free. Forest trails above (30–60 min extra). Almost nobody visits. Allow 1.5–2 hrs total.</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title afternoon">Late Morning — Peace Memorial (~11:00)</div>
+      <div class="transit-box">
+        <div class="transit-route">JR Mitaki → Hiroshima → Tram to Genbaku Dome-mae</div>
+        <div class="transit-detail">JR ~6 min + tram ~15 min (¥220)</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Mitaki+Station+Hiroshima&destination=Hiroshima+Peace+Memorial+Museum&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name"><a href="https://hpmmuseum.jp/?lang=eng">Peace Memorial Museum</a></div>
+        <div class="item-detail">Completely renovated. Allow 1.5–2 hrs. ¥200. + Atomic Bomb Dome, Peace Park.</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title afternoon">Afternoon Options</div>
+      <div class="item">
+        <div class="item-name"><a href="https://shukkeien.jp/en/">Shukkeien Garden</a> (¥260) — 10 min walk from hotel</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Daiwa+Roynet+Hotel+Hiroshima-ekimae&destination=Shukkeien+Garden&travelmode=walking">🚶 Walk</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.rijo-castle.jp/en/">Hiroshima Castle</a> (¥370)</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Daiwa+Roynet+Hotel+Hiroshima-ekimae&destination=Hiroshima+Castle&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">⚠ Pack for Fukuoka. Takkyubin by 14:00 at front desk if sending bag ahead.</div>
+
+  </div>
+</div>
+
+<!-- DAY 12 -->
+<div class="day" id="day12">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">12</div>
+    <div class="day-info">
+      <div class="day-date">Tue Apr 21 · Hiroshima → Fukuoka</div>
+      <div class="day-title">Travel + Hakata Old Town</div>
+      <div class="day-tags"><span class="tag tag-transit">Shinkansen</span><span class="tag tag-culture">Shrines</span><span class="tag tag-food">Yatai</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Transfer — ~9:30 AM</div>
+      <div class="transit-box">
+        <div class="transit-route">Hotel → JR Hiroshima → Sakura Shinkansen → Hakata</div>
+        <div class="transit-detail">~1 hr · JR Pass · Arrive ~10:45. ⚠ Select Sakura or Kodama (not Nozomi/Mizuho).<br>🎫 Reserve seat the evening before at JR Hiroshima.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Daiwa+Roynet+Hotel+Hiroshima-ekimae&destination=Hakata+Station&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">Hakata Station → KOKO HOTEL</div>
+        <div class="transit-detail">4 min walk from Hakata Gate exit.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Hakata+Station&destination=KOKO+HOTEL+Hakata+Station&travelmode=walking">🚶 Walk</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title afternoon">Afternoon — Hakata Old Town</div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.japan-guide.com/e/e4800.html">Kushida Shrine</a> (757 AD) — Yamakasa floats. Free.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=KOKO+HOTEL+Hakata+Station&destination=Kushida+Shrine+Fukuoka&travelmode=walking">🚶 Walk</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.japan-guide.com/e/e4812.html">Tōchō-ji Temple</a></div>
+        <div class="item-detail">10.8m seated wooden Buddha (largest in Japan). "Hell and Paradise" passage. Founded 806 by Kobo Daishi. Free.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Kushida+Shrine+Fukuoka&destination=Tochoji+Temple+Fukuoka&travelmode=walking">🚶 Walk</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title evening">Evening — Yatai (~19:00)</div>
+      <div class="item">
+        <div class="item-detail">Hakata tonkotsu ramen + mentaiko omelet. All counter seating (6–8 spots). Nakasu riverside closest to hotel.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=KOKO+HOTEL+Hakata+Station&destination=Nakasu+Yatai+Fukuoka&travelmode=walking">🚶 Nakasu yatai</a>
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=KOKO+HOTEL+Hakata+Station&destination=Tenjin+Yatai+Fukuoka&travelmode=transit">📍 Tenjin yatai</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 13 -->
+<div class="day" id="day13">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">13</div>
+    <div class="day-info">
+      <div class="day-date">Wed Apr 22 · Dazaifu</div>
+      <div class="day-title">Temples + Mt. Homan Hike</div>
+      <div class="day-tags"><span class="tag tag-hike">Hike</span><span class="tag tag-culture">Shrine</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Getting There</div>
+      <div class="note">⚠ NOT covered by JR Pass. Subway Hakata → Tenjin (¥210) + Nishitetsu Tenjin → Dazaifu (¥420).</div>
+      <div class="transit-box">
+        <div class="transit-route">① Hotel → Hakata (subway) → Tenjin</div>
+        <div class="transit-detail">Walk 4 min to Hakata Station. Subway Kuko Line · 1 stop · ~5 min · ¥210.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=KOKO+HOTEL+Hakata+Station&destination=Tenjin+Station+Fukuoka&travelmode=transit">📍 → Tenjin</a>
+        </div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">② Nishitetsu Fukuoka (Tenjin) → Dazaifu</div>
+        <div class="transit-detail">Walk 5 min from subway to Nishitetsu station. Nishitetsu Line · ~30 min · ¥420. May require transfer at Futsukaichi.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Nishitetsu+Fukuoka+Tenjin+Station&destination=Dazaifu+Station&travelmode=transit">📍 Nishitetsu → Dazaifu</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title morning">Morning — Cultural Sites</div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.dazaifutenmangu.or.jp/en">Dazaifu Tenmangu</a></div>
+        <div class="item-detail">God of learning. Plum trees, arched bridges. Umegae mochi on approach street.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Dazaifu+Station&destination=Dazaifu+Tenmangu&travelmode=walking">🚶 Walk</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name">Kanzeoji Temple</div>
+        <div class="item-detail">7th century. Treasure hall: extraordinary statuary, up-close viewing. ¥500.</div>
+      </div>
+      <div class="item">
+        <div class="item-name">Komyozenji Temple</div>
+        <div class="item-detail">Rock + moss gardens. Tiny, serene. ¥500.</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title hike">Hike — Mt. Homan (宝満山)</div>
+      <div class="item">
+        <div class="item-name">Kamado Shrine → Summit (829m)</div>
+        <div class="item-detail">5.3 km out-and-back · <strong>~600m gain</strong> · 3–4 hrs round trip · Ancient stone steps (Hyakudan Gangi), 1,300-year pilgrim route. Summit: shrine among boulders, city/bay views.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Dazaifu+Station&destination=Kamado+Shrine+Dazaifu&travelmode=transit">📍 → Kamado Shrine</a>
+          <a class="btn btn-hike" href="https://kamadojinja.or.jp/">🗺 Kamado Shrine</a>
+          <a class="btn btn-hike" href="https://www.japan-guide.com/e/e4810.html">🗺 Mt. Homan info</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-detail">Mahoroba bus from Dazaifu Station to Uchiyama/Kamado Shrine (~10 min, ¥100). Trailhead behind shrine.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 14 -->
+<div class="day" id="day14">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">14</div>
+    <div class="day-info">
+      <div class="day-date">Thu Apr 23 · Nagasaki</div>
+      <div class="day-title">Dutch, Portuguese & Chinese Heritage</div>
+      <div class="day-tags"><span class="tag tag-culture">History</span><span class="tag tag-food">Champon</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Getting There — ~8:00 AM</div>
+      <div class="transit-box">
+        <div class="transit-route">Hotel → Hakata → Relay Kamome → Takeo-Onsen → Kamome Shinkansen → Nagasaki</div>
+        <div class="transit-detail">~1h 30min total · JR Pass. Cross-platform transfer at Takeo-Onsen (same platform, just walk across). Nagasaki tram: ¥140 flat fare, IC card.<br>🎫 Reserve both Relay Kamome AND Kamome Shinkansen seats at JR Hakata. Two separate reservations needed.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Hakata+Station&destination=Nagasaki+Station&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title morning">Morning</div>
+      <div class="item">
+        <div class="item-name"><a href="https://nagasakidejima.jp/en/">Dejima</a> (¥520)</div>
+        <div class="item-detail">Reconstructed Dutch trading island. 220 years sole foreign outpost. 1–1.5 hrs.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Nagasaki+Station&destination=Dejima+Nagasaki&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name">Sofuku-ji Temple (¥300)</div>
+        <div class="item-detail">1629, Chinese-founded Obaku Zen. Red Daippo Gate (National Treasure). 30 min.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Dejima+Nagasaki&destination=Sofuku-ji+Temple+Nagasaki&travelmode=walking">🚶 Walk</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title afternoon">Lunch + Afternoon</div>
+      <div class="item">
+        <div class="item-detail"><strong>Champon</strong> at Shikairo, Chinatown. ~¥1,000–1,500. Or sara udon.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/search/Shikairo+Nagasaki+Chinatown">📍 Shikairo</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name">Oura Cathedral (¥1,000) — Japan's oldest church (1864)</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Shinchi+Chinatown+Nagasaki&destination=Oura+Cathedral+Nagasaki&travelmode=walking">🚶 Walk</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name"><a href="https://glover-garden.jp/english/">Glover Garden</a> (¥660)</div>
+        <div class="item-detail">1860s Western mansions on hillside. Harbor views. Take escalator up, walk down.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/place/Glover+Garden+Nagasaki">📍 Location</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="item"><div class="item-detail"><em>Return ~17:30 Kamome via Takeo-Onsen. Back hotel ~19:15.</em></div></div>
+
+  </div>
+</div>
+
+<!-- DAY 15 -->
+<div class="day" id="day15">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">15</div>
+    <div class="day-info">
+      <div class="day-date">Fri Apr 24 · Kumamoto</div>
+      <div class="day-title">Castle & Garden</div>
+      <div class="day-tags"><span class="tag tag-culture">Castle</span><span class="tag tag-culture">Garden</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Getting There</div>
+      <div class="transit-box">
+        <div class="transit-route">Hotel → Hakata → Kyushu Shinkansen → Kumamoto</div>
+        <div class="transit-detail">Tsubame or Sakura · ~33 min · JR Pass. Trains every 15–20 min. ⚠ Select Tsubame/Sakura (not Mizuho). Tram to castle ~15 min (¥170).<br>🎫 Short ride — unreserved car fine (frequent departures), or reserve at JR Hakata.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Hakata+Station&destination=Kumamoto+Station&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title morning">Morning</div>
+      <div class="item">
+        <div class="item-name"><a href="https://castle.kumamoto-guide.jp/en/">Kumamoto Castle</a> (¥800)</div>
+        <div class="item-detail">Built 1607. Famous mushagaeshi curved walls. Main keep + restoration observation path. 2–2.5 hrs.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Kumamoto+Station&destination=Kumamoto+Castle&travelmode=transit">📍 From station</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-detail"><strong>Lunch:</strong> Kumamoto ramen (garlic pork broth) at Komurasaki near castle. Or basashi (horse sashimi).</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title afternoon">Afternoon</div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.suizenji.or.jp/en/">Suizenji Jojuen Garden</a> (¥400)</div>
+        <div class="item-detail">1630s. Spring-fed pond, miniature Tokaido road, Mt. Fuji hill. Kokindenju tea (¥650, matcha with garden view). 1–1.5 hrs.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Kumamoto+Castle&destination=Suizenji+Garden+Kumamoto&travelmode=transit">📍 From castle</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">Suizenji Spring Festival Apr 22–24 — possible yabusame or Noh performances!</div>
+
+  </div>
+</div>
+
+<!-- DAY 16 -->
+<div class="day" id="day16">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">16</div>
+    <div class="day-info">
+      <div class="day-date">Sat Apr 25 · Karatsu</div>
+      <div class="day-title">Castle, Coast & Pine Forest</div>
+      <div class="day-tags"><span class="tag tag-hike">Hike</span><span class="tag tag-culture">Castle</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Getting There — ~8:00 AM</div>
+      <div class="note">JR Pass covers Meinohama → Karatsu. Buy ¥300 paper ticket at Hakata subway for Hakata → Meinohama leg.</div>
+      <div class="transit-box">
+        <div class="transit-route">Hotel → Hakata (subway) → through-service → Karatsu</div>
+        <div class="transit-detail">Kuko Line direct to JR Chikuhi Line (no transfer at Meinohama). ~85–95 min. ⚠ JR Pass covers Meinohama→Karatsu only. Buy ¥300 subway ticket at Hakata for Hakata→Meinohama leg. Show JR Pass + paper ticket at Karatsu exit.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=KOKO+HOTEL+Hakata+Station&destination=Karatsu+Station&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title morning">Morning</div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.japan-guide.com/e/e4802.html">Karatsu Castle</a> (¥500)</div>
+        <div class="item-detail">"Dancing Crane Castle," 1608. Hilltop bay views. 45 min.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Karatsu+Station&destination=Karatsu+Castle&travelmode=walking">🚶 Walk</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-name">Hikiyama Exhibition Hall (¥310)</div>
+        <div class="item-detail">14 massive lacquered festival floats. Nearly always empty. 20 min.</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title hike">Midday — Niji no Matsubara Pine Forest</div>
+      <div class="item">
+        <div class="item-name"><a href="https://www.japan-guide.com/e/e4803.html">Niji no Matsubara</a></div>
+        <div class="item-detail">4 km, ~1 million black pines (360 years old). Soft pine-needle paths along Karatsu Bay. 1–1.5 hrs.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Karatsu+Castle&destination=Niji+no+Matsubara&travelmode=walking">🚶 Walk from castle</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title hike">Afternoon — Mt. Kagami (鏡山)</div>
+      <div class="item">
+        <div class="item-name">Mt. Kagami (284m)</div>
+        <div class="item-detail">~5 km trail · 1–1.5 hrs up · Easy. Summit: panoramic views of bay, pine forest, castle, islands.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Niji+no+Matsubara&destination=Kagamiyama+Observation+Deck+Karatsu&travelmode=walking">📍 Trailhead</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">⚠ Evening: Pack for Tokyo. Arrange takkyubin if needed. Final Fukuoka dinner — mentaiko at Fukuya or revisit yatai.</div>
+
+  </div>
+</div>
+
+<!-- DAY 17 -->
+<div class="day" id="day17">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">17</div>
+    <div class="day-info">
+      <div class="day-date">Sun Apr 26 · Fukuoka → Tokyo</div>
+      <div class="day-title">Return to Tokyo</div>
+      <div class="day-tags"><span class="tag tag-transit">Shinkansen</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Transfer — ~10:00 AM (JR Pass last day)</div>
+      <div class="transit-box">
+        <div class="transit-route">⚠ IMPORTANT: Google Maps will suggest Nozomi — NOT covered by JR Pass!</div>
+        <div class="transit-detail">You must manually select Sakura to Shin-Osaka, then Hikari to Tokyo. ~5 hours total. JR Pass (last day).</div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">① Sakura Shinkansen: Hakata → Shin-Osaka</div>
+        <div class="transit-detail">~2h 20min · JR Pass · Select Sakura (not Nozomi/Mizuho).<br>🎫 Reserve BOTH segments the day before at JR Hakata. Long ride — reserved seat strongly recommended.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Hakata+Station&destination=Shin-Osaka+Station&travelmode=transit">📍 Hakata → Shin-Osaka</a>
+        </div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">② Hikari Shinkansen: Shin-Osaka → Tokyo</div>
+        <div class="transit-detail">~2h 50min · JR Pass · Select Hikari (not Nozomi). Arrive ~15:00–15:30.<br>🎫 Reserve at same time as segment ① above.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Shin-Osaka+Station&destination=Tokyo+Station&travelmode=transit">📍 Shin-Osaka → Tokyo</a>
+        </div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">Tokyo Station → APA Hotel Ueno Ekimae</div>
+        <div class="transit-detail">JR to Ueno (5 min). 2 min walk from Central Exit.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Tokyo+Station&destination=APA+Hotel+Ueno+Ekimae&travelmode=transit">📍 Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">Stock up at Hakata Station. Il Forno del Mignon for mini-croissants (sold by weight).</div>
+
+  </div>
+</div>
+
+<!-- DAY 18 -->
+<div class="day" id="day18">
+  <div class="day-header" onclick="toggleDay(this)">
+    <div class="day-num">18</div>
+    <div class="day-info">
+      <div class="day-date">Mon Apr 27 · Departure</div>
+      <div class="day-title">Flight 15:35 Narita T1</div>
+      <div class="day-tags"><span class="tag tag-transit">Flight</span></div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="day-body">
+
+    <div class="block">
+      <div class="block-title logistics">Departure — Leave by 11:30</div>
+      <div class="note">✈ <strong>EL AL LY92</strong> · Booking: <strong>X3YO5U</strong> · Departs 15:35 Narita T1 · Seat 40K · Be at airport by 12:30–13:00.</div>
+      <div class="transit-box">
+        <div class="transit-route">① Walk: APA Ueno Ekimae → Keisei Ueno Station</div>
+        <div class="transit-detail">5 min walk.</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=APA+Hotel+Ueno+Ekimae&destination=Keisei+Ueno+Station&travelmode=walking">🚶 Walk to Keisei</a>
+        </div>
+      </div>
+      <div class="transit-box">
+        <div class="transit-route">② Keisei Skyliner: Keisei Ueno → Narita Terminal 1</div>
+        <div class="transit-detail">~41 min · ¥2,520. Depart by 11:30 for 15:35 flight. ⚠ Google may suggest JR Narita Express — take Skyliner from Keisei Ueno instead (faster, cheaper).</div>
+        <div class="links">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Keisei+Ueno+Station&destination=Narita+Airport+Terminal+1&travelmode=transit">📍 Skyliner → Narita</a>
+          <a class="btn btn-info" href="https://www.keisei.co.jp/keisei/tetudou/skyliner/us/ae_timetable.php">🕐 Skyliner timetable</a>
+          <a class="btn btn-info" href="https://www.keisei.co.jp/keisei/tetudou/skyliner/us/ae_timetable.php">🕐 Skyliner timetable</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-detail">Morning: light breakfast, Ameyoko for last-minute shopping, or Ueno Park.</div>
+      <div class="links">
+        <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=APA+Hotel+Ueno+Ekimae&destination=Ameyoko+Market+Ueno&travelmode=walking">🚶 Ameyoko</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function toggleDay(header) {
+  const day = header.parentElement;
+  const wasOpen = day.classList.contains('open');
+  day.classList.toggle('open');
+  if (!wasOpen) {
+    setTimeout(() => header.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+}
+
+function toggleRef(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('show');
+}
+
+// Search
+document.getElementById('search').addEventListener('input', function(e) {
+  const q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.day').forEach(day => {
+    if (!q) {
+      day.classList.remove('hidden');
+      return;
+    }
+    const text = day.textContent.toLowerCase();
+    day.classList.toggle('hidden', !text.includes(q));
+    if (text.includes(q) && !day.classList.contains('open')) {
+      day.classList.add('open');
+    }
+  });
+});
+
+// Quick nav scroll
+document.querySelectorAll('.quick-nav a').forEach(a => {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.getElementById(this.getAttribute('href').slice(1));
+    if (target) {
+      if (!target.classList.contains('open')) target.classList.add('open');
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Auto-open today's day
+(function() {
+  const today = new Date();
+  const tripDays = [
+    [2026,3,10],[2026,3,11],[2026,3,12],[2026,3,13],[2026,3,14],[2026,3,15],
+    [2026,3,16],[2026,3,17],[2026,3,18],[2026,3,19],[2026,3,20],[2026,3,21],
+    [2026,3,22],[2026,3,23],[2026,3,24],[2026,3,25],[2026,3,26],[2026,3,27]
+  ];
+  for (let i = 0; i < tripDays.length; i++) {
+    const [y,m,d] = tripDays[i];
+    if (today.getFullYear() === y && today.getMonth() === m && today.getDate() === d) {
+      const el = document.getElementById('day' + (i+1));
+      if (el) { el.classList.add('today', 'open'); }
+    }
+  }
+})();
+</script>
+
+</body>
+</html>
