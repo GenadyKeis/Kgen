@@ -356,6 +356,155 @@
 
   .hidden { display: none !important; }
 
+  /* Food Guide Section */
+  .food-section-header {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    border-top: 3px solid var(--tag-food);
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .food-section-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.3px;
+  }
+  .food-section-header .food-sub {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .food-day {
+    border-bottom: 1px solid var(--border);
+  }
+  .food-day-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    user-select: none;
+    gap: 12px;
+    transition: background 0.15s;
+  }
+  .food-day-header:active { background: var(--card); }
+  .food-day .day-num {
+    background: var(--tag-food);
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+  .food-day-info { flex: 1; min-width: 0; }
+  .food-day-date { font-size: 11px; color: var(--text-dim); }
+  .food-day-title { font-size: 14px; font-weight: 600; margin-top: 1px; color: var(--text); }
+  .food-day-body {
+    display: none;
+    padding: 0 16px 16px;
+  }
+  .food-day.open .food-day-body { display: block; }
+  .food-day.open .chevron { transform: rotate(90deg); }
+
+  .food-meal {
+    margin-bottom: 14px;
+  }
+  .food-meal-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #e0c8a0;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #7a5a3a33;
+  }
+
+  .food-restaurant {
+    margin-bottom: 12px;
+    padding: 12px;
+    background: var(--card);
+    border-radius: 8px;
+    border-left: 3px solid var(--tag-food);
+  }
+  .food-restaurant .rest-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .food-restaurant .rest-jp {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-left: 4px;
+  }
+  .food-restaurant .rest-meta {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    line-height: 1.6;
+  }
+  .food-restaurant .rest-meta strong { color: var(--text); font-weight: 600; }
+  .food-restaurant .rest-order {
+    font-size: 13px;
+    color: #e0c8a0;
+    margin-top: 6px;
+    padding: 6px 8px;
+    background: #2a2018;
+    border-radius: 6px;
+    line-height: 1.5;
+  }
+  .food-restaurant .rest-note {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    font-style: italic;
+  }
+  .food-restaurant .rest-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-right: 4px;
+    text-transform: uppercase;
+  }
+  .rest-badge.primary { background: var(--tag-food); color: #e0c8a0; }
+  .rest-badge.backup { background: #3a3a3a; color: var(--text-dim); }
+  .rest-badge.tabelog { background: #4a3a2a; color: #e09455; }
+  .rest-badge.bib { background: #4a2a2a; color: #e07070; }
+
+  .food-tip {
+    font-size: 12px;
+    color: var(--text-dim);
+    background: #1e2a2e;
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin-top: 8px;
+    border-left: 3px solid #6aadcf;
+    line-height: 1.5;
+  }
+
+  .food-quick-nav {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 10px 16px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .food-quick-nav::-webkit-scrollbar { display: none; }
+  .food-quick-nav a {
+    flex-shrink: 0;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 12px;
+    background: var(--card);
+    color: var(--text-dim);
+    text-decoration: none;
+    border: 1px solid var(--border);
+  }
+
   @media (min-width: 600px) {
     body { max-width: 600px; margin: 0 auto; }
   }
@@ -377,7 +526,7 @@
   <a href="#day5">5</a><a href="#day6">6</a><a href="#day7">7</a><a href="#day8">8</a>
   <a href="#day9">9</a><a href="#day10">10</a><a href="#day11">11</a><a href="#day12">12</a>
   <a href="#day13">13</a><a href="#day14">14</a><a href="#day15">15</a><a href="#day16">16</a>
-  <a href="#day17">17</a><a href="#day18">18</a>
+  <a href="#day17">17</a><a href="#day18">18</a><a href="#food-guide" style="background:var(--tag-food);color:#e0c8a0;border-color:var(--tag-food);">🍜 Food</a>
 </div>
 
 <!-- QUICK REFERENCE -->
@@ -1635,8 +1784,883 @@
   </div>
 </div>
 
+
+<!-- CULINARY GUIDE -->
+<div class="food-section-header" id="food-guide">
+  <div>
+    <h2>🍜 Culinary Guide</h2>
+    <div class="food-sub">Solo dining · Counter seating focus · Regional specialties</div>
+  </div>
+</div>
+
+<div class="food-quick-nav">
+  <a href="#food1">D1</a><a href="#food2">D2</a><a href="#food3">D3</a><a href="#food4">D4</a>
+  <a href="#food5">D5</a><a href="#food6">D6</a><a href="#food7">D7</a><a href="#food8">D8</a>
+  <a href="#food9">D9</a><a href="#food10">D10</a><a href="#food11">D11</a><a href="#food12">D12</a>
+  <a href="#food13">D13</a><a href="#food14">D14</a><a href="#food15">D15</a><a href="#food16">D16</a>
+  <a href="#food17">D17</a><a href="#food18">D18</a>
+</div>
+
+<!-- Ekiben Reference -->
+<div class="ref-section">
+  <div class="ref-toggle" onclick="toggleRef(this)">Ekiben &amp; Essentials</div>
+  <div class="ref-content">
+    <strong>🍱 Tokyo Station — Ekibenya Matsuri</strong><br>
+    Japan's largest ekiben shop (200+ varieties). Central Passage near Yaesu South Gate. ~5:30–23:00.<br>
+    • <strong>Gyutan Bento</strong> — ¥2,020. Sendai beef tongue, yuzu pepper.<br>
+    • <strong>Gyuniku Domannaka</strong> — ~¥1,250. Marinated beef over rice. Best-seller.<br>
+    • <strong>Kiyoken Shumai Bento</strong> — ¥950. Yokohama's legendary pork shumai since 1954.<br>
+    • <strong>Ebi Senryo Chirashi</strong> — ~¥1,600. Shrimp and egg over sushi rice.<br><br>
+    <strong>🍱 Hakata Station — Omiyage Kaido</strong><br>
+    Inside Shinkansen ticket area. Kyushu specialties.<br>
+    • <strong>Mentaiko Gyumeshi Bento</strong> — ~¥1,200. Spicy cod roe + beef sukiyaki rice.<br>
+    • <strong>Kashiwa Meshi</strong> — ~¥850. Chicken rice, Kyushu classic since 1921.<br>
+    • <strong>Il Forno del Mignon</strong> — Mini-croissants sold by weight. Near Hakata Gate. Legendary.<br><br>
+    <strong>🥡 Solo Dining Tips</strong><br>
+    • Ticket machines (shokkenki): insert money, press button, hand ticket to chef.<br>
+    • Avoid lunch 12:00–13:00, dinner 18:30–20:00 for shorter waits.<br>
+    • Konbini (7-Eleven, Lawson, FamilyMart): onigiri ¥120–180, egg sandwiches ¥200–300.<br>
+    • Depachika (dept. store basements): premium bento, sashimi, free samples. Key: Daimaru (Osaka, Hakata), Isetan (Kyoto).
+  </div>
+</div>
+
+<!-- FOOD DAY 1 -->
+<div class="food-day" id="food1">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">1</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Fri Apr 10 · Tokyo/Ueno · Arrival</div>
+      <div class="food-day-title">Tonkatsu · Ueno</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Dinner</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span><span class="rest-badge bib">Bib Gourmand</span><span class="rest-badge tabelog">Tabelog 3.68</span></div>
+        <div class="rest-name">Tonpachi-tei <span class="rest-jp">とん八亭</span></div>
+        <div class="rest-meta">
+          <strong>Tonkatsu</strong> · ¥2,000–2,999<br>
+          4-3-4 Ueno, Taito-ku · 5 min from hotel<br>
+          11:30–14:30, 17:00–21:00 · <strong>Closed Monday</strong><br>
+          Counter seating · Solo-friendly
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Hire-katsu (fillet cutlet) set. Unlimited cabbage &amp; rice refills. Ask for extra karashi mustard.</div>
+        <div class="rest-note">Michelin Bib Gourmand. Arrives perfectly crispy. Friday evening = no long wait.</div>
+        <div class="links" style="margin-top:8px;">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Tonpachi-tei+Ueno+Tokyo&travelmode=walking">📍 Route</a>
+        </div>
+      </div>
+      <div class="food-restaurant" style="border-left-color:#3a3a3a;">
+        <div><span class="rest-badge backup">Backup</span></div>
+        <div class="rest-name">Yakiago Shio Ramen Takahashi</div>
+        <div class="rest-meta">Salt-based ramen, counter-only · ~¥1,000 · Good jet-lag recovery meal.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Yakiago+Shio+Ramen+Takahashi+Ueno&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+    <div class="food-tip">💡 <strong>Ameyoko tip:</strong> Try the street market for affordable sashimi bowls and dried snacks. Many stalls have standing counter spots.</div>
+  </div>
+</div>
+
+<!-- FOOD DAY 2 -->
+<div class="food-day" id="food2">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">2</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Sat Apr 11 · Mt. Mitake Hiking</div>
+      <div class="food-day-title">Bento + Post-Hike Ramen</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍙 Breakfast / Trail Bento</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span></div>
+        <div class="rest-name">Ecute Ueno (JR Ueno Station)</div>
+        <div class="rest-meta">Open from ~7:00 · Onigiri set or packed bento · ¥500–1,000<br>Buy before boarding Chūō Line. Limited food on mountain.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=ecute+Ueno+JR+Station&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Dinner (back in Ueno)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span></div>
+        <div class="rest-name">Ichiran Ueno Okachimachi <span class="rest-jp">一蘭</span></div>
+        <div class="rest-meta">
+          <strong>Tonkotsu ramen</strong> · ~¥1,000<br>
+          6-11-15 Ueno, Taito-ku · 3 min from hotel<br>
+          24 hours · Individual "flavor concentration" booths
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Classic tonkotsu. Customize richness, garlic, noodle firmness &amp; spice on order form. Add extra chashu.</div>
+        <div class="rest-note">Chain, but the original Hakata-style experience. Great post-hike recovery. No wait on weekday evenings.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Ichiran+Ueno+Okachimachi&travelmode=walking">📍 Route</a></div>
+      </div>
+      <div class="food-restaurant" style="border-left-color:#3a3a3a;">
+        <div><span class="rest-badge backup">Backup</span></div>
+        <div class="rest-name">Afuri Ueno</div>
+        <div class="rest-meta">Yuzu shio ramen, lighter broth. Counter seating · ~¥1,000. Better if you want something less heavy after hiking.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=AFURI+Ramen+Ueno+Tokyo&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 3 -->
+<div class="food-day" id="food3">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">3</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Sun Apr 12 · Museums &amp; Culture</div>
+      <div class="food-day-title">Museum Lunch + Udon</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Lunch (Ueno/Museum area)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span></div>
+        <div class="rest-name">Tokyo National Museum Cafeteria</div>
+        <div class="rest-meta">
+          Toyokan area · Curry rice &amp; teishoku sets · ¥800–1,200<br>
+          Avoids leaving &amp; re-entering the museum.
+        </div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Tokyo+National+Museum&travelmode=walking">📍 Route</a></div>
+      </div>
+      <div class="food-restaurant" style="border-left-color:#3a3a3a;">
+        <div><span class="rest-badge backup">Backup</span></div>
+        <div class="rest-name">Innsyoutei <span class="rest-jp">音音茶屋</span></div>
+        <div class="rest-meta">Traditional restaurant inside Ueno Park, near TNM exit. Japanese set meals with garden view. ¥2,000–3,000.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Innsyoutei+Ueno+Park+Tokyo&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Dinner (Omotesando area after Nezu Museum)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span><span class="rest-badge tabelog">Tabelog 3.77</span></div>
+        <div class="rest-name">Fuunji <span class="rest-jp">風雲児</span></div>
+        <div class="rest-meta">
+          <strong>Tsukemen</strong> · ~¥1,000<br>
+          1-14-1 Jingumae, Shibuya-ku · 2 stops from Omotesando<br>
+          11:00–15:00, 17:00–21:00 · <strong style="color:#e07070;">⚠ CLOSED SUNDAYS</strong><br>
+          Counter only · Queue outside, eat inside.
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Tsukemen (dipping noodles). Thick, rich dipping broth with firm noodles.</div>
+        <div class="rest-note">Day 3 is Sunday — Fuunji closed. Use only if schedule shifts. Instead: revisit Tonpachi-tei (open Sun) or try Ueno soba.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Fuunji+Ramen+Shinjuku+Tokyo&travelmode=transit">📍 Route</a></div>
+      </div>
+      <div class="food-restaurant" style="border-left-color:#3a3a3a;">
+        <div><span class="rest-badge backup">Backup (Sunday option)</span></div>
+        <div class="rest-name">Hand-pulled Udon Shin (Ueno)</div>
+        <div class="rest-meta">Counter udon near Ueno Station. Hand-pulled noodles, hot/cold sets · ~¥800–1,200.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Udon+Shin+Ueno+Tokyo&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 4 -->
+<div class="food-day" id="food4">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">4</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Mon Apr 13 · Tokyo → Osaka</div>
+      <div class="food-day-title">Ekiben + Dotonbori Street Food</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍱 Lunch (on Hikari Shinkansen)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Ekiben</span></div>
+        <div class="rest-name">Ekibenya Matsuri — Tokyo Station</div>
+        <div class="rest-meta">
+          Buy before boarding. <strong>Gyutan Bento</strong> (¥2,020) or <strong>Gyuniku Domannaka</strong> (~¥1,250) recommended.<br>
+          Grab a beer or chu-hai from the platform convenience store.
+        </div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Ekibenya+Matsuri+Tokyo+Station&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Dinner (Dotonbori, evening)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Street Food</span></div>
+        <div class="rest-name">Takoyaki Juhachiban <span class="rest-jp">たこ焼十八番</span></div>
+        <div class="rest-meta">
+          <strong>Takoyaki</strong> · ¥500–800<br>
+          Dotonbori strip · ~10:00–23:00 daily<br>
+          Standing/walking street food. No seating needed.
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Original takoyaki (8 pcs). Multiple surprise fillings. Try the ponzu sauce variant.</div>
+        <div class="rest-note">Start with takoyaki while walking Dotonbori, then sit down for a proper meal.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Takoyaki+Juhachiban+Dotonbori+Osaka&travelmode=walking">📍 Route</a></div>
+      </div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Sit-down</span><span class="rest-badge tabelog">Tabelog ~3.5</span></div>
+        <div class="rest-name">Hakugintei <span class="rest-jp">白銀亭</span></div>
+        <div class="rest-meta">
+          <strong>Japanese curry</strong> · ~¥800–1,000<br>
+          Honmachi area · 2 min from hotel<br>
+          Lunch: 11:30–14:00 · Counter-only, tiny shop. Designed for solo.
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Rich, spicy curry rice. The house specialty.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Hakugintei+Curry+Honmachi+Osaka&travelmode=walking">📍 Route</a></div>
+      </div>
+      <div class="food-restaurant" style="border-left-color:#3a3a3a;">
+        <div><span class="rest-badge backup">Backup</span></div>
+        <div class="rest-name">Kinryu Ramen (Dotonbori)</div>
+        <div class="rest-meta">24-hour ramen with open-air seating on Dotonbori. ~¥600. Good late-night option.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Kinryu+Ramen+Dotonbori+Osaka&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 5 -->
+<div class="food-day" id="food5">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">5</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Tue Apr 14 · Nara Day Trip</div>
+      <div class="food-day-title">Kakinoha-zushi · Persimmon Leaf Sushi</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Lunch (after Kasuga Forest hike, ~14:00)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span><span class="rest-badge tabelog">Tabelog 3.42</span></div>
+        <div class="rest-name">Kakinoha-zushi Hiraso <span class="rest-jp">平宗</span> Kintetsu-Nara Branch</div>
+        <div class="rest-meta">
+          <strong>Kakinoha-zushi (pressed sushi)</strong> · ¥1,000–2,000<br>
+          Near Kintetsu Nara Station, exit 2 · ~10:00–20:00<br>
+          On the walk back from Nara Park. Table seating + takeaway.
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Kakinoha-zushi set with chagayu (tea porridge) — ¥1,820. Mackerel &amp; salmon sushi in persimmon leaves + warm porridge. Or buy a mixed box (¥1,000–1,200) for the train.</div>
+        <div class="rest-note">Est. 1861 in Yoshino. Nara's quintessential specialty. The vinegar rice uses local Hinohikari rice. Buy extra as omiyage.</div>
+        <div class="links" style="margin-top:8px;">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Kakinoha+Sushi+Hiraso+Kintetsu+Nara&travelmode=walking">📍 Route</a>
+        </div>
+      </div>
+      <div class="food-restaurant" style="border-left-color:#3a3a3a;">
+        <div><span class="rest-badge backup">Backup</span></div>
+        <div class="rest-name">Kakinoha-zushi Tanaka (Honpo Tanaka)</div>
+        <div class="rest-meta">Alternative persimmon leaf sushi near Kintetsu-Nara. Small teahouse eat-in. Seasonal varieties.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Kakinoha+Sushi+Tanaka+Nara&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Dinner (back in Osaka)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span></div>
+        <div class="rest-name">Sugidama <span class="rest-jp">杉玉</span></div>
+        <div class="rest-meta">
+          <strong>Sushi &amp; tempura sets</strong> · ¥2,000–3,000<br>
+          Near Honmachi Station · 5 min from hotel<br>
+          Counter seating ideal for solo.
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Sashimi of the day + seasonal vegetable tempura. Comes with soup.</div>
+        <div class="rest-note">Versatile menu, close to hotel. Good post-day-trip dinner when you don't want to walk far.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Sugidama+Honmachi+Osaka&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 6 -->
+<div class="food-day" id="food6">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">6</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Wed Apr 15 · Koyasan Day Trip</div>
+      <div class="food-day-title">Shojin Ryori · Buddhist Vegetarian</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Lunch (Koyasan, ~12:00)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span></div>
+        <div class="rest-name">Maruman <span class="rest-jp">丸万</span></div>
+        <div class="rest-meta">
+          <strong>Shojin ryori (Buddhist vegetarian)</strong> · ¥1,500–2,500<br>
+          Central Koyasan, near Senjuinbashi bus stop<br>
+          ~11:00–17:00 · Tatami room · Solo welcome on weekdays.
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Shojin ryori teishoku set. Seasonal vegetables, goma-dofu (sesame tofu — Koyasan specialty), mountain herbs, rice, pickles, miso soup. Ask for extra goma-dofu side.</div>
+        <div class="rest-note">No reservations needed weekday lunch. The goma-dofu is the star — rich, creamy, nutty. How monks have eaten for 1,000+ years.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Maruman+Koyasan+Wakayama&travelmode=walking">📍 Route</a></div>
+      </div>
+      <div class="food-restaurant" style="border-left-color:#3a3a3a;">
+        <div><span class="rest-badge backup">Backup</span></div>
+        <div class="rest-name">Hanabishi</div>
+        <div class="rest-meta">Also near Senjuinbashi. Similar shojin ryori sets, different atmosphere. Same price range.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Hanabishi+Koyasan+Wakayama&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Dinner (back in Osaka)</div>
+      <div class="food-restaurant">
+        <div class="rest-meta">Light dinner near hotel. Hakugintei (if not tried yet) or convenience store onigiri &amp; soup. Rest up for tomorrow's Kurama hike.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 7 -->
+<div class="food-day" id="food7">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">7</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Thu Apr 16 · Kyoto/Kibune</div>
+      <div class="food-day-title">Riverside Dining · Kibune</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Lunch (Kibune, after Kurama→Kibune hike, ~12:30)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span></div>
+        <div class="rest-name">Hirobun <span class="rest-jp">ひろ文</span></div>
+        <div class="rest-meta">
+          <strong>Japanese set meals</strong> · ¥2,000–3,500<br>
+          Kibune village, main path · ~11:00–21:00 (seasonal)<br>
+          Table seating. Solo welcome at lunch on weekdays.
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Tempura soba set or seasonal teishoku. April = regular menu only (nagashi somen starts late May).</div>
+        <div class="rest-note">Kibune's most famous restaurant. Riverside setting is beautiful even without the summer kawadoko platforms. Stream runs beside the dining area.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Hirobun+Kibune+Kyoto&travelmode=walking">📍 Route</a></div>
+      </div>
+      <div class="food-restaurant" style="border-left-color:#3a3a3a;">
+        <div><span class="rest-badge backup">Backup</span></div>
+        <div class="rest-name">Kifune Club</div>
+        <div class="rest-meta">Also Kibune village. Slightly more upscale riverside setting. ¥3,000–5,000 for full set.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Kifune+Club+Kyoto&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Dinner (final night in Osaka)</div>
+      <div class="food-restaurant">
+        <div class="rest-meta">
+          <strong>Tenjinbashi-suji shopping street</strong> — Japan's longest (2.6 km). Direct Sakaisuji Line from Sakaisuji-Honmachi. Dozens of small eateries.<br>
+          Try <strong>kushikatsu</strong> (deep-fried skewers) at a counter shop, or find an <strong>okonomiyaki</strong> griddle counter.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 8 -->
+<div class="food-day" id="food8">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">8</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Fri Apr 17 · Osaka → Hiroshima + Miyajima</div>
+      <div class="food-day-title">Grilled Oysters · Momiji Manju · Anago</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Lunch (Miyajima, afternoon)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Street Food</span></div>
+        <div class="rest-name">Miyajima Omotesando — Graze Walk</div>
+        <div class="rest-meta">
+          Main shopping street from ferry terminal to Itsukushima Shrine. Lined with food stalls.<br><br>
+          <strong>🦪 Grilled oysters (kaki):</strong> Giant, charcoal-grilled. ¥500–600 for 2–3 pieces. Hiroshima produces 2/3 of Japan's oysters. Pick a stall with a short line.<br><br>
+          <strong>🍁 Momiji manju:</strong> Maple-leaf cakes with red bean, custard, or chocolate. ¥100–200 each. Buy fresh from Fujii-ya or Iwamura. Try the age-manju (deep-fried version).<br><br>
+          <strong>🐟 Anago meshi:</strong> Grilled conger eel over rice. Bento from Ueno (¥2,160) near ferry terminal, or eat-in along Omotesando.
+        </div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Omotesando+Shopping+Street+Miyajima&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Dinner (Hiroshima, evening)</div>
+      <div class="food-restaurant">
+        <div class="rest-meta">Save Hiroshima okonomiyaki for Day 9 (post-hike). Tonight: lighter option near station.</div>
+      </div>
+      <div class="food-restaurant" style="border-left-color:#3a3a3a;">
+        <div><span class="rest-badge backup">Option</span></div>
+        <div class="rest-name">Bakudan-ya (Hiroshima Station area)</div>
+        <div class="rest-meta">Hiroshima-style tsukemen (spicy dipping noodles). Counter seating. ~¥900.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Bakudanya+Hiroshima+Station&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 9 -->
+<div class="food-day" id="food9">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">9</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Sat Apr 18 · Mt. Misen + Hiroshima</div>
+      <div class="food-day-title">⭐ Hiroshima Okonomiyaki</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Dinner — THE Highlight</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span><span class="rest-badge tabelog">Tabelog 3.56</span></div>
+        <div class="rest-name">Nagata-ya <span class="rest-jp">長田屋</span></div>
+        <div class="rest-meta">
+          <strong>Hiroshima-style okonomiyaki</strong> · ¥1,000–1,500<br>
+          1-7-19 Otemachi, Naka-ku · 2 min from Peace Memorial Park<br>
+          11:00–20:30 · <strong>Closed Tue, 2nd &amp; 4th Wed</strong><br>
+          From hotel: tram to Chuden-mae (~15 min, ¥220)<br>
+          Counter seating facing the iron griddle. Perfect solo.
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Nagataya-yaki (house special) — ¥1,300. Layered pork, shrimp, squid tempura, egg, green onions &amp; soba noodles on iron griddle. Add extra egg (¥100). Watch it made in front of you.</div>
+        <div class="rest-note">Hiroshima layers ingredients (cabbage 3–4x more than Osaka), includes yakisoba noodles. The layering is the show. English menu &amp; vegan options available.</div>
+        <div class="links" style="margin-top:8px;">
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Nagata-ya+Okonomiyaki+Otemachi+Hiroshima&travelmode=walking">📍 Route</a>
+        </div>
+      </div>
+      <div class="food-restaurant" style="border-left-color:#3a3a3a;">
+        <div><span class="rest-badge backup">Backup</span><span class="rest-badge tabelog">Tabelog 4.6!</span></div>
+        <div class="rest-name">Hassei <span class="rest-jp">八昇</span></div>
+        <div class="rest-meta">4-17 Fujimi-cho, Naka-ku · 11:30–14:00, 17:00–23:00. More locals, fewer tourists. Sesame seed accent. Gluten-free option. 10 min tram.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Hassei+Okonomiyaki+Fujimi-cho+Hiroshima&travelmode=walking">📍 Route</a></div>
+      </div>
+      <div class="food-restaurant" style="border-left-color:#3a3a3a;">
+        <div><span class="rest-badge backup">Plan C</span></div>
+        <div class="rest-name">Okonomimura (Hatchobori)</div>
+        <div class="rest-meta">Building with ~20 okonomiyaki stalls, ALL counter seating. No wrong choice. Tram to Hatchobori ~10 min.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Okonomimura+Hiroshima&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 10 -->
+<div class="food-day" id="food10">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">10</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Sun Apr 19 · Onomichi Day Trip</div>
+      <div class="food-day-title">Onomichi Ramen · Pork Back Fat</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Lunch (Onomichi, after temple walk, ~12:30)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span></div>
+        <div class="rest-name">Ichibankan <span class="rest-jp">壱番館</span></div>
+        <div class="rest-meta">
+          <strong>Onomichi ramen</strong> · ¥800–1,250<br>
+          Kaigan-dori (coastal road), near Sumiyoshi Shrine<br>
+          11:00–19:00 · <strong>Closed Friday</strong> (Day 10 = Sunday ✓)<br>
+          10 min walk from station, along waterfront<br>
+          Counter &amp; table seating.
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Kakuni Ramen (¥1,250) — braised pork belly, boiled egg, stem wakame over classic Onomichi soy/seabura broth. Or standard Onomichi Ramen (¥750) for the pure experience.</div>
+        <div class="rest-note">Former Michelin Guide inclusion. The seabura (pork back fat) floating on soy broth is THE defining Onomichi ramen trait. Sunday may have 15–20 min queue.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Ichibankan+Ramen+Onomichi&travelmode=walking">📍 Route</a></div>
+      </div>
+      <div class="food-restaurant" style="border-left-color:#3a3a3a;">
+        <div><span class="rest-badge backup">Backup</span></div>
+        <div class="rest-name">Tsutafuji <span class="rest-jp">ツタフジ</span></div>
+        <div class="rest-meta">Another Onomichi legend, near station. More traditional, denser broth. Often very long queues — arrive early.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Tsutafuji+Ramen+Onomichi&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Dinner (Hiroshima)</div>
+      <div class="food-restaurant">
+        <div class="rest-meta"><strong>Hiroshima Station Ekie food court</strong> — Multiple solo-friendly counters. Ramen, curry, udon. ¥800–1,200. Light night after Onomichi.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 11 -->
+<div class="food-day" id="food11">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">11</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Mon Apr 20 · Hiroshima City</div>
+      <div class="food-day-title">Last Hiroshima Meals</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Lunch (Peace Park area, ~13:00)</div>
+      <div class="food-restaurant">
+        <div class="rest-meta">Near Peace Park. If you haven't had okonomiyaki yet, last chance at <strong>Nagata-ya</strong> (2 min from park, closed Tue = today is Mon ✓). Otherwise, tsukemen at a local counter.</div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Dinner (final Hiroshima meal)</div>
+      <div class="food-restaurant">
+        <div class="rest-meta"><strong>Shukkeien Garden area</strong> — After visiting the garden, walk to nearby soba or udon counters along Shukkeien-dori. Light, comforting final meal before packing for Fukuoka.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 12 -->
+<div class="food-day" id="food12">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">12</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Tue Apr 21 · Hiroshima → Fukuoka</div>
+      <div class="food-day-title">⭐ Hakata Ramen + Yatai</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Lunch (Hakata, ~12:00)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span></div>
+        <div class="rest-name">Shin-Shin Hakata Deitos <span class="rest-jp">博多らあめん ShinShin</span></div>
+        <div class="rest-meta">
+          <strong>Hakata tonkotsu ramen</strong> · ¥820–1,100<br>
+          Inside JR Hakata Station (Hakata Deitos building)<br>
+          Weekdays 11:00–23:00 · Counter seating. Queue common but fast.
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Hakata Junjo Ramen (¥820). Noodles "barikata" (extra firm) — Hakata tradition. Free or ¥100 kaedama (extra noodles). Add gyoza (¥350) &amp; Hakata Mocchan (rice cake).</div>
+        <div class="rest-note">Ultra-thin noodles in milky tonkotsu broth. Smooth, less pungent than typical. One of Fukuoka's most beloved ramen shops.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=ShinShin+Ramen+Hakata+Deitos+Fukuoka&travelmode=walking">📍 Route</a></div>
+      </div>
+      <div class="food-restaurant" style="border-left-color:#3a3a3a;">
+        <div><span class="rest-badge backup">Backup</span></div>
+        <div class="rest-name">Hakata Issou <span class="rest-jp">博多一双</span></div>
+        <div class="rest-meta">3-1-6 Hakataekihigashi, 6 min walk. 11:00–24:00. ¥890. "Tonkotsu cappuccino" — ultra-rich, frothy broth. More intense than Shin-Shin. Order barikata.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Hakata+Issou+Ramen+Hakataekihigashi+Fukuoka&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Dinner — Yatai (Food Stalls)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Experience</span></div>
+        <div class="rest-name">Nakasu Riverside Yatai</div>
+        <div class="rest-meta">
+          Open-air ramen &amp; skewer stalls along Naka River · ~10 min walk from hotel<br>
+          All counter seating (6–8 spots per stall). Go ~19:00–20:00 weekday for short waits.<br>
+          Stick to stalls with menus displayed outside.
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Hakata ramen (katamen noodles), mentaiko omelet, yakitori skewers. Budget: ¥1,500–2,500 with beer.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Nakasu+Yatai+Fukuoka&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 13 -->
+<div class="food-day" id="food13">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">13</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Wed Apr 22 · Dazaifu Day Trip</div>
+      <div class="food-day-title">Umegae Mochi + Motsu Nabe</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍡 Snack (Dazaifu, morning)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Must-Try</span></div>
+        <div class="rest-name">Umegae Mochi <span class="rest-jp">梅ヶ枝餅</span></div>
+        <div class="rest-meta">
+          Grilled rice cake with red bean filling, plum blossom stamp.<br>
+          Kasa no Ie, approach street to Tenmangu · ¥130 each.<br>
+          Dazaifu's signature treat since the Edo period. Eat hot, freshly grilled.
+        </div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Kasa+no+Ie+Umegae+Mochi+Dazaifu&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Lunch (pre-hike)</div>
+      <div class="food-restaurant">
+        <div class="rest-meta">Small udon/soba shops near Dazaifu Station, or pack onigiri from convenience store before Mt. Homan hike.</div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Dinner (Hakata, ~18:00)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span></div>
+        <div class="rest-name">Motsu Nabe Hakata Yoshino <span class="rest-jp">博多よしの</span></div>
+        <div class="rest-meta">
+          <strong>Motsu nabe (offal hot pot)</strong> · ¥2,000–3,000<br>
+          ~5 min walk from Hakata Station · 17:00–23:00<br>
+          <strong>Single-serving pots available</strong> — unusual for nabe!
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Motsu nabe single-serving pot. Rich miso or soy broth with pork/beef offal, cabbage, chives, garlic, chili. Add champon noodles at the end to soak up broth.</div>
+        <div class="rest-note">Hakata specialty alongside ramen. The single-serving option is rare — most nabe places require 2+ people. Rich, warming, deeply satisfying.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Motsu+Nabe+Yoshino+Hakata+Fukuoka&travelmode=walking">📍 Route</a></div>
+      </div>
+      <div class="food-restaurant" style="border-left-color:#3a3a3a;">
+        <div><span class="rest-badge backup">Backup</span></div>
+        <div class="rest-name">Tonkatsu Wa (near Hakata Station)</div>
+        <div class="rest-meta">Counter tonkatsu. Clean, straightforward. ~¥1,500. Good if you want simpler.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Tonkatsu+Wa+Hakata+Station+Fukuoka&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 14 -->
+<div class="food-day" id="food14">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">14</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Thu Apr 23 · Nagasaki Day Trip</div>
+      <div class="food-day-title">Champon + Castella</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Lunch (Nagasaki, ~12:30)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span></div>
+        <div class="rest-name">Shikairo <span class="rest-jp">四海樓</span></div>
+        <div class="rest-meta">
+          <strong>Champon &amp; sara udon</strong> · ¥1,000–1,500<br>
+          Shinchi Chinatown area · Tram to Tsukimachi, 5 min walk<br>
+          11:30–15:00, 17:00–21:00 · Table seating, quick turnover.
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Champon (¥1,100) — Shikairo claims to have invented it. Thick noodles in rich, creamy pork &amp; chicken broth with seafood, vegetables &amp; kamaboko. Or sara udon — crispy thin noodles with same rich topping.</div>
+        <div class="rest-note">Created here in the late 1800s by the Chinese founder as affordable food for Chinese students. A fusion dish unique to Nagasaki. The city's soul food.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Shikairo+Nagasaki+Chinatown&travelmode=walking">📍 Route</a></div>
+      </div>
+      <div class="food-restaurant" style="border-left-color:#3a3a3a;">
+        <div><span class="rest-badge backup">Backup</span></div>
+        <div class="rest-name">Smaller Chinatown Shops</div>
+        <div class="rest-meta">Shinchi Chinatown has several no-name champon shops with counter seating. Grittier, more authentic. ¥800–1,000. Pick one with locals inside.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Shinchi+Chinatown+Nagasaki&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍰 Snack</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Must-Buy</span></div>
+        <div class="rest-name">Castella (Kasutera)</div>
+        <div class="rest-meta">
+          Nagasaki's Portuguese-origin sponge cake.<br>
+          Buy at <strong>Fukusaya</strong> <span class="rest-jp">福砂屋</span> (since 1624) or <strong>Bunmeido</strong>.<br>
+          Available near Dutch Slope &amp; at Hakata Station. A must-buy omiyage.
+        </div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Fukusaya+Castella+Nagasaki&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 15 -->
+<div class="food-day" id="food15">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">15</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Fri Apr 24 · Kumamoto Day Trip</div>
+      <div class="food-day-title">Kumamoto Ramen + Basashi</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Lunch (near Kumamoto Castle, ~12:00)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span></div>
+        <div class="rest-name">Komurasaki <span class="rest-jp">こむらさき</span></div>
+        <div class="rest-meta">
+          <strong>Kumamoto ramen</strong> · ~¥800–1,000<br>
+          Near Kumamoto Castle, downtown · ~11:00–20:00<br>
+          Tram to Kumamotojo-mae · Counter seating.
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Kumamoto ramen — medium-thick noodles in garlic-heavy tonkotsu broth with ma-yu (burnt garlic oil). Distinctly different from Hakata: thicker noodles, more garlic, darker broth. Add gyoza side.</div>
+        <div class="rest-note">Kumamoto ramen is the "other" Kyushu ramen. If you've been eating Hakata ramen all week, the garlic punch here is a revelation.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Komurasaki+Ramen+Kumamoto&travelmode=walking">📍 Route</a></div>
+      </div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Also Try</span></div>
+        <div class="rest-name">Basashi (Horse Sashimi)</div>
+        <div class="rest-meta">
+          Kumamoto's most famous delicacy. Thinly sliced raw horse meat with ginger, garlic &amp; soy sauce.<br>
+          Available at many restaurants near the castle. ¥1,500–2,500 for a set.<br>
+          Best at dedicated basashi counter, but lunch sets at general restaurants include it too.
+        </div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍵 Afternoon (Suizenji Garden)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Teahouse</span></div>
+        <div class="rest-name">Kokindenju no Ma</div>
+        <div class="rest-meta">
+          Matcha &amp; wagashi with garden view · ¥650<br>
+          Inside the 400-year-old thatched teahouse overlooking the spring-fed pond. A perfect contemplative pause.
+        </div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Kokindenju+no+Ma+Suizenji+Garden+Kumamoto&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 16 -->
+<div class="food-day" id="food16">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">16</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Sat Apr 25 · Karatsu Day Trip</div>
+      <div class="food-day-title">Karatsu Burger + Yobuko Squid + Mentaiko</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Lunch (near Niji no Matsubara, ~12:30)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span></div>
+        <div class="rest-name">Karatsu Burger Matsubara Honten</div>
+        <div class="rest-meta">
+          <strong>Japanese-style burger</strong> · ¥350–500<br>
+          Near Niji no Matsubara pine forest · ~10:00–19:00<br>
+          Between the castle and Nijinomatsubara Station. Takeaway — eat on a bench overlooking Karatsu Bay.
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Special Karatsu Burger with egg &amp; cheese. Simple, satisfying, beloved by locals since the 1960s.</div>
+        <div class="rest-note">One of Japan's original local burgers, predating most fast food chains. The van has been parked in the same spot for decades.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Karatsu+Burger+Matsubara+Honten&travelmode=walking">📍 Route</a></div>
+      </div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Alternative</span></div>
+        <div class="rest-name">Yobuko Ika (Squid Sashimi)</div>
+        <div class="rest-meta">
+          Ultra-fresh, translucent squid served alive (ikizukuri). ¥2,000–3,000 for a set.<br>
+          Look for "呼子のイカ" signs. Several restaurants in Karatsu serve it.
+        </div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Yobuko+Morning+Market+Karatsu&travelmode=transit">📍 Route to Yobuko</a></div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Dinner (final Fukuoka meal)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Primary</span></div>
+        <div class="rest-name">Fukuya <span class="rest-jp">ふくや</span></div>
+        <div class="rest-meta">
+          <strong>Mentaiko (spicy cod roe)</strong> · ¥1,500–2,000<br>
+          Near Hakata Station (multiple branches) · Lunch &amp; dinner<br>
+          Counter seating at eat-in locations.
+        </div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Mentaiko rice bowl (mentaiko-don). Fukuya invented mentaiko in 1949. Also sells mentaiko as omiyage.</div>
+        <div class="rest-note">Last night in Fukuoka. Mentaiko is THE Hakata souvenir food. Fukuya's version is the original. Buy vacuum-packed mentaiko to take home.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Fukuya+Mentaiko+Hakata+Station+Fukuoka&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 17 -->
+<div class="food-day" id="food17">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">17</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Sun Apr 26 · Fukuoka → Tokyo</div>
+      <div class="food-day-title">Ekiben + Mignon Croissants + Final Dinner</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍱 Train Provisions (Hakata Station)</div>
+      <div class="food-restaurant">
+        <div><span class="rest-badge primary">Stock Up</span></div>
+        <div class="rest-name">Hakata Station Provisions</div>
+        <div class="rest-meta">
+          <strong>Il Forno del Mignon:</strong> Mini-croissants sold by weight. Legendary. Near Hakata Gate.<br>
+          <strong>Ekiben:</strong> Mentaiko Gyumeshi Bento from Omiyage Kaido inside Shinkansen area.<br>
+          Extra snacks, drinks, beer. Sakura Shinkansen to Shin-Osaka has cart service; Hikari onward usually doesn't.
+        </div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Il+Forno+del+Mignon+Hakata+Station&travelmode=walking">📍 Mignon</a> <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Omiyage+Kaido+Hakata+Station&travelmode=walking">📍 Ekiben</a></div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">🍽 Dinner (Ueno, ~16:00–17:00)</div>
+      <div class="food-restaurant">
+        <div class="rest-meta">
+          Arrive Ueno late afternoon. Revisit <strong>Tonpachi-tei</strong> (tonkatsu — closed Mon but today is Sun ✓) or explore <strong>Ameyoko</strong> street market.<br><br>
+          <strong>Ameyoko:</strong> Sashimi bowls, yakitori stalls, Thai/Korean food stands. Standing/counter eating. ¥500–1,500. Atmospheric final evening.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD DAY 18 -->
+<div class="food-day" id="food18">
+  <div class="food-day-header" onclick="toggleFood(this)">
+    <div class="day-num">18</div>
+    <div class="food-day-info">
+      <div class="food-day-date">Mon Apr 27 · Departure</div>
+      <div class="food-day-title">Last Bites</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="food-day-body">
+    <div class="food-meal">
+      <div class="food-meal-title">🍙 Breakfast / Brunch</div>
+      <div class="food-restaurant">
+        <div class="rest-meta">
+          Convenience store breakfast at hotel (7-Eleven/Lawson) or <strong>Ecute Ueno</strong> inside JR station.<br>
+          Last chance for onigiri, melon pan, or egg sandwiches. Grab extra for the Skyliner ride.
+        </div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=ecute+Ueno+JR+Station&travelmode=walking">📍 Route</a></div>
+      </div>
+    </div>
+    <div class="food-meal">
+      <div class="food-meal-title">✈️ Narita Airport</div>
+      <div class="food-restaurant">
+        <div class="rest-meta">Terminal 1 has solid ramen and soba counters after security. Last bowl before departure. Several solo-friendly options in the food court area.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Regional Specialties Quick Reference -->
+<div class="ref-section">
+  <div class="ref-toggle" onclick="toggleRef(this)">Regional Specialties Quick Reference</div>
+  <div class="ref-content">
+    <strong>Tokyo/Ueno:</strong> Tonkatsu (breaded pork cutlet) — Day 1, 17<br>
+    <strong>Nara:</strong> Kakinoha-zushi (pressed sushi in persimmon leaves) — Day 5<br>
+    <strong>Koyasan:</strong> Shojin ryori (Buddhist vegetarian multi-course) — Day 6<br>
+    <strong>Kyoto/Kibune:</strong> Kawadoko dining (riverside seasonal sets) — Day 7<br>
+    <strong>Osaka:</strong> Takoyaki / Okonomiyaki — Day 4<br>
+    <strong>Hiroshima:</strong> Okonomiyaki (layered cabbage+noodle+egg) — Day 9<br>
+    <strong>Miyajima:</strong> Grilled oysters / Anago (conger eel) — Day 8<br>
+    <strong>Onomichi:</strong> Onomichi ramen (soy + pork back fat + flat noodles) — Day 10<br>
+    <strong>Hakata:</strong> Tonkotsu ramen — Day 12 · Motsu nabe — Day 13 · Mentaiko — Day 16<br>
+    <strong>Nagasaki:</strong> Champon — Day 14 · Castella — Day 14<br>
+    <strong>Kumamoto:</strong> Kumamoto ramen (garlic ma-yu) / Basashi (horse sashimi) — Day 15<br>
+    <strong>Karatsu:</strong> Yobuko ika (translucent squid sashimi) — Day 16
+  </div>
+</div>
+
+
 <script>
 function toggleDay(header) {
+  const day = header.parentElement;
+  const wasOpen = day.classList.contains('open');
+  day.classList.toggle('open');
+  if (!wasOpen) {
+    setTimeout(() => header.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+}
+
+function toggleFood(header) {
   const day = header.parentElement;
   const wasOpen = day.classList.contains('open');
   day.classList.toggle('open');
@@ -1653,7 +2677,7 @@ function toggleRef(el) {
 // Search
 document.getElementById('search').addEventListener('input', function(e) {
   const q = e.target.value.toLowerCase().trim();
-  document.querySelectorAll('.day').forEach(day => {
+  document.querySelectorAll('.day, .food-day').forEach(day => {
     if (!q) {
       day.classList.remove('hidden');
       return;
@@ -1667,12 +2691,13 @@ document.getElementById('search').addEventListener('input', function(e) {
 });
 
 // Quick nav scroll
-document.querySelectorAll('.quick-nav a').forEach(a => {
+document.querySelectorAll('.quick-nav a, .food-quick-nav a').forEach(a => {
   a.addEventListener('click', function(e) {
     e.preventDefault();
     const target = document.getElementById(this.getAttribute('href').slice(1));
     if (target) {
-      if (!target.classList.contains('open')) target.classList.add('open');
+      if (target.classList.contains('food-day') && !target.classList.contains('open')) target.classList.add('open');
+      if (target.classList.contains('day') && !target.classList.contains('open')) target.classList.add('open');
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
