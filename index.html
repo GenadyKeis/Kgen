@@ -505,6 +505,367 @@
     border: 1px solid var(--border);
   }
 
+  /* Emergency Section */
+  .sos-section-header {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    border-top: 3px solid #e05050;
+    margin-top: 8px;
+  }
+  .sos-section-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #e05050;
+    letter-spacing: -0.3px;
+  }
+  .sos-section-header .sos-sub {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+  .sos-group {
+    border-bottom: 1px solid var(--border);
+  }
+  .sos-group-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    user-select: none;
+    gap: 10px;
+    transition: background 0.15s;
+  }
+  .sos-group-header:active { background: var(--card); }
+  .sos-group-icon {
+    font-size: 20px;
+    width: 32px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .sos-group-title {
+    font-size: 14px;
+    font-weight: 600;
+    flex: 1;
+  }
+  .sos-group-body {
+    display: none;
+    padding: 0 16px 16px;
+  }
+  .sos-group.open .sos-group-body { display: block; }
+  .sos-group.open .chevron { transform: rotate(90deg); }
+
+  .sos-card {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-left: 3px solid #e05050;
+  }
+  .sos-card.hotel-card { border-left-color: var(--accent); }
+  .sos-card.medical-card { border-left-color: #6aadcf; }
+  .sos-card .sos-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #e05050;
+    margin-bottom: 4px;
+  }
+  .sos-card.hotel-card .sos-label { color: var(--accent); }
+  .sos-card.medical-card .sos-label { color: #6aadcf; }
+  .sos-card .sos-jp {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.4;
+    margin: 4px 0;
+  }
+  .sos-card .sos-en {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .sos-card .sos-romaji {
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  .show-staff-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: #3a2020;
+    color: #e05050;
+    border: 1px solid #5a3030;
+    cursor: pointer;
+    margin-top: 6px;
+  }
+
+  .sos-fullscreen {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #000;
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .sos-fullscreen.active { display: flex; }
+  .sos-fullscreen .fs-jp {
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+  .sos-fullscreen .fs-en {
+    font-size: 16px;
+    color: #999;
+    margin-bottom: 30px;
+  }
+  .sos-fullscreen .fs-close {
+    font-size: 14px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+    cursor: pointer;
+  }
+
+  /* Transit Section */
+  .transit-section-header {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    border-top: 3px solid var(--tag-transit);
+    margin-top: 8px;
+  }
+  .transit-section-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #6aadcf;
+    letter-spacing: -0.3px;
+  }
+  .transit-section-header .transit-sub {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  .transit-day {
+    border-bottom: 1px solid var(--border);
+  }
+  .transit-day-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    user-select: none;
+    gap: 12px;
+    transition: background 0.15s;
+  }
+  .transit-day-header:active { background: var(--card); }
+  .transit-day .day-num {
+    background: var(--tag-transit);
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+  .transit-day-info { flex: 1; min-width: 0; }
+  .transit-day-date { font-size: 11px; color: var(--text-dim); }
+  .transit-day-title { font-size: 14px; font-weight: 600; margin-top: 1px; color: var(--text); }
+  .transit-day-body {
+    display: none;
+    padding: 0 16px 16px;
+  }
+  .transit-day.open .transit-day-body { display: block; }
+  .transit-day.open .chevron { transform: rotate(90deg); }
+
+  .tleg {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    padding: 10px 12px;
+    background: var(--card);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .tleg-badge {
+    flex-shrink: 0;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-top: 2px;
+    white-space: nowrap;
+  }
+  .tleg-badge.jr { background: #1a3a1a; color: #7cb87a; border: 1px solid #2a5a2a; }
+  .tleg-badge.ic { background: #1a2a3a; color: #6aadcf; border: 1px solid #2a4a6a; }
+  .tleg-badge.private { background: #3a2a1a; color: #e09455; border: 1px solid #5a4a2a; }
+  .tleg-badge.walk { background: #2a2a2a; color: var(--text-dim); border: 1px solid #3a3a3a; }
+  .tleg-badge.ferry { background: #1a2a3a; color: #7ac; border: 1px solid #2a4a5a; }
+  .tleg-badge.cable { background: #2a1a3a; color: #b090c0; border: 1px solid #4a3a5a; }
+  .tleg-content { flex: 1; min-width: 0; }
+  .tleg-route {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .tleg-detail {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 2px;
+    line-height: 1.5;
+  }
+
+  .transit-note {
+    font-size: 12px;
+    color: #6aadcf;
+    background: #1a2a2e;
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin-top: 4px;
+    border-left: 3px solid #6aadcf;
+    line-height: 1.5;
+  }
+  .transit-warn {
+    font-size: 12px;
+    color: #e09455;
+    background: #2a2018;
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin-top: 4px;
+    border-left: 3px solid #e09455;
+    line-height: 1.5;
+  }
+  .transit-last {
+    font-size: 12px;
+    color: #e07070;
+    background: #2a1a1a;
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin-top: 4px;
+    border-left: 3px solid #e07070;
+    line-height: 1.5;
+    font-weight: 600;
+  }
+
+  .transit-quick-nav {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 10px 16px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .transit-quick-nav::-webkit-scrollbar { display: none; }
+  .transit-quick-nav a {
+    flex-shrink: 0;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 12px;
+    background: var(--card);
+    color: var(--text-dim);
+    text-decoration: none;
+    border: 1px solid var(--border);
+  }
+
+  /* Phrasebook Section */
+  .phrase-section-header {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    border-top: 3px solid #6a4a6a;
+    margin-top: 8px;
+  }
+  .phrase-section-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #d0b0d0;
+    letter-spacing: -0.3px;
+  }
+  .phrase-section-header .phrase-sub {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  .phrase-group {
+    border-bottom: 1px solid var(--border);
+  }
+  .phrase-group-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    user-select: none;
+    gap: 10px;
+    transition: background 0.15s;
+  }
+  .phrase-group-header:active { background: var(--card); }
+  .phrase-group-icon {
+    font-size: 20px;
+    width: 32px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .phrase-group-title {
+    font-size: 14px;
+    font-weight: 600;
+    flex: 1;
+  }
+  .phrase-group-body {
+    display: none;
+    padding: 0 16px 16px;
+  }
+  .phrase-group.open .phrase-group-body { display: block; }
+  .phrase-group.open .chevron { transform: rotate(90deg); }
+
+  .phrase-item {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    border-left: 3px solid #6a4a6a;
+    cursor: pointer;
+  }
+  .phrase-item:active { background: var(--card-open); }
+  .phrase-en {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 2px;
+  }
+  .phrase-jp {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .phrase-romaji {
+    font-size: 12px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 2px;
+  }
+  .phrase-context {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
   @media (min-width: 600px) {
     body { max-width: 600px; margin: 0 auto; }
   }
@@ -526,7 +887,7 @@
   <a href="#day5">5</a><a href="#day6">6</a><a href="#day7">7</a><a href="#day8">8</a>
   <a href="#day9">9</a><a href="#day10">10</a><a href="#day11">11</a><a href="#day12">12</a>
   <a href="#day13">13</a><a href="#day14">14</a><a href="#day15">15</a><a href="#day16">16</a>
-  <a href="#day17">17</a><a href="#day18">18</a><a href="#food-guide" style="background:var(--tag-food);color:#e0c8a0;border-color:var(--tag-food);">🍜 Food</a>
+  <a href="#day17">17</a><a href="#day18">18</a><a href="#food-guide" style="background:var(--tag-food);color:#e0c8a0;border-color:var(--tag-food);">🍜 Food</a><a href="#sos-section" style="background:#4a1a1a;color:#e05050;border-color:#e05050;">🚨 SOS</a><a href="#transit-section" style="background:var(--tag-transit);color:#b0d0f0;border-color:var(--tag-transit);">🚃 Transit</a><a href="#phrase-section" style="background:var(--tag-culture);color:#d0b0d0;border-color:var(--tag-culture);">🗣 Phrases</a>
 </div>
 
 <!-- QUICK REFERENCE -->
@@ -1843,11 +2204,11 @@
       <div class="food-meal-title">🍽 Dinner (Friday evening arrival)</div>
       <div class="food-restaurant">
         <div><span class="rest-badge primary">Primary</span></div>
-        <div class="rest-name">Yakiago Shio Ramen Takahashi</div>
+        <div class="rest-name">Yakiago Shio Ramen Takahashi <span class="rest-jp">焼きあご塩らー麺 たかはし 上野店</span></div>
         <div class="rest-meta">
           <strong>Shio ramen</strong> · ~¥1,000<br>
-          Counter-only · Near Ueno Station<br>
-          Light, clean salt broth — perfect jet-lag recovery meal.
+          JR Okachimachi North Exit, 2 min walk (台東区上野4-1-5) · Weekdays 11:00–23:00, Sat/Sun/Hol 10:00–23:00 · Year-round<br>
+          Counter-only ~15 seats · Ticket machine ordering. Tabelog 3.50. Light, clean salt broth with flying fish (ago) dashi — perfect jet-lag recovery meal.
         </div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Yakiago+Shio+Ramen+Takahashi+Ueno&travelmode=walking">📍 Route</a></div>
       </div>
@@ -1864,7 +2225,7 @@
         <div class="rest-meta">
           <strong>Tonkatsu</strong> · ¥2,000–2,999<br>
           4-3-4 Ueno, Taito-ku · 5 min from hotel<br>
-          <strong style="color:#e07070;">⚠ LUNCH ONLY: 11:30–14:00 (sells out early)</strong> · <strong>Closed Monday</strong><br>
+          <strong style="color:#e07070;">⚠ LUNCH ONLY: 11:30–14:30 (sells out early; Sun may close 14:00)</strong> · <strong>Closed Monday</strong><br>
           Counter seating (14 seats) · Solo-friendly · No reservations
         </div>
         <div class="rest-order">🥢 <strong>Order:</strong> Hire-katsu (fillet cutlet) set. Unlimited cabbage &amp; rice refills. Ask for extra karashi mustard.</div>
@@ -1893,8 +2254,8 @@
       <div class="food-meal-title">🍙 Breakfast / Trail Bento</div>
       <div class="food-restaurant">
         <div><span class="rest-badge primary">Primary</span></div>
-        <div class="rest-name">Ecute Ueno (JR Ueno Station)</div>
-        <div class="rest-meta">Open from ~7:00 · Onigiri set or packed bento · ¥500–1,000<br>Buy before boarding Chūō Line. Limited food on mountain.</div>
+        <div class="rest-name">Ecute Ueno <span class="rest-jp">エキュート上野</span> (JR Ueno Station 3F, inside gates)</div>
+        <div class="rest-meta">Earliest shops open ~7:00 (Kinokuniya Entree, soba counter) · Onigiri, bento, bakeries · ¥500–1,000<br>⚠️ Inside JR改札内 — you must enter through JR gates to access. Buy provisions before boarding. Renovated April 2025 with expanded food hall.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=ecute+Ueno+JR+Station&travelmode=walking">📍 Route</a></div>
       </div>
     </div>
@@ -1902,21 +2263,21 @@
       <div class="food-meal-title">🍽 Dinner (back in Ueno)</div>
       <div class="food-restaurant">
         <div><span class="rest-badge primary">Primary</span></div>
-        <div class="rest-name">Ichiran Ueno Okachimachi <span class="rest-jp">一蘭</span></div>
+        <div class="rest-name">Ichiran Atre Ueno <span class="rest-jp">一蘭 アトレ上野山下口店</span></div>
         <div class="rest-meta">
           <strong>Tonkotsu ramen</strong> · ~¥1,000<br>
-          6-11-15 Ueno, Taito-ku · 3 min from hotel<br>
-          24 hours · Individual "flavor concentration" booths
+          Atre Ueno WEST 1F (上野7-1-1), JR Ueno Station · 10:00–翌6:00 (nearly 24h) · 36 seats<br>
+          ⚠️ Note: The former "Ueno Okachimachi" branch closed Dec 2022. This Atre branch is the closest Ichiran to the hotel (~5 min walk). Individual "flavor concentration" booths.
         </div>
         <div class="rest-order">🥢 <strong>Order:</strong> Classic tonkotsu. Customize richness, garlic, noodle firmness &amp; spice on order form. Add extra chashu.</div>
         <div class="rest-note">Chain, but the original Hakata-style experience. Great post-hike recovery. No wait on weekday evenings.</div>
-        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Ichiran+Ueno+Okachimachi&travelmode=walking">📍 Route</a></div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Ichiran+Atre+Ueno+Yamashitaguchi&travelmode=walking">📍 Route</a></div>
       </div>
       <div class="food-restaurant" style="border-left-color:#3a3a3a;">
         <div><span class="rest-badge backup">Backup</span></div>
-        <div class="rest-name">Afuri Ueno</div>
-        <div class="rest-meta">Yuzu shio ramen, lighter broth. Counter seating · ~¥1,000. Better if you want something less heavy after hiking.</div>
-        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=AFURI+Ramen+Ueno+Tokyo&travelmode=walking">📍 Route</a></div>
+        <div class="rest-name">AFURI <span class="rest-jp">阿夫利</span></div>
+        <div class="rest-meta">⚠️ <strong>No Ueno branch.</strong> Nearest locations: Ebisu (original), Harajuku, Shinjuku. Yuzu shio ramen, lighter broth · ~¥1,200. Worth the detour if craving non-tonkotsu ramen, but not walkable from hotel. For a lighter option in Ueno, try <strong>Yakiago Shio Ramen Takahashi</strong> (already listed Day 1) — also a non-tonkotsu salt-broth style.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=AFURI+Ramen+Ebisu+Tokyo&travelmode=transit">📍 AFURI Ebisu</a></div>
       </div>
     </div>
   </div>
@@ -1941,7 +2302,7 @@
         <div class="rest-meta">
           <strong>Tonkatsu</strong> · ¥2,000–2,999<br>
           4-3-4 Ueno, Taito-ku · 5 min from hotel<br>
-          <strong style="color:#e07070;">⚠ LUNCH ONLY: 11:30–14:00 (sells out early)</strong> · <strong>Closed Monday</strong><br>
+          <strong style="color:#e07070;">⚠ LUNCH ONLY: 11:30–14:30 (sells out early; Sun may close 14:00)</strong> · <strong>Closed Monday</strong><br>
           Counter seating (14 seats) · Solo-friendly · No reservations
         </div>
         <div class="rest-order">🥢 <strong>Order:</strong> Hire-katsu (fillet cutlet) set. Unlimited cabbage &amp; rice refills. Ask for extra karashi mustard.</div>
@@ -1952,14 +2313,14 @@
       </div>
       <div class="food-restaurant" style="border-left-color:#3a3a3a;">
         <div><span class="rest-badge backup">Backup</span></div>
-        <div class="rest-name">Tokyo National Museum Cafeteria</div>
-        <div class="rest-meta">Toyokan area · Curry rice &amp; teishoku sets · ¥800–1,200. Avoids leaving &amp; re-entering the museum.</div>
+        <div class="rest-name">Hotel Okura Restaurant Yurinoki <span class="rest-jp">ゆりの木</span> (Tokyo National Museum)</div>
+        <div class="rest-meta">Next to Toyokan (東洋館) · Full meals: curry, teishoku, pasta · ¥1,000–2,000. Hotel Okura quality at museum prices. Avoids leaving &amp; re-entering the museum. Separate café terrace outside for drinks &amp; light bites.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Tokyo+National+Museum&travelmode=walking">📍 Route</a></div>
       </div>
       <div class="food-restaurant" style="border-left-color:#3a3a3a;">
         <div><span class="rest-badge backup">Backup</span></div>
-        <div class="rest-name">Innsyoutei <span class="rest-jp">音音茶屋</span></div>
-        <div class="rest-meta">Traditional restaurant inside Ueno Park, near TNM exit. Japanese set meals with garden view. ¥2,000–3,000.</div>
+        <div class="rest-name">Innsyoutei <span class="rest-jp">韻松亭</span></div>
+        <div class="rest-meta">Historic kaiseki (est. 1875) inside Ueno Park, near TNM exit. Tofu &amp; seasonal set meals with garden view. Lunch 11:00–16:00 (L.O. 15:00), Dinner 17:00–23:00 (L.O. 21:30, Sun/Hol 20:30). Counter seats for solo. Lunch sets from ¥3,300; kaiseki from ¥5,500. Tabelog 3.68.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Innsyoutei+Ueno+Park+Tokyo&travelmode=walking">📍 Route</a></div>
       </div>
     </div>
@@ -1967,22 +2328,22 @@
       <div class="food-meal-title">🍽 Dinner (back in Ueno, evening)</div>
       <div class="food-restaurant">
         <div><span class="rest-badge primary">Primary (Sunday)</span></div>
-        <div class="rest-name">Hand-pulled Udon Shin (Ueno)</div>
-        <div class="rest-meta">Counter udon near Ueno Station. Hand-pulled noodles, hot/cold sets · ~¥800–1,200. Open Sunday.</div>
-        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Udon+Shin+Ueno+Tokyo&travelmode=walking">📍 Route</a></div>
+        <div class="rest-name">Udon Shin <span class="rest-jp">うどん 慎</span></div>
+        <div class="rest-meta">⚠️ Located in <strong>Yoyogi/Shinjuku</strong> (代々木2-20-16), NOT Ueno — 30+ min by subway from hotel. Tiny shop (~10 seats), famous "carbonara udon" with bacon tempura. Tabelog Top 100. Always long queues (60–90 min). Cash only. Worth the trip if you have a free afternoon in Shinjuku, but not a convenient Ueno dinner option.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Udon+Shin+Yoyogi+Shinjuku+Tokyo&travelmode=transit">📍 Route</a></div>
       </div>
       <div class="food-restaurant" style="border-left-color:#3a3a3a;">
         <div><span class="rest-badge backup">Backup</span></div>
-        <div class="rest-name">Ichiran Ueno Okachimachi <span class="rest-jp">一蘭</span></div>
-        <div class="rest-meta">Solo-booth ramen, open late. ~¥1,000. No wait on Sunday evenings.</div>
-        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Ichiran+Ueno+Okachimachi&travelmode=walking">📍 Route</a></div>
+        <div class="rest-name">Ichiran Atre Ueno <span class="rest-jp">一蘭 アトレ上野山下口店</span></div>
+        <div class="rest-meta">Solo-booth ramen, open 10:00–翌6:00. ~¥1,000. Atre Ueno WEST 1F. No wait on Sunday evenings.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Ichiran+Atre+Ueno+Yamashitaguchi&travelmode=walking">📍 Route</a></div>
       </div>
       <div class="food-restaurant" style="border-left-color:#555;">
         <div><span class="rest-badge backup">If schedule shifts to weekday</span></div>
         <div class="rest-name">Fuunji <span class="rest-jp">風雲児</span></div>
         <div class="rest-meta">
           <strong>Tsukemen</strong> · ~¥1,000 · Shinjuku · Tabelog 3.77<br>
-          11:00–15:00, 17:00–21:00 · <strong style="color:#e07070;">⚠ CLOSED SUNDAYS</strong><br>
+          11:00–15:00, 17:00–21:00 · <strong style="color:#e07070;">⚠ CLOSED SUNDAYS &amp; HOLIDAYS</strong><br>
           Only viable if itinerary shifts to a weekday.
         </div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Fuunji+Ramen+Shinjuku+Tokyo&travelmode=transit">📍 Route</a></div>
@@ -2006,9 +2367,10 @@
       <div class="food-meal-title">🍱 Lunch (on Hikari Shinkansen)</div>
       <div class="food-restaurant">
         <div><span class="rest-badge primary">Ekiben</span></div>
-        <div class="rest-name">Ekibenya Matsuri — Tokyo Station</div>
+        <div class="rest-name">Ekibenya Matsuri <span class="rest-jp">駅弁屋 祭</span> — Tokyo Station</div>
         <div class="rest-meta">
-          Buy before boarding. <strong>Gyutan Bento</strong> (¥2,020) or <strong>Gyuniku Domannaka</strong> (~¥1,250) recommended.<br>
+          GRANSTA Tokyo 1F, Central Passage (inside JR gates, between platforms 6–8) · 5:30–22:00 daily<br>
+          200+ ekiben varieties from all over Japan. Buy before boarding. <strong>Gyutan Bento</strong> (~¥1,500) or <strong>Tokyo Bento</strong> (~¥1,850) recommended.<br>
           Grab a beer or chu-hai from the platform convenience store.
         </div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Ekibenya+Matsuri+Tokyo+Station&travelmode=walking">📍 Route</a></div>
@@ -2018,32 +2380,32 @@
       <div class="food-meal-title">🍽 Dinner (Dotonbori, evening)</div>
       <div class="food-restaurant">
         <div><span class="rest-badge primary">Street Food</span></div>
-        <div class="rest-name">Takoyaki Juhachiban <span class="rest-jp">たこ焼十八番</span></div>
+        <div class="rest-name">Takoyaki Juhachiban <span class="rest-jp">たこ焼十八番 道頓堀店</span></div>
         <div class="rest-meta">
-          <strong>Takoyaki</strong> · ¥500–800<br>
-          Dotonbori strip · ~10:00–23:00 daily<br>
-          Standing/walking street food. No seating needed.
+          <strong>Takoyaki</strong> · 6 pcs ¥380 / 10 pcs ¥600<br>
+          道頓堀1-7-21 中座くいだおれビル1F · 11:00–21:00 daily · No holidays<br>
+          Standing/walking street food. Tabelog 3.47. Signature: extra tenkasu (crunchy bits) for a crispy exterior + creamy center.
         </div>
-        <div class="rest-order">🥢 <strong>Order:</strong> Original takoyaki (8 pcs). Multiple surprise fillings. Try the ponzu sauce variant.</div>
-        <div class="rest-note">Start with takoyaki while walking Dotonbori, then sit down for a proper meal.</div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Half &amp; half (塩 &amp; ソース) 10 pcs — get both salt and sauce versions. The salt variant is unexpectedly good.</div>
+        <div class="rest-note">⚠️ Tabelog flags possible closure/relocation — verify before visiting. Start with takoyaki while walking Dotonbori, then sit down for a proper meal.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Takoyaki+Juhachiban+Dotonbori+Osaka&travelmode=walking">📍 Route</a></div>
       </div>
       <div class="food-restaurant">
         <div><span class="rest-badge primary">Sit-down</span><span class="rest-badge tabelog">Tabelog 3.66</span></div>
         <div class="rest-name">Hakugintei <span class="rest-jp">白銀亭</span> Honmachi Branch</div>
         <div class="rest-meta">
-          <strong>Japanese curry</strong> · ~¥850–1,150<br>
-          Itubiru B2F, Honmachi Station · 3 min walk<br>
-          Weekday: 11:30–15:00, 17:30–20:00 · <strong>Closed Sun/holidays</strong> (Mon = open ✓)<br>
-          Counter-only, 16 seats. Designed for solo.
+          <strong>Japanese curry</strong> · ~¥950–1,150<br>
+          Ito Bldg B2F, Honmachi Station · 3 min walk<br>
+          Weekday: 11:30–15:00, 17:30–21:00 · <strong>Sat: lunch only (11:30–15:00)</strong> · <strong>Closed Sun/holidays</strong><br>
+          Counter-only, 16 seats. Designed for solo. Tabelog 3.66 · Curry WEST 100 · Bib Gourmand.
         </div>
         <div class="rest-order">🥢 <strong>Order:</strong> Tonkatsu curry with spinach topping &amp; raw egg. Rich, sweet-then-spicy Osaka-style roux.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Hakugintei+Curry+Honmachi+Osaka&travelmode=walking">📍 Route</a></div>
       </div>
       <div class="food-restaurant" style="border-left-color:#3a3a3a;">
         <div><span class="rest-badge backup">Backup</span></div>
-        <div class="rest-name">Kinryu Ramen (Dotonbori)</div>
-        <div class="rest-meta">24-hour ramen with open-air seating on Dotonbori. ~¥600. Good late-night option.</div>
+        <div class="rest-name">Kinryu Ramen <span class="rest-jp">金龍ラーメン 道頓堀店</span></div>
+        <div class="rest-meta">道頓堀1-7-26 · 24-hour · ¥600–900. Tabelog 3.49. Menu: just ramen &amp; chashu-men. Free toppings: kimchi, nira, garlic. Light tonkotsu — good late-night option after drinking. Est. 1982, giant dragon sign landmark.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Kinryu+Ramen+Dotonbori+Osaka&travelmode=walking">📍 Route</a></div>
       </div>
     </div>
@@ -2064,23 +2426,23 @@
     <div class="food-meal">
       <div class="food-meal-title">🍽 Lunch (after Kasuga Forest hike, ~14:00)</div>
       <div class="food-restaurant">
-        <div><span class="rest-badge primary">Primary</span><span class="rest-badge tabelog">Tabelog 3.42</span></div>
-        <div class="rest-name">Kakinoha-zushi Hiraso <span class="rest-jp">平宗</span> Kintetsu-Nara Branch</div>
+        <div><span class="rest-badge primary">Primary</span><span class="rest-badge tabelog">Tabelog 3.19</span></div>
+        <div class="rest-name">Kakinoha-zushi Hiraso <span class="rest-jp">平宗</span> Nara Store (本館)</div>
         <div class="rest-meta">
           <strong>Kakinoha-zushi (pressed sushi)</strong> · ¥1,000–2,000<br>
-          Near Kintetsu Nara Station, exit 2 · ~10:00–20:00<br>
-          On the walk back from Nara Park. Table seating + takeaway.
+          10 min walk from Kintetsu Nara Station, near Sarusawa Pond · Dining 11:30–20:00 (L.O. 19:30)<br>
+          <strong>Closed Monday</strong> (Day 5 = Tue ✓) · Table seating + takeaway.
         </div>
         <div class="rest-order">🥢 <strong>Order:</strong> Kakinoha-zushi set with chagayu (tea porridge) — ¥1,820. Mackerel &amp; salmon sushi in persimmon leaves + warm porridge. Or buy a mixed box (¥1,000–1,200) for the train.</div>
-        <div class="rest-note">Est. 1861 in Yoshino. Nara's quintessential specialty. The vinegar rice uses local Hinohikari rice. Buy extra as omiyage.</div>
+        <div class="rest-note">Est. 1861 in Yoshino. Nara's quintessential specialty. The vinegar rice uses local Hinohikari rice. Buy extra as omiyage. Takeout shop (登大路店) also near station, 9:00–19:00 daily.</div>
         <div class="links" style="margin-top:8px;">
-          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Kakinoha+Sushi+Hiraso+Kintetsu+Nara&travelmode=walking">📍 Route</a>
+          <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Kakinoha+Sushi+Hiraso+Nara+Imamikadomachi&travelmode=walking">📍 Route</a>
         </div>
       </div>
       <div class="food-restaurant" style="border-left-color:#3a3a3a;">
         <div><span class="rest-badge backup">Backup</span></div>
-        <div class="rest-name">Kakinoha-zushi Tanaka (Honpo Tanaka)</div>
-        <div class="rest-meta">Alternative persimmon leaf sushi near Kintetsu-Nara. Small teahouse eat-in. Seasonal varieties.</div>
+        <div class="rest-name">Kakinoha-zushi Tanaka <span class="rest-jp">柿の葉すし本舗たなか なら本店</span></div>
+        <div class="rest-meta">Higashimuki arcade entrance, 2 min from Kintetsu-Nara Station. Shop 9:00–19:00 · Eat-in "Kakinoha Chaya" 11:00–16:00 · Year-round. Seasonal varieties (saba, sake, tai). ~¥1,000–1,300 for eat-in set.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Kakinoha+Sushi+Tanaka+Nara&travelmode=walking">📍 Route</a></div>
       </div>
     </div>
@@ -2088,14 +2450,15 @@
       <div class="food-meal-title">🍽 Dinner (back in Osaka)</div>
       <div class="food-restaurant">
         <div><span class="rest-badge primary">Primary</span></div>
-        <div class="rest-name">Sugidama <span class="rest-jp">杉玉</span></div>
+        <div class="rest-name">Sugidama <span class="rest-jp">鮨 酒 肴 杉玉 本町</span></div>
         <div class="rest-meta">
-          <strong>Sushi &amp; tempura sets</strong> · ¥2,000–3,000<br>
-          Near Honmachi Station · 5 min from hotel<br>
-          Counter seating ideal for solo.
+          <strong>Sushi izakaya chain</strong> · Dinner ~¥2,000–3,000, Lunch ~¥1,000<br>
+          南本町3-6-1, Honmachi Station Exit 9 · 1 min walk · 70 seats (counter + table)<br>
+          Mon–Fri: 11:30–14:30, 17:00–23:00 · Sat: 11:30–14:30, 16:00–23:00 · Sun/Hol: 11:30–14:30, 16:00–22:00<br>
+          Affordable sushi &amp; izakaya dishes with sake. Tabelog 3.42. Good post-day-trip dinner when you don't want to walk far.
         </div>
-        <div class="rest-order">🥢 <strong>Order:</strong> Sashimi of the day + seasonal vegetable tempura. Comes with soup.</div>
-        <div class="rest-note">Versatile menu, close to hotel. Good post-day-trip dinner when you don't want to walk far.</div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Sashimi of the day + "nomeru salmon" (signature melt-in-mouth salmon sushi). Pair with local sake.</div>
+        <div class="rest-note">Chain operation (nationwide), but quality sushi at izakaya prices. Reservations accepted online.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Sugidama+Honmachi+Osaka&travelmode=walking">📍 Route</a></div>
       </div>
     </div>
@@ -2119,18 +2482,18 @@
         <div><span class="rest-badge primary">Primary</span></div>
         <div class="rest-name">Maruman <span class="rest-jp">丸万</span></div>
         <div class="rest-meta">
-          <strong>Shojin ryori (Buddhist vegetarian)</strong> · ¥1,500–2,500<br>
-          Central Koyasan, near Senjuinbashi bus stop<br>
-          ~11:00–17:00 · Tatami room · Solo welcome on weekdays.
+          <strong>General Japanese eatery with shojin ryori option</strong> · ¥2,000–3,500<br>
+          Central Koyasan, near Senjuinbashi / Kongobuji · Across from Kongo Buji temple<br>
+          ~11:00–17:00 · Tatami &amp; table seats · Solo welcome. Tabelog 3.09.
         </div>
-        <div class="rest-order">🥢 <strong>Order:</strong> Shojin ryori teishoku set. Seasonal vegetables, goma-dofu (sesame tofu — Koyasan specialty), mountain herbs, rice, pickles, miso soup. Ask for extra goma-dofu side.</div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Shojin ryori teishoku set (精進料理定食). Seasonal vegetables, goma-dofu (sesame tofu — Koyasan specialty), mountain herbs, rice, pickles, miso soup. Also serves udon, soba, curry for lighter options.</div>
         <div class="rest-note">No reservations needed weekday lunch. The goma-dofu is the star — rich, creamy, nutty. How monks have eaten for 1,000+ years.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Maruman+Koyasan+Wakayama&travelmode=walking">📍 Route</a></div>
       </div>
       <div class="food-restaurant" style="border-left-color:#3a3a3a;">
         <div><span class="rest-badge backup">Backup</span></div>
-        <div class="rest-name">Hanabishi</div>
-        <div class="rest-meta">Also near Senjuinbashi. Similar shojin ryori sets, different atmosphere. Same price range.</div>
+        <div class="rest-name">Hanabishi <span class="rest-jp">花菱</span></div>
+        <div class="rest-meta">Koyasan's premier shojin ryori restaurant (est. Meiji era). 高野町769, near Senjuinbashi. 11:00–18:00 (dinner by reservation). Irregular closures 2×/month. Proper five-method (五法) Buddhist cuisine with homemade goma-dofu. Shojin set from ¥2,200, Yoryu-zen ¥5,500.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Hanabishi+Koyasan+Wakayama&travelmode=walking">📍 Route</a></div>
       </div>
     </div>
@@ -2160,18 +2523,19 @@
         <div><span class="rest-badge primary">Primary</span></div>
         <div class="rest-name">Hirobun <span class="rest-jp">ひろ文</span></div>
         <div class="rest-meta">
-          <strong>Japanese set meals</strong> · ¥2,000–3,500<br>
-          Kibune village, main path · ~11:00–21:00 (seasonal)<br>
-          Table seating. Solo welcome at lunch on weekdays.
+          <strong>Irori (hearth) cuisine in April</strong> · ¥3,500–8,000<br>
+          Kibune village, main path · Lunch 11:00–15:00 (last entry 13:30), Dinner 17:00–21:00 (last entry 18:00)<br>
+          <strong>Closed Wed (Dec–Apr)</strong> · Day 7 = Thu ✓<br>
+          <strong style="color:#e07070;">⚠ Reservation recommended for April irori dining</strong> · Solo welcome at lunch.
         </div>
-        <div class="rest-order">🥢 <strong>Order:</strong> Tempura soba set or seasonal teishoku. April = regular menu only (nagashi somen starts late May).</div>
-        <div class="rest-note">Kibune's most famous restaurant. Riverside setting is beautiful even without the summer kawadoko platforms. Stream runs beside the dining area.</div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Irori set meal — hearth-grilled seasonal items. April = no kawadoko (river platforms) or nagashi somen (starts May). The irori experience is intimate and atmospheric.</div>
+        <div class="rest-note">Kibune's most famous ryokan-restaurant. Riverside setting is beautiful even without summer platforms. Call 075-741-2147 to reserve.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Hirobun+Kibune+Kyoto&travelmode=walking">📍 Route</a></div>
       </div>
       <div class="food-restaurant" style="border-left-color:#3a3a3a;">
         <div><span class="rest-badge backup">Backup</span></div>
-        <div class="rest-name">Kifune Club</div>
-        <div class="rest-meta">Also Kibune village. Slightly more upscale riverside setting. ¥3,000–5,000 for full set.</div>
+        <div class="rest-name">Kifune Club <span class="rest-jp">貴船倶楽部</span></div>
+        <div class="rest-meta">Log-cabin-style café near Kibune Shrine. Coffee, matcha lattes, sweets (抹茶パフェ, ケーキ). ¥1,000–1,500. 11:00–16:00 daily (irregular closures — check Instagram). In summer operates as "茶源太" kawadoko café on the river. Cozy rest stop, not a full meal.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Kifune+Club+Kyoto&travelmode=walking">📍 Route</a></div>
       </div>
     </div>
@@ -2219,8 +2583,8 @@
       </div>
       <div class="food-restaurant" style="border-left-color:#3a3a3a;">
         <div><span class="rest-badge backup">Option</span></div>
-        <div class="rest-name">Bakudan-ya (Hiroshima Station area)</div>
-        <div class="rest-meta">Hiroshima-style tsukemen (spicy dipping noodles). Counter seating. ~¥900.</div>
+        <div class="rest-name">Bakudan-ya <span class="rest-jp">廣島つけ麺本舗 ばくだん屋 ekie店</span></div>
+        <div class="rest-meta">Hiroshima-style tsukemen (spicy dipping noodles). ekie 2F, JR Hiroshima Station direct access. 11:00–22:00. Counter seating · Touch-panel ordering. ~¥900–1,150. Choose spice level 0–100.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Bakudanya+Hiroshima+Station&travelmode=walking">📍 Route</a></div>
       </div>
     </div>
@@ -2246,7 +2610,7 @@
         <div class="rest-meta">
           <strong>Hiroshima-style okonomiyaki</strong> · ¥1,000–1,500<br>
           1-7-19 Otemachi, Naka-ku · 2 min from Peace Memorial Park<br>
-          11:00–20:30 · <strong>Closed Tue, 2nd &amp; 4th Wed</strong><br>
+          11:00–21:00 (L.O. 20:30; Sat to 21:30, Sun/hol from 10:30) · <strong>Closed Tue &amp; 4th Wed</strong><br>
           From hotel: tram to Chuden-mae (~15 min, ¥220)<br>
           Counter seating facing the iron griddle. Perfect solo.
         </div>
@@ -2257,15 +2621,15 @@
         </div>
       </div>
       <div class="food-restaurant" style="border-left-color:#3a3a3a;">
-        <div><span class="rest-badge backup">Backup</span><span class="rest-badge tabelog">Tabelog 4.6!</span></div>
-        <div class="rest-name">Hassei <span class="rest-jp">八昇</span></div>
-        <div class="rest-meta">4-17 Fujimi-cho, Naka-ku · 11:30–14:00, 17:00–23:00. More locals, fewer tourists. Sesame seed accent. Gluten-free option. 10 min tram.</div>
-        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Hassei+Okonomiyaki+Fujimi-cho+Hiroshima&travelmode=walking">📍 Route</a></div>
+        <div><span class="rest-badge backup">Backup</span><span class="rest-badge tabelog">Tabelog百名店</span></div>
+        <div class="rest-name">Yagenbori Hassho <span class="rest-jp">薬研堀 八昌</span></div>
+        <div class="rest-meta">Yagenbori area (nightlife district) · Dinner only: 16:00–22:30 (Tue–Sat), 16:00–21:00 (Sun). <strong>Closed Mon, 1st &amp; 3rd Tue</strong> (Day 9 = Sat ✓). Michelin Bib Gourmand. Famous double-yolk eggs. 47 seats total (counter + tables). Expect 30–60 min queue + 20 min cook time. Cash only.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Yagenbori+Hassho+Hiroshima&travelmode=walking">📍 Route</a></div>
       </div>
       <div class="food-restaurant" style="border-left-color:#3a3a3a;">
         <div><span class="rest-badge backup">Plan C</span></div>
-        <div class="rest-name">Okonomimura (Hatchobori)</div>
-        <div class="rest-meta">Building with ~20 okonomiyaki stalls, ALL counter seating. No wrong choice. Tram to Hatchobori ~10 min.</div>
+        <div class="rest-name">Okonomimura <span class="rest-jp">お好み村</span> (Shintenchi)</div>
+        <div class="rest-meta">Building with ~24 okonomiyaki stalls on floors 2–4. ALL counter seating (~12 seats per stall). Cash only at most. No wrong choice. 3 min walk from Hatchobori tram stop. Open ~11:00–21:00. Est. 1967.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Okonomimura+Hiroshima&travelmode=walking">📍 Route</a></div>
       </div>
     </div>
@@ -2291,7 +2655,7 @@
         <div class="rest-meta">
           <strong>Onomichi ramen</strong> · ¥800–1,250<br>
           Kaigan-dori (coastal road), near Sumiyoshi Shrine<br>
-          11:00–19:00 · <strong>Closed Friday</strong> (Day 10 = Sunday ✓)<br>
+          11:00–19:00 (Instagram suggests may now close 18:00 — aim for lunch) · <strong>Closed Friday</strong> (Day 10 = Sunday ✓)<br>
           10 min walk from station, along waterfront<br>
           Counter &amp; table seating.
         </div>
@@ -2301,8 +2665,8 @@
       </div>
       <div class="food-restaurant" style="border-left-color:#3a3a3a;">
         <div><span class="rest-badge backup">Backup</span></div>
-        <div class="rest-name">Tsutafuji <span class="rest-jp">ツタフジ</span></div>
-        <div class="rest-meta">Another Onomichi legend, near station. More traditional, denser broth. Often very long queues — arrive early.</div>
+        <div class="rest-name">Tsutafuji <span class="rest-jp">つたふじ</span></div>
+        <div class="rest-meta">Onomichi ramen legend (est. ~1950). 土堂2-10-17, 15 min walk from Onomichi Station along seafront. 11:00–16:00 (closes when sold out). <strong>Closed Mon &amp; Tue.</strong> Counter-only ~11 seats. Soy-based broth with pork back fat — denser, more traditional than newer shops. Expect queues at lunch; arrive by 11:00 or after 14:00.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Tsutafuji+Ramen+Onomichi&travelmode=walking">📍 Route</a></div>
       </div>
     </div>
@@ -2360,7 +2724,7 @@
         <div class="rest-meta">
           <strong>Hakata tonkotsu ramen</strong> · ¥820–1,100<br>
           Inside JR Hakata Station (Hakata Deitos building)<br>
-          Weekdays 11:00–23:00 · Counter seating. Queue common but fast.
+          Weekdays 11:00–23:00 (L.O. 22:30), Sat/Sun/Hol from 10:00 · Occasional monthly closures (check website) · Counter seating. Queue common but fast.
         </div>
         <div class="rest-order">🥢 <strong>Order:</strong> Hakata Junjo Ramen (¥820). Noodles "barikata" (extra firm) — Hakata tradition. Free or ¥100 kaedama (extra noodles). Add gyoza (¥350) &amp; Hakata Mocchan (rice cake).</div>
         <div class="rest-note">Ultra-thin noodles in milky tonkotsu broth. Smooth, less pungent than typical. One of Fukuoka's most beloved ramen shops.</div>
@@ -2369,7 +2733,7 @@
       <div class="food-restaurant" style="border-left-color:#3a3a3a;">
         <div><span class="rest-badge backup">Backup</span></div>
         <div class="rest-name">Hakata Issou <span class="rest-jp">博多一双</span></div>
-        <div class="rest-meta">3-1-6 Hakataekihigashi, 6 min walk. 11:00–24:00. ¥890. "Tonkotsu cappuccino" — ultra-rich, frothy broth. More intense than Shin-Shin. Order barikata.</div>
+        <div class="rest-meta">博多駅東3-1-6, 6 min walk from Hakata Station. 11:00–24:00 (or sold out). ¥900. Tabelog 3.72 · Ramen WEST 100. "Tonkotsu cappuccino" — ultra-rich, frothy broth. More intense than Shin-Shin. Order barikata (バリカタ).</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Hakata+Issou+Ramen+Hakataekihigashi+Fukuoka&travelmode=walking">📍 Route</a></div>
       </div>
     </div>
@@ -2405,11 +2769,11 @@
       <div class="food-meal-title">🍡 Snack (Dazaifu, morning)</div>
       <div class="food-restaurant">
         <div><span class="rest-badge primary">Must-Try</span></div>
-        <div class="rest-name">Umegae Mochi <span class="rest-jp">梅ヶ枝餅</span></div>
+        <div class="rest-name">Umegae Mochi — Kasa no Ie <span class="rest-jp">梅ヶ枝餅 かさの家</span></div>
         <div class="rest-meta">
           Grilled rice cake with red bean filling, plum blossom stamp.<br>
-          Kasa no Ie, approach street to Tenmangu · ¥130 each.<br>
-          Dazaifu's signature treat since the Edo period. Eat hot, freshly grilled.
+          太宰府市宰府2-7-24 (Tenmangu approach, past 2nd torii, 3rd shop on right) · 9:00–18:00 daily · ¥130 each<br>
+          Est. 1922 (Taisho 11). Dazaifu's most famous umegae mochi shop. Eat hot, freshly grilled. On the 25th of each month ("天神様の日"), a special yomogi (mugwort) version is sold.
         </div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Kasa+no+Ie+Umegae+Mochi+Dazaifu&travelmode=walking">📍 Route</a></div>
       </div>
@@ -2424,21 +2788,22 @@
       <div class="food-meal-title">🍽 Dinner (Hakata, ~18:00)</div>
       <div class="food-restaurant">
         <div><span class="rest-badge primary">Primary</span></div>
-        <div class="rest-name">Motsu Nabe Hakata Yoshino <span class="rest-jp">博多よしの</span></div>
+        <div class="rest-name">Motsu Nabe Ooyama Counter <span class="rest-jp">博多もつ鍋おおやま カウンター KITTE博多</span></div>
         <div class="rest-meta">
-          <strong>Motsu nabe (offal hot pot)</strong> · ¥2,000–3,000<br>
-          ~5 min walk from Hakata Station · 17:00–23:00<br>
-          <strong>Single-serving pots available</strong> — unusual for nabe!
+          <strong>Motsu nabe (offal hot pot)</strong> · ¥2,178–3,388<br>
+          KITTE Hakata B1F, JR Hakata Station direct access<br>
+          11:00–23:00 (L.O. 22:30) · Seat charge ¥380 after 16:00<br>
+          <strong>Solo-friendly counter with IH cooker per seat</strong> — designed for one-person dining!
         </div>
-        <div class="rest-order">🥢 <strong>Order:</strong> Motsu nabe single-serving pot. Rich miso or soy broth with pork/beef offal, cabbage, chives, garlic, chili. Add champon noodles at the end to soak up broth.</div>
-        <div class="rest-note">Hakata specialty alongside ramen. The single-serving option is rare — most nabe places require 2+ people. Rich, warming, deeply satisfying.</div>
-        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Motsu+Nabe+Yoshino+Hakata+Fukuoka&travelmode=walking">📍 Route</a></div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Yamakasa Set (¥2,178) — miso motsu nabe + mentaiko + takana + beef sumostu. Lunch before 16:00 includes champon noodle or rice free. Add champon noodles (¥319) for the essential shime.</div>
+        <div class="rest-note">Hakata specialty alongside ramen. This is Ooyama's dedicated solo counter branch — the main group dining branch is on 9F. Miso is the #1 seller. Rich, warming, deeply satisfying after a hike day.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Motsu+Nabe+Ooyama+Counter+KITTE+Hakata&travelmode=walking">📍 Route</a></div>
       </div>
       <div class="food-restaurant" style="border-left-color:#3a3a3a;">
         <div><span class="rest-badge backup">Backup</span></div>
-        <div class="rest-name">Tonkatsu Wa (near Hakata Station)</div>
-        <div class="rest-meta">Counter tonkatsu. Clean, straightforward. ~¥1,500. Good if you want simpler.</div>
-        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Tonkatsu+Wa+Hakata+Station+Fukuoka&travelmode=walking">📍 Route</a></div>
+        <div class="rest-name">Hamakatsu <span class="rest-jp">とんかつ濵かつ 博多デイトス店</span></div>
+        <div class="rest-meta">Hakata Deitos B1F, station direct access · Mon–Fri 9:30–22:00, Sat/Sun 8:00–22:00 (L.O. 21:30). Counter &amp; table. Clean, reliable chain tonkatsu. ~¥1,200–1,800.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Hamakatsu+Hakata+Deitos+Fukuoka&travelmode=walking">📍 Route</a></div>
       </div>
     </div>
   </div>
@@ -2462,12 +2827,12 @@
         <div class="rest-name">Shikairo <span class="rest-jp">四海樓</span></div>
         <div class="rest-meta">
           <strong>Champon &amp; sara udon</strong> · ¥1,000–1,500<br>
-          Shinchi Chinatown area · Tram to Tsukimachi, 5 min walk<br>
-          11:30–15:00, 17:00–21:00 · Table seating, quick turnover.
+          Glover Garden area (松が枝町4-5) · Tram to Oura Tenshudo (大浦天主堂), 1 min walk<br>
+          11:30–15:00 (last entry 14:30), 17:00–20:00 (last entry 19:30) · Monthly irregular closures (check website) · Table seating, quick turnover. No reservations.
         </div>
         <div class="rest-order">🥢 <strong>Order:</strong> Champon (¥1,100) — Shikairo claims to have invented it. Thick noodles in rich, creamy pork &amp; chicken broth with seafood, vegetables &amp; kamaboko. Or sara udon — crispy thin noodles with same rich topping.</div>
-        <div class="rest-note">Created here in the late 1800s by the Chinese founder as affordable food for Chinese students. A fusion dish unique to Nagasaki. The city's soul food.</div>
-        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Shikairo+Nagasaki+Chinatown&travelmode=walking">📍 Route</a></div>
+        <div class="rest-note">Created here in 1899 by founder Chen Pingshun as affordable food for Chinese students. A fusion dish unique to Nagasaki. The city's soul food. 5F panoramic restaurant overlooks the harbor — queue 30–40 min at peak lunch.</div>
+        <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Shikairo+Nagasaki+Matsugaecho&travelmode=walking">📍 Route</a></div>
       </div>
       <div class="food-restaurant" style="border-left-color:#3a3a3a;">
         <div><span class="rest-badge backup">Backup</span></div>
@@ -2510,11 +2875,12 @@
         <div class="rest-name">Komurasaki <span class="rest-jp">こむらさき</span></div>
         <div class="rest-meta">
           <strong>Kumamoto ramen</strong> · ~¥800–1,000<br>
-          Near Kumamoto Castle, downtown · ~11:00–20:00<br>
-          Tram to Kumamotojo-mae · Counter seating.
+          Kamitori arcade (上通), 5 min walk from Torichosuji tram stop<br>
+          11:00–16:00 (L.O. 15:30), 18:00–22:00 (L.O. 21:30) · Sat lunch only 11:00–15:30<br>
+          Counter seating. Tabelog 3.54.
         </div>
-        <div class="rest-order">🥢 <strong>Order:</strong> Kumamoto ramen — medium-thick noodles in garlic-heavy tonkotsu broth with ma-yu (burnt garlic oil). Distinctly different from Hakata: thicker noodles, more garlic, darker broth. Add gyoza side.</div>
-        <div class="rest-note">Kumamoto ramen is the "other" Kyushu ramen. If you've been eating Hakata ramen all week, the garlic punch here is a revelation.</div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Ōsama Ramen (王様ラーメン) or Tokusai Chāshūmen. Medium-thick noodles in garlic-heavy tonkotsu broth with their signature nikku chippu (roasted garlic chips) — invented here in 1954. Distinctly different from Hakata: thicker noodles, more garlic, darker broth.</div>
+        <div class="rest-note">Est. 1954 — birthplace of Kumamoto ramen's signature garlic chip. If you've been eating Hakata ramen all week, the garlic punch here is a revelation. <strong>Note mid-afternoon gap: closed 16:00–18:00.</strong></div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Komurasaki+Ramen+Kumamoto&travelmode=walking">📍 Route</a></div>
       </div>
       <div class="food-restaurant">
@@ -2531,10 +2897,10 @@
       <div class="food-meal-title">🍵 Afternoon (Suizenji Garden)</div>
       <div class="food-restaurant">
         <div><span class="rest-badge primary">Teahouse</span></div>
-        <div class="rest-name">Kokindenju no Ma</div>
+        <div class="rest-name">Kokindenju no Ma <span class="rest-jp">古今伝授之間 香梅</span></div>
         <div class="rest-meta">
-          Matcha &amp; wagashi with garden view · ¥650<br>
-          Inside the 400-year-old thatched teahouse overlooking the spring-fed pond. A perfect contemplative pause.
+          Matcha &amp; wagashi with garden view · Chair seat ¥550 / Tatami seat ¥650<br>
+          9:00–17:30 · Inside the ~400-year-old thatched teahouse (moved from Kyoto Imperial Palace in 1912). Try the "Kaseita" — Hosokawa clan's traditional quince jelly wagashi. Best viewpoint in the entire garden.
         </div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Kokindenju+no+Ma+Suizenji+Garden+Kumamoto&travelmode=walking">📍 Route</a></div>
       </div>
@@ -2557,14 +2923,14 @@
       <div class="food-meal-title">🍽 Lunch (near Niji no Matsubara, ~12:30)</div>
       <div class="food-restaurant">
         <div><span class="rest-badge primary">Primary</span></div>
-        <div class="rest-name">Karatsu Burger Matsubara Honten</div>
+        <div class="rest-name">Karatsu Burger <span class="rest-jp">からつバーガー 虹ノ松原本店</span></div>
         <div class="rest-meta">
-          <strong>Japanese-style burger</strong> · ¥350–500<br>
-          Near Niji no Matsubara pine forest · ~10:00–19:00<br>
-          Between the castle and Nijinomatsubara Station. Takeaway — eat on a bench overlooking Karatsu Bay.
+          <strong>Japanese-style burger</strong> · ¥420–690<br>
+          Inside Niji no Matsubara pine forest · Nearest: Onizuka Stn (鬼塚駅) 13 min walk, or Higashi-Karatsu Stn 25 min · 10:00–20:00 daily, no holidays<br>
+          Red microbus kitchen car — takeaway only. Eat on a bench overlooking the pines. Tabelog 3.49 · Hamburger 100.
         </div>
-        <div class="rest-order">🥢 <strong>Order:</strong> Special Karatsu Burger with egg &amp; cheese. Simple, satisfying, beloved by locals since the 1960s.</div>
-        <div class="rest-note">One of Japan's original local burgers, predating most fast food chains. The van has been parked in the same spot for decades.</div>
+        <div class="rest-order">🥢 <strong>Order:</strong> Special Burger (スペシャルバーガー ¥690) — patty, cheese, egg, ham, lettuce with house demi-glace. Add the signature "ミルク" drink.</div>
+        <div class="rest-note">Est. 1961. One of Japan's original local burgers, predating most fast food chains. The red microbus has been parked in the same spot for decades.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Karatsu+Burger+Matsubara+Honten&travelmode=walking">📍 Route</a></div>
       </div>
       <div class="food-restaurant">
@@ -2583,12 +2949,12 @@
         <div><span class="rest-badge primary">Primary</span></div>
         <div class="rest-name">Fukuya <span class="rest-jp">ふくや</span></div>
         <div class="rest-meta">
-          <strong>Mentaiko (spicy cod roe)</strong> · ¥1,500–2,000<br>
-          Near Hakata Station (multiple branches) · Lunch &amp; dinner<br>
-          Counter seating at eat-in locations.
+          <strong>Mentaiko (spicy cod roe) — SHOP, NOT RESTAURANT</strong><br>
+          Hakata Deitos 売店 (みやげもん市場 1F) · 8:00–21:00 · Also: 博多駅地下街店 10:00–18:30<br>
+          ⚠️ Both Hakata Station branches are <strong>retail only — no eat-in dining</strong>. Buy vacuum-packed mentaiko as omiyage (¥1,000–3,000+).
         </div>
-        <div class="rest-order">🥢 <strong>Order:</strong> Mentaiko rice bowl (mentaiko-don). Fukuya invented mentaiko in 1949. Also sells mentaiko as omiyage.</div>
-        <div class="rest-note">Last night in Fukuoka. Mentaiko is THE Hakata souvenir food. Fukuya's version is the original. Buy vacuum-packed mentaiko to take home.</div>
+        <div class="rest-order">🥢 <strong>Buy:</strong> "味の明太子" original (Fukuya invented mentaiko in 1949). Also try "うまかもん" (takana with mentaiko) for a unique souvenir.</div>
+        <div class="rest-note">For a mentaiko <em>meal</em> near Hakata Station, try <strong>Ganso Hakata Mentaiju</strong> (元祖博多めんたい重) instead — a dedicated mentaiko rice bowl restaurant in Nakasu.</div>
         <div class="links" style="margin-top:8px;"><a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Fukuya+Mentaiko+Hakata+Station+Fukuoka&travelmode=walking">📍 Route</a></div>
       </div>
     </div>
@@ -2681,8 +3047,1376 @@
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════ -->
+<!-- 🚨 EMERGENCY & ESSENTIALS SECTION      -->
+<!-- ═══════════════════════════════════════ -->
 
-<script>
+<div class="sos-section-header" id="sos-section">
+  <h2>🚨 Emergency & Essentials</h2>
+  <div class="sos-sub">Tap any Japanese text card to show fullscreen · Show to staff when you need help</div>
+</div>
+
+<!-- Emergency Numbers -->
+<div class="sos-group" id="sos-numbers">
+  <div class="sos-group-header" onclick="toggleSos(this)">
+    <div class="sos-group-icon">📞</div>
+    <div class="sos-group-title">Emergency Numbers</div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="sos-group-body">
+    <div class="sos-card">
+      <div class="sos-label">Police</div>
+      <div class="sos-jp"><a href="tel:110" style="color:#e05050;text-decoration:none;">110</a></div>
+      <div class="sos-en">Operators may not speak English. State location first.</div>
+    </div>
+    <div class="sos-card">
+      <div class="sos-label">Fire & Ambulance</div>
+      <div class="sos-jp"><a href="tel:119" style="color:#e05050;text-decoration:none;">119</a></div>
+      <div class="sos-en">Say <strong>"kyūkyūsha"</strong> (きゅうきゅうしゃ) for ambulance. Operators may not speak English.</div>
+    </div>
+    <div class="sos-card">
+      <div class="sos-label">Japan Helpline — English 24/7</div>
+      <div class="sos-jp"><a href="tel:0570911099" style="color:#e05050;text-decoration:none;">0570-911-099</a></div>
+      <div class="sos-en">English-speaking operators. Can conference-translate with 110/119. Use this first.</div>
+    </div>
+    <div class="sos-card">
+      <div class="sos-label">AMDA Medical Info — English</div>
+      <div class="sos-jp"><a href="tel:0332042700" style="color:#e05050;text-decoration:none;">03-3204-2700</a></div>
+      <div class="sos-en">Help finding English-speaking doctors. Mon–Fri 9:00–17:00.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Embassy -->
+<div class="sos-group" id="sos-embassy">
+  <div class="sos-group-header" onclick="toggleSos(this)">
+    <div class="sos-group-icon">🏛️</div>
+    <div class="sos-group-title">Israel Embassy — Tokyo</div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="sos-group-body">
+    <div class="sos-card" style="border-left-color:#6aadcf;">
+      <div class="sos-label" style="color:#6aadcf;">Embassy of Israel</div>
+      <div class="sos-jp" style="font-size:16px;">〒102-0084 東京都千代田区二番町3</div>
+      <div class="sos-en">
+        3 Nibancho, Chiyoda-ku, Tokyo 102-0084<br>
+        <a href="tel:+81332640911" style="color:var(--link);">📞 +81 3-3264-0911</a><br>
+        ✉️ <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6605090815130a07142612090d1f09480b000748010910480f0a">[email&#160;protected]</a><br>
+        <strong>Consular hours:</strong> Mon–Fri 10:00–13:00<br>
+        <strong>After hours:</strong> Call main line for emergency recording
+      </div>
+      <div class="links" style="margin-top:8px;">
+        <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Embassy+of+Israel+Tokyo&travelmode=transit">📍 Directions</a>
+        <a class="btn btn-info" href="https://embassies.gov.il/japan/en/contacts">🌐 Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hotel Addresses in Japanese -->
+<div class="sos-group" id="sos-hotels">
+  <div class="sos-group-header" onclick="toggleSos(this)">
+    <div class="sos-group-icon">🏨</div>
+    <div class="sos-group-title">Hotel Addresses — Show to Taxi/Staff</div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="sos-group-body">
+
+    <div class="sos-card hotel-card">
+      <div class="sos-label" style="color:var(--accent);">Apr 10–12 · Tokyo</div>
+      <div class="sos-jp">アパホテル〈上野駅南〉</div>
+      <div class="sos-jp" style="font-size:16px;">〒110-0005 東京都台東区上野6-7-21</div>
+      <div class="sos-en">APA Hotel Ueno Ekiminami · <a href="tel:+81358077111" style="color:var(--link);">📞 +81 3-5807-7111</a></div>
+      <div class="links" style="margin-top:6px;">
+        <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=APA+Hotel+Ueno+Ekiminami&travelmode=transit">📍 Route</a>
+      </div>
+      <button class="show-staff-btn" onclick="showFullscreen('アパホテル〈上野駅南〉\n東京都台東区上野6-7-21','APA Hotel Ueno Ekiminami')">📋 Show to staff</button>
+    </div>
+
+    <div class="sos-card hotel-card">
+      <div class="sos-label" style="color:var(--accent);">Apr 13–16 · Osaka</div>
+      <div class="sos-jp">大阪エクセルホテル東急</div>
+      <div class="sos-jp" style="font-size:16px;">〒541-0058 大阪市中央区久太郎町4-1-15</div>
+      <div class="sos-en">Osaka Excel Hotel Tokyu · <a href="tel:+81662520109" style="color:var(--link);">📞 +81 6-6252-0109</a></div>
+      <div class="links" style="margin-top:6px;">
+        <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Osaka+Excel+Hotel+Tokyu&travelmode=transit">📍 Route</a>
+      </div>
+      <button class="show-staff-btn" onclick="showFullscreen('大阪エクセルホテル東急\n大阪市中央区久太郎町4-1-15','Osaka Excel Hotel Tokyu')">📋 Show to staff</button>
+    </div>
+
+    <div class="sos-card hotel-card">
+      <div class="sos-label" style="color:var(--accent);">Apr 17–20 · Hiroshima</div>
+      <div class="sos-jp">ダイワロイネットホテル広島駅前</div>
+      <div class="sos-jp" style="font-size:16px;">〒732-0057 広島市東区二葉の里3-5-7</div>
+      <div class="sos-en">Daiwa Roynet Hotel Hiroshima-ekimae · <a href="tel:+81825541455" style="color:var(--link);">📞 +81 82-554-1455</a></div>
+      <div class="links" style="margin-top:6px;">
+        <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Daiwa+Roynet+Hotel+Hiroshima+Ekimae&travelmode=transit">📍 Route</a>
+      </div>
+      <button class="show-staff-btn" onclick="showFullscreen('ダイワロイネットホテル広島駅前\n広島市東区二葉の里3-5-7','Daiwa Roynet Hotel Hiroshima-ekimae')">📋 Show to staff</button>
+    </div>
+
+    <div class="sos-card hotel-card">
+      <div class="sos-label" style="color:var(--accent);">Apr 21–25 · Fukuoka</div>
+      <div class="sos-jp">KOKO HOTEL 博多駅前</div>
+      <div class="sos-jp" style="font-size:16px;">〒812-0011 福岡市博多区博多駅前3-22-19</div>
+      <div class="sos-en">KOKO HOTEL Hakata Station · <a href="tel:+81924769111" style="color:var(--link);">📞 +81 92-476-9111</a></div>
+      <div class="links" style="margin-top:6px;">
+        <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=KOKO+HOTEL+Hakata+Station&travelmode=transit">📍 Route</a>
+      </div>
+      <button class="show-staff-btn" onclick="showFullscreen('KOKO HOTEL 博多駅前\n福岡市博多区博多駅前3-22-19','KOKO HOTEL Hakata Station')">📋 Show to staff</button>
+    </div>
+
+    <div class="sos-card hotel-card">
+      <div class="sos-label" style="color:var(--accent);">Apr 26 · Tokyo</div>
+      <div class="sos-jp">アパホテル〈上野駅前〉</div>
+      <div class="sos-jp" style="font-size:16px;">〒110-0015 東京都台東区東上野2-18-7</div>
+      <div class="sos-en">APA Hotel Ueno Ekimae · <a href="tel:+81358120311" style="color:var(--link);">📞 +81 3-5812-0311</a></div>
+      <div class="links" style="margin-top:6px;">
+        <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=APA+Hotel+Ueno+Ekimae+Tokyo&travelmode=transit">📍 Route</a>
+      </div>
+      <button class="show-staff-btn" onclick="showFullscreen('アパホテル〈上野駅前〉\n東京都台東区東上野2-18-7','APA Hotel Ueno Ekimae')">📋 Show to staff</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Medical Per City -->
+<div class="sos-group" id="sos-medical">
+  <div class="sos-group-header" onclick="toggleSos(this)">
+    <div class="sos-group-icon">🏥</div>
+    <div class="sos-group-title">Hospitals & Pharmacies by City</div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="sos-group-body">
+    <div class="sos-card medical-card">
+      <div class="sos-label" style="color:#6aadcf;">Tokyo / Ueno — Apr 10–12, 26</div>
+      <div class="sos-en">
+        <strong>Eiju General Hospital</strong> (永寿総合病院)<br>
+        Taito-ku Higashi Ueno 2-23-16 · 15 min walk from hotel<br>
+        <a href="tel:+81338336151" style="color:var(--link);">📞 +81 3-3833-6151</a> · Emergency dept available<br>
+      </div>
+      <div class="links" style="margin-top:6px;">
+        <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Eiju+General+Hospital+Taito&travelmode=walking">📍 Route</a>
+      </div>
+      <div class="sos-en" style="margin-top:8px;">
+        <strong>Pharmacy:</strong> Matsumoto Kiyoshi (マツモトキヨシ) in Ameyoko — open ~10:00–21:00. OTC meds, first aid, sunscreen.
+      </div>
+    </div>
+
+    <div class="sos-card medical-card">
+      <div class="sos-label" style="color:#6aadcf;">Osaka / Honmachi — Apr 13–16</div>
+      <div class="sos-en">
+        <strong>Kitahama Clinic</strong> (北浜よしだクリニック)<br>
+        English-speaking doctors · Near Kitahama Station<br>
+        <a href="tel:+81662326601" style="color:var(--link);">📞 +81 6-6232-6601</a> · Weekdays 9:30–13:00, 15:00–18:30<br>
+      </div>
+      <div class="links" style="margin-top:6px;">
+        <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Osaka+Excel+Hotel+Tokyu&destination=Kitahama+Yoshida+Clinic&travelmode=transit">📍 Route</a>
+      </div>
+      <div class="sos-en" style="margin-top:8px;">
+        <strong>Pharmacy:</strong> Daikoku Drug (ダイコクドラッグ) on Shinsaibashi-suji — open late. Multiple locations near Honmachi.
+      </div>
+    </div>
+
+    <div class="sos-card medical-card">
+      <div class="sos-label" style="color:#6aadcf;">Hiroshima — Apr 17–20</div>
+      <div class="sos-en">
+        <strong>Hiroshima City Hospital</strong> (広島市立広島市民病院)<br>
+        Naka-ku Motomachi 7-33 · Emergency 24h<br>
+        <a href="tel:+81822211111" style="color:var(--link);">📞 +81 82-221-1111</a><br>
+      </div>
+      <div class="links" style="margin-top:6px;">
+        <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=Daiwa+Roynet+Hotel+Hiroshima+Ekimae&destination=Hiroshima+City+Hospital&travelmode=transit">📍 Route</a>
+      </div>
+      <div class="sos-en" style="margin-top:8px;">
+        <strong>Pharmacy:</strong> Welcia (ウエルシア) near Hiroshima Station — open ~9:00–22:00.
+      </div>
+    </div>
+
+    <div class="sos-card medical-card">
+      <div class="sos-label" style="color:#6aadcf;">Fukuoka / Hakata — Apr 21–25</div>
+      <div class="sos-en">
+        <strong>Hakata Clinic</strong> (医療法人社団 博多クリニック)<br>
+        Hakataekimae 2-20-1 · 5 min from hotel<br>
+        <a href="tel:+81924712225" style="color:var(--link);">📞 +81 92-471-2225</a> · Mon–Sat 9:00–12:30<br>
+      </div>
+      <div class="links" style="margin-top:6px;">
+        <a class="btn btn-maps" href="https://www.google.com/maps/dir/?api=1&origin=KOKO+HOTEL+Hakata+Station&destination=Hakata+Clinic&travelmode=walking">📍 Route</a>
+      </div>
+      <div class="sos-en" style="margin-top:8px;">
+        <strong>Pharmacy:</strong> Matsumoto Kiyoshi in Hakata Station underground mall — open ~8:00–21:00.
+      </div>
+    </div>
+
+    <div style="font-size:12px;color:var(--text-dim);padding:8px 0;line-height:1.5;">
+      <strong>💡 Tip:</strong> Japanese pharmacies (ドラッグストア) sell OTC painkillers, cold medicine, bandages, and stomach remedies. For anything prescription-strength, you need a hospital. Show the pharmacist what's wrong — many understand basic English medical terms.
+    </div>
+  </div>
+</div>
+
+<!-- Show This to Staff Cards -->
+<div class="sos-group" id="sos-phrases">
+  <div class="sos-group-header" onclick="toggleSos(this)">
+    <div class="sos-group-icon">📋</div>
+    <div class="sos-group-title">"Show This" Cards — Tap to Fullscreen</div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="sos-group-body">
+    <div class="sos-card" onclick="showFullscreen('助けてください、救急車を呼んでください','Please help, please call an ambulance')" style="cursor:pointer;">
+      <div class="sos-en">Please help, please call an ambulance</div>
+      <div class="sos-jp">助けてください、救急車を呼んでください</div>
+      <div class="sos-romaji">tasukete kudasai, kyūkyūsha wo yonde kudasai</div>
+    </div>
+    <div class="sos-card" onclick="showFullscreen('日本語が話せません。英語を話せる方はいますか？','I don\'t speak Japanese. Is there someone who speaks English?')" style="cursor:pointer;">
+      <div class="sos-en">I don't speak Japanese. Is there someone who speaks English?</div>
+      <div class="sos-jp">日本語が話せません。英語を話せる方はいますか？</div>
+      <div class="sos-romaji">nihongo ga hanasemasen. eigo wo hanaseru kata wa imasu ka?</div>
+    </div>
+    <div class="sos-card" onclick="showFullscreen('具合が悪いです。病院に行きたいです。','I feel sick. I want to go to a hospital.')" style="cursor:pointer;">
+      <div class="sos-en">I feel sick. I want to go to a hospital.</div>
+      <div class="sos-jp">具合が悪いです。病院に行きたいです。</div>
+      <div class="sos-romaji">guai ga warui desu. byōin ni ikitai desu.</div>
+    </div>
+    <div class="sos-card" onclick="showFullscreen('ここに泊まっています。ホテルに戻りたいです。','I\'m staying here. I want to return to my hotel.')" style="cursor:pointer;">
+      <div class="sos-en">I'm staying here. I want to return to my hotel.</div>
+      <div class="sos-jp">ここに泊まっています。ホテルに戻りたいです。</div>
+      <div class="sos-romaji">koko ni tomatte imasu. hoteru ni modoritai desu.</div>
+    </div>
+    <div class="sos-card" onclick="showFullscreen('道に迷いました。この場所に行きたいです。','I\'m lost. I want to go to this place.')" style="cursor:pointer;">
+      <div class="sos-en">I'm lost. I want to go to this place. [show your Maps screen]</div>
+      <div class="sos-jp">道に迷いました。この場所に行きたいです。</div>
+      <div class="sos-romaji">michi ni mayoimashita. kono basho ni ikitai desu.</div>
+    </div>
+    <div class="sos-card" onclick="showFullscreen('警察を呼んでください','Please call the police')" style="cursor:pointer;">
+      <div class="sos-en">Please call the police</div>
+      <div class="sos-jp">警察を呼んでください</div>
+      <div class="sos-romaji">keisatsu wo yonde kudasai</div>
+    </div>
+  </div>
+</div>
+
+<!-- Fullscreen overlay (shared) -->
+<div class="sos-fullscreen" id="sos-fullscreen" onclick="closeFullscreen()">
+  <div class="fs-jp" id="fs-jp"></div>
+  <div class="fs-en" id="fs-en"></div>
+  <button class="fs-close">Tap anywhere to close</button>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 🚃 TRANSIT QUICK-REF SECTION           -->
+<!-- ═══════════════════════════════════════ -->
+
+<div class="transit-section-header" id="transit-section">
+  <h2>🚃 Transit Quick-Ref</h2>
+  <div class="transit-sub">Per-day route cards · Color-coded by payment method</div>
+</div>
+
+<div style="padding:10px 16px;font-size:12px;color:var(--text-dim);display:flex;flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--border);">
+  <span><span class="tleg-badge jr" style="display:inline-block;">JR Pass</span> Free with pass</span>
+  <span><span class="tleg-badge ic" style="display:inline-block;">IC Card</span> Suica/Pasmo</span>
+  <span><span class="tleg-badge private" style="display:inline-block;">Private</span> Separate ticket</span>
+  <span><span class="tleg-badge walk" style="display:inline-block;">Walk</span></span>
+</div>
+
+<div class="transit-quick-nav">
+  <a href="#tr1">D1</a><a href="#tr2">D2</a><a href="#tr3">D3</a><a href="#tr4">D4</a>
+  <a href="#tr5">D5</a><a href="#tr6">D6</a><a href="#tr7">D7</a><a href="#tr8">D8</a>
+  <a href="#tr9">D9</a><a href="#tr10">D10</a><a href="#tr11">D11</a><a href="#tr12">D12</a>
+  <a href="#tr13">D13</a><a href="#tr14">D14</a><a href="#tr15">D15</a><a href="#tr16">D16</a>
+  <a href="#tr17">D17</a><a href="#tr18">D18</a>
+</div>
+
+<!-- Transit Day 1 -->
+<div class="transit-day" id="tr1">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">1</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Fri Apr 10</div>
+      <div class="transit-day-title">Narita → Ueno (ARRIVAL)</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge private">Skyliner</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Narita T1 → Keisei Ueno</div>
+        <div class="tleg-detail">Keisei Skyliner · ~41 min · ¥2,520<br>⚠ NOT JR — buy ticket at Keisei counter</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Keisei Ueno → APA Hotel Ueno Ekiminami</div>
+        <div class="tleg-detail">3 min walk from Hirokoji Exit</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Ueno → Akihabara (shopping)</div>
+        <div class="tleg-detail">JR Yamanote/Keihin-Tohoku · 3 min · ~¥140</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Ueno → Yurakucho (Ginza)</div>
+        <div class="tleg-detail">JR Yamanote · 7 min · ~¥160</div>
+      </div>
+    </div>
+    <div class="transit-note">📌 No JR Pass yet — all fares paid by Suica. Buy &amp; charge Suica at Narita airport.</div>
+  </div>
+</div>
+
+<!-- Transit Day 2 -->
+<div class="transit-day" id="tr2">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">2</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Sat Apr 11</div>
+      <div class="transit-day-title">Ueno → Mt. Mitake → Ueno</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Ueno → Mitake Station</div>
+        <div class="tleg-detail">Ueno-Tokyo Line → Chūō Rapid → Ōme Line · ~90 min · ~¥950</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Mitake Stn → Cable Car Base (bus)</div>
+        <div class="tleg-detail">Bus ~10 min · ¥290</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge cable">Cable</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Cable Car → Mountaintop</div>
+        <div class="tleg-detail">~6 min · ¥600 one-way</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Mt. Hinode descent → Tsuru-Tsuru Onsen</div>
+        <div class="tleg-detail">~3 km trail, 1 hr down · ¥860 onsen entry</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Onsen → Musashi-Itsukaichi Stn (bus) → JR → Ueno</div>
+        <div class="tleg-detail">Bus ~20 min + JR ~60 min</div>
+      </div>
+    </div>
+    <div class="transit-note">📌 No JR Pass yet — Suica for all legs. Pack bento from Ecute Ueno before departure.</div>
+    <div class="transit-last">⏰ Last bus from Tsuru-Tsuru Onsen: ~19:00. Onsen closes 19:00.</div>
+  </div>
+</div>
+
+<!-- Transit Day 3 -->
+<div class="transit-day" id="tr3">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">3</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Sun Apr 12</div>
+      <div class="transit-day-title">Tokyo Museums (local transit)</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Hotel → Tokyo National Museum</div>
+        <div class="tleg-detail">5 min walk through Ueno Park</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Ueno → Omotesando (Nezu Museum)</div>
+        <div class="tleg-detail">Metro Ginza Line · ~25 min · ~¥200</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Omotesando → Nezu Museum</div>
+        <div class="tleg-detail">~10 min walk</div>
+      </div>
+    </div>
+    <div class="transit-note">📌 No JR Pass yet. Light day — mostly walking. Evening: pack for Osaka.</div>
+    <div class="transit-warn">⚠ Activate JR Pass tomorrow (Apr 13) at JR Ueno Travel Service Center — opens 7:30 AM.</div>
+  </div>
+</div>
+
+<!-- Transit Day 4 -->
+<div class="transit-day" id="tr4">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">4</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Mon Apr 13</div>
+      <div class="transit-day-title">Tokyo → Osaka (TRAVEL DAY) 🧳</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Ueno → Tokyo Station</div>
+        <div class="tleg-detail">Ueno-Tokyo Line · ~5 min</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Tokyo → Shin-Osaka</div>
+        <div class="tleg-detail">Hikari Shinkansen · ~2h 50min<br>⚠ NOT Nozomi (JR Pass invalid). Seat E = Mt. Fuji side.</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Shin-Osaka → Honmachi</div>
+        <div class="tleg-detail">Osaka Metro Midosuji Line · ~10 min · ¥280<br>⚠ JR Pass does NOT cover Osaka Metro</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Honmachi Stn → Excel Hotel Tokyu</div>
+        <div class="tleg-detail">5 min walk</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Hotel → Osaka Castle</div>
+        <div class="tleg-detail">Sakaisuji-Honmachi → Tanimachi 4-chome · 5 min · ¥230 + 10 min walk</div>
+      </div>
+    </div>
+    <div class="transit-warn">⚠ JR Pass activated today! Batch-reserve Shinkansen seats: Day 8 (Hiroshima), Day 12 (Hakata), Day 14 (Nagasaki), Day 17 (Tokyo return).</div>
+  </div>
+</div>
+
+<!-- Transit Day 5 -->
+<div class="transit-day" id="tr5">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">5</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Tue Apr 14</div>
+      <div class="transit-day-title">Osaka → Nara → Osaka</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge private">Kintetsu</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Kintetsu Osaka-Namba → Kintetsu-Nara</div>
+        <div class="tleg-detail">Kintetsu Nara Line · ~35 min · ¥680<br>Walk from hotel south to Kintetsu Osaka-Namba (~15 min) or subway 1 stop to Nippombashi</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Kintetsu-Nara → Todai-ji → Kasuga Taisha</div>
+        <div class="tleg-detail">~20 min walk to Todai-ji, then ~10 min to Kasuga Taisha</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Kasuga Primeval Forest hike loop</div>
+        <div class="tleg-detail">9 km · ~200m gain · 2.5–3 hrs. Starts behind Kasuga Taisha.</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge private">Kintetsu</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Kintetsu-Nara → Osaka-Namba</div>
+        <div class="tleg-detail">~35 min · ¥680 · Return by ~16:30</div>
+      </div>
+    </div>
+    <div class="transit-warn">⚠ JR alternative exists (JR Yamatoji Line, ~45 min, JR Pass) but Kintetsu is faster and drops you closer to Nara Park.</div>
+  </div>
+</div>
+
+<!-- Transit Day 6 -->
+<div class="transit-day" id="tr6">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">6</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Wed Apr 15</div>
+      <div class="transit-day-title">Osaka → Koyasan → Osaka</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Honmachi → Namba</div>
+        <div class="tleg-detail">Midosuji Line · ~5 min · ¥280</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge private">Nankai</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Nankai Namba → Gokurakubashi</div>
+        <div class="tleg-detail">Nankai Koya Limited Express · ~80 min<br>Buy <strong>Koyasan World Heritage Ticket</strong> (~¥3,400) at Nankai counter — paper version!</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge cable">Cable</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Gokurakubashi → Koyasan Station</div>
+        <div class="tleg-detail">Cable car ~5 min (included in ticket)</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge private">Nankai</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Koyasan bus → Okunoin-mae</div>
+        <div class="tleg-detail">~15 min (included in ticket). Arrive ~9:45 AM.</div>
+      </div>
+    </div>
+    <div class="transit-warn">⚠ Entire day NOT covered by JR Pass. Nankai Railway is private. Budget ~¥3,400 for World Heritage Ticket.</div>
+    <div class="transit-last">⏰ Return limited express departures: 15:40, 16:47 (¥790 supplement). Or regular express ~100 min, no supplement.</div>
+  </div>
+</div>
+
+<!-- Transit Day 7 -->
+<div class="transit-day" id="tr7">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">7</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Thu Apr 16</div>
+      <div class="transit-day-title">Osaka → Kurama/Kibune → Osaka</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Honmachi → Umeda</div>
+        <div class="tleg-detail">Midosuji Line · ~5 min · ¥230</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Osaka → Kyoto</div>
+        <div class="tleg-detail">JR Special Rapid · ~30 min</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge private">Eizan</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Demachiyanagi → Kurama</div>
+        <div class="tleg-detail">Eizan Railway Kurama Line · ~30 min · ¥430<br>Walk from JR Kyoto to Demachiyanagi (~15 min) or take Keihan Line</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Kurama → Kibune (trail)</div>
+        <div class="tleg-detail">3 km · ~200m gain · 1.5–2 hrs</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge private">Eizan</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Kibuneguchi → Demachiyanagi</div>
+        <div class="tleg-detail">~30 min · ¥430</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Kyoto → Osaka, subway → Honmachi</div>
+        <div class="tleg-detail">~30 min JR + ~5 min Metro. Back ~17:30.</div>
+      </div>
+    </div>
+    <div class="transit-warn">⚠ Eizan Railway NOT covered by JR Pass (¥430 each way). Check trail status 2–3 days before!</div>
+  </div>
+</div>
+
+<!-- Transit Day 8 -->
+<div class="transit-day" id="tr8">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">8</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Fri Apr 17</div>
+      <div class="transit-day-title">Osaka → Hiroshima + Miyajima 🧳</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Honmachi → Shin-Osaka</div>
+        <div class="tleg-detail">Midosuji Line · ~10 min · ¥280</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Shin-Osaka → Hiroshima</div>
+        <div class="tleg-detail">Hikari Shinkansen · ~1h 25min</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Hiroshima → Daiwa Roynet Hotel</div>
+        <div class="tleg-detail">3–5 min walk from Shinkansen north exit. Drop bags. Reception 13F.</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Hiroshima → Miyajimaguchi</div>
+        <div class="tleg-detail">JR Sanyo Line · ~27 min</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge ferry">JR Ferry</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Miyajimaguchi → Miyajima Island</div>
+        <div class="tleg-detail">JR Ferry · ~10 min · Covered by JR Pass (not the competing Matsudai ferry)</div>
+      </div>
+    </div>
+    <div class="transit-last">⏰ Last JR ferry from Miyajima: ~22:00. Plenty of time.</div>
+  </div>
+</div>
+
+<!-- Transit Day 9 -->
+<div class="transit-day" id="tr9">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">9</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Sat Apr 18</div>
+      <div class="transit-day-title">Hiroshima → Miyajima → Mt. Misen → Hiroshima</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Hiroshima → Miyajimaguchi + JR Ferry</div>
+        <div class="tleg-detail">Same as Day 8 · ~40 min total. Depart ~7:15 AM.</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Daisho-in Course → Mt. Misen Summit</div>
+        <div class="tleg-detail">2.5 km · ~500m gain · 1.5–2 hrs up</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Summit → Omoto Course descent</div>
+        <div class="tleg-detail">3.2 km down · quieter than Momijidani · ~1–1.5 hrs</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Ferry + JR Sanyo → Hiroshima</div>
+        <div class="tleg-detail">~40 min total</div>
+      </div>
+    </div>
+    <div class="transit-note">📌 Bring water + snacks — nothing on trail. Ropeway available as backup descent.</div>
+  </div>
+</div>
+
+<!-- Transit Day 10 -->
+<div class="transit-day" id="tr10">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">10</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Sun Apr 19</div>
+      <div class="transit-day-title">Hiroshima → Onomichi → Hiroshima</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Hiroshima → Fukuyama (Shinkansen)</div>
+        <div class="tleg-detail">~25 min</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Fukuyama → Onomichi</div>
+        <div class="tleg-detail">JR Sanyo Line · ~20 min · Total ~45 min from hotel</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge private">Ropeway</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Senko-ji Ropeway up</div>
+        <div class="tleg-detail">¥320 one-way. Or walk up via "Path of Literature".</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Temple Walk downhill</div>
+        <div class="tleg-detail">~2.5 km · 2–3 hrs with stops</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Onomichi → Hiroshima (reverse)</div>
+        <div class="tleg-detail">~45 min. Back by ~17:30.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Transit Day 11 -->
+<div class="transit-day" id="tr11">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">11</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Mon Apr 20</div>
+      <div class="transit-day-title">Hiroshima City (local)</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Hiroshima → Mitaki</div>
+        <div class="tleg-detail">JR Kabe Line · ~6 min</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Mitaki Stn → Mitaki-dera Temple</div>
+        <div class="tleg-detail">15 min forest walk. Free entry.</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Mitaki → Hiroshima</div>
+        <div class="tleg-detail">~6 min</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Tram to Genbaku Dome-mae (Peace Park)</div>
+        <div class="tleg-detail">Hiroden tram · ~15 min · ¥220 (tram not JR)</div>
+      </div>
+    </div>
+    <div class="transit-note">📌 Light transit day. Evening: pack for Fukuoka. Arrange takkyubin if desired.</div>
+  </div>
+</div>
+
+<!-- Transit Day 12 -->
+<div class="transit-day" id="tr12">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">12</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Tue Apr 21</div>
+      <div class="transit-day-title">Hiroshima → Fukuoka (TRAVEL DAY) 🧳</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Hiroshima → Hakata</div>
+        <div class="tleg-detail">Sakura Shinkansen · ~1 hour. Depart ~9:30.</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Hakata → KOKO HOTEL</div>
+        <div class="tleg-detail">4 min walk from Hakata Gate exit. Drop bags.</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Hotel → Kushida Shrine / Tōchō-ji</div>
+        <div class="tleg-detail">~15 min walk from station, or subway to Gion (1 stop)</div>
+      </div>
+    </div>
+    <div class="transit-note">📌 Short Shinkansen ride — only 1 hour. Full afternoon for Hakata exploration.</div>
+  </div>
+</div>
+
+<!-- Transit Day 13 -->
+<div class="transit-day" id="tr13">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">13</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Wed Apr 22</div>
+      <div class="transit-day-title">Hakata → Dazaifu + Mt. Homan → Hakata</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Subway: Hakata → Tenjin</div>
+        <div class="tleg-detail">Kuko Line · 1 stop · ~5 min · ¥210</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge private">Nishitetsu</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Nishitetsu Fukuoka (Tenjin) → Dazaifu</div>
+        <div class="tleg-detail">~30 min · ¥420 · Walk ~5 min from subway to Nishitetsu station</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge private">Bus</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Mahoroba bus: Dazaifu Stn → Kamado Shrine</div>
+        <div class="tleg-detail">~10 min · ¥100 · Mt. Homan trailhead behind shrine</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Mt. Homan hike</div>
+        <div class="tleg-detail">5.3 km out-and-back · ~600m gain · 3–4 hrs round trip</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge private">Nishitetsu</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Dazaifu → Tenjin → subway → Hakata</div>
+        <div class="tleg-detail">~40 min total. Back by ~17:00.</div>
+      </div>
+    </div>
+    <div class="transit-warn">⚠ Nishitetsu NOT covered by JR Pass (¥420 each way). Subway ¥210 each way.</div>
+  </div>
+</div>
+
+<!-- Transit Day 14 -->
+<div class="transit-day" id="tr14">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">14</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Thu Apr 23</div>
+      <div class="transit-day-title">Hakata → Nagasaki → Hakata</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Hakata → Takeo-Onsen (Relay Kamome)</div>
+        <div class="tleg-detail">Limited express · cross-platform transfer</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Takeo-Onsen → Nagasaki (Nishi-Kyushu Kamome)</div>
+        <div class="tleg-detail">Shinkansen · Total ~1h 30min from Hakata. Arrive ~9:45.</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Nagasaki tram (all day)</div>
+        <div class="tleg-detail">¥140 flat fare per ride · IC card accepted</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Nagasaki → Hakata (reverse)</div>
+        <div class="tleg-detail">Depart ~17:30. Back in Hakata ~19:15.</div>
+      </div>
+    </div>
+    <div class="transit-warn">⚠ 2 separate reservations needed: Relay Kamome + Nishi-Kyushu Kamome. Reserve at JR counter.</div>
+  </div>
+</div>
+
+<!-- Transit Day 15 -->
+<div class="transit-day" id="tr15">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">15</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Fri Apr 24</div>
+      <div class="transit-day-title">Hakata → Kumamoto → Hakata</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Hakata → Kumamoto</div>
+        <div class="tleg-detail">Kyushu Shinkansen · ~33 min · Trains every 15–20 min</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Kumamoto Stn → Kumamotojo-mae</div>
+        <div class="tleg-detail">Kumamoto tram · ~15 min · ¥170</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Castle area → Suizenji-koen-mae</div>
+        <div class="tleg-detail">Tram · ~15–20 min · ¥170</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Kumamoto → Hakata</div>
+        <div class="tleg-detail">~33 min. Depart ~17:00. Back by ~17:45.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Transit Day 16 -->
+<div class="transit-day" id="tr16">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">16</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Sat Apr 25</div>
+      <div class="transit-day-title">Hakata → Karatsu → Hakata</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge ic">IC Card</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Subway: Hakata → Meinohama</div>
+        <div class="tleg-detail">Kuko Line · ~¥300 · Buy paper ticket</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Meinohama → Karatsu</div>
+        <div class="tleg-detail">JR Chikuhi Line (through-service, no transfer) · ~60 min from Meinohama<br>Total ~85–95 min from Hakata. Depart ~8:00.</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Karatsu Castle, old town, pine forest, Mt. Kagami</div>
+        <div class="tleg-detail">All walkable. Pine forest ~4 km. Mt. Kagami ~5 km trail.</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Karatsu → Meinohama + subway → Hakata</div>
+        <div class="tleg-detail">~85–95 min. Back by ~18:00.</div>
+      </div>
+    </div>
+    <div class="transit-warn">⚠ JR Pass covers Meinohama→Karatsu only. Hakata→Meinohama is subway (~¥300 paper ticket). Show JR Pass + paper ticket at Karatsu exit.</div>
+  </div>
+</div>
+
+<!-- Transit Day 17 -->
+<div class="transit-day" id="tr17">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">17</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Sun Apr 26</div>
+      <div class="transit-day-title">Fukuoka → Tokyo (TRAVEL DAY) 🧳</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Hakata → Shin-Osaka (Sakura Shinkansen)</div>
+        <div class="tleg-detail">~2h 20min</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Shin-Osaka → Tokyo (Hikari Shinkansen)</div>
+        <div class="tleg-detail">~2h 50min · Total ~5 hrs. Depart ~10:00, arrive ~15:00.</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge jr">JR Pass</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Tokyo Station → Ueno</div>
+        <div class="tleg-detail">Ueno-Tokyo Line · ~5 min</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">JR Ueno → APA Hotel Ueno Ekimae</div>
+        <div class="tleg-detail">2 min walk from Central Exit</div>
+      </div>
+    </div>
+    <div class="transit-warn">⚠ JR Pass LAST DAY (activated Apr 13, expires Apr 26). 2 reservations needed: Sakura + Hikari. NOT Nozomi/Mizuho.</div>
+    <div class="transit-note">📌 Stock up at Hakata Station before departure: Il Forno del Mignon croissants, ekiben for the train.</div>
+  </div>
+</div>
+
+<!-- Transit Day 18 -->
+<div class="transit-day" id="tr18">
+  <div class="transit-day-header" onclick="toggleTransit(this)">
+    <div class="day-num">18</div>
+    <div class="transit-day-info">
+      <div class="transit-day-date">Mon Apr 27</div>
+      <div class="transit-day-title">Ueno → Narita (DEPARTURE)</div>
+    </div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="transit-day-body">
+    <div class="tleg">
+      <div class="tleg-badge walk">Walk</div>
+      <div class="tleg-content">
+        <div class="tleg-route">APA Hotel → Keisei Ueno Station</div>
+        <div class="tleg-detail">5 min walk</div>
+      </div>
+    </div>
+    <div class="tleg">
+      <div class="tleg-badge private">Skyliner</div>
+      <div class="tleg-content">
+        <div class="tleg-route">Keisei Ueno → Narita Terminal 1</div>
+        <div class="tleg-detail">Keisei Skyliner · ~41 min · ¥2,520</div>
+      </div>
+    </div>
+    <div class="transit-last">⏰ Flight: 15:35. Be at Narita T1 by 12:30–13:00 (EL AL security). Depart Keisei Ueno by ~11:30.</div>
+    <div class="transit-warn">⚠ JR Pass expired yesterday. Skyliner is Keisei (private), not JR.</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 🗣 JAPANESE PHRASEBOOK SECTION          -->
+<!-- ═══════════════════════════════════════ -->
+
+<div class="phrase-section-header" id="phrase-section">
+  <h2>🗣 Japanese Phrasebook</h2>
+  <div class="phrase-sub">Tap any card to show fullscreen for staff · Grouped by situation</div>
+</div>
+
+<!-- Restaurant Phrases -->
+<div class="phrase-group" id="phrase-restaurant">
+  <div class="phrase-group-header" onclick="togglePhrase(this)">
+    <div class="phrase-group-icon">🍜</div>
+    <div class="phrase-group-title">At Restaurants</div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="phrase-group-body">
+    <div class="phrase-item" onclick="showFullscreen('一人です','One person (for seating)')">
+      <div class="phrase-en">One person</div>
+      <div class="phrase-jp">一人です</div>
+      <div class="phrase-romaji">hitori desu</div>
+      <div class="phrase-context">Say this when entering — they'll seat you immediately</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('カウンター席お願いします','Counter seat please')">
+      <div class="phrase-en">Counter seat please</div>
+      <div class="phrase-jp">カウンター席お願いします</div>
+      <div class="phrase-romaji">kauntā seki onegai shimasu</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('これをお願いします','This one please (pointing at menu)')">
+      <div class="phrase-en">This one please [point at menu]</div>
+      <div class="phrase-jp">これをお願いします</div>
+      <div class="phrase-romaji">kore wo onegai shimasu</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('おすすめは何ですか？','What do you recommend?')">
+      <div class="phrase-en">What do you recommend?</div>
+      <div class="phrase-jp">おすすめは何ですか？</div>
+      <div class="phrase-romaji">osusume wa nan desu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('麺かためで','Firm noodles please (Hakata ramen)')">
+      <div class="phrase-en">Firm noodles please</div>
+      <div class="phrase-jp">麺かためで</div>
+      <div class="phrase-romaji">men katame de</div>
+      <div class="phrase-context">Use at Hakata ramen shops — they'll ask noodle firmness</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('替え玉お願いします','Extra noodles please (ramen refill)')">
+      <div class="phrase-en">Extra noodles please (ramen refill)</div>
+      <div class="phrase-jp">替え玉お願いします</div>
+      <div class="phrase-romaji">kaedama onegai shimasu</div>
+      <div class="phrase-context">Hakata ramen specialty — ~¥100–200 for another serving of noodles</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('お会計お願いします','Check please')">
+      <div class="phrase-en">Check please</div>
+      <div class="phrase-jp">お会計お願いします</div>
+      <div class="phrase-romaji">okaikei onegai shimasu</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('美味しいです！','It\'s delicious!')">
+      <div class="phrase-en">It's delicious!</div>
+      <div class="phrase-jp">美味しいです！</div>
+      <div class="phrase-romaji">oishii desu!</div>
+      <div class="phrase-context">Chefs love hearing this — especially at counter seats</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('ごちそうさまでした','Thank you for the meal (when leaving)')">
+      <div class="phrase-en">Thank you for the meal [when leaving]</div>
+      <div class="phrase-jp">ごちそうさまでした</div>
+      <div class="phrase-romaji">gochisōsama deshita</div>
+      <div class="phrase-context">Say this when finished — shows appreciation</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('水をください','Water please')">
+      <div class="phrase-en">Water please</div>
+      <div class="phrase-jp">水をください</div>
+      <div class="phrase-romaji">mizu wo kudasai</div>
+    </div>
+  </div>
+</div>
+
+<!-- Train Station Phrases -->
+<div class="phrase-group" id="phrase-station">
+  <div class="phrase-group-header" onclick="togglePhrase(this)">
+    <div class="phrase-group-icon">🚃</div>
+    <div class="phrase-group-title">At Train Stations</div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="phrase-group-body">
+    <div class="phrase-item" onclick="showFullscreen('＿＿＿行きは何番線ですか？','Which platform for ___?')">
+      <div class="phrase-en">Which platform for ___?</div>
+      <div class="phrase-jp">＿＿＿行きは何番線ですか？</div>
+      <div class="phrase-romaji">___ yuki wa nanban-sen desu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('この電車は＿＿＿に行きますか？','Does this train go to ___?')">
+      <div class="phrase-en">Does this train go to ___?</div>
+      <div class="phrase-jp">この電車は＿＿＿に行きますか？</div>
+      <div class="phrase-romaji">kono densha wa ___ ni ikimasu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('次の電車は何時ですか？','What time is the next train?')">
+      <div class="phrase-en">What time is the next train?</div>
+      <div class="phrase-jp">次の電車は何時ですか？</div>
+      <div class="phrase-romaji">tsugi no densha wa nanji desu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('コインロッカーはどこですか？','Where are the coin lockers?')">
+      <div class="phrase-en">Where are the coin lockers?</div>
+      <div class="phrase-jp">コインロッカーはどこですか？</div>
+      <div class="phrase-romaji">koin rokkā wa doko desu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('この席は指定席ですか？','Is this a reserved seat?')">
+      <div class="phrase-en">Is this a reserved seat?</div>
+      <div class="phrase-jp">この席は指定席ですか？</div>
+      <div class="phrase-romaji">kono seki wa shiteiseki desu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('自由席はどこですか？','Where are the unreserved cars?')">
+      <div class="phrase-en">Where are the unreserved cars?</div>
+      <div class="phrase-jp">自由席はどこですか？</div>
+      <div class="phrase-romaji">jiyūseki wa doko desu ka?</div>
+    </div>
+  </div>
+</div>
+
+<!-- Hotel Phrases -->
+<div class="phrase-group" id="phrase-hotel">
+  <div class="phrase-group-header" onclick="togglePhrase(this)">
+    <div class="phrase-group-icon">🏨</div>
+    <div class="phrase-group-title">At Hotels</div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="phrase-group-body">
+    <div class="phrase-item" onclick="showFullscreen('予約があります。名前は＿＿＿です。','I have a reservation. My name is ___.')">
+      <div class="phrase-en">I have a reservation. My name is ___.</div>
+      <div class="phrase-jp">予約があります。名前は＿＿＿です。</div>
+      <div class="phrase-romaji">yoyaku ga arimasu. namae wa ___ desu.</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('荷物を預かってもらえますか？','Can I leave my luggage?')">
+      <div class="phrase-en">Can I leave my luggage?</div>
+      <div class="phrase-jp">荷物を預かってもらえますか？</div>
+      <div class="phrase-romaji">nimotsu wo azukatte moraemasu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('チェックアウトは何時ですか？','What time is checkout?')">
+      <div class="phrase-en">What time is checkout?</div>
+      <div class="phrase-jp">チェックアウトは何時ですか？</div>
+      <div class="phrase-romaji">chekkuauto wa nanji desu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('温泉はどこですか？','Where is the onsen?')">
+      <div class="phrase-en">Where is the onsen?</div>
+      <div class="phrase-jp">温泉はどこですか？</div>
+      <div class="phrase-romaji">onsen wa doko desu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('宅配便を送りたいです','I want to send luggage by takkyubin')">
+      <div class="phrase-en">I want to send luggage by takkyubin</div>
+      <div class="phrase-jp">宅配便を送りたいです</div>
+      <div class="phrase-romaji">takuhaibin wo okuritai desu</div>
+      <div class="phrase-context">Front desk can arrange — have destination hotel address ready</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('Wi-Fiのパスワードは何ですか？','What is the Wi-Fi password?')">
+      <div class="phrase-en">What is the Wi-Fi password?</div>
+      <div class="phrase-jp">Wi-Fiのパスワードは何ですか？</div>
+      <div class="phrase-romaji">waifai no pasuwādo wa nan desu ka?</div>
+    </div>
+  </div>
+</div>
+
+<!-- Hiking Trail Phrases -->
+<div class="phrase-group" id="phrase-hiking">
+  <div class="phrase-group-header" onclick="togglePhrase(this)">
+    <div class="phrase-group-icon">🥾</div>
+    <div class="phrase-group-title">On Hiking Trails</div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="phrase-group-body">
+    <div class="phrase-item" onclick="showFullscreen('こんにちは','Hello (passing hikers)')">
+      <div class="phrase-en">Hello [greeting other hikers]</div>
+      <div class="phrase-jp">こんにちは</div>
+      <div class="phrase-romaji">konnichiwa</div>
+      <div class="phrase-context">Standard trail greeting — everyone says it when passing</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('＿＿＿への登山道はこちらですか？','Is this the trail to ___?')">
+      <div class="phrase-en">Is this the trail to ___?</div>
+      <div class="phrase-jp">＿＿＿への登山道はこちらですか？</div>
+      <div class="phrase-romaji">___ e no tozandō wa kochira desu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('山頂までどのくらいですか？','How much further to the summit?')">
+      <div class="phrase-en">How much further to the summit?</div>
+      <div class="phrase-jp">山頂までどのくらいですか？</div>
+      <div class="phrase-romaji">sanchō made dono kurai desu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('道に迷いました','I\'m lost')">
+      <div class="phrase-en">I'm lost</div>
+      <div class="phrase-jp">道に迷いました</div>
+      <div class="phrase-romaji">michi ni mayoimashita</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('お先にどうぞ','After you / Please go ahead')">
+      <div class="phrase-en">After you / Please go ahead</div>
+      <div class="phrase-jp">お先にどうぞ</div>
+      <div class="phrase-romaji">osaki ni dōzo</div>
+      <div class="phrase-context">When letting someone pass on a narrow trail</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('お気をつけて','Take care / Be careful')">
+      <div class="phrase-en">Take care [said to others heading out]</div>
+      <div class="phrase-jp">お気をつけて</div>
+      <div class="phrase-romaji">oki wo tsukete</div>
+    </div>
+  </div>
+</div>
+
+<!-- Shopping & General Phrases -->
+<div class="phrase-group" id="phrase-general">
+  <div class="phrase-group-header" onclick="togglePhrase(this)">
+    <div class="phrase-group-icon">🛍️</div>
+    <div class="phrase-group-title">Shopping & General</div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="phrase-group-body">
+    <div class="phrase-item" onclick="showFullscreen('すみません','Excuse me (to get attention)')">
+      <div class="phrase-en">Excuse me [to get someone's attention]</div>
+      <div class="phrase-jp">すみません</div>
+      <div class="phrase-romaji">sumimasen</div>
+      <div class="phrase-context">The single most useful word in Japan — works everywhere</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('これはいくらですか？','How much is this?')">
+      <div class="phrase-en">How much is this?</div>
+      <div class="phrase-jp">これはいくらですか？</div>
+      <div class="phrase-romaji">kore wa ikura desu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('免税できますか？','Can I get tax-free?')">
+      <div class="phrase-en">Can I get tax-free?</div>
+      <div class="phrase-jp">免税できますか？</div>
+      <div class="phrase-romaji">menzei dekimasu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('トイレはどこですか？','Where is the toilet?')">
+      <div class="phrase-en">Where is the toilet?</div>
+      <div class="phrase-jp">トイレはどこですか？</div>
+      <div class="phrase-romaji">toire wa doko desu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('写真を撮ってもいいですか？','May I take a photo?')">
+      <div class="phrase-en">May I take a photo?</div>
+      <div class="phrase-jp">写真を撮ってもいいですか？</div>
+      <div class="phrase-romaji">shashin wo totte mo ii desu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('ありがとうございます','Thank you very much')">
+      <div class="phrase-en">Thank you very much</div>
+      <div class="phrase-jp">ありがとうございます</div>
+      <div class="phrase-romaji">arigatō gozaimasu</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('大丈夫です','I\'m fine / No thank you / It\'s okay')">
+      <div class="phrase-en">I'm fine / No thank you / It's okay</div>
+      <div class="phrase-jp">大丈夫です</div>
+      <div class="phrase-romaji">daijōbu desu</div>
+      <div class="phrase-context">Swiss army knife phrase — use to decline offers politely</div>
+    </div>
+  </div>
+</div>
+
+<!-- Emergency Phrases -->
+<div class="phrase-group" id="phrase-emergency">
+  <div class="phrase-group-header" onclick="togglePhrase(this)">
+    <div class="phrase-group-icon">🚨</div>
+    <div class="phrase-group-title">Emergency</div>
+    <div class="chevron">▸</div>
+  </div>
+  <div class="phrase-group-body">
+    <div class="phrase-item" onclick="showFullscreen('助けて！','Help!')">
+      <div class="phrase-en">Help!</div>
+      <div class="phrase-jp">助けて！</div>
+      <div class="phrase-romaji">tasukete!</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('救急車を呼んでください','Please call an ambulance')">
+      <div class="phrase-en">Please call an ambulance</div>
+      <div class="phrase-jp">救急車を呼んでください</div>
+      <div class="phrase-romaji">kyūkyūsha wo yonde kudasai</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('警察を呼んでください','Please call the police')">
+      <div class="phrase-en">Please call the police</div>
+      <div class="phrase-jp">警察を呼んでください</div>
+      <div class="phrase-romaji">keisatsu wo yonde kudasai</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('日本語が話せません','I don\'t speak Japanese')">
+      <div class="phrase-en">I don't speak Japanese</div>
+      <div class="phrase-jp">日本語が話せません</div>
+      <div class="phrase-romaji">nihongo ga hanasemasen</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('英語を話せる方はいますか？','Is there someone who speaks English?')">
+      <div class="phrase-en">Is there someone who speaks English?</div>
+      <div class="phrase-jp">英語を話せる方はいますか？</div>
+      <div class="phrase-romaji">eigo wo hanaseru kata wa imasu ka?</div>
+    </div>
+    <div class="phrase-item" onclick="showFullscreen('具合が悪いです','I feel sick')">
+      <div class="phrase-en">I feel sick</div>
+      <div class="phrase-jp">具合が悪いです</div>
+      <div class="phrase-romaji">guai ga warui desu</div>
+    </div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function toggleDay(header) {
   const day = header.parentElement;
   const wasOpen = day.classList.contains('open');
@@ -2701,35 +4435,71 @@ function toggleFood(header) {
   }
 }
 
+function toggleSos(header) {
+  const group = header.parentElement;
+  const wasOpen = group.classList.contains('open');
+  group.classList.toggle('open');
+  if (!wasOpen) {
+    setTimeout(() => header.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+}
+
+function toggleTransit(header) {
+  const day = header.parentElement;
+  const wasOpen = day.classList.contains('open');
+  day.classList.toggle('open');
+  if (!wasOpen) {
+    setTimeout(() => header.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+}
+
+function togglePhrase(header) {
+  const group = header.parentElement;
+  const wasOpen = group.classList.contains('open');
+  group.classList.toggle('open');
+  if (!wasOpen) {
+    setTimeout(() => header.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+}
+
 function toggleRef(el) {
   el.classList.toggle('open');
   el.nextElementSibling.classList.toggle('show');
 }
 
-// Search
+// Fullscreen "show to staff" overlay
+function showFullscreen(jp, en) {
+  document.getElementById('fs-jp').textContent = jp;
+  document.getElementById('fs-en').textContent = en;
+  document.getElementById('sos-fullscreen').classList.add('active');
+}
+function closeFullscreen() {
+  document.getElementById('sos-fullscreen').classList.remove('active');
+}
+
+// Search — includes all section types
 document.getElementById('search').addEventListener('input', function(e) {
   const q = e.target.value.toLowerCase().trim();
-  document.querySelectorAll('.day, .food-day').forEach(day => {
+  document.querySelectorAll('.day, .food-day, .transit-day, .sos-group, .phrase-group').forEach(el => {
     if (!q) {
-      day.classList.remove('hidden');
+      el.classList.remove('hidden');
       return;
     }
-    const text = day.textContent.toLowerCase();
-    day.classList.toggle('hidden', !text.includes(q));
-    if (text.includes(q) && !day.classList.contains('open')) {
-      day.classList.add('open');
+    const text = el.textContent.toLowerCase();
+    el.classList.toggle('hidden', !text.includes(q));
+    if (text.includes(q) && !el.classList.contains('open')) {
+      el.classList.add('open');
     }
   });
 });
 
-// Quick nav scroll
-document.querySelectorAll('.quick-nav a, .food-quick-nav a').forEach(a => {
+// Quick nav scroll (all nav types)
+document.querySelectorAll('.quick-nav a, .food-quick-nav a, .transit-quick-nav a').forEach(a => {
   a.addEventListener('click', function(e) {
     e.preventDefault();
     const target = document.getElementById(this.getAttribute('href').slice(1));
     if (target) {
-      if (target.classList.contains('food-day') && !target.classList.contains('open')) target.classList.add('open');
-      if (target.classList.contains('day') && !target.classList.contains('open')) target.classList.add('open');
+      if (!target.classList.contains('open')) target.classList.add('open');
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
@@ -2946,17 +4716,4 @@ document.querySelectorAll('.quick-nav a, .food-quick-nav a').forEach(a => {
       }
     });
   } else if (!hadCache) {
-    // Offline and no cache: show placeholders
-    for (let d = 1; d <= 18; d++) renderWeather(d, null, null);
-  }
-})();
-</script>
-
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
-</script>
-
-</body>
-</html>
+    // Offline 
