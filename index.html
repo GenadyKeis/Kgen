@@ -78,9 +78,22 @@
       display: flex;
       gap: 6px;
       overflow-x: auto;
-      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      padding: 10px 16px;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: calc(59px + env(safe-area-inset-top));
+      /* Below the header */
+      z-index: 90;
+    }
+
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
       position: fixed;
       bottom: 0;
       left: 0;
@@ -91,6 +104,23 @@
       -webkit-backdrop-filter: blur(12px);
       z-index: 100;
       border-top: 1px solid var(--border);
+    }
+
+    .bottom-nav a {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 12px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      transition: transform 0.15s;
+    }
+
+    .bottom-nav a:active {
+      transform: scale(0.92);
     }
 
     .quick-nav::-webkit-scrollbar {
@@ -113,6 +143,12 @@
       background: var(--accent-dim);
       color: #fff;
       border-color: var(--accent);
+    }
+
+    .quick-nav a.past {
+      opacity: 0.4;
+      background: transparent;
+      border-color: transparent;
     }
 
     .ref-section {
@@ -202,6 +238,13 @@
 
     .day {
       border-bottom: 1px solid var(--border);
+      scroll-margin-top: calc(110px + env(safe-area-inset-top));
+      transition: opacity 0.3s;
+    }
+
+    .day.past {
+      opacity: 0.5;
+      filter: grayscale(80%);
     }
 
     .day-header {
@@ -575,6 +618,7 @@
 
     .food-day {
       border-bottom: 1px solid var(--border);
+      scroll-margin-top: calc(110px + env(safe-area-inset-top));
     }
 
     .food-day-header {
@@ -959,6 +1003,7 @@
 
     .transit-day {
       border-bottom: 1px solid var(--border);
+      scroll-margin-top: calc(110px + env(safe-area-inset-top));
     }
 
     .transit-day-header {
@@ -1308,16 +1353,22 @@
   </div>
 
   <div class="quick-nav" id="quicknav">
-    <a href="#day1">1</a><a href="#day2">2</a><a href="#day3">3</a><a href="#day4">4</a>
-    <a href="#day5">5</a><a href="#day6">6</a><a href="#day7">7</a><a href="#day8">8</a>
-    <a href="#day9">9</a><a href="#day10">10</a><a href="#day11">11</a><a href="#day12">12</a>
-    <a href="#day13">13</a><a href="#day14">14</a><a href="#day15">15</a><a href="#day16">16</a>
-    <a href="#day17">17</a><a href="#day18">18</a><a href="#food-guide"
-      style="background:var(--tag-food);color:#e0c8a0;border-color:var(--tag-food);">🍜 Food</a><a href="#sos-section"
-      style="background:#4a1a1a;color:#e05050;border-color:#e05050;">🚨 SOS</a><a href="#transit-section"
-      style="background:var(--tag-transit);color:#b0d0f0;border-color:var(--tag-transit);">🚃 Transit</a><a
-      href="#phrase-section" style="background:var(--tag-culture);color:#d0b0d0;border-color:var(--tag-culture);">🗣
-      Phrases</a>
+    <a href="#day1" data-day="1">1</a><a href="#day2" data-day="2">2</a><a href="#day3" data-day="3">3</a><a
+      href="#day4" data-day="4">4</a>
+    <a href="#day5" data-day="5">5</a><a href="#day6" data-day="6">6</a><a href="#day7" data-day="7">7</a><a
+      href="#day8" data-day="8">8</a>
+    <a href="#day9" data-day="9">9</a><a href="#day10" data-day="10">10</a><a href="#day11" data-day="11">11</a><a
+      href="#day12" data-day="12">12</a>
+    <a href="#day13" data-day="13">13</a><a href="#day14" data-day="14">14</a><a href="#day15" data-day="15">15</a><a
+      href="#day16" data-day="16">16</a>
+    <a href="#day17" data-day="17">17</a><a href="#day18" data-day="18">18</a>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="#food-guide" style="color:#e0c8a0;">🍜 <span>Food</span></a>
+    <a href="#sos-section" style="color:#e05050;">🚨 <span>SOS</span></a>
+    <a href="#transit-section" style="color:#b0d0f0;">🚃 <span>Transit</span></a>
+    <a href="#phrase-section" style="color:#d0b0d0;">🗣 <span>Phrases</span></a>
   </div>
 
   <!-- QUICK REFERENCE -->
@@ -5551,19 +5602,31 @@
       }
     }, { passive: true });
 
-    // Auto-open today's day
+    // Auto-open today's day & grey out past days
     (function () {
       const today = new Date();
+      // Start of day to avoid timezone issues when dimming
+      today.setHours(0, 0, 0, 0);
+
       const tripDays = [
         [2026, 3, 10], [2026, 3, 11], [2026, 3, 12], [2026, 3, 13], [2026, 3, 14], [2026, 3, 15],
         [2026, 3, 16], [2026, 3, 17], [2026, 3, 18], [2026, 3, 19], [2026, 3, 20], [2026, 3, 21],
         [2026, 3, 22], [2026, 3, 23], [2026, 3, 24], [2026, 3, 25], [2026, 3, 26], [2026, 3, 27]
       ];
+
       for (let i = 0; i < tripDays.length; i++) {
         const [y, m, d] = tripDays[i];
+        const iterDate = new Date(y, m, d);
+
+        const el = document.getElementById('day' + (i + 1));
+        const navEl = document.querySelector('.quick-nav a[data-day="' + (i + 1) + '"]');
+
         if (today.getFullYear() === y && today.getMonth() === m && today.getDate() === d) {
-          const el = document.getElementById('day' + (i + 1));
-          if (el) { el.classList.add('today', 'open'); }
+          if (el) el.classList.add('today', 'open');
+        } else if (iterDate < today) {
+          // If the loop date is strictly before today, it's a past date
+          if (el) el.classList.add('past');
+          if (navEl) navEl.classList.add('past');
         }
       }
     })();
