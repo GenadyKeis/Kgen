@@ -49,7 +49,9 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    .top-sticky-container {
+    header {
+      padding: calc(20px + env(safe-area-inset-top)) 16px 16px;
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -57,11 +59,6 @@
       /* Glassmorphism */
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-    }
-
-    header {
-      padding: calc(20px + env(safe-area-inset-top)) 16px 16px;
-      border-bottom: 1px solid var(--border);
     }
 
     header h1 {
@@ -600,7 +597,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      scroll-margin-top: calc(150px + env(safe-area-inset-top));
+      scroll-margin-top: calc(110px + env(safe-area-inset-top));
     }
 
     .food-section-header h2 {
@@ -807,7 +804,7 @@
       border-bottom: 1px solid var(--border);
       border-top: 3px solid #e05050;
       margin-top: 8px;
-      scroll-margin-top: calc(150px + env(safe-area-inset-top));
+      scroll-margin-top: calc(110px + env(safe-area-inset-top));
     }
 
     .sos-section-header h2 {
@@ -986,7 +983,7 @@
       border-bottom: 1px solid var(--border);
       border-top: 3px solid var(--tag-transit);
       margin-top: 8px;
-      scroll-margin-top: calc(150px + env(safe-area-inset-top));
+      scroll-margin-top: calc(110px + env(safe-area-inset-top));
     }
 
     .transit-section-header h2 {
@@ -1200,7 +1197,7 @@
       border-bottom: 1px solid var(--border);
       border-top: 3px solid #6a4a6a;
       margin-top: 8px;
-      scroll-margin-top: calc(150px + env(safe-area-inset-top));
+      scroll-margin-top: calc(110px + env(safe-area-inset-top));
     }
 
     .phrase-section-header h2 {
@@ -1304,7 +1301,7 @@
 
     #btt {
       position: fixed;
-      bottom: calc(100px + env(safe-area-inset-bottom));
+      bottom: calc(140px + env(safe-area-inset-bottom));
       right: 16px;
       width: 44px;
       height: 44px;
@@ -1345,27 +1342,25 @@
 
 <body>
 
-  <div class="top-sticky-container">
-    <header>
-      <h1>🇯🇵 Japan — April 2026</h1>
-      <div class="sub">18 days · Tokyo → Osaka → Hiroshima → Fukuoka → Tokyo</div>
-    </header>
+  <header>
+    <h1>🇯🇵 Japan — April 2026</h1>
+    <div class="sub">18 days · Tokyo → Osaka → Hiroshima → Fukuoka → Tokyo</div>
+  </header>
 
-    <div class="search-container">
-      <input type="text" id="search" placeholder="Search places, temples, hikes…" autocomplete="off">
-    </div>
+  <div class="search-container">
+    <input type="text" id="search" placeholder="Search places, temples, hikes…" autocomplete="off">
+  </div>
 
-    <div class="quick-nav" id="quicknav">
-      <a href="#day1" data-day="1">1</a><a href="#day2" data-day="2">2</a><a href="#day3" data-day="3">3</a><a
-        href="#day4" data-day="4">4</a>
-      <a href="#day5" data-day="5">5</a><a href="#day6" data-day="6">6</a><a href="#day7" data-day="7">7</a><a
-        href="#day8" data-day="8">8</a>
-      <a href="#day9" data-day="9">9</a><a href="#day10" data-day="10">10</a><a href="#day11" data-day="11">11</a><a
-        href="#day12" data-day="12">12</a>
-      <a href="#day13" data-day="13">13</a><a href="#day14" data-day="14">14</a><a href="#day15" data-day="15">15</a><a
-        href="#day16" data-day="16">16</a>
-      <a href="#day17" data-day="17">17</a><a href="#day18" data-day="18">18</a>
-    </div>
+  <div class="quick-nav" id="quicknav">
+    <a href="#day1" data-day="1">1</a><a href="#day2" data-day="2">2</a><a href="#day3" data-day="3">3</a><a
+      href="#day4" data-day="4">4</a>
+    <a href="#day5" data-day="5">5</a><a href="#day6" data-day="6">6</a><a href="#day7" data-day="7">7</a><a
+      href="#day8" data-day="8">8</a>
+    <a href="#day9" data-day="9">9</a><a href="#day10" data-day="10">10</a><a href="#day11" data-day="11">11</a><a
+      href="#day12" data-day="12">12</a>
+    <a href="#day13" data-day="13">13</a><a href="#day14" data-day="14">14</a><a href="#day15" data-day="15">15</a><a
+      href="#day16" data-day="16">16</a>
+    <a href="#day17" data-day="17">17</a><a href="#day18" data-day="18">18</a>
   </div>
 
   <div class="bottom-nav">
