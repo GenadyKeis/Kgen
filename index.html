@@ -59,6 +59,36 @@
       /* Glassmorphism */
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-text-block {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .header-search-icon {
+      font-size: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim);
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: transform 0.1s, color 0.1s;
+    }
+
+    .header-search-icon:active {
+      transform: scale(0.92);
+      color: var(--text);
     }
 
     header h1 {
@@ -66,12 +96,19 @@
       font-weight: 700;
       letter-spacing: -0.3px;
       color: var(--accent);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.3s;
     }
 
     header .sub {
       font-size: 12px;
       color: var(--text-dim);
       margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .quick-nav {
@@ -561,7 +598,20 @@
     }
 
     .search-container {
+      padding: 0 16px;
+      max-height: 0;
+      overflow: hidden;
+      background: var(--bg);
+      transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+      position: sticky;
+      top: calc(77px + env(safe-area-inset-top));
+      /* Below the header naturally */
+      z-index: 99;
+    }
+
+    .search-container.visible {
       padding: 8px 16px;
+      max-height: 60px;
       border-bottom: 1px solid var(--border);
     }
 
@@ -1343,8 +1393,13 @@
 <body>
 
   <header>
-    <h1>🇯🇵 Japan — April 2026</h1>
-    <div class="sub">18 days · Tokyo → Osaka → Hiroshima → Fukuoka → Tokyo</div>
+    <div class="header-text-block">
+      <h1 id="header-title">🇯🇵 Japan — April 2026</h1>
+      <div class="sub" id="header-sub">18 days · Tokyo → Osaka → Hiroshima → Fukuoka → Tokyo</div>
+    </div>
+    <div class="header-search-icon" id="search-toggle" aria-label="Toggle Search">
+      🔍
+    </div>
   </header>
 
   <div class="search-container">
@@ -5600,6 +5655,88 @@
         else btt.classList.remove('visible');
       }
     }, { passive: true });
+
+    // Header Search Toggle
+    document.getElementById('search-toggle').addEventListener('click', function () {
+      const sb = document.querySelector('.search-container');
+      const input = document.getElementById('search');
+      sb.classList.toggle('visible');
+      if (sb.classList.contains('visible')) {
+        setTimeout(() => input.focus(), 300);
+      } else {
+        input.blur();
+      }
+    });
+
+    // Dynamic Header Title Intersection Observer
+    (function () {
+      const headerTitle = document.getElementById('header-title');
+      const headerSub = document.getElementById('header-sub');
+      const originalTitle = "🇯🇵 Japan — April 2026";
+      const originalSub = "18 days · Tokyo → Osaka → Hiroshima → Fukuoka → Tokyo";
+
+      const titleObserver = new IntersectionObserver((entries) => {
+        let activeEntry = null;
+
+        // Find the top-most visible section crossing the threshold
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            activeEntry = entry.target;
+          }
+        });
+
+        if (activeEntry) {
+          let newTitle = "";
+          let newSub = "";
+
+          if (activeEntry.classList.contains('day')) {
+            const dayNum = activeEntry.querySelector('.day-num') ? activeEntry.querySelector('.day-num').innerText : "";
+            const dayTitle = activeEntry.querySelector('.day-title') ? activeEntry.querySelector('.day-title').innerText : "";
+            const dayDate = activeEntry.querySelector('.day-date') ? activeEntry.querySelector('.day-date').innerText : "";
+            newTitle = `Day ${dayNum} — ${dayTitle}`;
+            newSub = dayDate;
+          } else if (activeEntry.classList.contains('food-section-header')) {
+            newTitle = "🍜 Culinary Guide";
+            newSub = "Restaurants · Cafes · Izakayas";
+            headerTitle.style.color = "var(--tag-food)";
+          } else if (activeEntry.classList.contains('sos-section-header')) {
+            newTitle = "🚨 Emergency & SOS";
+            newSub = "Numbers · Embassy · Clinics";
+            headerTitle.style.color = "#e05050";
+          } else if (activeEntry.classList.contains('transit-section-header')) {
+            newTitle = "🚃 Transit Passes";
+            newSub = "JR Pass · IC Cards · Ferries";
+            headerTitle.style.color = "var(--tag-transit)";
+          } else if (activeEntry.classList.contains('phrase-section-header')) {
+            newTitle = "🗣 Phrasebook";
+            newSub = "Greetings · Ordering · Emergency";
+            headerTitle.style.color = "#d0b0d0";
+          }
+
+          if (newTitle) {
+            headerTitle.innerText = newTitle;
+            headerSub.innerText = newSub;
+            if (activeEntry.classList.contains('day')) {
+              headerTitle.style.color = "var(--accent)"; // Reset color for days
+            }
+          }
+        } else if (window.scrollY < 100) {
+          // Reset to default if scrolled back to top
+          headerTitle.innerText = originalTitle;
+          headerSub.innerText = originalSub;
+          headerTitle.style.color = "var(--accent)";
+        }
+      }, {
+        // Watch for elements exactly as they cross beneath the sticky header (approx 80px)
+        rootMargin: "-85px 0px -80% 0px",
+        threshold: 0
+      });
+
+      // Observe all target sections
+      document.querySelectorAll('.day, .food-section-header, .sos-section-header, .transit-section-header, .phrase-section-header').forEach(el => {
+        titleObserver.observe(el);
+      });
+    })();
 
     // Auto-open today's day & grey out past days
     (function () {
