@@ -16,7 +16,7 @@
       --card: #242424;
       --card-open: #2a2a2a;
       --text: #e8e4df;
-      --text-dim: #9a9590;
+      --text-dim: #b0a8a0;
       --accent: #d4845a;
       --accent-dim: #a0623f;
       --link: #6aadcf;
@@ -514,7 +514,7 @@
     .links {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 10px;
       margin-top: 6px;
     }
 
@@ -1381,6 +1381,287 @@
       background: var(--card);
     }
 
+    /* A1: Dynamic Island spacing */
+    header {
+      min-height: calc(52px + env(safe-area-inset-top));
+    }
+
+    /* A3: Larger quick nav chips */
+    .quick-nav a, .food-quick-nav a, .transit-quick-nav a {
+      padding: 8px 12px;
+      font-size: 13px;
+      min-width: 36px;
+      min-height: 36px;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* A2: Bottom nav active state */
+    .bottom-nav a.nav-active {
+      background: rgba(212, 132, 90, 0.15);
+      color: var(--accent) !important;
+    }
+
+    /* A4: Inline weather on collapsed day header */
+    .day-header-wx {
+      font-size: 12px;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 2px;
+    }
+    .day-header-wx .wx-hi { color: #e09455; font-weight: 600; }
+    .day-header-wx .wx-lo { color: #6aadcf; font-weight: 600; }
+
+    /* A5: Contrast & font size fixes */
+    .tag, .rest-badge, .tleg-badge { font-size: 11px; }
+    .hotel-item .dates, .hotel-item .hotel-details { font-size: 12px; }
+    .wx-stale { font-size: 11px; }
+
+    /* A8: OLED mode */
+    body.oled-mode {
+      --bg: #000000;
+      --card: #111111;
+      --card-open: #1a1a1a;
+      --border: #222222;
+    }
+    body.oled-mode header,
+    body.oled-mode .bottom-nav {
+      background: rgba(0, 0, 0, 0.92);
+    }
+
+    /* A8: OLED toggle button in header */
+    .header-oled-toggle {
+      font-size: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 18px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim);
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: transform 0.1s, color 0.1s;
+    }
+    .header-oled-toggle:active { transform: scale(0.92); color: var(--text); }
+    body.oled-mode .header-oled-toggle { color: var(--accent); background: #1a1a1a; }
+
+    /* A6: Search clear and count */
+    .search-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .search-wrapper input { padding-right: 80px; }
+    .search-clear {
+      position: absolute;
+      right: 50px;
+      font-size: 18px;
+      color: var(--text-dim);
+      cursor: pointer;
+      display: none;
+      padding: 4px;
+      line-height: 1;
+    }
+    .search-count {
+      position: absolute;
+      right: 10px;
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 600;
+      display: none;
+    }
+
+    /* B2: Time-aware dimming for past blocks within today */
+    .block.time-past { opacity: 0.45; }
+    .block.time-now {
+      border-left: 3px solid var(--accent);
+      padding-left: 8px;
+      position: relative;
+    }
+    .block.time-now::before {
+      content: 'NOW';
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      background: rgba(212, 132, 90, 0.2);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* B5: Rain alert banner */
+    .rain-alert {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      background: #2a2018;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #e09455;
+      border: 1px solid #5a4a2a;
+      font-weight: 600;
+    }
+    .rain-alert .rain-link {
+      color: var(--link);
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    /* B6: Copy toast */
+    .copy-toast {
+      position: fixed;
+      bottom: calc(80px + env(safe-area-inset-bottom));
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--accent);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 20px;
+      z-index: 200;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+    }
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* B8: Prev/Next day navigation */
+    .day-nav {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .day-nav-btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.15s, background 0.15s;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .day-nav-btn:active { transform: scale(0.96); background: var(--card-open); }
+    .day-nav-btn.disabled { opacity: 0.3; pointer-events: none; }
+
+    /* B10: Interactive checklist */
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 4px 0;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .checklist-item.checked { opacity: 0.45; text-decoration: line-through; }
+    .checklist-box {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      margin-top: 1px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .checklist-item.checked .checklist-box {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .checklist-counter {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    /* B11: Quick SOS modal */
+    .sos-quick-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 9998;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 12px;
+    }
+    .sos-quick-modal.active { display: flex; }
+    .sos-quick-modal h3 {
+      font-size: 18px;
+      color: #e05050;
+      margin-bottom: 8px;
+    }
+    .sos-quick-call {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 320px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 700;
+      min-height: 56px;
+      transition: transform 0.15s;
+    }
+    .sos-quick-call:active { transform: scale(0.96); }
+    .sos-quick-call.call-110 { background: #3a1a1a; color: #e05050; border: 1px solid #6a2a2a; }
+    .sos-quick-call.call-119 { background: #2a2a1a; color: #e0c850; border: 1px solid #5a5a2a; }
+    .sos-quick-call.call-helpline { background: #1a2a1a; color: #7cb87a; border: 1px solid #2a5a2a; }
+    .sos-quick-call .call-label { font-size: 13px; font-weight: 400; color: var(--text-dim); }
+    .sos-quick-close {
+      margin-top: 16px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      background: #333;
+      color: #fff;
+      border: 1px solid #555;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    /* B9: Live transit check button */
+    .btn-live {
+      background: #1a2a2a;
+      color: #7ac;
+      border: 1px solid #2a4a5a;
+    }
+
     @media (min-width: 600px) {
       body {
         max-width: 600px;
@@ -1397,13 +1678,20 @@
       <h1 id="header-title">🇯🇵 Japan — April 2026</h1>
       <div class="sub" id="header-sub">18 days · Tokyo → Osaka → Hiroshima → Fukuoka → Tokyo</div>
     </div>
+    <div class="header-oled-toggle" id="oled-toggle" aria-label="Toggle OLED Mode" title="OLED battery saver">
+      ◐
+    </div>
     <div class="header-search-icon" id="search-toggle" aria-label="Toggle Search">
       🔍
     </div>
   </header>
 
   <div class="search-container">
-    <input type="text" id="search" placeholder="Search places, temples, hikes…" autocomplete="off">
+    <div class="search-wrapper">
+      <input type="text" id="search" placeholder="Search places, temples, hikes…" autocomplete="off">
+      <span class="search-clear" id="search-clear">✕</span>
+      <span class="search-count" id="search-count"></span>
+    </div>
   </div>
 
   <div class="quick-nav" id="quicknav">
@@ -1418,11 +1706,12 @@
     <a href="#day17" data-day="17">17</a><a href="#day18" data-day="18">18</a>
   </div>
 
-  <div class="bottom-nav">
-    <a href="#food-guide" style="color:#e0c8a0;">🍜 <span>Food</span></a>
-    <a href="#sos-section" style="color:#e05050;">🚨 <span>SOS</span></a>
-    <a href="#transit-section" style="color:#b0d0f0;">🚃 <span>Transit</span></a>
-    <a href="#phrase-section" style="color:#d0b0d0;">🗣 <span>Phrases</span></a>
+  <div class="bottom-nav" id="bottom-nav">
+    <a href="#day1" data-section="days" style="color:var(--accent);" class="nav-active">📅 <span>Days</span></a>
+    <a href="#food-guide" data-section="food" style="color:#e0c8a0;">🍜 <span>Food</span></a>
+    <a href="#sos-section" data-section="sos" style="color:#e05050;" id="sos-nav-btn">🚨 <span>SOS</span></a>
+    <a href="#transit-section" data-section="transit" style="color:#b0d0f0;">🚃 <span>Transit</span></a>
+    <a href="#phrase-section" data-section="phrases" style="color:#d0b0d0;">🗣 <span>Phrases</span></a>
   </div>
 
   <!-- QUICK REFERENCE -->
@@ -1488,20 +1777,42 @@
 
   <div class="ref-section">
     <div class="ref-toggle" onclick="toggleRef(this)">Pre-Trip Checklist</div>
-    <div class="ref-content">
+    <div class="ref-content" id="checklist-section">
+      <div class="checklist-counter" id="checklist-counter"></div>
       <strong>Before departure:</strong><br>
-      • Buy Nezu Museum tickets in advance<br>
-      • Download Google Maps offline: Tokyo, Osaka, Nara, Kyoto, Hiroshima, Fukuoka, Nagasaki, Kumamoto, Karatsu<br>
-      • Download Google Translate Japanese pack<br>
-      • Set up Suica in Apple Wallet<br>
-      • Download Yamap offline trail maps: Mt. Mitake, Kasuga Forest, Kurama-Kibune, Mt. Misen, Mt. Homan, Mt.
-      Kagami<br><br>
+      <div class="checklist-item" data-key="cl-nezu" onclick="toggleChecklist(this)">
+        <div class="checklist-box"></div>
+        <span>Buy Nezu Museum tickets in advance</span>
+      </div>
+      <div class="checklist-item" data-key="cl-gmaps" onclick="toggleChecklist(this)">
+        <div class="checklist-box"></div>
+        <span>Download Google Maps offline: Tokyo, Osaka, Nara, Kyoto, Hiroshima, Fukuoka, Nagasaki, Kumamoto, Karatsu</span>
+      </div>
+      <div class="checklist-item" data-key="cl-translate" onclick="toggleChecklist(this)">
+        <div class="checklist-box"></div>
+        <span>Download Google Translate Japanese pack</span>
+      </div>
+      <div class="checklist-item" data-key="cl-suica" onclick="toggleChecklist(this)">
+        <div class="checklist-box"></div>
+        <span>Set up Suica in Apple Wallet</span>
+      </div>
+      <div class="checklist-item" data-key="cl-yamap" onclick="toggleChecklist(this)">
+        <div class="checklist-box"></div>
+        <span>Download Yamap offline trail maps: Mt. Mitake, Kasuga Forest, Kurama-Kibune, Mt. Misen, Mt. Homan, Mt. Kagami</span>
+      </div>
+      <br>
       <strong>Apr 13–14 from Osaka:</strong><br>
-      • <span style="color: var(--accent);">⚠ Check Kurama-Kibune trail status</span> — <a
-        href="https://eizandensha.co.jp/en/" style="color: var(--link);">Eizan Railway</a> · <a
-        href="https://www.kuramadera.or.jp/" style="color: var(--link);">Kurama-dera</a> · <a
-        href="https://www.japan-guide.com/e/e3933.html" style="color: var(--link);">Japan-guide</a><br>
-      • If Kurama Line suspended → activate Enryaku-ji backup (Day 7)
+      <div class="checklist-item" data-key="cl-kurama" onclick="toggleChecklist(this)">
+        <div class="checklist-box"></div>
+        <span><span style="color: var(--accent);">⚠ Check Kurama-Kibune trail status</span> — <a
+        href="https://eizandensha.co.jp/en/" style="color: var(--link);" onclick="event.stopPropagation()">Eizan Railway</a> · <a
+        href="https://www.kuramadera.or.jp/" style="color: var(--link);" onclick="event.stopPropagation()">Kurama-dera</a> · <a
+        href="https://www.japan-guide.com/e/e3933.html" style="color: var(--link);" onclick="event.stopPropagation()">Japan-guide</a></span>
+      </div>
+      <div class="checklist-item" data-key="cl-enryakuji" onclick="toggleChecklist(this)">
+        <div class="checklist-box"></div>
+        <span>If Kurama Line suspended → activate Enryaku-ji backup (Day 7)</span>
+      </div>
     </div>
   </div>
 
@@ -1635,8 +1946,8 @@
           <div class="item-name">Rock Garden (ロックガーデン)</div>
           <div class="item-detail">3 km loop · ~150m gain · 1.5–2 hrs · Mossy ravine, waterfalls, dense canopy</div>
           <div class="links">
-            <a class="btn btn-hike" href="https://www.japan-guide.com/e/e3039.html">🗺 Trail info</a>
-            <a class="btn btn-maps" href="https://www.google.com/maps/place/Rock+Garden+Trail,+Ome,+Tokyo">📍
+            <a class="btn btn-hike" href="https://www.japan-guide.com/e/e3036.html">🗺 Trail info</a>
+            <a class="btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Rock+Garden+(Mt.+Mitake),+Ome,+Tokyo">📍
               Trailhead</a>
           </div>
         </div>
@@ -1779,7 +2090,7 @@
           </div>
         </div>
         <div class="item">
-          <div class="item-name"><a href="https://www.shitennoji.or.jp/english/">Shitennoji</a></div>
+          <div class="item-name"><a href="https://www.shitennoji.or.jp/">Shitennoji</a></div>
           <div class="item-detail">Japan's oldest official temple (593 AD). ¥300. Tanimachi Line from Tanimachi 4-chome
             to Shitennoji-mae Yuhigaoka (~15 min, ¥230).</div>
           <div class="links">
@@ -1858,7 +2169,7 @@
           </div>
         </div>
         <div class="item">
-          <div class="item-name"><a href="https://www.kasugataisha.or.jp/en/">Kasuga Taisha</a></div>
+          <div class="item-name"><a href="https://www.kasugataisha.or.jp/about/index_en.html">Kasuga Taisha</a></div>
           <div class="item-detail">Thousands of stone lanterns. Optional Botanical Garden (¥500).</div>
           <div class="links">
             <a class="btn btn-maps"
@@ -1875,7 +2186,7 @@
           <div class="item-detail">9 km · ~200m gain · 2.5–3 hrs · UNESCO World Heritage forest, 1,000+ years uncut.
             Cryptomeria, ferns, moss. Almost no tourists.</div>
           <div class="links">
-            <a class="btn btn-hike" href="https://www.google.com/maps/place/Kasugayama+Primeval+Forest">🗺 Trail
+            <a class="btn btn-hike" href="https://www.google.com/maps/search/?api=1&query=Kasugayama+Primeval+Forest">🗺 Trail
               start</a>
           </div>
         </div>
@@ -1886,7 +2197,7 @@
         <div class="item">
           <div class="item-detail"><strong>Lunch:</strong> Kakinoha-zushi at Hiraso near Kintetsu-Nara.</div>
           <div class="links">
-            <a class="btn btn-maps" href="https://www.google.com/maps/search/Hiraso+kakinoha+sushi+Nara">📍 Hiraso</a>
+            <a class="btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Hiraso+Kakinoha+sushi+Nara">📍 Hiraso</a>
           </div>
         </div>
         <div class="item">
@@ -1945,7 +2256,7 @@
           <div class="item-detail">Start at Ichinohashi Bridge (full 2 km approach). 200,000+ graves, 400-year cedars.
             Ends at Torodo Hall (10,000 lanterns) and Kobo Daishi Mausoleum.</div>
           <div class="links">
-            <a class="btn btn-maps" href="https://www.google.com/maps/place/Ichinohashi+Bridge,+Koyasan">📍 Start:
+            <a class="btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Ichinohashi+Bridge,+Koyasan">📍 Start:
               Ichinohashi</a>
           </div>
         </div>
@@ -1962,11 +2273,11 @@
             Kondo Hall</div>
           <div class="item-detail">Original monastery center, established 816.</div>
           <div class="links">
-            <a class="btn btn-maps" href="https://www.google.com/maps/place/Danjo+Garan,+Koyasan">📍 Location</a>
+            <a class="btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Danjo+Garan,+Koyasan">📍 Location</a>
           </div>
         </div>
         <div class="item">
-          <div class="item-name"><a href="https://www.koyasan.or.jp/en/spot/kongoubuji.html">Kongobu-ji</a> — Japan's
+          <div class="item-name"><a href="https://www.japan-guide.com/e/e4902.html">Kongobu-ji</a> — Japan's
             largest rock garden</div>
           <div class="item-detail">¥1,000 (¥800 with paper ticket). Banryutei rock garden, Kano fusuma paintings, Willow
             Room.</div>
@@ -2046,7 +2357,7 @@
             moss. Summit: Okunoin Mao-den.</div>
           <div class="links">
             <a class="btn btn-hike" href="https://www.japan-guide.com/e/e3933.html">🗺 Trail info</a>
-            <a class="btn btn-maps" href="https://www.google.com/maps/place/Kurama-dera+Temple">📍 Trailhead</a>
+            <a class="btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Kurama-dera+Temple">📍 Trailhead</a>
           </div>
         </div>
         <div class="item">
@@ -2102,7 +2413,7 @@
           </div>
         </div>
         <div class="item">
-          <div class="item-name"><a href="https://www.hieizan.or.jp/en/">Enryaku-ji</a> — Tendai HQ (¥1,000)</div>
+          <div class="item-name"><a href="https://www.hieizan.or.jp/">Enryaku-ji</a> — Tendai HQ (¥1,000)</div>
           <div class="item-detail">Todo area: Konpon Chudo (under renovation ~2027), Kaidan-in, Daikodo. 1.5–2
             hrs.<br>Walk to Saito (20 min forest trail): Shaka-do (National Treasure). 45 min–1 hr.</div>
         </div>
@@ -2182,7 +2493,7 @@
             <a class="btn btn-maps"
               href="https://www.google.com/maps/dir/?api=1&origin=JR+Hiroshima+Station&destination=Miyajima+Island&travelmode=transit">📍
               Directions</a>
-            <a class="btn btn-info" href="https://www.miyajima.or.jp/english/event/event_tide.html">🌊 Tide tables</a>
+            <a class="btn btn-info" href="https://www.miyajima.or.jp/sio/sio01.html">🌊 Tide tables</a>
           </div>
         </div>
         <div class="item">
@@ -2194,7 +2505,7 @@
           <div class="item-detail">Hundreds of statues, prayer wheels, cave passages. Free. Tomorrow's hike trailhead.
           </div>
           <div class="links">
-            <a class="btn btn-maps" href="https://www.google.com/maps/place/Daisho-in+Temple+Miyajima">📍 Location</a>
+            <a class="btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Daisho-in+Temple+Miyajima">📍 Location</a>
           </div>
         </div>
         <div class="item">
@@ -2241,7 +2552,7 @@
             <a class="btn btn-hike"
               href="https://www.japan.travel/en/japans-local-treasures/mt-misen-trekking-and-miyajima-2023/">🗺 Trail
               guide</a>
-            <a class="btn btn-maps" href="https://www.google.com/maps/place/Daisho-in+Temple+Miyajima">📍 Trailhead</a>
+            <a class="btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Daisho-in+Temple+Miyajima">📍 Trailhead</a>
           </div>
         </div>
         <div class="item">
@@ -2266,7 +2577,7 @@
           <div class="item-detail">Massive wooden hall, Hideyoshi 1587, never completed. ¥100. Almost nobody visits.
           </div>
           <div class="links">
-            <a class="btn btn-maps" href="https://www.google.com/maps/place/Senjokaku+Miyajima">📍 Location</a>
+            <a class="btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Senjokaku+Miyajima">📍 Location</a>
           </div>
         </div>
       </div>
@@ -2280,7 +2591,7 @@
             <a class="btn btn-maps"
               href="https://www.google.com/maps/dir/?api=1&origin=Daiwa+Roynet+Hotel+Hiroshima-ekimae&destination=Okonomimura+Hiroshima&travelmode=transit">📍
               Okonomimura</a>
-            <a class="btn btn-maps" href="https://www.google.com/maps/search/Nagata-ya+Hiroshima+okonomiyaki">📍
+            <a class="btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Okonomiyaki+Nagataya">📍
               Nagata-ya</a>
           </div>
         </div>
@@ -2328,7 +2639,7 @@
       <div class="block">
         <div class="block-title morning">Morning — Temple Walk</div>
         <div class="item">
-          <div class="item-name"><a href="https://www.ononavi.jp/en/">Senko-ji Temple</a> + Observatory</div>
+          <div class="item-name"><a href="https://www.ononavi.jp/">Senko-ji Temple</a> + Observatory</div>
           <div class="item-detail">Ropeway up (¥320 one-way) or walk "Path of Literature." Arrive by 9:00.</div>
           <div class="links">
             <a class="btn btn-maps"
@@ -2351,7 +2662,8 @@
           <div class="item-detail"><strong>Onomichi ramen:</strong> flat noodles, soy broth, pork back fat. Ichibankan
             or Tsutafuji near station.</div>
           <div class="links">
-            <a class="btn btn-maps" href="https://www.google.com/maps/search/Onomichi+ramen+near+Onomichi+Station">📍
+            <a class="btn btn-maps"
+              href="https://www.google.com/maps/search/Onomichi+Ramen/@34.4046187,133.1932354,15z">📍
               Ramen shops</a>
           </div>
         </div>
@@ -2415,7 +2727,7 @@
       <div class="block">
         <div class="block-title afternoon">Afternoon Options</div>
         <div class="item">
-          <div class="item-name"><a href="https://shukkeien.jp/en/">Shukkeien Garden</a> (¥260) — 10 min walk from hotel
+          <div class="item-name"><a href="https://shukkeien.jp/">Shukkeien Garden</a> (¥260) — 10 min walk from hotel
           </div>
           <div class="links">
             <a class="btn btn-maps"
@@ -2424,7 +2736,7 @@
           </div>
         </div>
         <div class="item">
-          <div class="item-name"><a href="https://www.rijo-castle.jp/en/">Hiroshima Castle</a> (¥370)</div>
+          <div class="item-name"><a href="https://www.rijo-castle.jp/">Hiroshima Castle</a> (¥370)</div>
           <div class="links">
             <a class="btn btn-maps"
               href="https://www.google.com/maps/dir/?api=1&origin=Daiwa+Roynet+Hotel+Hiroshima-ekimae&destination=Hiroshima+Castle&travelmode=transit">📍
@@ -2487,7 +2799,7 @@
           </div>
         </div>
         <div class="item">
-          <div class="item-name"><a href="https://www.japan-guide.com/e/e4812.html">Tōchō-ji Temple</a></div>
+          <div class="item-name"><a href="https://yokanavi.com/en/spot/26928/">Tōchō-ji Temple</a></div>
           <div class="item-detail">10.8m seated wooden Buddha (largest in Japan). "Hell and Paradise" passage. Founded
             806 by Kobo Daishi. Free.</div>
           <div class="links">
@@ -2655,7 +2967,7 @@
         <div class="item">
           <div class="item-detail"><strong>Champon</strong> at Shikairo, Chinatown. ~¥1,000–1,500. Or sara udon.</div>
           <div class="links">
-            <a class="btn btn-maps" href="https://www.google.com/maps/search/Shikairo+Nagasaki+Chinatown">📍
+            <a class="btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Shikairo">📍
               Shikairo</a>
           </div>
         </div>
@@ -2668,10 +2980,10 @@
           </div>
         </div>
         <div class="item">
-          <div class="item-name"><a href="https://glover-garden.jp/english/">Glover Garden</a> (¥660)</div>
+          <div class="item-name"><a href="https://glover-garden.jp/">Glover Garden</a> (¥660)</div>
           <div class="item-detail">1860s Western mansions on hillside. Harbor views. Take escalator up, walk down.</div>
           <div class="links">
-            <a class="btn btn-maps" href="https://www.google.com/maps/place/Glover+Garden+Nagasaki">📍 Location</a>
+            <a class="btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Glover+Garden+Nagasaki">📍 Location</a>
           </div>
         </div>
       </div>
@@ -5555,11 +5867,39 @@
     </div>
   </div>
 
+  <!-- B11: Quick SOS Modal -->
+  <div class="sos-quick-modal" id="sos-quick-modal">
+    <h3>Emergency Calls</h3>
+    <a class="sos-quick-call call-110" href="tel:110">
+      <span>🚔</span>
+      <span>110<br><span class="call-label">Police</span></span>
+    </a>
+    <a class="sos-quick-call call-119" href="tel:119">
+      <span>🚑</span>
+      <span>119<br><span class="call-label">Fire & Ambulance</span></span>
+    </a>
+    <a class="sos-quick-call call-helpline" href="tel:0570911099">
+      <span>📞</span>
+      <span>0570-911-099<br><span class="call-label">Japan Helpline (English 24/7)</span></span>
+    </a>
+    <button class="sos-quick-close" onclick="document.getElementById('sos-quick-modal').classList.remove('active')">Close</button>
+  </div>
+
+  <!-- B6: Copy toast -->
+  <div class="copy-toast" id="copy-toast">Copied!</div>
+
   <div id="btt" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</div>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
+    // ─── B12: Haptic feedback helper ──────────────────────
+    function haptic(ms) {
+      if (navigator.vibrate) navigator.vibrate(ms || 10);
+    }
+
+    // ─── Core toggle functions ──────────────────────────
     function toggleDay(header) {
+      haptic(10);
       const day = header.parentElement;
       const wasOpen = day.classList.contains('open');
       day.classList.toggle('open');
@@ -5569,6 +5909,7 @@
     }
 
     function toggleFood(header) {
+      haptic(10);
       const day = header.parentElement;
       const wasOpen = day.classList.contains('open');
       day.classList.toggle('open');
@@ -5578,6 +5919,7 @@
     }
 
     function toggleSos(header) {
+      haptic(10);
       const group = header.parentElement;
       const wasOpen = group.classList.contains('open');
       group.classList.toggle('open');
@@ -5587,6 +5929,7 @@
     }
 
     function toggleTransit(header) {
+      haptic(10);
       const day = header.parentElement;
       const wasOpen = day.classList.contains('open');
       day.classList.toggle('open');
@@ -5596,6 +5939,7 @@
     }
 
     function togglePhrase(header) {
+      haptic(10);
       const group = header.parentElement;
       const wasOpen = group.classList.contains('open');
       group.classList.toggle('open');
@@ -5605,12 +5949,14 @@
     }
 
     function toggleRef(el) {
+      haptic(10);
       el.classList.toggle('open');
       el.nextElementSibling.classList.toggle('show');
     }
 
-    // Fullscreen "show to staff" overlay
+    // ─── Fullscreen "show to staff" overlay ──────────────
     function showFullscreen(jp, en) {
+      haptic(15);
       document.getElementById('fs-jp').textContent = jp;
       document.getElementById('fs-en').textContent = en;
       document.getElementById('sos-fullscreen').classList.add('active');
@@ -5619,26 +5965,129 @@
       document.getElementById('sos-fullscreen').classList.remove('active');
     }
 
-    // Search — includes all section types
-    document.getElementById('search').addEventListener('input', function (e) {
-      const q = e.target.value.toLowerCase().trim();
-      document.querySelectorAll('.day, .food-day, .transit-day, .sos-group, .phrase-group').forEach(el => {
-        if (!q) {
-          el.classList.remove('hidden');
-          return;
-        }
-        const text = el.textContent.toLowerCase();
-        el.classList.toggle('hidden', !text.includes(q));
-        if (text.includes(q) && !el.classList.contains('open')) {
-          el.classList.add('open');
+    // ─── B6: Tap-to-copy helper ─────────────────────────
+    function copyToClipboard(text) {
+      haptic(15);
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('copy-toast');
+        toast.textContent = 'Copied: ' + (text.length > 30 ? text.slice(0, 30) + '…' : text);
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1500);
+      }).catch(() => {});
+    }
+
+    // ─── B6: Make copyable elements ─────────────────────
+    (function () {
+      // Hotel PINs
+      document.querySelectorAll('.hotel-pin').forEach(el => {
+        el.style.cursor = 'pointer';
+        el.title = 'Tap to copy PIN';
+        el.addEventListener('click', function (e) {
+          e.stopPropagation();
+          copyToClipboard(this.textContent);
+        });
+      });
+
+      // Phone numbers in SOS and hotels
+      document.querySelectorAll('a[href^="tel:"]').forEach(el => {
+        const wrapper = document.createElement('span');
+        wrapper.style.cursor = 'pointer';
+        wrapper.title = 'Long-press to copy number';
+        let pressTimer;
+        el.addEventListener('touchstart', function (e) {
+          pressTimer = setTimeout(() => {
+            e.preventDefault();
+            copyToClipboard(el.textContent.replace(/[^\d+\-]/g, '').trim());
+          }, 500);
+        }, { passive: false });
+        el.addEventListener('touchend', () => clearTimeout(pressTimer));
+        el.addEventListener('touchmove', () => clearTimeout(pressTimer));
+      });
+
+      // Booking references — find "X3YO5U" text in ref-content
+      document.querySelectorAll('.ref-content strong').forEach(el => {
+        if (/^[A-Z0-9]{5,}$/.test(el.textContent.trim())) {
+          el.style.cursor = 'pointer';
+          el.title = 'Tap to copy';
+          el.style.textDecoration = 'underline dotted';
+          el.addEventListener('click', function (e) {
+            e.stopPropagation();
+            copyToClipboard(this.textContent.trim());
+          });
         }
       });
-    });
 
-    // Quick nav scroll (all nav types)
+      // Japanese restaurant names in food cards
+      document.querySelectorAll('.rest-jp').forEach(el => {
+        el.style.cursor = 'pointer';
+        el.title = 'Tap to copy Japanese name';
+        el.addEventListener('click', function (e) {
+          e.stopPropagation();
+          copyToClipboard(this.textContent.trim());
+        });
+      });
+
+      // Japanese hotel addresses in SOS cards
+      document.querySelectorAll('.sos-card .sos-jp').forEach(el => {
+        if (el.querySelector('a')) return; // Skip phone number links
+        el.style.cursor = 'pointer';
+        el.title = 'Tap to copy';
+        el.addEventListener('click', function (e) {
+          if (e.target.tagName === 'A') return;
+          e.stopPropagation();
+          copyToClipboard(this.textContent.trim());
+        });
+      });
+    })();
+
+    // ─── A6: Search with clear + count ──────────────────
+    (function () {
+      const input = document.getElementById('search');
+      const clearBtn = document.getElementById('search-clear');
+      const countEl = document.getElementById('search-count');
+      const searchables = '.day, .food-day, .transit-day, .sos-group, .phrase-group';
+
+      input.addEventListener('input', function (e) {
+        const q = e.target.value.toLowerCase().trim();
+        let shown = 0, total = 0;
+
+        document.querySelectorAll(searchables).forEach(el => {
+          total++;
+          if (!q) {
+            el.classList.remove('hidden');
+            shown++;
+            return;
+          }
+          const text = el.textContent.toLowerCase();
+          const match = text.includes(q);
+          el.classList.toggle('hidden', !match);
+          if (match) {
+            shown++;
+            if (!el.classList.contains('open')) el.classList.add('open');
+          }
+        });
+
+        clearBtn.style.display = q ? 'block' : 'none';
+        if (q) {
+          countEl.style.display = 'block';
+          countEl.textContent = shown + ' found';
+        } else {
+          countEl.style.display = 'none';
+        }
+      });
+
+      clearBtn.addEventListener('click', function () {
+        input.value = '';
+        input.dispatchEvent(new Event('input'));
+        input.focus();
+      });
+    })();
+
+    // ─── Quick nav scroll (all nav types) ────────────────
     document.querySelectorAll('.quick-nav a, .food-quick-nav a, .transit-quick-nav a').forEach(a => {
       a.addEventListener('click', function (e) {
         e.preventDefault();
+        haptic(10);
         const target = document.getElementById(this.getAttribute('href').slice(1));
         if (target) {
           if (!target.classList.contains('open')) target.classList.add('open');
@@ -5647,7 +6096,27 @@
       });
     });
 
-    // Back to top scroll listener
+    // ─── Bottom nav scroll ──────────────────────────────
+    document.querySelectorAll('.bottom-nav a').forEach(a => {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        haptic(10);
+        const href = this.getAttribute('href').slice(1);
+        // Days tab: scroll to today or day 1
+        if (this.dataset.section === 'days') {
+          const today = document.querySelector('.day.today') || document.getElementById('day1');
+          if (today) {
+            if (!today.classList.contains('open')) today.classList.add('open');
+            today.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+          return;
+        }
+        const target = document.getElementById(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // ─── Back to top ────────────────────────────────────
     window.addEventListener('scroll', function () {
       const btt = document.getElementById('btt');
       if (btt) {
@@ -5656,8 +6125,9 @@
       }
     }, { passive: true });
 
-    // Header Search Toggle
+    // ─── Header Search Toggle ───────────────────────────
     document.getElementById('search-toggle').addEventListener('click', function () {
+      haptic(10);
       const sb = document.querySelector('.search-container');
       const input = document.getElementById('search');
       sb.classList.toggle('visible');
@@ -5668,26 +6138,40 @@
       }
     });
 
-    // Dynamic Header Title Intersection Observer
+    // ─── A8: OLED mode toggle ───────────────────────────
+    (function () {
+      const saved = localStorage.getItem('oled_mode');
+      if (saved === 'true') document.body.classList.add('oled-mode');
+
+      document.getElementById('oled-toggle').addEventListener('click', function () {
+        haptic(15);
+        document.body.classList.toggle('oled-mode');
+        localStorage.setItem('oled_mode', document.body.classList.contains('oled-mode'));
+      });
+    })();
+
+    // ─── A2: Active bottom nav tracking ─────────────────
     (function () {
       const headerTitle = document.getElementById('header-title');
       const headerSub = document.getElementById('header-sub');
       const originalTitle = "🇯🇵 Japan — April 2026";
       const originalSub = "18 days · Tokyo → Osaka → Hiroshima → Fukuoka → Tokyo";
+      const navLinks = document.querySelectorAll('.bottom-nav a');
+
+      function setActiveNav(section) {
+        navLinks.forEach(a => {
+          a.classList.toggle('nav-active', a.dataset.section === section);
+        });
+      }
 
       const titleObserver = new IntersectionObserver((entries) => {
         let activeEntry = null;
-
-        // Find the top-most visible section crossing the threshold
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            activeEntry = entry.target;
-          }
+          if (entry.isIntersecting) activeEntry = entry.target;
         });
 
         if (activeEntry) {
-          let newTitle = "";
-          let newSub = "";
+          let newTitle = "", newSub = "";
 
           if (activeEntry.classList.contains('day')) {
             const dayNum = activeEntry.querySelector('.day-num') ? activeEntry.querySelector('.day-num').innerText : "";
@@ -5695,53 +6179,55 @@
             const dayDate = activeEntry.querySelector('.day-date') ? activeEntry.querySelector('.day-date').innerText : "";
             newTitle = `Day ${dayNum} — ${dayTitle}`;
             newSub = dayDate;
+            setActiveNav('days');
           } else if (activeEntry.classList.contains('food-section-header')) {
             newTitle = "🍜 Culinary Guide";
             newSub = "Restaurants · Cafes · Izakayas";
             headerTitle.style.color = "var(--tag-food)";
+            setActiveNav('food');
           } else if (activeEntry.classList.contains('sos-section-header')) {
             newTitle = "🚨 Emergency & SOS";
             newSub = "Numbers · Embassy · Clinics";
             headerTitle.style.color = "#e05050";
+            setActiveNav('sos');
           } else if (activeEntry.classList.contains('transit-section-header')) {
             newTitle = "🚃 Transit Passes";
             newSub = "JR Pass · IC Cards · Ferries";
             headerTitle.style.color = "var(--tag-transit)";
+            setActiveNav('transit');
           } else if (activeEntry.classList.contains('phrase-section-header')) {
             newTitle = "🗣 Phrasebook";
             newSub = "Greetings · Ordering · Emergency";
             headerTitle.style.color = "#d0b0d0";
+            setActiveNav('phrases');
           }
 
           if (newTitle) {
             headerTitle.innerText = newTitle;
             headerSub.innerText = newSub;
             if (activeEntry.classList.contains('day')) {
-              headerTitle.style.color = "var(--accent)"; // Reset color for days
+              headerTitle.style.color = "var(--accent)";
             }
           }
         } else if (window.scrollY < 100) {
-          // Reset to default if scrolled back to top
           headerTitle.innerText = originalTitle;
           headerSub.innerText = originalSub;
           headerTitle.style.color = "var(--accent)";
+          setActiveNav('days');
         }
       }, {
-        // Watch for elements exactly as they cross beneath the sticky header (approx 80px)
         rootMargin: "-85px 0px -80% 0px",
         threshold: 0
       });
 
-      // Observe all target sections
       document.querySelectorAll('.day, .food-section-header, .sos-section-header, .transit-section-header, .phrase-section-header').forEach(el => {
         titleObserver.observe(el);
       });
     })();
 
-    // Auto-open today's day & grey out past days
+    // ─── Auto-open today & grey past + B1: auto-scroll ──
     (function () {
       const today = new Date();
-      // Start of day to avoid timezone issues when dimming
       today.setHours(0, 0, 0, 0);
 
       const tripDays = [
@@ -5750,21 +6236,194 @@
         [2026, 3, 22], [2026, 3, 23], [2026, 3, 24], [2026, 3, 25], [2026, 3, 26], [2026, 3, 27]
       ];
 
+      let todayEl = null;
+
       for (let i = 0; i < tripDays.length; i++) {
         const [y, m, d] = tripDays[i];
         const iterDate = new Date(y, m, d);
-
         const el = document.getElementById('day' + (i + 1));
         const navEl = document.querySelector('.quick-nav a[data-day="' + (i + 1) + '"]');
 
         if (today.getFullYear() === y && today.getMonth() === m && today.getDate() === d) {
-          if (el) el.classList.add('today', 'open');
+          if (el) {
+            el.classList.add('today', 'open');
+            todayEl = el;
+          }
         } else if (iterDate < today) {
-          // If the loop date is strictly before today, it's a past date
           if (el) el.classList.add('past');
           if (navEl) navEl.classList.add('past');
         }
       }
+
+      // B1: Auto-scroll to today on load
+      if (todayEl) {
+        setTimeout(() => todayEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 400);
+      }
+    })();
+
+    // ─── B8: Prev/Next day navigation ───────────────────
+    (function () {
+      const days = document.querySelectorAll('.day');
+      days.forEach((dayEl, index) => {
+        const body = dayEl.querySelector('.day-body');
+        if (!body) return;
+
+        const nav = document.createElement('div');
+        nav.className = 'day-nav';
+
+        const prevNum = index;
+        const nextNum = index + 2;
+
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'day-nav-btn' + (index === 0 ? ' disabled' : '');
+        prevBtn.innerHTML = '← Day ' + prevNum;
+        if (index > 0) {
+          prevBtn.addEventListener('click', function () {
+            haptic(10);
+            dayEl.classList.remove('open');
+            const prev = days[index - 1];
+            prev.classList.add('open');
+            setTimeout(() => prev.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+          });
+        }
+
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'day-nav-btn' + (index === days.length - 1 ? ' disabled' : '');
+        nextBtn.innerHTML = 'Day ' + nextNum + ' →';
+        if (index < days.length - 1) {
+          nextBtn.addEventListener('click', function () {
+            haptic(10);
+            dayEl.classList.remove('open');
+            const next = days[index + 1];
+            next.classList.add('open');
+            setTimeout(() => next.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+          });
+        }
+
+        nav.appendChild(prevBtn);
+        nav.appendChild(nextBtn);
+        body.appendChild(nav);
+      });
+    })();
+
+    // ─── B10: Interactive checklist ──────────────────────
+    function toggleChecklist(el) {
+      haptic(10);
+      const key = el.dataset.key;
+      el.classList.toggle('checked');
+      const box = el.querySelector('.checklist-box');
+      box.textContent = el.classList.contains('checked') ? '✓' : '';
+      // Persist
+      const state = {};
+      document.querySelectorAll('.checklist-item').forEach(item => {
+        state[item.dataset.key] = item.classList.contains('checked');
+      });
+      localStorage.setItem('checklist_state', JSON.stringify(state));
+      updateChecklistCounter();
+    }
+
+    function updateChecklistCounter() {
+      const items = document.querySelectorAll('.checklist-item');
+      const checked = document.querySelectorAll('.checklist-item.checked').length;
+      const counter = document.getElementById('checklist-counter');
+      if (counter) {
+        counter.textContent = checked + '/' + items.length + ' completed';
+        if (checked === items.length) counter.textContent += ' ✓';
+      }
+    }
+
+    // Restore checklist state
+    (function () {
+      try {
+        const saved = JSON.parse(localStorage.getItem('checklist_state') || '{}');
+        document.querySelectorAll('.checklist-item').forEach(item => {
+          if (saved[item.dataset.key]) {
+            item.classList.add('checked');
+            item.querySelector('.checklist-box').textContent = '✓';
+          }
+        });
+        updateChecklistCounter();
+      } catch (e) { }
+    })();
+
+    // ─── B11: Quick SOS — long-press on SOS nav button ──
+    (function () {
+      const sosBtn = document.getElementById('sos-nav-btn');
+      if (!sosBtn) return;
+      let pressTimer;
+      sosBtn.addEventListener('touchstart', function (e) {
+        pressTimer = setTimeout(() => {
+          e.preventDefault();
+          haptic(25);
+          document.getElementById('sos-quick-modal').classList.add('active');
+        }, 600);
+      }, { passive: false });
+      sosBtn.addEventListener('touchend', () => clearTimeout(pressTimer));
+      sosBtn.addEventListener('touchmove', () => clearTimeout(pressTimer));
+    })();
+
+    // ─── B3: iOS Google Maps deep links ─────────────────
+    (function () {
+      const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+      if (!isIOS) return;
+
+      document.querySelectorAll('a.btn-maps[href*="google.com/maps/dir"]').forEach(link => {
+        const href = link.getAttribute('href');
+        try {
+          const url = new URL(href);
+          const dest = url.searchParams.get('destination');
+          const origin = url.searchParams.get('origin');
+          const mode = url.searchParams.get('travelmode') || 'transit';
+          if (dest) {
+            let appUrl = 'comgooglemaps://?daddr=' + encodeURIComponent(dest);
+            if (origin) appUrl += '&saddr=' + encodeURIComponent(origin);
+            appUrl += '&directionsmode=' + mode;
+            link.setAttribute('href', appUrl);
+            // Fallback: if Google Maps app not installed, use web
+            link.addEventListener('click', function () {
+              setTimeout(() => {
+                window.location.href = href;
+              }, 500);
+            });
+          }
+        } catch (e) { }
+      });
+    })();
+
+    // ─── B2: Time-aware block dimming (today only) ──────
+    (function () {
+      const todayEl = document.querySelector('.day.today');
+      if (!todayEl) return;
+
+      // Get current hour in JST
+      const now = new Date();
+      const jstOffset = 9 * 60;
+      const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+      const jstNow = new Date(utc + jstOffset * 60000);
+      const hour = jstNow.getHours();
+
+      const blocks = todayEl.querySelectorAll('.block');
+      blocks.forEach(block => {
+        const title = block.querySelector('.block-title');
+        if (!title) return;
+        const text = title.textContent.toLowerCase();
+
+        let blockEnd = 24;
+        if (text.includes('morning') || text.includes('arrival') || text.includes('logistics')) blockEnd = 12;
+        else if (text.includes('afternoon') || text.includes('hike')) blockEnd = 17;
+        else if (text.includes('evening')) blockEnd = 24;
+
+        let blockStart = 0;
+        if (text.includes('morning') || text.includes('arrival') || text.includes('logistics')) blockStart = 0;
+        else if (text.includes('afternoon') || text.includes('hike')) blockStart = 12;
+        else if (text.includes('evening')) blockStart = 17;
+
+        if (hour >= blockEnd) {
+          block.classList.add('time-past');
+        } else if (hour >= blockStart && hour < blockEnd) {
+          block.classList.add('time-now');
+        }
+      });
     })();
   </script>
 
@@ -5848,6 +6507,10 @@
         const existing = body.querySelector('.weather-bar');
         if (existing) existing.remove();
 
+        // Remove existing rain alert if any
+        const existingAlert = body.querySelector('.rain-alert');
+        if (existingAlert) existingAlert.remove();
+
         const bar = document.createElement('div');
         bar.className = 'weather-bar';
 
@@ -5867,6 +6530,50 @@
             '<span class="wx-desc">' + desc + '</span>' +
             '<span class="wx-rain">💧' + data.rain + '%</span>' +
             staleStr;
+
+          // A4: Inline weather on collapsed day header
+          const dayInfo = dayEl.querySelector('.day-info');
+          if (dayInfo) {
+            let inlineWx = dayInfo.querySelector('.day-header-wx');
+            if (!inlineWx) {
+              inlineWx = document.createElement('div');
+              inlineWx.className = 'day-header-wx';
+              dayInfo.appendChild(inlineWx);
+            }
+            inlineWx.innerHTML = icon + ' <span class="wx-hi">' + Math.round(data.hi) + '°</span>/<span class="wx-lo">' + Math.round(data.lo) + '°</span> ' + desc;
+            if (data.rain >= 50) inlineWx.innerHTML += ' 💧' + data.rain + '%';
+          }
+
+          // B5: Rain alert for high precipitation days
+          if (data.rain >= 60) {
+            const alert = document.createElement('div');
+            alert.className = 'rain-alert';
+            let alertText = '🌧 ' + data.rain + '% chance of rain — pack umbrella';
+            // Check if this day has a backup section
+            const backupBlock = body.querySelector('.backup-box, .block-title.backup');
+            if (backupBlock) {
+              alertText += '. ';
+              const backupLink = document.createElement('a');
+              backupLink.className = 'rain-link';
+              backupLink.href = '#';
+              backupLink.textContent = 'See backup plan ↓';
+              backupLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                const bb = backupBlock.closest('.block') || backupBlock.closest('.backup-box') || backupBlock;
+                bb.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              });
+              alert.innerHTML = alertText;
+              alert.appendChild(backupLink);
+            } else {
+              // Check if it's a hike day
+              const tags = dayEl.querySelectorAll('.tag-hike');
+              if (tags.length > 0) {
+                alertText = '⚠ Heavy rain expected on hike day — consider alternatives';
+              }
+              alert.textContent = alertText;
+            }
+            body.insertBefore(alert, body.firstChild);
+          }
         }
 
         body.insertBefore(bar, body.firstChild);
@@ -5964,6 +6671,105 @@
         // Offline
         for (let d = 1; d <= 18; d++) renderWeather(d, null, null);
       }
+    })();
+
+    // ─── B4: Restaurant open/closed indicators ──────────
+    (function () {
+      // Get current time in JST
+      const now = new Date();
+      const jstOffset = 9 * 60;
+      const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+      const jstNow = new Date(utc + jstOffset * 60000);
+      const jstHour = jstNow.getHours();
+      const jstMin = jstNow.getMinutes();
+      const currentMin = jstHour * 60 + jstMin;
+      const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      const todayName = dayNames[jstNow.getDay()];
+
+      function parseTime(str) {
+        if (!str) return null;
+        const m = str.match(/(\d{1,2}):(\d{2})/);
+        if (!m) return null;
+        return parseInt(m[1]) * 60 + parseInt(m[2]);
+      }
+
+      document.querySelectorAll('.food-restaurant').forEach(card => {
+        const metaEl = card.querySelector('.rest-meta');
+        if (!metaEl) return;
+        const text = metaEl.textContent;
+
+        // Try to extract hours from "Hours: HH:MM–HH:MM" pattern
+        const hoursMatch = text.match(/Hours?:\s*(\d{1,2}:\d{2})\s*[–\-]\s*(\d{1,2}:\d{2})/i);
+        const closedMatch = text.match(/Closed?:\s*([A-Za-z]+)/i);
+
+        if (closedMatch) {
+          const closedDay = closedMatch[1].trim();
+          if (todayName.toLowerCase().startsWith(closedDay.toLowerCase().slice(0, 3))) {
+            const badge = document.createElement('span');
+            badge.className = 'rest-badge';
+            badge.style.cssText = 'background:#3a1a1a;color:#e07070;margin-left:6px;';
+            badge.textContent = 'CLOSED TODAY';
+            const nameEl = card.querySelector('.rest-name');
+            if (nameEl) nameEl.appendChild(badge);
+            card.style.opacity = '0.6';
+            return;
+          }
+        }
+
+        if (hoursMatch) {
+          const open = parseTime(hoursMatch[1]);
+          const close = parseTime(hoursMatch[2]);
+          if (open !== null && close !== null) {
+            const nameEl = card.querySelector('.rest-name');
+            if (!nameEl) return;
+
+            const badge = document.createElement('span');
+            badge.className = 'rest-badge';
+            badge.style.marginLeft = '6px';
+
+            if (currentMin >= open && currentMin < close) {
+              if (close - currentMin <= 60) {
+                badge.style.cssText = 'background:#3a3a1a;color:#e0c850;margin-left:6px;';
+                badge.textContent = 'CLOSING SOON';
+              } else {
+                badge.style.cssText = 'background:#1a3a1a;color:#7cb87a;margin-left:6px;';
+                badge.textContent = 'OPEN NOW';
+              }
+            } else {
+              badge.style.cssText = 'background:#3a1a1a;color:#e07070;margin-left:6px;';
+              badge.textContent = 'CLOSED';
+              card.style.opacity = '0.6';
+            }
+            nameEl.appendChild(badge);
+          }
+        }
+      });
+    })();
+
+    // ─── B9: Live transit check buttons ─────────────────
+    (function () {
+      document.querySelectorAll('.tleg').forEach(leg => {
+        const routeEl = leg.querySelector('.tleg-route');
+        if (!routeEl) return;
+        const route = routeEl.textContent;
+        // Extract origin → destination pattern
+        const parts = route.split(/\s*[→→]\s*/);
+        if (parts.length >= 2) {
+          const origin = parts[0].trim();
+          const dest = parts[parts.length - 1].trim();
+          const detailEl = leg.querySelector('.tleg-detail');
+          if (detailEl) {
+            const link = document.createElement('a');
+            link.className = 'btn btn-live';
+            link.style.cssText = 'display:inline-flex;margin-top:6px;font-size:11px;padding:6px 10px;min-height:32px;';
+            link.href = 'https://www.google.com/maps/dir/?api=1&origin=' + encodeURIComponent(origin + ' Station Japan') + '&destination=' + encodeURIComponent(dest + ' Station Japan') + '&travelmode=transit';
+            link.target = '_blank';
+            link.textContent = '🔄 Check live';
+            detailEl.appendChild(document.createElement('br'));
+            detailEl.appendChild(link);
+          }
+        }
+      });
     })();
   </script>
 </body>
