@@ -209,16 +209,13 @@
     }
 
     .ref-content {
-      display: none;
       padding-top: 10px;
       font-size: 13px;
       color: var(--text-dim);
       line-height: 1.6;
     }
 
-    .ref-content.show {
-      display: block;
-    }
+    /* .ref-content.show handled by max-height transition */
 
     .ref-content strong {
       color: var(--text);
@@ -380,13 +377,10 @@
     }
 
     .day-body {
-      display: none;
       padding: 0 16px 16px;
     }
 
-    .day.open .day-body {
-      display: block;
-    }
+    /* .day.open .day-body handled by max-height transition */
 
     .weather-bar {
       display: flex;
@@ -707,13 +701,10 @@
     }
 
     .food-day-body {
-      display: none;
       padding: 0 16px 16px;
     }
 
-    .food-day.open .food-day-body {
-      display: block;
-    }
+    /* .food-day.open .food-day-body handled by max-height transition */
 
     .food-day.open .chevron {
       transform: rotate(90deg);
@@ -902,13 +893,10 @@
     }
 
     .sos-group-body {
-      display: none;
       padding: 0 16px 16px;
     }
 
-    .sos-group.open .sos-group-body {
-      display: block;
-    }
+    /* .sos-group.open .sos-group-body handled by max-height transition */
 
     .sos-group.open .chevron {
       transform: rotate(90deg);
@@ -1094,13 +1082,10 @@
     }
 
     .transit-day-body {
-      display: none;
       padding: 0 16px 16px;
     }
 
-    .transit-day.open .transit-day-body {
-      display: block;
-    }
+    /* .transit-day.open .transit-day-body handled by max-height transition */
 
     .transit-day.open .chevron {
       transform: rotate(90deg);
@@ -1295,13 +1280,10 @@
     }
 
     .phrase-group-body {
-      display: none;
       padding: 0 16px 16px;
     }
 
-    .phrase-group.open .phrase-group-body {
-      display: block;
-    }
+    /* .phrase-group.open .phrase-group-body handled by max-height transition */
 
     .phrase-group.open .chevron {
       transform: rotate(90deg);
@@ -1668,6 +1650,185 @@
         margin: 0 auto;
       }
     }
+
+    /* ─── Smooth expand/collapse (replaces display:none/block) ─── */
+    .day-body, .food-day-body, .transit-day-body, .sos-group-body, .phrase-group-body, .ref-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.2, 0, 0, 1);
+    }
+    .day.open .day-body,
+    .food-day.open .food-day-body,
+    .transit-day.open .transit-day-body,
+    .sos-group.open .sos-group-body,
+    .phrase-group.open .phrase-group-body,
+    .ref-content.show {
+      max-height: 8000px;
+      transition: max-height 0.5s cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    /* ─── Outdoor / high-contrast mode ──────────────────────────── */
+    body.outdoor-mode {
+      --bg: #f2ede4;
+      --card: #ffffff;
+      --card-open: #faf8f3;
+      --text: #1a1513;
+      --text-dim: #4a4540;
+      --accent: #b8572a;
+      --accent-dim: #8a3e1d;
+      --link: #1a6a9a;
+      --link-hike: #2a6a28;
+      --link-maps: #c07020;
+      --border: #cec5b8;
+      --today-glow: #d4845a55;
+    }
+    body.outdoor-mode header {
+      background: rgba(242, 237, 228, 0.95);
+      border-bottom-color: var(--border);
+    }
+    body.outdoor-mode .bottom-nav {
+      background: rgba(242, 237, 228, 0.97);
+      border-top: 1px solid var(--border);
+    }
+    body.outdoor-mode .quick-nav,
+    body.outdoor-mode .food-quick-nav,
+    body.outdoor-mode .transit-quick-nav {
+      background: var(--bg);
+    }
+    body.outdoor-mode .search-container {
+      background: var(--bg);
+    }
+    body.outdoor-mode .search-container input {
+      background: #fff;
+      color: var(--text);
+    }
+    body.outdoor-mode .tag-transit { background: #4a7aaa; }
+    body.outdoor-mode .tag-hike    { background: #3a7a38; }
+    body.outdoor-mode .tag-culture { background: #7a5a8a; }
+    body.outdoor-mode .tag-food    { background: #9a6a3a; }
+    body.outdoor-mode .btn         { border-color: var(--border); }
+    body.outdoor-mode .btn-maps    { background: #fff3e0; color: #c07020; border-color: #e0b870; }
+    /* Keep fullscreen overlay always dark for staff readability */
+    body.outdoor-mode .sos-fullscreen { background: rgba(0,0,0,0.97); }
+    body.outdoor-mode .sos-quick-modal { background: #1a1a1a; }
+
+    /* ─── Floating SOS button ────────────────────────────────────── */
+    #sos-float {
+      position: fixed;
+      bottom: calc(92px + env(safe-area-inset-bottom));
+      right: 14px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(200, 30, 30, 0.75);
+      color: #fff;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 98;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,100,100,0.4);
+      transition: opacity 0.2s, transform 0.1s;
+      opacity: 0.55;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    #sos-float:active { transform: scale(0.9); opacity: 1; }
+
+    /* ─── Hotel button in header ─────────────────────────────────── */
+    .header-hotel-btn {
+      font-size: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    .header-hotel-btn:active { transform: scale(0.92); }
+
+    /* ─── Last train warning banner ──────────────────────────────── */
+    #last-train-banner {
+      position: sticky;
+      top: calc(73px + env(safe-area-inset-top));
+      z-index: 97;
+      background: #2e2800;
+      color: #f0d060;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-bottom: 1px solid #5a4a00;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    #last-train-banner.hidden { display: none !important; }
+    #last-train-banner .lt-close {
+      font-size: 16px;
+      color: #f0d060;
+      opacity: 0.7;
+      cursor: pointer;
+      flex-shrink: 0;
+      padding: 2px 4px;
+    }
+    body.outdoor-mode #last-train-banner {
+      background: #fff3cd;
+      color: #856404;
+      border-bottom-color: #ffe69c;
+    }
+    body.outdoor-mode #last-train-banner .lt-close { color: #856404; }
+
+    /* ─── Offline maps reminder banner ──────────────────────────── */
+    #maps-reminder {
+      background: #1a2a3a;
+      color: #8ac8e8;
+      font-size: 12px;
+      padding: 10px 14px;
+      border-bottom: 1px solid #2a4a5a;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    #maps-reminder.hidden { display: none !important; }
+    #maps-reminder a { color: #6aadcf; text-decoration: underline; font-size: 12px; }
+    #maps-reminder .mr-close {
+      margin-left: auto;
+      color: #6aadcf;
+      cursor: pointer;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    body.outdoor-mode #maps-reminder {
+      background: #e8f4ff;
+      color: #1a5a8a;
+      border-bottom-color: #b8d8f0;
+    }
+    body.outdoor-mode #maps-reminder a { color: #1a6aaa; }
+    body.outdoor-mode #maps-reminder .mr-close { color: #1a6aaa; }
+
+    /* ─── Day share button ───────────────────────────────────────── */
+    .day-share-btn {
+      font-size: 12px;
+      padding: 6px 12px;
+      min-height: 32px;
+      border-radius: 6px;
+      background: var(--card);
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: opacity 0.1s;
+    }
+    .day-share-btn:active { opacity: 0.7; }
   </style>
 </head>
 
@@ -1678,13 +1839,33 @@
       <h1 id="header-title">🇯🇵 Japan — April 2026</h1>
       <div class="sub" id="header-sub">18 days · Tokyo → Osaka → Hiroshima → Fukuoka → Tokyo</div>
     </div>
-    <div class="header-oled-toggle" id="oled-toggle" aria-label="Toggle OLED Mode" title="OLED battery saver">
+    <div class="header-hotel-btn" id="hotel-btn" aria-label="Tonight's Hotel" title="Show hotel address to taxi driver" style="display:none;">🏨</div>
+    <div class="header-oled-toggle" id="oled-toggle" aria-label="Toggle Theme" title="Cycle theme: dark → OLED → outdoor">
       ◐
     </div>
     <div class="header-search-icon" id="search-toggle" aria-label="Toggle Search">
       🔍
     </div>
   </header>
+
+  <div id="last-train-banner" class="hidden">
+    <span id="lt-text"></span>
+    <span class="lt-close" onclick="document.getElementById('last-train-banner').classList.add('hidden'); haptic(8);">✕</span>
+  </div>
+
+  <div id="maps-reminder" class="hidden">
+    <span>📥 Download offline maps:</span>
+    <a href="https://www.google.com/maps/@35.6762,139.6503,12z" target="_blank">Tokyo</a>
+    <a href="https://www.google.com/maps/@34.6851,135.8048,12z" target="_blank">Nara</a>
+    <a href="https://www.google.com/maps/@34.6937,135.5022,12z" target="_blank">Osaka</a>
+    <a href="https://www.google.com/maps/@34.2130,135.6000,12z" target="_blank">Koyasan</a>
+    <a href="https://www.google.com/maps/@34.9854,135.7588,12z" target="_blank">Kyoto</a>
+    <a href="https://www.google.com/maps/@34.3853,132.4553,12z" target="_blank">Hiroshima</a>
+    <a href="https://www.google.com/maps/@33.5904,130.4017,12z" target="_blank">Fukuoka</a>
+    <a href="https://www.google.com/maps/@32.7503,129.8779,12z" target="_blank">Nagasaki</a>
+    <a href="https://www.google.com/maps/@32.8031,130.7079,12z" target="_blank">Kumamoto</a>
+    <span class="mr-close" onclick="localStorage.setItem('maps_reminder_dismissed','1'); document.getElementById('maps-reminder').classList.add('hidden');">✕</span>
+  </div>
 
   <div class="search-container">
     <div class="search-wrapper">
@@ -5889,12 +6070,18 @@
   <div class="copy-toast" id="copy-toast">Copied!</div>
 
   <div id="btt" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</div>
+  <div id="sos-float" onclick="haptic([25,40,25,40,25]); document.getElementById('sos-quick-modal').classList.add('active');">🚨</div>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
+    // ─── Service Worker registration ──────────────────────
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js');
+    }
+
     // ─── B12: Haptic feedback helper ──────────────────────
-    function haptic(ms) {
-      if (navigator.vibrate) navigator.vibrate(ms || 10);
+    function haptic(pattern) {
+      if (navigator.vibrate) navigator.vibrate(pattern || 10);
     }
 
     // ─── Core toggle functions ──────────────────────────
@@ -5967,7 +6154,7 @@
 
     // ─── B6: Tap-to-copy helper ─────────────────────────
     function copyToClipboard(text) {
-      haptic(15);
+      haptic([10, 40, 10]);
       navigator.clipboard.writeText(text).then(() => {
         const toast = document.getElementById('copy-toast');
         toast.textContent = 'Copied: ' + (text.length > 30 ? text.slice(0, 30) + '…' : text);
@@ -6138,16 +6325,47 @@
       }
     });
 
-    // ─── A8: OLED mode toggle ───────────────────────────
+    // ─── A8: Theme cycle (dark → OLED → outdoor) ────────
     (function () {
-      const saved = localStorage.getItem('oled_mode');
-      if (saved === 'true') document.body.classList.add('oled-mode');
+      const btn = document.getElementById('oled-toggle');
+      const icons = { dark: '◐', oled: '⬛', outdoor: '☀' };
+      const MODES = ['dark', 'oled', 'outdoor'];
 
-      document.getElementById('oled-toggle').addEventListener('click', function () {
+      function applyTheme(mode) {
+        document.body.classList.remove('oled-mode', 'outdoor-mode');
+        if (mode === 'oled') document.body.classList.add('oled-mode');
+        if (mode === 'outdoor') document.body.classList.add('outdoor-mode');
+        btn.textContent = icons[mode];
+        btn.title = { dark: 'Dark theme', oled: 'OLED theme', outdoor: 'Outdoor / high-contrast' }[mode];
+        localStorage.setItem('theme_mode', mode);
+      }
+
+      // Restore saved theme (legacy: oled_mode key)
+      const saved = localStorage.getItem('theme_mode') ||
+                    (localStorage.getItem('oled_mode') === 'true' ? 'oled' : 'dark');
+      applyTheme(saved);
+
+      btn.addEventListener('click', function () {
         haptic(15);
-        document.body.classList.toggle('oled-mode');
-        localStorage.setItem('oled_mode', document.body.classList.contains('oled-mode'));
+        const current = localStorage.getItem('theme_mode') || 'dark';
+        const next = MODES[(MODES.indexOf(current) + 1) % MODES.length];
+        applyTheme(next);
       });
+
+      // Battery-aware OLED suggestion (progressive enhancement)
+      if ('getBattery' in navigator && !sessionStorage.getItem('battery_oled_suggested')) {
+        navigator.getBattery().then(bat => {
+          if (bat.level < 0.2 && localStorage.getItem('theme_mode') !== 'oled') {
+            sessionStorage.setItem('battery_oled_suggested', '1');
+            const toast = document.getElementById('copy-toast');
+            if (toast) {
+              toast.innerHTML = '🔋 Battery low — tap ◐ to enable OLED mode';
+              toast.style.opacity = '1';
+              setTimeout(() => { toast.style.opacity = '0'; }, 3500);
+            }
+          }
+        }).catch(() => {});
+      }
     })();
 
     // ─── A2: Active bottom nav tracking ─────────────────
@@ -6259,6 +6477,141 @@
       if (todayEl) {
         setTimeout(() => todayEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 400);
       }
+
+      // ─── Trip countdown in header subtitle ──────────────
+      const headerSub = document.getElementById('header-sub');
+      const tripStart = new Date(2026, 3, 10);
+      const tripEnd   = new Date(2026, 3, 27);
+      tripEnd.setHours(23, 59, 59);
+      const nowD = new Date();
+      if (nowD < tripStart) {
+        const daysUntil = Math.ceil((tripStart - nowD) / 86400000);
+        headerSub.textContent = daysUntil + ' day' + (daysUntil !== 1 ? 's' : '') + ' until Japan! 🎌';
+      } else if (nowD <= tripEnd) {
+        const dayNum = Math.floor((nowD - tripStart) / 86400000) + 1;
+        headerSub.textContent = 'Day ' + dayNum + ' of 18 — ' + (today ? '' : '');
+        // Keep location dynamic via IntersectionObserver; just prefix with day
+        headerSub.dataset.tripDay = dayNum;
+      } else {
+        headerSub.textContent = 'Trip complete — what a journey! 🇯🇵';
+      }
+    })();
+
+    // ─── Tonight's hotel quick card ─────────────────────
+    (function () {
+      const HOTEL_SCHEDULE = [
+        { start: [2026,3,10], end: [2026,3,12], name: 'APA Hotel Ueno Ekiminami', jp: 'APAホテル\n上野駅南', addr: '東京都台東区上野6-7-21', phone: '+81358077111' },
+        { start: [2026,3,13], end: [2026,3,16], name: 'Osaka Excel Hotel Tokyu', jp: '大阪エクセルホテル東急', addr: '大阪市中央区久太郎町4-1-15', phone: '+81662520109' },
+        { start: [2026,3,17], end: [2026,3,20], name: 'Daiwa Roynet Hiroshima-ekimae', jp: 'ダイワロイネットホテル\n広島駅前', addr: '広島市南区松原町5-1', phone: '+81825541455' },
+        { start: [2026,3,21], end: [2026,3,25], name: 'KOKO HOTEL Hakata Station', jp: 'KOKO HOTEL\n博多駅', addr: '福岡市博多区博多駅前3-22-19', phone: '+81924769111' },
+        { start: [2026,3,26], end: [2026,3,26], name: 'APA Hotel Ueno Ekimae', jp: 'APAホテル\n上野駅前', addr: '東京都台東区東上野2-18-7', phone: '+81358120311' },
+      ];
+      const btn = document.getElementById('hotel-btn');
+      const now = new Date();
+      const jstOffset = 9 * 60;
+      const jstNow = new Date(now.getTime() + now.getTimezoneOffset() * 60000 + jstOffset * 60000);
+      jstNow.setHours(0, 0, 0, 0);
+
+      let currentHotel = null;
+      for (const h of HOTEL_SCHEDULE) {
+        const s = new Date(h.start[0], h.start[1], h.start[2]);
+        const e = new Date(h.end[0], h.end[1], h.end[2]);
+        if (jstNow >= s && jstNow <= e) { currentHotel = h; break; }
+      }
+      if (currentHotel && btn) {
+        btn.style.display = 'flex';
+        btn.addEventListener('click', function () {
+          haptic([10, 40, 10]);
+          showFullscreen(currentHotel.jp + '\n' + currentHotel.addr, currentHotel.name + ' · ☎ ' + currentHotel.phone);
+        });
+      }
+    })();
+
+    // ─── Last train warning banner (after 20:00 JST) ────
+    (function () {
+      const LAST_TRAINS = {
+        1:  { info: 'Keisei Skyliner from Narita stops ~23:10 Keisei-Ueno. JR Yamanote last ~00:30.' },
+        2:  { time: '00:30', info: 'JR Yamanote last train from Ueno area ~00:30' },
+        3:  { time: '00:30', info: 'JR Yamanote / Tokyo Metro — last trains after midnight' },
+        4:  { time: '23:30', info: 'JR to Tokyo Station — last Shinkansen ~21:30 if travelling late' },
+        5:  { time: '23:30', info: 'Kintetsu / JR from Nara — last trains ~23:30 to Osaka' },
+        6:  { time: '22:00', info: 'Last Nankai Limited Express from Koyasan ~17:53. Cable car last ~17:26.' },
+        7:  { time: '23:00', info: 'Osaka Metro / JR — last trains around midnight' },
+        8:  { time: '23:00', info: 'Osaka Metro / JR — last trains around midnight' },
+        9:  { time: '22:00', info: 'Last bus from Tsuru-Tsuru Onsen ~19:00. Return early.' },
+        10: { time: '23:00', info: 'Osaka Metro / JR local — last trains around midnight' },
+        11: { time: '22:00', info: 'Last JR ferry from Miyajima ~22:00. JR Hiroshima last ~00:30.' },
+        12: { time: '21:00', info: 'Shinkansen Hiroshima→Fukuoka last ~21:30 — confirm timetable' },
+        13: { time: '23:30', info: 'Nishitetsu from Dazaifu last ~22:30 (to Nishitetsu-Fukuoka/Tenjin)' },
+        14: { time: '23:00', info: 'JR Hakata — subway last trains around midnight' },
+        15: { time: '20:00', info: 'Last train back from Nagasaki ~22:00. JR Haiku last ~23:00.' },
+        16: { time: '22:30', info: 'Last express from Kumamoto to Hakata ~22:30 (check schedule)' },
+        17: { time: '23:00', info: 'JR Hakata area — subway last trains around midnight' },
+        18: { time: '11:30', info: 'Last Skyliner from Keisei-Ueno by 11:30 for 15:35 flight!' },
+      };
+      const now = new Date();
+      const jstOffset = 9 * 60;
+      const jstNow = new Date(now.getTime() + now.getTimezoneOffset() * 60000 + jstOffset * 60000);
+      const jstHour = jstNow.getHours();
+
+      // Find today's trip day number
+      const tripDayDates = [
+        [2026,3,10],[2026,3,11],[2026,3,12],[2026,3,13],[2026,3,14],[2026,3,15],
+        [2026,3,16],[2026,3,17],[2026,3,18],[2026,3,19],[2026,3,20],[2026,3,21],
+        [2026,3,22],[2026,3,23],[2026,3,24],[2026,3,25],[2026,3,26],[2026,3,27]
+      ];
+      let todayDayNum = -1;
+      for (let i = 0; i < tripDayDates.length; i++) {
+        const [y, m, d] = tripDayDates[i];
+        if (jstNow.getFullYear() === y && jstNow.getMonth() === m && jstNow.getDate() === d) {
+          todayDayNum = i + 1; break;
+        }
+      }
+      if (todayDayNum < 0) return;
+
+      const lt = LAST_TRAINS[todayDayNum];
+      if (!lt) return;
+
+      const banner = document.getElementById('last-train-banner');
+      const ltText = document.getElementById('lt-text');
+      if (!banner || !ltText) return;
+
+      function showBanner() {
+        ltText.textContent = '⏰ ' + lt.info;
+        banner.classList.remove('hidden');
+      }
+
+      if (todayDayNum === 18) {
+        // Day 18 is departure — warn all day
+        showBanner();
+        return;
+      }
+
+      // Show after 20:00 JST
+      if (jstHour >= 20) {
+        showBanner();
+        // Auto-hide 30 min after last train time if parseable
+        if (lt.time) {
+          const [lh, lm] = lt.time.split(':').map(Number);
+          const lastMin = lh * 60 + lm;
+          const nowMin = jstHour * 60 + jstNow.getMinutes();
+          if (nowMin > lastMin + 30) {
+            banner.classList.add('hidden'); // already passed
+          }
+        }
+      }
+    })();
+
+    // ─── Offline maps download reminder ─────────────────
+    (function () {
+      if (localStorage.getItem('maps_reminder_dismissed')) return;
+      const now = new Date();
+      const tripStart = new Date(2026, 3, 10);
+      const daysUntil = Math.ceil((tripStart - now) / 86400000);
+      if (daysUntil >= 0 && daysUntil <= 10) {
+        const banner = document.getElementById('maps-reminder');
+        if (banner) banner.classList.remove('hidden');
+      }
     })();
 
     // ─── B8: Prev/Next day navigation ───────────────────
@@ -6300,10 +6653,78 @@
           });
         }
 
+        // Share button (Web Share API — iOS Safari)
+        if (navigator.share) {
+          const shareBtn = document.createElement('button');
+          shareBtn.className = 'day-share-btn';
+          shareBtn.textContent = '📤 Share';
+          shareBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            haptic(8);
+            const dateLine = dayEl.querySelector('.day-date');
+            const titleLine = dayEl.querySelector('.day-title');
+            const items = [...dayEl.querySelectorAll('.item-name')].map(n => '• ' + n.textContent.trim()).join('\n');
+            const text = (dateLine ? dateLine.textContent + '\n' : '') + (items || '');
+            navigator.share({ title: 'Day ' + (index + 1) + ' — Japan 2026', text }).catch(() => {});
+          });
+          nav.appendChild(shareBtn);
+        }
+
         nav.appendChild(prevBtn);
         nav.appendChild(nextBtn);
         body.appendChild(nav);
       });
+    })();
+
+    // ─── Swipe navigation between days ──────────────────
+    (function () {
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let isSwiping = false;
+
+      document.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        isSwiping = false;
+      }, { passive: true });
+
+      document.addEventListener('touchmove', function (e) {
+        const dx = Math.abs(e.touches[0].clientX - touchStartX);
+        const dy = Math.abs(e.touches[0].clientY - touchStartY);
+        if (dx > dy && dx > 10) isSwiping = true;
+      }, { passive: true });
+
+      document.addEventListener('touchend', function (e) {
+        if (!isSwiping) return;
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) < 55) return;
+
+        // Ignore swipes originating on horizontal-scroll elements
+        const target = e.target;
+        if (target.closest('.quick-nav, .food-quick-nav, .transit-quick-nav')) return;
+
+        // Find which section has an open item
+        const openDay = document.querySelector('.day.open');
+        const openFood = document.querySelector('.food-day.open');
+        const openTransit = document.querySelector('.transit-day.open');
+
+        function navigateSiblings(openEl, selector) {
+          if (!openEl) return false;
+          const all = [...document.querySelectorAll(selector)];
+          const idx = all.indexOf(openEl);
+          const targetIdx = dx < 0 ? idx + 1 : idx - 1;
+          if (targetIdx < 0 || targetIdx >= all.length) return false;
+          haptic(5);
+          openEl.classList.remove('open');
+          all[targetIdx].classList.add('open');
+          setTimeout(() => all[targetIdx].scrollIntoView({ behavior: 'smooth', block: 'start' }), 30);
+          return true;
+        }
+
+        navigateSiblings(openDay, '.day') ||
+        navigateSiblings(openFood, '.food-day') ||
+        navigateSiblings(openTransit, '.transit-day');
+      }, { passive: true });
     })();
 
     // ─── B10: Interactive checklist ──────────────────────
@@ -6734,6 +7155,16 @@
               } else {
                 badge.style.cssText = 'background:#1a3a1a;color:#7cb87a;margin-left:6px;';
                 badge.textContent = 'OPEN NOW';
+                // Peak hours indicator
+                const isLunchPeak  = currentMin >= 11*60+30 && currentMin < 13*60;
+                const isDinnerPeak = currentMin >= 18*60 && currentMin < 19*60+30;
+                if (isLunchPeak || isDinnerPeak) {
+                  const peakBadge = document.createElement('span');
+                  peakBadge.className = 'rest-badge';
+                  peakBadge.style.cssText = 'background:#3a2800;color:#f0a030;margin-left:4px;';
+                  peakBadge.textContent = '🔥 Peak';
+                  nameEl.appendChild(peakBadge);
+                }
               }
             } else {
               badge.style.cssText = 'background:#3a1a1a;color:#e07070;margin-left:6px;';
