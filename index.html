@@ -1651,11 +1651,9 @@
       }
     }
 
-    /* ─── Smooth expand/collapse (replaces display:none/block) ─── */
+    /* ─── Collapsible sections: hidden by default ───────────────── */
     .day-body, .food-day-body, .transit-day-body, .sos-group-body, .phrase-group-body, .ref-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s cubic-bezier(0.2, 0, 0, 1);
+      display: none;
     }
     .day.open .day-body,
     .food-day.open .food-day-body,
@@ -1663,8 +1661,12 @@
     .sos-group.open .sos-group-body,
     .phrase-group.open .phrase-group-body,
     .ref-content.show {
-      max-height: 8000px;
-      transition: max-height 0.5s cubic-bezier(0.2, 0, 0, 1);
+      display: block;
+      animation: sectionOpen 0.22s cubic-bezier(0.2, 0, 0, 1);
+    }
+    @keyframes sectionOpen {
+      from { opacity: 0; transform: translateY(-5px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     /* ─── Outdoor / high-contrast mode ──────────────────────────── */
@@ -6678,48 +6680,58 @@
 
     // ─── Swipe navigation between days ──────────────────
     (function () {
-      let touchStartX = 0;
-      let touchStartY = 0;
-      let isSwiping = false;
+      let touchStartX = 0, touchStartY = 0, touchStartScrollY = 0;
+      let maxDY = 0;
+      let swipeLock = false;
 
       document.addEventListener('touchstart', function (e) {
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
-        isSwiping = false;
+        touchStartScrollY = window.scrollY;
+        maxDY = 0;
       }, { passive: true });
 
       document.addEventListener('touchmove', function (e) {
-        const dx = Math.abs(e.touches[0].clientX - touchStartX);
         const dy = Math.abs(e.touches[0].clientY - touchStartY);
-        if (dx > dy && dx > 10) isSwiping = true;
+        if (dy > maxDY) maxDY = dy;
       }, { passive: true });
 
       document.addEventListener('touchend', function (e) {
-        if (!isSwiping) return;
+        if (swipeLock) return;
+
         const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) < 55) return;
+        const absDx = Math.abs(dx);
 
-        // Ignore swipes originating on horizontal-scroll elements
-        const target = e.target;
-        if (target.closest('.quick-nav, .food-quick-nav, .transit-quick-nav')) return;
-
-        // Find which section has an open item
-        const openDay = document.querySelector('.day.open');
-        const openFood = document.querySelector('.food-day.open');
-        const openTransit = document.querySelector('.transit-day.open');
+        // Must be a clearly horizontal swipe, long enough, with no significant vertical scroll
+        if (absDx < 80) return;
+        if (absDx < maxDY * 2.5) return;
+        if (Math.abs(window.scrollY - touchStartScrollY) > 25) return;
+        if (e.target.closest('.quick-nav, .food-quick-nav, .transit-quick-nav')) return;
 
         function navigateSiblings(openEl, selector) {
           if (!openEl) return false;
+          // Only fire if open element is near the viewport
+          const rect = openEl.getBoundingClientRect();
+          if (rect.bottom < 0 || rect.top > window.innerHeight * 1.5) return false;
+
           const all = [...document.querySelectorAll(selector)];
           const idx = all.indexOf(openEl);
           const targetIdx = dx < 0 ? idx + 1 : idx - 1;
           if (targetIdx < 0 || targetIdx >= all.length) return false;
+
+          swipeLock = true;
+          setTimeout(() => { swipeLock = false; }, 600);
+
           haptic(5);
           openEl.classList.remove('open');
           all[targetIdx].classList.add('open');
           setTimeout(() => all[targetIdx].scrollIntoView({ behavior: 'smooth', block: 'start' }), 30);
           return true;
         }
+
+        const openDay = document.querySelector('.day.open');
+        const openFood = document.querySelector('.food-day.open');
+        const openTransit = document.querySelector('.transit-day.open');
 
         navigateSiblings(openDay, '.day') ||
         navigateSiblings(openFood, '.food-day') ||
