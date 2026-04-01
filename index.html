@@ -7046,11 +7046,25 @@
 
         const results = {};
 
+        // Open-Meteo free forecast API supports up to 16 days ahead
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const maxForecastDate = new Date(today);
+        maxForecastDate.setDate(maxForecastDate.getDate() + 15);
+        const maxDateStr = maxForecastDate.toISOString().slice(0, 10);
+        const todayStr = today.toISOString().slice(0, 10);
+
         for (const key of Object.keys(locGroups)) {
           const g = locGroups[key];
           const dates = g.days.map(d => TRIP_DATES[d - 1]);
-          const startDate = dates.reduce((a, b) => a < b ? a : b);
-          const endDate = dates.reduce((a, b) => a > b ? a : b);
+          let startDate = dates.reduce((a, b) => a < b ? a : b);
+          let endDate = dates.reduce((a, b) => a > b ? a : b);
+
+          // Clamp date range to what the forecast API can provide
+          if (startDate < todayStr) startDate = todayStr;
+          if (endDate > maxDateStr) endDate = maxDateStr;
+          // Skip this group entirely if no forecastable dates remain
+          if (startDate > maxDateStr || endDate < todayStr) continue;
 
           try {
             const url = 'https://api.open-meteo.com/v1/forecast?' +
