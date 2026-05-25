@@ -1,0 +1,82 @@
+{
+  "tips": {
+    "ekiben": {
+      "title": "Ekiben & Essentials",
+      "items": [
+        {
+          "location": "Tokyo Station — Ekibenya Matsuri",
+          "detail": "Japan's largest ekiben shop (200+ varieties). Central Passage near Yaesu South Gate. ~5:30–23:00.",
+          "picks": [
+            { "name": "Gyutan Bento", "price": "¥2,020", "note": "Sendai beef tongue, yuzu pepper." },
+            { "name": "Gyuniku Domannaka", "price": "~¥1,250", "note": "Marinated beef over rice. Best-seller." },
+            { "name": "Kiyoken Shumai Bento", "price": "¥950", "note": "Yokohama's legendary pork shumai since 1954." },
+            { "name": "Ebi Senryo Chirashi", "price": "~¥1,600", "note": "Shrimp and egg over sushi rice." }
+          ]
+        },
+        {
+          "location": "Hakata Station — Omiyage Kaido",
+          "detail": "Inside Shinkansen ticket area. Kyushu specialties.",
+          "picks": [
+            { "name": "Mentaiko Gyumeshi Bento", "price": "~¥1,200", "note": "Spicy cod roe + beef sukiyaki rice." },
+            { "name": "Kashiwa Meshi", "price": "~¥850", "note": "Chicken rice, Kyushu classic since 1921." },
+            { "name": "Il Forno del Mignon", "price": null, "note": "Mini-croissants sold by weight. Near Hakata Gate. Legendary." }
+          ]
+        }
+      ],
+      "solo_tips": [
+        "Ticket machines (shokkenki): insert money, press button, hand ticket to chef.",
+        "Avoid lunch 12:00–13:00, dinner 18:30–20:00 for shorter waits.",
+        "Konbini (7-Eleven, Lawson, FamilyMart): onigiri ¥120–180, egg sandwiches ¥200–300.",
+        "Depachika (dept. store basements): premium bento, sashimi, free samples. Key: Daimaru (Osaka, Hakata), Isetan (Kyoto)."
+      ],
+      "coin_locker_tip": "On Days 4, 8, 12, 17: stash rolling bag in a station coin locker before eating at counter-only spots. Counter restaurants have NO room for luggage. Most major stations: ¥400 (small), ¥500 (medium), ¥700 (large). IC card operated."
+    }
+  },
+  "days": [
+    {
+      "day": 5,
+      "date": "2026-04-14",
+      "city": "Nara",
+      "subtitle": "Kakinoha-zushi · Persimmon Leaf Sushi",
+      "meals": [
+        {
+          "slot": "lunch",
+          "time_hint": "after Kasuga Forest hike, ~14:00",
+          "restaurants": [
+            {
+              "place_id": "hiraso-nara",
+              "role": "primary",
+              "badges": ["tabelog-3.54"],
+              "cuisine": "Kakinoha-zushi (pressed sushi)",
+              "price": "¥1,000–2,000",
+              "order": "Kakinoha-zushi set with chagayu (tea porridge) — ¥1,820. Mackerel & salmon sushi in persimmon leaves + warm porridge. Or buy a mixed box (¥1,000–1,200) for the train.",
+              "note": "Est. 1861 in Yoshino. Nara's quintessential specialty. The vinegar rice uses local Hinohikari rice. Buy extra as omiyage. Takeout shop (登大路店) also near station, 9:00–19:00 daily."
+            },
+            {
+              "place_id": "kakinoha-tanaka-nara",
+              "role": "backup",
+              "badges": ["tabelog-3.42"],
+              "cuisine": "Kakinoha-zushi",
+              "price": "¥1,000–1,300",
+              "note": "Seasonal varieties (saba, sake, tai). Eat-in set available."
+            }
+          ]
+        },
+        {
+          "slot": "dinner",
+          "time_hint": "back in Osaka",
+          "restaurants": [
+            {
+              "place_id": "sugidama-honmachi",
+              "role": "primary",
+              "cuisine": "Sushi izakaya",
+              "price": "¥2,000–3,000",
+              "order": "Sashimi of the day + 'nomeru salmon' (signature melt-in-mouth salmon sushi). Pair with local sake.",
+              "note": "Chain operation (nationwide), but quality sushi at izakaya prices. Reservations accepted online."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

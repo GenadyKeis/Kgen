@@ -1,0 +1,261 @@
+{
+  "groups": [
+    {
+      "id": "restaurant",
+      "title": "At Restaurants",
+      "icon": "utensils",
+      "phrases": [
+        {
+          "en": "One person",
+          "jp": "一人です",
+          "romaji": "hitori desu",
+          "context": "Say this when entering — they'll seat you immediately"
+        },
+        {
+          "en": "Counter seat please",
+          "jp": "カウンター席お願いします",
+          "romaji": "kauntā seki onegai shimasu"
+        },
+        {
+          "en": "This one please [point at menu]",
+          "jp": "これをお願いします",
+          "romaji": "kore wo onegai shimasu"
+        },
+        {
+          "en": "What do you recommend?",
+          "jp": "おすすめは何ですか？",
+          "romaji": "osusume wa nan desu ka?"
+        },
+        {
+          "en": "Firm noodles please",
+          "jp": "麺かためで",
+          "romaji": "men katame de",
+          "context": "Use at Hakata ramen shops — they'll ask noodle firmness"
+        },
+        {
+          "en": "Extra noodles please (ramen refill)",
+          "jp": "替え玉お願いします",
+          "romaji": "kaedama onegai shimasu",
+          "context": "Hakata ramen specialty — ~¥100–200 for another serving of noodles"
+        },
+        {
+          "en": "Check please",
+          "jp": "お会計お願いします",
+          "romaji": "okaikei onegai shimasu"
+        },
+        {
+          "en": "It's delicious!",
+          "jp": "美味しいです！",
+          "romaji": "oishii desu!",
+          "context": "Chefs love hearing this — especially at counter seats"
+        },
+        {
+          "en": "Thank you for the meal [when leaving]",
+          "jp": "ごちそうさまでした",
+          "romaji": "gochisōsama deshita",
+          "context": "Say this when finished — shows appreciation"
+        },
+        {
+          "en": "Water please",
+          "jp": "水をください",
+          "romaji": "mizu wo kudasai"
+        }
+      ]
+    },
+    {
+      "id": "station",
+      "title": "At Train Stations",
+      "icon": "train",
+      "phrases": [
+        {
+          "en": "Which platform for ___?",
+          "jp": "＿＿＿行きは何番線ですか？",
+          "romaji": "___ yuki wa nanban-sen desu ka?"
+        },
+        {
+          "en": "Does this train go to ___?",
+          "jp": "この電車は＿＿＿に行きますか？",
+          "romaji": "kono densha wa ___ ni ikimasu ka?"
+        },
+        {
+          "en": "What time is the next train?",
+          "jp": "次の電車は何時ですか？",
+          "romaji": "tsugi no densha wa nanji desu ka?"
+        },
+        {
+          "en": "Where are the coin lockers?",
+          "jp": "コインロッカーはどこですか？",
+          "romaji": "koin rokkā wa doko desu ka?"
+        },
+        {
+          "en": "Is this a reserved seat?",
+          "jp": "この席は指定席ですか？",
+          "romaji": "kono seki wa shiteiseki desu ka?"
+        },
+        {
+          "en": "Where are the unreserved cars?",
+          "jp": "自由席はどこですか？",
+          "romaji": "jiyūseki wa doko desu ka?"
+        }
+      ]
+    },
+    {
+      "id": "hotel",
+      "title": "At Hotels",
+      "icon": "hotel",
+      "phrases": [
+        {
+          "en": "I have a reservation. My name is ___.",
+          "jp": "予約があります。名前は＿＿＿です。",
+          "romaji": "yoyaku ga arimasu. namae wa ___ desu."
+        },
+        {
+          "en": "Can I leave my luggage?",
+          "jp": "荷物を預かってもらえますか？",
+          "romaji": "nimotsu wo azukatte moraemasu ka?"
+        },
+        {
+          "en": "What time is checkout?",
+          "jp": "チェックアウトは何時ですか？",
+          "romaji": "chekkuauto wa nanji desu ka?"
+        },
+        {
+          "en": "Where is the onsen?",
+          "jp": "温泉はどこですか？",
+          "romaji": "onsen wa doko desu ka?"
+        },
+        {
+          "en": "I want to send luggage by takkyubin",
+          "jp": "宅配便を送りたいです",
+          "romaji": "takuhaibin wo okuritai desu",
+          "context": "Front desk can arrange — have destination hotel address ready"
+        },
+        {
+          "en": "What is the Wi-Fi password?",
+          "jp": "Wi-Fiのパスワードは何ですか？",
+          "romaji": "waifai no pasuwādo wa nan desu ka?"
+        }
+      ]
+    },
+    {
+      "id": "hiking",
+      "title": "On Hiking Trails",
+      "icon": "hiking",
+      "phrases": [
+        {
+          "en": "Hello [greeting other hikers]",
+          "jp": "こんにちは",
+          "romaji": "konnichiwa",
+          "context": "Standard trail greeting — everyone says it when passing"
+        },
+        {
+          "en": "Is this the trail to ___?",
+          "jp": "＿＿＿への登山道はこちらですか？",
+          "romaji": "___ e no tozandō wa kochira desu ka?"
+        },
+        {
+          "en": "How much further to the summit?",
+          "jp": "山頂までどのくらいですか？",
+          "romaji": "sanchō made dono kurai desu ka?"
+        },
+        {
+          "en": "I'm lost",
+          "jp": "道に迷いました",
+          "romaji": "michi ni mayoimashita"
+        },
+        {
+          "en": "After you / Please go ahead",
+          "jp": "お先にどうぞ",
+          "romaji": "osaki ni dōzo",
+          "context": "When letting someone pass on a narrow trail"
+        },
+        {
+          "en": "Take care [said to others heading out]",
+          "jp": "お気をつけて",
+          "romaji": "oki wo tsukete"
+        }
+      ]
+    },
+    {
+      "id": "general",
+      "title": "Shopping & General",
+      "icon": "shopping",
+      "phrases": [
+        {
+          "en": "Excuse me [to get someone's attention]",
+          "jp": "すみません",
+          "romaji": "sumimasen",
+          "context": "The single most useful word in Japan — works everywhere"
+        },
+        {
+          "en": "How much is this?",
+          "jp": "これはいくらですか？",
+          "romaji": "kore wa ikura desu ka?"
+        },
+        {
+          "en": "Can I get tax-free?",
+          "jp": "免税できますか？",
+          "romaji": "menzei dekimasu ka?"
+        },
+        {
+          "en": "Where is the toilet?",
+          "jp": "トイレはどこですか？",
+          "romaji": "toire wa doko desu ka?"
+        },
+        {
+          "en": "May I take a photo?",
+          "jp": "写真を撮ってもいいですか？",
+          "romaji": "shashin wo totte mo ii desu ka?"
+        },
+        {
+          "en": "Thank you very much",
+          "jp": "ありがとうございます",
+          "romaji": "arigatō gozaimasu"
+        },
+        {
+          "en": "I'm fine / No thank you / It's okay",
+          "jp": "大丈夫です",
+          "romaji": "daijōbu desu",
+          "context": "Swiss army knife phrase — use to decline offers politely"
+        }
+      ]
+    },
+    {
+      "id": "emergency",
+      "title": "Emergency",
+      "icon": "emergency",
+      "phrases": [
+        {
+          "en": "Help!",
+          "jp": "助けて！",
+          "romaji": "tasukete!"
+        },
+        {
+          "en": "Please call an ambulance",
+          "jp": "救急車を呼んでください",
+          "romaji": "kyūkyūsha wo yonde kudasai"
+        },
+        {
+          "en": "Please call the police",
+          "jp": "警察を呼んでください",
+          "romaji": "keisatsu wo yonde kudasai"
+        },
+        {
+          "en": "I don't speak Japanese",
+          "jp": "日本語が話せません",
+          "romaji": "nihongo ga hanasemasen"
+        },
+        {
+          "en": "Is there someone who speaks English?",
+          "jp": "英語を話せる方はいますか？",
+          "romaji": "eigo wo hanaseru kata wa imasu ka?"
+        },
+        {
+          "en": "I feel sick",
+          "jp": "具合が悪いです",
+          "romaji": "guai ga warui desu"
+        }
+      ]
+    }
+  ]
+}

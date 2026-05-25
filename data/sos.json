@@ -1,0 +1,215 @@
+{
+  "emergency_numbers": [
+    {
+      "label": "Police",
+      "number": "110",
+      "tel": "tel:110",
+      "note_en": "Operators may not speak English. State location first."
+    },
+    {
+      "label": "Fire & Ambulance",
+      "number": "119",
+      "tel": "tel:119",
+      "note_en": "Say \"kyūkyūsha\" (きゅうきゅうしゃ) for ambulance. Operators may not speak English."
+    },
+    {
+      "label": "Japan Helpline — English 24/7",
+      "number": "0570-911-099",
+      "tel": "tel:0570911099",
+      "note_en": "English-speaking operators. Can conference-translate with 110/119. Use this first."
+    },
+    {
+      "label": "AMDA Medical Info — English",
+      "number": "03-3204-2700",
+      "tel": "tel:0332042700",
+      "note_en": "Help finding English-speaking doctors. Mon–Fri 9:00–17:00."
+    }
+  ],
+  "embassy": {
+    "name_en": "Embassy of Israel",
+    "address_jp": "〒102-0084 東京都千代田区二番町3",
+    "address_en": "3 Nibancho, Chiyoda-ku, Tokyo 102-0084",
+    "phone": "+81 3-3264-0911",
+    "tel": "tel:+81332640911",
+    "email": "info@tokyo.mfa.gov.il",
+    "consular_hours": "Mon–Fri 10:00–13:00",
+    "after_hours": "Call main line for emergency recording",
+    "website": "https://embassies.gov.il/japan/en/contacts",
+    "lat": 35.6863,
+    "lon": 139.7370
+  },
+  "hotels": [
+    {
+      "dates": "Apr 10–12",
+      "city": "Tokyo",
+      "name_en": "APA Hotel Ueno Ekiminami",
+      "name_jp": "アパホテル〈上野駅南〉",
+      "address_jp": "〒110-0005 東京都台東区上野6-7-21",
+      "phone": "+81 3-5807-7111",
+      "tel": "tel:+81358077111",
+      "show_to_staff": {
+        "jp": "アパホテル〈上野駅南〉\n東京都台東区上野6-7-21",
+        "en": "APA Hotel Ueno Ekiminami"
+      }
+    },
+    {
+      "dates": "Apr 13–16",
+      "city": "Osaka",
+      "name_en": "Osaka Excel Hotel Tokyu",
+      "name_jp": "大阪エクセルホテル東急",
+      "address_jp": "〒541-0058 大阪市中央区久太郎町4-1-15",
+      "phone": "+81 6-6252-0109",
+      "tel": "tel:+81662520109",
+      "show_to_staff": {
+        "jp": "大阪エクセルホテル東急\n大阪市中央区久太郎町4-1-15",
+        "en": "Osaka Excel Hotel Tokyu"
+      }
+    },
+    {
+      "dates": "Apr 17–20",
+      "city": "Hiroshima",
+      "name_en": "Daiwa Roynet Hotel Hiroshima-ekimae",
+      "name_jp": "ダイワロイネットホテル広島駅前",
+      "address_jp": "〒732-0057 広島市東区二葉の里3-5-7",
+      "phone": "+81 82-554-1455",
+      "tel": "tel:+81825541455",
+      "show_to_staff": {
+        "jp": "ダイワロイネットホテル広島駅前\n広島市東区二葉の里3-5-7",
+        "en": "Daiwa Roynet Hotel Hiroshima-ekimae"
+      }
+    },
+    {
+      "dates": "Apr 21–25",
+      "city": "Fukuoka",
+      "name_en": "KOKO HOTEL Hakata Station",
+      "name_jp": "KOKO HOTEL 博多駅前",
+      "address_jp": "〒812-0011 福岡市博多区博多駅前3-22-19",
+      "phone": "+81 92-476-9111",
+      "tel": "tel:+81924769111",
+      "show_to_staff": {
+        "jp": "KOKO HOTEL 博多駅前\n福岡市博多区博多駅前3-22-19",
+        "en": "KOKO HOTEL Hakata Station"
+      }
+    },
+    {
+      "dates": "Apr 26",
+      "city": "Tokyo",
+      "name_en": "APA Hotel Ueno Ekimae",
+      "name_jp": "アパホテル〈上野駅前〉",
+      "address_jp": "〒110-0015 東京都台東区東上野2-18-7",
+      "phone": "+81 3-5812-0311",
+      "tel": "tel:+81358120311",
+      "show_to_staff": {
+        "jp": "アパホテル〈上野駅前〉\n東京都台東区東上野2-18-7",
+        "en": "APA Hotel Ueno Ekimae"
+      }
+    }
+  ],
+  "medical": [
+    {
+      "city": "Tokyo / Ueno",
+      "dates": "Apr 10–12, 26",
+      "hospital": {
+        "name_en": "Eiju General Hospital",
+        "name_jp": "永寿総合病院",
+        "address": "Taito-ku Higashi Ueno 2-23-16",
+        "distance": "15 min walk from hotel",
+        "phone": "+81 3-3833-6151",
+        "tel": "tel:+81338336151",
+        "note": "Emergency dept available"
+      },
+      "pharmacy": {
+        "name": "Matsumoto Kiyoshi (マツモトキヨシ)",
+        "location": "Ameyoko",
+        "hours": "~10:00–21:00",
+        "note": "OTC meds, first aid, sunscreen."
+      }
+    },
+    {
+      "city": "Osaka / Honmachi",
+      "dates": "Apr 13–16",
+      "hospital": {
+        "name_en": "Kitahama Clinic",
+        "name_jp": "北浜よしだクリニック",
+        "note": "English-speaking doctors · Near Kitahama Station",
+        "phone": "+81 6-6232-6601",
+        "tel": "tel:+81662326601",
+        "hours": "Weekdays 9:30–13:00, 15:00–18:30"
+      },
+      "pharmacy": {
+        "name": "Daikoku Drug (ダイコクドラッグ)",
+        "location": "Shinsaibashi-suji",
+        "hours": "open late",
+        "note": "Multiple locations near Honmachi."
+      }
+    },
+    {
+      "city": "Hiroshima",
+      "dates": "Apr 17–20",
+      "hospital": {
+        "name_en": "Hiroshima City Hospital",
+        "name_jp": "広島市立広島市民病院",
+        "address": "Naka-ku Motomachi 7-33",
+        "phone": "+81 82-221-1111",
+        "tel": "tel:+81822211111",
+        "note": "Emergency 24h"
+      },
+      "pharmacy": {
+        "name": "Welcia (ウエルシア)",
+        "location": "near Hiroshima Station",
+        "hours": "~9:00–22:00"
+      }
+    },
+    {
+      "city": "Fukuoka / Hakata",
+      "dates": "Apr 21–25",
+      "hospital": {
+        "name_en": "Hakata Clinic",
+        "name_jp": "博多クリニック",
+        "address": "Hakataekimae 2-20-1",
+        "distance": "5 min from hotel",
+        "phone": "+81 92-471-2225",
+        "tel": "tel:+81924712225",
+        "hours": "Mon–Sat 9:00–12:30"
+      },
+      "pharmacy": {
+        "name": "Matsumoto Kiyoshi",
+        "location": "Hakata Station underground mall",
+        "hours": "~8:00–21:00"
+      }
+    }
+  ],
+  "show_to_staff_cards": [
+    {
+      "en": "Please help, please call an ambulance",
+      "jp": "助けてください、救急車を呼んでください",
+      "romaji": "tasukete kudasai, kyūkyūsha wo yonde kudasai"
+    },
+    {
+      "en": "I don't speak Japanese. Is there someone who speaks English?",
+      "jp": "日本語が話せません。英語を話せる方はいますか？",
+      "romaji": "nihongo ga hanasemasen. eigo wo hanaseru kata wa imasu ka?"
+    },
+    {
+      "en": "I feel sick. I want to go to a hospital.",
+      "jp": "具合が悪いです。病院に行きたいです。",
+      "romaji": "guai ga warui desu. byōin ni ikitai desu."
+    },
+    {
+      "en": "I'm staying here. I want to return to my hotel.",
+      "jp": "ここに泊まっています。ホテルに戻りたいです。",
+      "romaji": "koko ni tomatte imasu. hoteru ni modoritai desu."
+    },
+    {
+      "en": "I'm lost. I want to go to this place. [show your Maps screen]",
+      "jp": "道に迷いました。この場所に行きたいです。",
+      "romaji": "michi ni mayoimashita. kono basho ni ikitai desu."
+    },
+    {
+      "en": "Please call the police",
+      "jp": "警察を呼んでください",
+      "romaji": "keisatsu wo yonde kudasai"
+    }
+  ],
+  "pharmacy_tip": "Japanese pharmacies (ドラッグストア) sell OTC painkillers, cold medicine, bandages, and stomach remedies. For anything prescription-strength, you need a hospital. Show the pharmacist what's wrong — many understand basic English medical terms."
+}

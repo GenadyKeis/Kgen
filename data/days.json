@@ -1,0 +1,83 @@
+[
+  {
+    "day": 5,
+    "date": "2026-04-14",
+    "weekday": "Tue",
+    "city": "Nara",
+    "title": "Nara Forest Hike + Temples",
+    "tags": ["hike", "temples"],
+    "location": { "lat": 34.6851, "lon": 135.8048 },
+    "hotel_id": "osaka-excel-hotel-tokyu",
+    "blocks": [
+      {
+        "type": "logistics",
+        "title": "Getting There — 8:00 AM",
+        "items": [],
+        "transit": [
+          {
+            "label": "Hotel → Kintetsu Osaka-Namba Station",
+            "detail": "Walk south 15 min. Or subway Sakaisuji-Honmachi → Nippombashi (1 stop), then walk 5 min to Kintetsu Namba.",
+            "origin_id": "osaka-excel-hotel-tokyu",
+            "destination_id": "kintetsu-osaka-namba",
+            "mode": "walking",
+            "duration_min": 15
+          },
+          {
+            "label": "Kintetsu Osaka-Namba → Kintetsu-Nara",
+            "detail": "Kintetsu Nara Line rapid express · ~35 min · ¥680 · Frequent departures. NOT covered by JR Pass.",
+            "origin_id": "kintetsu-osaka-namba",
+            "destination_id": "kintetsu-nara-station",
+            "mode": "transit",
+            "payment": "private",
+            "duration_min": 35,
+            "cost": "¥680"
+          }
+        ]
+      },
+      {
+        "type": "morning",
+        "title": "Morning — 8:45 AM (before tour buses ~10:30)",
+        "items": [
+          {
+            "place_id": "todaiji",
+            "detail": "Great Buddha Hall. Arrive early to beat crowds.",
+            "transit_from_id": "kintetsu-nara-station",
+            "transit_mode": "walking"
+          },
+          {
+            "place_id": "kasuga-taisha",
+            "detail": "Thousands of stone lanterns. Optional Botanical Garden (¥500).",
+            "transit_from_id": "todaiji",
+            "transit_mode": "walking"
+          }
+        ]
+      },
+      {
+        "type": "hike",
+        "title": "Hike — Kasuga Primeval Forest (10:45 AM)",
+        "items": [
+          {
+            "place_id": "kasugayama-forest",
+            "detail": "9 km · ~200m gain · 2.5–3 hrs · UNESCO World Heritage forest, 1,000+ years uncut. Cryptomeria, ferns, moss. Almost no tourists."
+          }
+        ]
+      },
+      {
+        "type": "afternoon",
+        "title": "Afternoon — ~14:00",
+        "items": [
+          {
+            "label": "Lunch",
+            "place_id": "hiraso-nara",
+            "detail": "Kakinoha-zushi near Kintetsu-Nara."
+          },
+          {
+            "place_id": "isuien-garden",
+            "detail": "Isuien (¥1,200, incl. Neiraku Museum) OR Shin-Yakushi-ji (8th-century, Twelve Heavenly Generals).",
+            "alt_label": "OR Shin-Yakushi-ji"
+          }
+        ]
+      }
+    ]
+  }
+]

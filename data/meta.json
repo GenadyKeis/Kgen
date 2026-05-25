@@ -1,0 +1,32 @@
+{
+  "trip_name": "Japan April 2026",
+  "timezone": "Asia/Tokyo",
+  "utc_offset_hours": 9,
+  "start_date": "2026-04-10",
+  "end_date": "2026-04-27",
+  "total_days": 18,
+  "route_summary": "Tokyo (4) → Osaka (4) → Hiroshima (4) → Fukuoka (5) → Tokyo (1)",
+  "cities": [
+    { "name": "Tokyo", "days": [1, 2, 3, 18], "lat": 35.6762, "lon": 139.6503 },
+    { "name": "Osaka", "days": [4, 5, 6, 7], "lat": 34.6937, "lon": 135.5023 },
+    { "name": "Nara", "days": [5], "lat": 34.6851, "lon": 135.8048, "day_trip": true },
+    { "name": "Koyasan", "days": [6], "lat": 34.2130, "lon": 135.6000, "day_trip": true },
+    { "name": "Hiroshima", "days": [8, 11], "lat": 34.3853, "lon": 132.4553 },
+    { "name": "Miyajima", "days": [9], "lat": 34.2961, "lon": 132.3196, "day_trip": true },
+    { "name": "Onomichi", "days": [10], "lat": 34.4089, "lon": 133.2050, "day_trip": true },
+    { "name": "Fukuoka", "days": [12, 17], "lat": 33.5902, "lon": 130.4017 },
+    { "name": "Dazaifu", "days": [13], "lat": 33.5194, "lon": 130.5244, "day_trip": true },
+    { "name": "Nagasaki", "days": [14], "lat": 32.7503, "lon": 129.8779, "day_trip": true },
+    { "name": "Kumamoto", "days": [15], "lat": 32.8032, "lon": 130.7079, "day_trip": true },
+    { "name": "Karatsu", "days": [16], "lat": 33.4497, "lon": 129.9681, "day_trip": true }
+  ],
+  "dates": [
+    "2026-04-10", "2026-04-11", "2026-04-12", "2026-04-13",
+    "2026-04-14", "2026-04-15", "2026-04-16", "2026-04-17",
+    "2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21",
+    "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25",
+    "2026-04-26", "2026-04-27"
+  ],
+  "data_built_on": null,
+  "note": "This is the v1 April itinerary used as a schema validation dataset. The actual autumn trip content will replace this data."
+}
