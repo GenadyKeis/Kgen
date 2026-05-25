@@ -1,29 +1,29 @@
 /* ─── Theme tokens ─────────────────────────────────────────── */
 :root {
-  --bg: #1a1a1a;
-  --card: #242424;
-  --card-open: #2a2a2a;
-  --text: #e8e4df;
-  --text-dim: #b0a8a0;
-  --accent: #d4845a;
-  --accent-dim: #a0623f;
-  --link: #6aadcf;
-  --link-hike: #7cb87a;
-  --link-maps: #e09455;
-  --tag-transit: #3a5a7a;
-  --tag-hike: #3a6a3a;
-  --tag-culture: #6a4a6a;
-  --tag-food: #7a5a3a;
-  --border: #3a3a3a;
-  --today-glow: #d4845a33;
+  --bg: #161616;
+  --card: #2a2a2a;
+  --card-open: #333333;
+  --text: #eeebe7;
+  --text-dim: #c4bdb5;
+  --accent: #e0935f;
+  --accent-dim: #b87040;
+  --link: #7abde0;
+  --link-hike: #8dcc8a;
+  --link-maps: #eba060;
+  --tag-transit: #2e5a8a;
+  --tag-hike: #2e6a2e;
+  --tag-culture: #7a4a7a;
+  --tag-food: #8a6a3a;
+  --border: #484848;
+  --today-glow: #e0935f44;
 }
 
 /* ─── OLED mode ────────────────────────────────────────────── */
 body.oled-mode {
   --bg: #000000;
-  --card: #111111;
-  --card-open: #1a1a1a;
-  --border: #222222;
+  --card: #181818;
+  --card-open: #222222;
+  --border: #333333;
 }
 body.oled-mode header,
 body.oled-mode .bottom-nav {
@@ -344,10 +344,10 @@ main {
   border-radius: 6px;
   white-space: nowrap;
 }
-.tag-transit { background: var(--tag-transit); color: #c0d8f0; }
-.tag-hike { background: var(--tag-hike); color: #b0e0b0; }
-.tag-culture, .tag-temples { background: var(--tag-culture); color: #d0b0d0; }
-.tag-food { background: var(--tag-food); color: #e0c8a0; }
+.tag-transit { background: var(--tag-transit); color: #d0e4f8; }
+.tag-hike { background: var(--tag-hike); color: #c8f0c8; }
+.tag-culture, .tag-temples { background: var(--tag-culture); color: #e4c8e4; }
+.tag-food { background: var(--tag-food); color: #f0d8b0; }
 
 /* ─── Blocks (time-of-day groups within a day) ────────────── */
 .block {
@@ -440,23 +440,23 @@ main {
   transform: scale(0.95);
 }
 .btn-maps {
-  background: rgba(224, 148, 85, 0.15);
+  background: rgba(235, 160, 96, 0.22);
   color: var(--link-maps);
 }
 .btn-walk {
-  background: rgba(124, 184, 122, 0.15);
+  background: rgba(141, 204, 138, 0.22);
   color: var(--link-hike);
 }
 .btn-transit {
-  background: rgba(106, 173, 207, 0.15);
+  background: rgba(122, 189, 224, 0.22);
   color: var(--link);
 }
 .btn-call {
-  background: rgba(212, 132, 90, 0.15);
+  background: rgba(224, 147, 95, 0.22);
   color: var(--accent);
 }
 .btn-web {
-  background: rgba(106, 173, 207, 0.15);
+  background: rgba(122, 189, 224, 0.22);
   color: var(--link);
 }
 
