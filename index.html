@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1a1a1a">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>Japan 2026</title>
+</head>
+
+<body>
+
+  <header id="header">
+    <div class="header-text-block">
+      <h1>Japan 2026</h1>
+      <div class="sub" id="header-sub">Loading...</div>
+    </div>
+    <div class="header-search-icon" id="search-toggle" aria-label="Search" title="Search">🔍</div>
+    <div class="header-theme-toggle" id="theme-toggle" aria-label="Toggle Theme" title="Toggle OLED mode">◐</div>
+  </header>
+
+  <div class="search-container" id="search-container" hidden>
+    <div class="search-wrapper">
+      <input type="search" id="search-input" placeholder="Search places, phrases, info..." autocomplete="off">
+      <span class="search-clear" id="search-clear">✕</span>
+      <span class="search-count" id="search-count"></span>
+    </div>
+  </div>
+
+  <main id="main">
+    <section id="section-days" class="content-section">
+      <div class="section-empty">Days section — loading in Phase 4</div>
+    </section>
+
+    <section id="section-food" class="content-section">
+      <div class="section-empty">Food section — loading in Phase 4</div>
+    </section>
+
+    <section id="section-transit" class="content-section">
+      <div class="section-empty">Transit section — loading in Phase 4</div>
+    </section>
+
+    <section id="section-phrases" class="content-section">
+      <div class="section-empty">Phrases section — loading in Phase 4</div>
+    </section>
+
+    <section id="section-sos" class="content-section">
+      <div class="section-empty">SOS section — loading in Phase 4</div>
+    </section>
+  </main>
+
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top" hidden>↑</button>
+
+  <nav class="bottom-nav" id="bottom-nav">
+    <a href="#section-days" data-section="days" class="nav-active"><span class="nav-icon">📅</span><span>Days</span></a>
+    <a href="#section-food" data-section="food"><span class="nav-icon">🍜</span><span>Food</span></a>
+    <a href="#section-transit" data-section="transit"><span class="nav-icon">🚃</span><span>Transit</span></a>
+    <a href="#section-phrases" data-section="phrases"><span class="nav-icon">🗣</span><span>Phrases</span></a>
+    <a href="#section-sos" data-section="sos"><span class="nav-icon">🚨</span><span>SOS</span></a>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

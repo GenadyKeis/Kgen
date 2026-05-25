@@ -1,0 +1,41 @@
+{
+  "name": "Japan Trip 2026",
+  "short_name": "Japan 2026",
+  "description": "Japan trip companion — offline itinerary, food, transit, phrasebook, SOS",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Emergency SOS",
+      "short_name": "SOS",
+      "description": "Emergency numbers and phrases",
+      "url": "./#section-sos"
+    },
+    {
+      "name": "Food Guide",
+      "short_name": "Food",
+      "description": "Restaurant guide with open/closed badges",
+      "url": "./#section-food"
+    },
+    {
+      "name": "Phrasebook",
+      "short_name": "Phrases",
+      "description": "Japanese phrases for common situations",
+      "url": "./#section-phrases"
+    }
+  ]
+}
