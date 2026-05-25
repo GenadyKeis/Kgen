@@ -139,7 +139,7 @@ header .sub {
   border: 1px solid var(--border);
   background: var(--card);
   color: var(--text);
-  font-size: 14px;
+  font-size: 16px;
   outline: none;
 }
 .search-wrapper input::placeholder {
@@ -248,4 +248,524 @@ main {
 }
 .back-to-top:active {
   transform: scale(0.92);
+}
+
+/* ─── Collapsible cards ───────────────────────────────────── */
+.card-header {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  gap: 10px;
+}
+.card-header:active {
+  opacity: 0.8;
+}
+.chevron {
+  font-size: 12px;
+  color: var(--text-dim);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.card-open .chevron {
+  transform: rotate(90deg);
+}
+.card-body {
+  display: none;
+  padding: 0 16px 14px;
+}
+.card-open .card-body {
+  display: block;
+}
+
+/* ─── Day cards ───────────────────────────────────────────── */
+.day-card {
+  background: var(--card);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.day-card.past {
+  opacity: 0.5;
+  filter: grayscale(0.3);
+}
+.day-card.today {
+  border-color: var(--accent);
+  box-shadow: 0 0 12px var(--today-glow);
+}
+.day-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.today .day-num {
+  background: var(--accent);
+  color: #fff;
+}
+.day-meta {
+  flex: 1;
+  min-width: 0;
+}
+.day-title {
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.day-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 1px;
+}
+.day-tags {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* ─── Tags ────────────────────────────────────────────────── */
+.tag {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.tag-transit { background: var(--tag-transit); color: #c0d8f0; }
+.tag-hike { background: var(--tag-hike); color: #b0e0b0; }
+.tag-culture, .tag-temples { background: var(--tag-culture); color: #d0b0d0; }
+.tag-food { background: var(--tag-food); color: #e0c8a0; }
+
+/* ─── Blocks (time-of-day groups within a day) ────────────── */
+.block {
+  margin-bottom: 16px;
+}
+.block:last-child {
+  margin-bottom: 0;
+}
+.block-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.block-title.morning { color: #c9a85c; }
+.block-title.hike { color: var(--link-hike); }
+.block-title.afternoon { color: #6aadcf; }
+.block-title.evening { color: #c47aaa; }
+.block-title.logistics { color: var(--link-maps); }
+
+/* ─── Items (within blocks) ───────────────────────────────── */
+.item {
+  background: var(--card-open);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border-left: 3px solid var(--border);
+}
+.item:last-child {
+  margin-bottom: 0;
+}
+.item-name {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+.item-name-jp {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+.item-detail {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.item-detail:last-child {
+  margin-bottom: 0;
+}
+
+/* ─── Place card (reusable) ───────────────────────────────── */
+.place-info {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+.place-info span {
+  white-space: nowrap;
+}
+
+/* ─── Action buttons ──────────────────────────────────────── */
+.btn-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  min-height: 44px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s;
+  line-height: 1.2;
+}
+.btn:active {
+  transform: scale(0.95);
+}
+.btn-maps {
+  background: rgba(224, 148, 85, 0.15);
+  color: var(--link-maps);
+}
+.btn-walk {
+  background: rgba(124, 184, 122, 0.15);
+  color: var(--link-hike);
+}
+.btn-transit {
+  background: rgba(106, 173, 207, 0.15);
+  color: var(--link);
+}
+.btn-call {
+  background: rgba(212, 132, 90, 0.15);
+  color: var(--accent);
+}
+.btn-web {
+  background: rgba(106, 173, 207, 0.15);
+  color: var(--link);
+}
+
+/* ─── Transit box (within day blocks) ─────────────────────── */
+.transit-box {
+  background: var(--card-open);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+}
+.transit-box:last-child {
+  margin-bottom: 0;
+}
+.tleg {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 6px 0;
+}
+.tleg + .tleg {
+  border-top: 1px solid var(--border);
+}
+.tleg-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.tleg-badge.walk { background: rgba(124, 184, 122, 0.2); color: var(--link-hike); }
+.tleg-badge.transit { background: rgba(106, 173, 207, 0.2); color: var(--link); }
+.tleg-badge.private { background: rgba(224, 148, 85, 0.2); color: var(--link-maps); }
+.tleg-info {
+  flex: 1;
+  min-width: 0;
+}
+.tleg-label {
+  font-size: 13px;
+  font-weight: 600;
+}
+.tleg-detail {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.tleg-cost {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* ─── Tap-to-copy feedback ────────────────────────────────── */
+.copyable {
+  cursor: pointer;
+  position: relative;
+}
+.copyable:active {
+  opacity: 0.7;
+}
+.copy-toast {
+  position: fixed;
+  bottom: calc(90px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 200;
+  pointer-events: none;
+  animation: toast-fade 1.2s ease forwards;
+}
+@keyframes toast-fade {
+  0%, 60% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ─── SOS section ─────────────────────────────────────────── */
+.sos-group {
+  margin-bottom: 20px;
+}
+.sos-group-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.sos-card {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  border-left: 3px solid var(--accent);
+}
+.sos-card-label {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+.sos-card-detail {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+.sos-number {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 4px;
+}
+.show-staff-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: rgba(212, 132, 90, 0.15);
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  min-height: 44px;
+  margin-top: 8px;
+  transition: transform 0.1s;
+}
+.show-staff-btn:active {
+  transform: scale(0.95);
+}
+
+/* ─── Fullscreen overlay (SOS + Phrases) ──────────────────── */
+.fs-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  text-align: center;
+}
+.fs-jp {
+  font-size: 36px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+.fs-romaji {
+  font-size: 18px;
+  color: #aaa;
+  margin-bottom: 12px;
+}
+.fs-en {
+  font-size: 16px;
+  color: #888;
+  margin-bottom: 24px;
+}
+.fs-context {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+.fs-close {
+  position: absolute;
+  top: calc(16px + env(safe-area-inset-top));
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  background: #333;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ─── Phrases section ─────────────────────────────────────── */
+.phrase-group {
+  background: var(--card);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.phrase-group .card-header {
+  padding: 12px 16px;
+}
+.phrase-group-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.phrase-group-title {
+  font-weight: 600;
+  font-size: 15px;
+  flex: 1;
+}
+.phrase-group-count {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.phrase-item {
+  background: var(--card-open);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 6px;
+  border-left: 3px solid var(--border);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.phrase-item:active {
+  transform: scale(0.98);
+}
+.phrase-item:last-child {
+  margin-bottom: 0;
+}
+.phrase-en {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.phrase-jp {
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+.phrase-romaji {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.phrase-context {
+  font-size: 12px;
+  color: var(--accent-dim);
+  margin-top: 4px;
+  font-style: italic;
+}
+
+/* ─── Hotel card (SOS) ────────────────────────────────────── */
+.hotel-card {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  border-left: 3px solid var(--link);
+}
+.hotel-dates {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--link);
+  margin-bottom: 4px;
+}
+.hotel-name {
+  font-weight: 600;
+  font-size: 15px;
+}
+.hotel-name-jp {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.hotel-address {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+/* ─── Medical card (SOS) ──────────────────────────────────── */
+.medical-card {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  border-left: 3px solid var(--link-hike);
+}
+.medical-city {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--link-hike);
+  margin-bottom: 4px;
+}
+.medical-name {
+  font-weight: 600;
+  font-size: 15px;
+}
+.medical-detail {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.pharmacy-tip {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  border-left: 3px solid var(--link-maps);
 }
