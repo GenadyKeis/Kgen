@@ -3,7 +3,7 @@
 
   // ─── Service Worker registration ──────────────────────────
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js');
+    navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' });
   }
 
   // ─── Helpers ──────────────────────────────────────────────
