@@ -188,8 +188,9 @@
 
     for (var d = 0; d < DATA.days.length; d++) {
       var day = DATA.days[d];
-      var isPast = day.day < currentDayNum;
-      var isToday = day.day === currentDayNum;
+      var tripInProgress = currentDayNum >= 1 && currentDayNum <= DATA.meta.total_days;
+      var isPast = tripInProgress && day.day < currentDayNum;
+      var isToday = tripInProgress && day.day === currentDayNum;
       var cls = 'day-card';
       if (isPast) cls += ' past';
       if (isToday) cls += ' today card-open';

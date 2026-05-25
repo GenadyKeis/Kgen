@@ -290,8 +290,8 @@ main {
   overflow: hidden;
 }
 .day-card.past {
-  opacity: 0.5;
-  filter: grayscale(0.3);
+  opacity: 0.7;
+  filter: grayscale(0.2);
 }
 .day-card.today {
   border-color: var(--accent);
