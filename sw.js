@@ -1,4 +1,4 @@
-const CACHE_NAME = 'japan-v2-shell-9';
+const CACHE_NAME = 'japan-v2-shell-10';
 
 const SHELL_ASSETS = [
   './',

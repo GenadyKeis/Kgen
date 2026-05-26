@@ -1047,3 +1047,50 @@ a.food-badge.rating:active {
   border-radius: 12px;
   border: 1px solid var(--border);
 }
+
+/* ─── Search results ─────────────────────────────────────── */
+.search-results {
+  display: none;
+  padding: 16px;
+}
+.search-result {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--card);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  border-left: 3px solid var(--accent-dim);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.search-result:active {
+  transform: scale(0.98);
+}
+.search-result:last-child {
+  margin-bottom: 0;
+}
+.search-result-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.search-result-body {
+  flex: 1;
+  min-width: 0;
+}
+.search-result-title {
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.search-result-detail {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
