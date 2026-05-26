@@ -46,7 +46,8 @@
             {
               "place_id": "hiraso-nara",
               "role": "primary",
-              "badges": ["tabelog-3.54"],
+              "badges": ["tabelog-3.20"],
+              "tabelog_url": "https://tabelog.com/en/nara/A2901/A290101/29000753/",
               "cuisine": "Kakinoha-zushi (pressed sushi)",
               "price": "¥1,000–2,000",
               "order": "Kakinoha-zushi set with chagayu (tea porridge) — ¥1,820. Mackerel & salmon sushi in persimmon leaves + warm porridge. Or buy a mixed box (¥1,000–1,200) for the train.",
@@ -55,7 +56,8 @@
             {
               "place_id": "kakinoha-tanaka-nara",
               "role": "backup",
-              "badges": ["tabelog-3.42"],
+              "badges": ["tabelog-3.24"],
+              "tabelog_url": "https://tabelog.com/en/nara/A2901/A290101/29006750/",
               "cuisine": "Kakinoha-zushi",
               "price": "¥1,000–1,300",
               "note": "Seasonal varieties (saba, sake, tai). Eat-in set available."
