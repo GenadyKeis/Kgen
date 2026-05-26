@@ -831,6 +831,7 @@
     if (DATA.places) {
       for (var i = 0; i < DATA.places.length; i++) {
         var p = DATA.places[i];
+        if (p.category === 'station') continue;
         var pText = [p.name_en, p.name_jp, p.address_jp, p.category, p.cuisine, p.notes, p.price]
           .filter(Boolean).join(' ');
         searchIndex.push({
@@ -838,7 +839,8 @@
           section: p.category === 'restaurant' ? 'food' : 'days',
           icon: p.category === 'restaurant' ? '🍜' : '📅',
           title: p.name_en,
-          detail: (p.name_jp ? p.name_jp + ' · ' : '') + (p.category || '')
+          detail: (p.name_jp ? p.name_jp + ' · ' : '') + (p.category || ''),
+          place_id: p.id
         });
       }
     }
@@ -862,7 +864,8 @@
           section: 'days',
           icon: '📅',
           title: 'Day ' + day.day + ' — ' + day.title,
-          detail: day.city + ' · ' + day.date
+          detail: day.city + ' · ' + day.date,
+          day_num: day.day
         });
       }
     }
@@ -907,7 +910,8 @@
             section: 'food',
             icon: '🍜',
             title: fday.city + (fday.subtitle ? ' — ' + fday.subtitle : ''),
-            detail: 'Day ' + fday.day + ' food'
+            detail: 'Day ' + fday.day + ' food',
+            day_num: fday.day
           });
         }
       }
@@ -972,6 +976,44 @@
     }
   }
 
+  function revealAndScroll(el) {
+    if (!el) return;
+    var node = el.parentElement;
+    while (node && node !== document.body) {
+      if (node.classList.contains('card-body')) {
+        var card = node.parentElement;
+        if (card && !card.classList.contains('card-open')) {
+          card.classList.add('card-open');
+        }
+      }
+      node = node.parentElement;
+    }
+    setTimeout(function () {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.style.outline = '2px solid var(--accent)';
+      el.style.outlineOffset = '2px';
+      setTimeout(function () {
+        el.style.outline = '';
+        el.style.outlineOffset = '';
+      }, 2000);
+    }, 100);
+  }
+
+  function findSearchTarget(match, sectionEl) {
+    if (match.place_id) {
+      return sectionEl.querySelector('[data-place-id="' + match.place_id + '"]');
+    }
+    if (match.day_num) {
+      var dayCards = sectionEl.querySelectorAll('.day-num');
+      for (var i = 0; i < dayCards.length; i++) {
+        if (dayCards[i].textContent.trim() === String(match.day_num)) {
+          return dayCards[i].closest('.day-card, .food-day, .transit-day');
+        }
+      }
+    }
+    return null;
+  }
+
   function runSearch(query) {
     var countEl = document.getElementById('search-count');
     if (!searchResultsEl) {
@@ -1012,7 +1054,7 @@
     var html = '';
     for (var m = 0; m < matches.length; m++) {
       var match = matches[m];
-      html += '<div class="search-result" data-section="' + esc(match.section) + '">';
+      html += '<div class="search-result" data-section="' + esc(match.section) + '" data-match-idx="' + m + '">';
       html += '<span class="search-result-icon">' + match.icon + '</span>';
       html += '<div class="search-result-body">';
       html += '<div class="search-result-title">' + esc(match.title) + '</div>';
@@ -1023,16 +1065,26 @@
     searchResultsEl.innerHTML = html;
     searchResultsEl.style.display = 'block';
 
+    var currentMatches = matches;
     var resultCards = searchResultsEl.querySelectorAll('.search-result');
     for (var r = 0; r < resultCards.length; r++) {
       resultCards[r].addEventListener('click', function () {
-        var target = this.getAttribute('data-section');
+        var targetSection = this.getAttribute('data-section');
+        var matchIdx = parseInt(this.getAttribute('data-match-idx'), 10);
+        var match = currentMatches[matchIdx];
+
         searchInput.value = '';
         searchClear.style.display = 'none';
         countEl.textContent = '';
         searchResultsEl.style.display = 'none';
         sections.forEach(function (s) { s.style.display = ''; });
-        switchSection(target);
+        switchSection(targetSection);
+
+        var sectionEl = document.getElementById('section-' + targetSection);
+        if (sectionEl && match) {
+          var target = findSearchTarget(match, sectionEl);
+          revealAndScroll(target);
+        }
       });
     }
   }
