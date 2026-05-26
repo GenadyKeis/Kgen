@@ -562,10 +562,99 @@
     bindCopyables(container);
   }
 
-  // ─── Transit section (stub — Phase 4 second pass) ─────────
+  // ─── Transit section renderer ──────────────────────────────
   function renderTransit() {
     var container = document.getElementById('section-transit');
-    container.innerHTML = '<div class="section-empty">Transit section — coming next</div>';
+    if (!DATA.days || DATA.days.length === 0) {
+      container.innerHTML = '<div class="section-empty">No transit data loaded</div>';
+      return;
+    }
+
+    var html = '';
+    var totalCost = 0;
+
+    for (var d = 0; d < DATA.days.length; d++) {
+      var day = DATA.days[d];
+      var legs = [];
+
+      // Collect all transit legs from all blocks
+      for (var b = 0; b < day.blocks.length; b++) {
+        var block = day.blocks[b];
+        if (block.transit) {
+          for (var t = 0; t < block.transit.length; t++) {
+            legs.push(block.transit[t]);
+          }
+        }
+      }
+
+      if (legs.length === 0) continue;
+
+      // Day cost subtotal
+      var dayCost = 0;
+      for (var c = 0; c < legs.length; c++) {
+        if (legs[c].cost) {
+          var num = parseInt(legs[c].cost.replace(/[^0-9]/g, ''), 10);
+          if (!isNaN(num)) dayCost += num;
+        }
+      }
+      totalCost += dayCost;
+
+      html += '<div class="transit-day">';
+      html += '<div class="card-header" data-toggle>';
+      html += '<div class="day-num">' + day.day + '</div>';
+      html += '<div class="day-meta">';
+      html += '<div class="day-title">' + esc(day.city) + '</div>';
+      html += '<div class="day-sub">' + esc(day.weekday + ', ' + day.date) +
+        (dayCost > 0 ? ' · ¥' + dayCost.toLocaleString() : '') + '</div>';
+      html += '</div>';
+      html += '<span class="transit-leg-count">' + legs.length + ' leg' + (legs.length !== 1 ? 's' : '') + '</span>';
+      html += '<span class="chevron">▶</span>';
+      html += '</div>';
+      html += '<div class="card-body">';
+
+      for (var i = 0; i < legs.length; i++) {
+        var leg = legs[i];
+        var badgeClass = leg.mode === 'walking' ? 'walk' :
+          (leg.payment === 'private' ? 'private' : 'transit');
+        var badgeLabel = leg.mode === 'walking' ? 'Walk' :
+          (leg.payment === 'private' ? 'Private' : 'Train');
+
+        html += '<div class="transit-leg">';
+        html += '<span class="tleg-badge ' + badgeClass + '">' + esc(badgeLabel) + '</span>';
+        html += '<div class="transit-leg-content">';
+        html += '<div class="transit-leg-label">' + esc(leg.label) + '</div>';
+        if (leg.detail) html += '<div class="transit-leg-detail">' + esc(leg.detail) + '</div>';
+
+        var meta = [];
+        if (leg.duration_min) meta.push(leg.duration_min + ' min');
+        if (leg.cost) meta.push(leg.cost);
+        if (meta.length > 0) {
+          html += '<div class="transit-leg-meta">' + esc(meta.join(' · ')) + '</div>';
+        }
+
+        // Directions link
+        var origin = placeById(leg.origin_id);
+        var dest = placeById(leg.destination_id);
+        if (origin && dest) {
+          var tUrl = leg.mode === 'walking' ? mapsWalkUrl(dest) : mapsTransitUrl(origin, dest);
+          html += '<a class="btn btn-transit" href="' + tUrl + '" target="_blank" rel="noopener">🗺 Directions</a>';
+        }
+
+        html += '</div>';
+        html += '</div>';
+      }
+
+      html += '</div>';
+      html += '</div>';
+    }
+
+    // Trip total
+    if (totalCost > 0) {
+      html += '<div class="transit-total">Estimated transit cost: ¥' + totalCost.toLocaleString() + '</div>';
+    }
+
+    container.innerHTML = html;
+    bindCardToggles(container);
   }
 
   // ─── Event binding helpers ────────────────────────────────

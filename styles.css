@@ -989,3 +989,61 @@ a.food-badge.rating:active {
   margin: 4px 0 0 14px;
   line-height: 1.5;
 }
+
+/* ─── Transit section ────────────────────────────────────── */
+.transit-day {
+  background: var(--card);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--tag-transit);
+  overflow: hidden;
+}
+.transit-leg-count {
+  font-size: 12px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+.transit-leg {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+}
+.transit-leg + .transit-leg {
+  border-top: 1px solid var(--border);
+}
+.transit-leg-content {
+  flex: 1;
+  min-width: 0;
+}
+.transit-leg-label {
+  font-size: 14px;
+  font-weight: 600;
+}
+.transit-leg-detail {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 3px;
+  line-height: 1.5;
+}
+.transit-leg-meta {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 4px;
+}
+.transit-leg .btn-transit {
+  margin-top: 6px;
+  display: inline-flex;
+}
+.transit-total {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  padding: 16px;
+  background: var(--card);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
