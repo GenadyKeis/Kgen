@@ -772,3 +772,220 @@ main {
   line-height: 1.5;
   border-left: 3px solid var(--link-maps);
 }
+
+/* ─── Food section ───────────────────────────────────────── */
+.food-tips {
+  background: var(--card);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.food-tips .card-header {
+  padding: 12px 16px;
+}
+.food-tips-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.food-tips-title {
+  font-weight: 600;
+  font-size: 15px;
+  flex: 1;
+}
+
+/* Ekiben locations */
+.ekiben-location {
+  background: var(--card-open);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border-left: 3px solid var(--tag-food);
+}
+.ekiben-location:last-child {
+  margin-bottom: 0;
+}
+.ekiben-loc-name {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 2px;
+  color: var(--text);
+}
+.ekiben-loc-detail {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+.ekiben-pick {
+  padding: 4px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+}
+.ekiben-pick-name {
+  font-size: 13px;
+  font-weight: 600;
+}
+.ekiben-pick-price {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 600;
+}
+.ekiben-pick-note {
+  font-size: 12px;
+  color: var(--text-dim);
+  width: 100%;
+}
+
+/* Solo tips */
+.food-solo-tips {
+  margin-top: 12px;
+  background: var(--card-open);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.food-solo-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.food-solo-item {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding: 4px 0;
+  padding-left: 12px;
+  position: relative;
+}
+.food-solo-item::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Coin locker tip */
+.food-locker-tip {
+  margin-top: 8px;
+  background: rgba(255, 183, 77, 0.1);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  border-left: 3px solid var(--link-maps);
+}
+
+/* Per-day food card */
+.food-day {
+  background: var(--card);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--tag-food);
+  overflow: hidden;
+}
+
+/* Meal slot header */
+.food-meal {
+  margin-bottom: 16px;
+}
+.food-meal:last-child {
+  margin-bottom: 0;
+}
+.food-meal-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.food-meal-slot {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+.food-meal-hint {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* Restaurant entry */
+.food-restaurant {
+  margin-bottom: 12px;
+}
+.food-restaurant:last-child {
+  margin-bottom: 0;
+}
+.food-backup {
+  opacity: 0.75;
+}
+
+/* Badges row */
+.food-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.food-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.food-badge.backup {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-dim);
+}
+.food-badge.rating {
+  background: rgba(240, 160, 96, 0.2);
+  color: var(--accent);
+  text-decoration: none;
+}
+a.food-badge.rating {
+  cursor: pointer;
+}
+a.food-badge.rating:active {
+  transform: scale(0.95);
+}
+.food-cuisine {
+  font-size: 12px;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* Food-specific details below the place card */
+.food-price {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+  margin: 4px 0 4px 14px;
+}
+.food-order {
+  font-size: 13px;
+  color: var(--text);
+  margin: 4px 0 4px 14px;
+  line-height: 1.5;
+}
+.food-order-label {
+  font-weight: 700;
+  color: var(--accent);
+}
+.food-note {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin: 4px 0 0 14px;
+  line-height: 1.5;
+}

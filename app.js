@@ -46,8 +46,7 @@
   // ─── Map URL helpers (coordinate-anchored, never text queries) ──
   function mapsPinUrl(place) {
     return 'https://www.google.com/maps/search/?api=1&query=' +
-      place.lat + ',' + place.lon +
-      '(' + encodeURIComponent(place.name_en) + ')';
+      place.lat + ',' + place.lon;
   }
 
   function mapsWalkUrl(place) {
@@ -421,10 +420,146 @@
     bindPhraseItems(container);
   }
 
-  // ─── Food section (stub — Phase 4 second pass) ────────────
+  // ─── Food section renderer ─────────────────────────────────
   function renderFood() {
     var container = document.getElementById('section-food');
-    container.innerHTML = '<div class="section-empty">Food section — coming next</div>';
+    if (!DATA.food) {
+      container.innerHTML = '<div class="section-empty">Food data not loaded</div>';
+      return;
+    }
+    var food = DATA.food;
+    var html = '';
+
+    // Tips section (collapsible)
+    if (food.tips && food.tips.ekiben) {
+      var ek = food.tips.ekiben;
+      html += '<div class="food-tips card-open">';
+      html += '<div class="card-header" data-toggle>';
+      html += '<span class="food-tips-icon">🍱</span>';
+      html += '<span class="food-tips-title">' + esc(ek.title) + '</span>';
+      html += '<span class="chevron">▶</span>';
+      html += '</div>';
+      html += '<div class="card-body">';
+
+      // Ekiben locations with picks
+      for (var e = 0; e < ek.items.length; e++) {
+        var ekItem = ek.items[e];
+        html += '<div class="ekiben-location">';
+        html += '<div class="ekiben-loc-name">' + esc(ekItem.location) + '</div>';
+        if (ekItem.detail) html += '<div class="ekiben-loc-detail">' + esc(ekItem.detail) + '</div>';
+        for (var p = 0; p < ekItem.picks.length; p++) {
+          var pick = ekItem.picks[p];
+          html += '<div class="ekiben-pick">';
+          html += '<span class="ekiben-pick-name">' + esc(pick.name) + '</span>';
+          if (pick.price) html += '<span class="ekiben-pick-price">' + esc(pick.price) + '</span>';
+          if (pick.note) html += '<div class="ekiben-pick-note">' + esc(pick.note) + '</div>';
+          html += '</div>';
+        }
+        html += '</div>';
+      }
+
+      // Solo tips
+      if (ek.solo_tips && ek.solo_tips.length > 0) {
+        html += '<div class="food-solo-tips">';
+        html += '<div class="food-solo-title">Solo Dining Tips</div>';
+        for (var st = 0; st < ek.solo_tips.length; st++) {
+          html += '<div class="food-solo-item">' + esc(ek.solo_tips[st]) + '</div>';
+        }
+        html += '</div>';
+      }
+
+      // Coin locker tip
+      if (ek.coin_locker_tip) {
+        html += '<div class="food-locker-tip">' + esc(ek.coin_locker_tip) + '</div>';
+      }
+
+      html += '</div>';
+      html += '</div>';
+    }
+
+    // Per-day food cards
+    if (food.days && food.days.length > 0) {
+      for (var d = 0; d < food.days.length; d++) {
+        var day = food.days[d];
+        html += '<div class="food-day">';
+        html += '<div class="card-header" data-toggle>';
+        html += '<div class="day-num">' + day.day + '</div>';
+        html += '<div class="day-meta">';
+        html += '<div class="day-title">' + esc(day.city) + (day.subtitle ? ' — ' + day.subtitle : '') + '</div>';
+        html += '<div class="day-sub">Day ' + day.day + ' · ' + esc(day.date) + '</div>';
+        html += '</div>';
+        html += '<span class="chevron">▶</span>';
+        html += '</div>';
+        html += '<div class="card-body">';
+
+        // Meals
+        for (var m = 0; m < day.meals.length; m++) {
+          var meal = day.meals[m];
+          var slotLabel = meal.slot.charAt(0).toUpperCase() + meal.slot.slice(1);
+          html += '<div class="food-meal">';
+          html += '<div class="food-meal-header">';
+          html += '<span class="food-meal-slot">' + esc(slotLabel) + '</span>';
+          if (meal.time_hint) html += '<span class="food-meal-hint">' + esc(meal.time_hint) + '</span>';
+          html += '</div>';
+
+          // Restaurants
+          for (var r = 0; r < meal.restaurants.length; r++) {
+            var rest = meal.restaurants[r];
+            var place = rest.place_id ? placeById(rest.place_id) : null;
+
+            html += '<div class="food-restaurant' + (rest.role === 'backup' ? ' food-backup' : '') + '">';
+
+            // Role + badges row
+            html += '<div class="food-badges">';
+            if (rest.role === 'backup') {
+              html += '<span class="food-badge backup">Backup</span>';
+            }
+            if (rest.badges) {
+              for (var bg = 0; bg < rest.badges.length; bg++) {
+                if (rest.tabelog_url && rest.badges[bg].indexOf('tabelog') === 0) {
+                  html += '<a class="food-badge rating" href="' + esc(rest.tabelog_url) + '" target="_blank" rel="noopener">' + esc(rest.badges[bg]) + '</a>';
+                } else {
+                  html += '<span class="food-badge rating">' + esc(rest.badges[bg]) + '</span>';
+                }
+              }
+            }
+            if (rest.cuisine) {
+              html += '<span class="food-cuisine">' + esc(rest.cuisine) + '</span>';
+            }
+            html += '</div>';
+
+            // Place card (reuse component)
+            if (place) {
+              html += renderPlaceCard(place, null);
+            }
+
+            // Food-specific details (skip price if place card already shows it)
+            if (rest.price && (!place || rest.price !== place.price)) {
+              html += '<div class="food-price">' + esc(rest.price) + '</div>';
+            }
+            if (rest.order) {
+              html += '<div class="food-order">';
+              html += '<span class="food-order-label">Order:</span> ' + esc(rest.order);
+              html += '</div>';
+            }
+            if (rest.note) {
+              html += '<div class="food-note">' + esc(rest.note) + '</div>';
+            }
+
+            html += '</div>';
+          }
+
+          html += '</div>';
+        }
+
+        html += '</div>';
+        html += '</div>';
+      }
+    }
+
+    container.innerHTML = html;
+    bindCardToggles(container);
+    bindCopyables(container);
   }
 
   // ─── Transit section (stub — Phase 4 second pass) ─────────
