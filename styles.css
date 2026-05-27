@@ -200,9 +200,9 @@ main {
   border-top: 1px solid var(--border);
 }
 .bottom-nav a {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
-  padding: 8px 12px;
+  padding: 8px 8px;
   border-radius: 12px;
   text-decoration: none;
   color: var(--text-dim);
@@ -1093,4 +1093,176 @@ a.food-badge.rating:active {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* ─── Weather bar ────────────────────────────────────────── */
+.weather-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(100, 181, 246, 0.08);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  border: 1px solid rgba(100, 181, 246, 0.15);
+}
+.weather-bar .wx-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+.weather-bar .wx-temps {
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+.weather-bar .wx-hi {
+  color: #e09455;
+}
+.weather-bar .wx-lo {
+  color: #6aadcf;
+}
+.weather-bar .wx-desc {
+  flex: 1;
+  min-width: 0;
+}
+.weather-bar .wx-rain {
+  font-size: 11px;
+  white-space: nowrap;
+}
+.weather-bar .wx-stale {
+  font-size: 10px;
+  color: var(--text-dim);
+  opacity: 0.6;
+}
+.weather-bar.wx-unavailable {
+  justify-content: center;
+  font-size: 12px;
+  opacity: 0.5;
+}
+.rain-alert {
+  padding: 10px 14px;
+  background: rgba(224, 148, 85, 0.12);
+  border-radius: 10px;
+  border-left: 3px solid #e09455;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* ─── Open/closed badge ──────────────────────────────────── */
+.status-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 7px;
+  border-radius: 5px;
+  margin-left: 8px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.status-badge.badge-open {
+  background: rgba(124, 184, 122, 0.2);
+  color: #7cb87a;
+}
+.status-badge.badge-closing {
+  background: rgba(224, 200, 80, 0.2);
+  color: #e0c850;
+}
+.status-badge.badge-closed {
+  background: rgba(224, 112, 112, 0.15);
+  color: #e07070;
+}
+.status-badge.badge-peak {
+  background: rgba(240, 160, 48, 0.2);
+  color: #f0a030;
+  margin-left: 4px;
+}
+
+/* ─── Info / Reservations section ───────────────────────── */
+.info-heading {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 12px;
+  padding: 0;
+}
+.info-hotel {
+  background: var(--card);
+  border-radius: 14px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.info-hotel .card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+}
+.info-hotel .card-header .chevron {
+  flex-shrink: 0;
+}
+.info-hotel-head {
+  flex: 1;
+  min-width: 0;
+}
+.info-dates {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.info-booking {
+  margin-bottom: 12px;
+}
+.info-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(240, 160, 96, 0.06);
+  border-radius: 10px;
+  margin-bottom: 6px;
+}
+.info-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
+}
+.info-value {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.info-value:active {
+  background: rgba(240, 160, 96, 0.15);
+}
+.info-notes {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding: 6px 0;
+}
+.btn-pdf {
+  display: inline-block;
+  padding: 10px 16px;
+  margin: 8px 0 4px;
+  background: rgba(100, 181, 246, 0.1);
+  color: var(--link);
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid rgba(100, 181, 246, 0.2);
+}
+.btn-pdf:active {
+  background: rgba(100, 181, 246, 0.2);
 }

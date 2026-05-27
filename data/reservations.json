@@ -1,0 +1,13 @@
+{
+  "hotels": [
+    {
+      "place_id": "osaka-excel-hotel-tokyu",
+      "check_in": "2026-04-13",
+      "check_out": "2026-04-17",
+      "nights": 4,
+      "pin": "6857",
+      "room_notes": "Near Honmachi Station. Breakfast included.",
+      "pdf": "./trip-data/osaka-excel-hotel-tokyu.pdf"
+    }
+  ]
+}

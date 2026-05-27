@@ -1,0 +1,74 @@
+[
+  {
+    "tool": "geo-check",
+    "place_id": "kasuga-taisha",
+    "severity": "warn",
+    "code": "PIN_DISTANCE",
+    "message": "\"Kasuga Taisha\" found 338m from stored coords (threshold: 300m)",
+    "suggestion": "OSM result at 34.6805063,135.8460746: Kasuga-taisha, Nara, Nara Prefecture, 630-8212, Japan"
+  },
+  {
+    "tool": "geo-check",
+    "place_id": "kasugayama-forest",
+    "severity": "info",
+    "code": "PIN_NO_MATCH",
+    "message": "No Nominatim results for \"Kasugayama Primeval Forest\" or \"春日山原始林\" near coords",
+    "suggestion": "Place may not be indexed in OSM — verify coordinates manually"
+  },
+  {
+    "tool": "geo-check",
+    "place_id": "isuien-garden",
+    "severity": "warn",
+    "code": "PIN_DISTANCE",
+    "message": "\"Isuien Garden\" found 496m from stored coords (threshold: 200m)",
+    "suggestion": "OSM result at 34.6854662,135.8379189: Isuien Garden, Kasuganochō, Nara, Nara Prefecture, Japan"
+  },
+  {
+    "tool": "geo-check",
+    "place_id": "hiraso-nara",
+    "severity": "info",
+    "code": "PIN_NO_MATCH",
+    "message": "No Nominatim results for \"Kakinoha-zushi Hiraso (Nara Main Store)\" or \"平宗 奈良本館\" near coords",
+    "suggestion": "Place may not be indexed in OSM — verify coordinates manually"
+  },
+  {
+    "tool": "geo-check",
+    "place_id": "kakinoha-tanaka-nara",
+    "severity": "info",
+    "code": "PIN_NO_MATCH",
+    "message": "No Nominatim results for \"Kakinoha-zushi Tanaka (Nara Main Store)\" or \"柿の葉すし本舗たなか なら本店\" near coords",
+    "suggestion": "Place may not be indexed in OSM — verify coordinates manually"
+  },
+  {
+    "tool": "geo-check",
+    "place_id": "sugidama-honmachi",
+    "severity": "info",
+    "code": "PIN_NO_MATCH",
+    "message": "No Nominatim results for \"Sugidama Honmachi\" or \"鮨 酒 肴 杉玉 本町\" near coords",
+    "suggestion": "Place may not be indexed in OSM — verify coordinates manually"
+  },
+  {
+    "tool": "geo-check",
+    "place_id": "kintetsu-nara-station",
+    "severity": "warn",
+    "code": "PIN_DISTANCE",
+    "message": "\"Kintetsu Nara Station\" found 262m from stored coords (threshold: 200m)",
+    "suggestion": "OSM result at 34.6840021,135.8263398: Kintetsu Nara Station, Yasuragi-no-michi, Babacho, Kawanokami-tsukinukecho, Nara, Nara Prefecture, 630-8228, Japan"
+  },
+  {
+    "tool": "geo-check",
+    "place_id": "kintetsu-osaka-namba",
+    "severity": "info",
+    "code": "PIN_NO_MATCH",
+    "message": "No Nominatim results for \"Kintetsu Osaka-Namba Station\" or \"近鉄大阪難波駅\" near coords",
+    "suggestion": "Place may not be indexed in OSM — verify coordinates manually"
+  },
+  {
+    "tool": "geo-check",
+    "place_id": "osaka-excel-hotel-tokyu",
+    "severity": "info",
+    "code": "PIN_NO_MATCH",
+    "message": "No Nominatim results for \"Osaka Excel Hotel Tokyu\" or \"大阪エクセルホテル東急\" near coords",
+    "suggestion": "Place may not be indexed in OSM — verify coordinates manually"
+  }
+]

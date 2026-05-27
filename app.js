@@ -106,6 +106,22 @@
   }
 
   // ─── Place card renderer ──────────────────────────────────
+  function todayHoursSummary(place) {
+    if (!place || !place.hours) return '';
+    var now = jstNow();
+    var todayKey = WEEKDAY_KEYS[now.getDay()];
+    var intervals = place.hours[todayKey];
+
+    if (intervals === null || intervals === undefined) return 'Closed today';
+    if (!Array.isArray(intervals) || intervals.length === 0) return '';
+
+    var parts = [];
+    for (var i = 0; i < intervals.length; i++) {
+      parts.push(intervals[i][0] + '–' + intervals[i][1]);
+    }
+    return 'Today: ' + parts.join(', ');
+  }
+
   function renderPlaceCard(place, detail) {
     var html = '';
     html += '<div class="item" data-place-id="' + esc(place.id) + '">';
@@ -120,6 +136,8 @@
 
     // Place info row (hours summary, price, address)
     var infoParts = [];
+    var hoursTxt = todayHoursSummary(place);
+    if (hoursTxt) infoParts.push('<span class="place-hours">' + esc(hoursTxt) + '</span>');
     if (place.price) infoParts.push('<span>' + esc(place.price) + '</span>');
     if (place.address_jp) {
       infoParts.push('<span class="copyable" data-copy="' + esc(place.address_jp) + '">' + esc(place.address_jp) + '</span>');
@@ -657,6 +675,86 @@
     bindCardToggles(container);
   }
 
+  // ─── Info / Reservations section renderer ──────────────────
+  function renderInfo() {
+    var container = document.getElementById('section-info');
+    if (!DATA.reservations) {
+      container.innerHTML = '<div class="section-empty">No reservation data loaded</div>';
+      return;
+    }
+
+    var html = '';
+    var hotels = DATA.reservations.hotels || [];
+
+    if (hotels.length > 0) {
+      html += '<h2 class="info-heading">Hotel Reservations</h2>';
+
+      for (var i = 0; i < hotels.length; i++) {
+        var booking = hotels[i];
+        var place = placeById(booking.place_id);
+        if (!place) continue;
+
+        var checkin = booking.check_in || '';
+        var checkout = booking.check_out || '';
+        var nightsLabel = booking.nights ? booking.nights + ' night' + (booking.nights !== 1 ? 's' : '') : '';
+
+        html += '<div class="info-hotel card-open">';
+        html += '<div class="card-header" data-toggle>';
+        html += '<div class="info-hotel-head">';
+        html += '<div class="item-name">' + esc(place.name_en);
+        if (place.name_jp) {
+          html += ' <span class="item-name-jp">' + esc(place.name_jp) + '</span>';
+        }
+        html += '</div>';
+        html += '<div class="info-dates">' + esc(checkin + ' → ' + checkout) +
+          (nightsLabel ? ' · ' + esc(nightsLabel) : '') + '</div>';
+        html += '</div>';
+        html += '<span class="chevron">▶</span>';
+        html += '</div>';
+
+        html += '<div class="card-body">';
+
+        // Booking details
+        html += '<div class="info-booking">';
+        if (booking.pin) {
+          html += '<div class="info-field">';
+          html += '<span class="info-label">Check-in PIN</span>';
+          html += '<span class="info-value copyable" data-copy="' + esc(booking.pin) + '">' + esc(booking.pin) + '</span>';
+          html += '</div>';
+        }
+        if (booking.confirmation) {
+          html += '<div class="info-field">';
+          html += '<span class="info-label">Confirmation</span>';
+          html += '<span class="info-value copyable" data-copy="' + esc(booking.confirmation) + '">' + esc(booking.confirmation) + '</span>';
+          html += '</div>';
+        }
+        if (booking.room_notes) {
+          html += '<div class="info-notes">' + esc(booking.room_notes) + '</div>';
+        }
+        html += '</div>';
+
+        // Place card (address, map, phone)
+        html += renderPlaceCard(place);
+
+        // PDF link
+        if (booking.pdf) {
+          html += '<a class="btn btn-pdf" href="' + esc(booking.pdf) + '" target="_blank" rel="noopener">📄 Confirmation PDF</a>';
+        }
+
+        html += '</div>';
+        html += '</div>';
+      }
+    }
+
+    if (html === '') {
+      html = '<div class="section-empty">No reservations yet</div>';
+    }
+
+    container.innerHTML = html;
+    bindCardToggles(container);
+    bindCopyables(container);
+  }
+
   // ─── Event binding helpers ────────────────────────────────
   function bindCardToggles(root) {
     var headers = root.querySelectorAll('[data-toggle]');
@@ -717,6 +815,326 @@
     }
   }
 
+  // ─── Open/closed badge logic ───────────────────────────────
+  var WEEKDAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+
+  function placeStatus(place) {
+    if (!place || !place.hours) return null;
+
+    var now = jstNow();
+    var todayKey = WEEKDAY_KEYS[now.getDay()];
+    var todayISO = now.getFullYear() + '-' +
+      String(now.getMonth() + 1).padStart(2, '0') + '-' +
+      String(now.getDate()).padStart(2, '0');
+    var currentMin = now.getHours() * 60 + now.getMinutes();
+
+    // closed_notes: suppress all badges (honest uncertainty per REDESIGN.md §2)
+    if (place.hours.closed_notes) {
+      return null;
+    }
+
+    // Check exceptions first
+    if (place.hours.exceptions) {
+      for (var e = 0; e < place.hours.exceptions.length; e++) {
+        var exc = place.hours.exceptions[e];
+        if (exc.date === todayISO) {
+          if (exc.closed) return { status: 'closed', label: 'CLOSED TODAY', note: exc.note };
+          break;
+        }
+      }
+    }
+
+    var recurring = place.hours.recurring_closed || [];
+    for (var rc = 0; rc < recurring.length; rc++) {
+      var rule = recurring[rc];
+      if (rule.weekday === todayKey) {
+        if (!rule.nth) {
+          return { status: 'closed', label: 'CLOSED TODAY' };
+        }
+        var dayOfMonth = now.getDate();
+        var nthWeek = Math.ceil(dayOfMonth / 7);
+        for (var n = 0; n < rule.nth.length; n++) {
+          if (rule.nth[n] === nthWeek) {
+            return { status: 'closed', label: 'CLOSED TODAY' };
+          }
+        }
+      }
+    }
+
+    // Check weekly hours
+    var intervals = place.hours[todayKey];
+    if (intervals === null || intervals === undefined) {
+      return { status: 'closed', label: 'CLOSED TODAY' };
+    }
+
+    if (!Array.isArray(intervals) || intervals.length === 0) {
+      return null;
+    }
+
+    // Check if currently within any interval
+    for (var i = 0; i < intervals.length; i++) {
+      var open = parseTimeToMin(intervals[i][0]);
+      var close = parseTimeToMin(intervals[i][1]);
+      if (open === null || close === null) continue;
+
+      if (currentMin >= open && currentMin < close) {
+        if (close - currentMin <= 60) {
+          return { status: 'closing', label: 'CLOSING SOON' };
+        }
+        var isLunchPeak = currentMin >= 11 * 60 + 30 && currentMin < 13 * 60;
+        var isDinnerPeak = currentMin >= 18 * 60 && currentMin < 19 * 60 + 30;
+        return {
+          status: 'open',
+          label: 'OPEN NOW',
+          peak: isLunchPeak || isDinnerPeak
+        };
+      }
+    }
+
+    return { status: 'closed', label: 'CLOSED' };
+  }
+
+  function parseTimeToMin(str) {
+    if (!str) return null;
+    var parts = str.split(':');
+    if (parts.length < 2) return null;
+    return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+  }
+
+  function applyBadges() {
+    var placeEls = document.querySelectorAll('[data-place-id]');
+    for (var i = 0; i < placeEls.length; i++) {
+      var el = placeEls[i];
+      var id = el.getAttribute('data-place-id');
+      var place = placeById(id);
+      if (!place) continue;
+
+      // Remove existing badges
+      var existing = el.querySelectorAll('.status-badge');
+      for (var r = 0; r < existing.length; r++) existing[r].remove();
+
+      var result = placeStatus(place);
+      if (!result) continue;
+
+      var nameEl = el.querySelector('.item-name');
+      if (!nameEl) continue;
+
+      var badge = document.createElement('span');
+      badge.className = 'status-badge badge-' + result.status;
+      badge.textContent = result.label;
+      nameEl.appendChild(badge);
+
+      if (result.peak) {
+        var peakBadge = document.createElement('span');
+        peakBadge.className = 'status-badge badge-peak';
+        peakBadge.textContent = 'Peak';
+        nameEl.appendChild(peakBadge);
+      }
+    }
+  }
+
+  // ─── Weather bar ─────────────────────────────────────────────
+  var WX_ICONS = {
+    0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️',
+    45: '🌫️', 48: '🌫️',
+    51: '🌦️', 53: '🌦️', 55: '🌧️',
+    61: '🌧️', 63: '🌧️', 65: '🌧️',
+    71: '🌨️', 73: '🌨️', 75: '🌨️', 77: '🌨️',
+    80: '🌦️', 81: '🌧️', 82: '🌧️',
+    85: '🌨️', 86: '🌨️',
+    95: '⛈️', 96: '⛈️', 99: '⛈️'
+  };
+
+  var WX_DESC = {
+    0: 'Clear', 1: 'Mostly clear', 2: 'Partly cloudy', 3: 'Overcast',
+    45: 'Fog', 48: 'Fog',
+    51: 'Light drizzle', 53: 'Drizzle', 55: 'Heavy drizzle',
+    61: 'Light rain', 63: 'Rain', 65: 'Heavy rain',
+    71: 'Light snow', 73: 'Snow', 75: 'Heavy snow', 77: 'Snow grains',
+    80: 'Light showers', 81: 'Showers', 82: 'Heavy showers',
+    85: 'Snow showers', 86: 'Heavy snow showers',
+    95: 'Thunderstorm', 96: 'Thunderstorm + hail', 99: 'Thunderstorm + hail'
+  };
+
+  var WX_CACHE_KEY = 'japan_trip_v2_weather';
+
+  function wxGetCache() {
+    try {
+      var raw = localStorage.getItem(WX_CACHE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+
+  function wxSetCache(data) {
+    try {
+      localStorage.setItem(WX_CACHE_KEY, JSON.stringify({
+        fetched: new Date().toISOString(),
+        days: data
+      }));
+    } catch (e) { /* quota exceeded */ }
+  }
+
+  function wxFormatStale(isoStr) {
+    if (!isoStr) return '';
+    var diff = Date.now() - new Date(isoStr).getTime();
+    var mins = Math.floor(diff / 60000);
+    if (mins < 2) return 'just now';
+    if (mins < 60) return mins + 'min ago';
+    var hrs = Math.floor(mins / 60);
+    if (hrs < 24) return hrs + 'h ago';
+    var days = Math.floor(hrs / 24);
+    return days + 'd ago';
+  }
+
+  function renderWeatherBar(dayEl, data, staleTime) {
+    var body = dayEl.querySelector('.card-body');
+    if (!body) return;
+
+    var existing = body.querySelector('.weather-bar');
+    if (existing) existing.remove();
+    var existingAlert = body.querySelector('.rain-alert');
+    if (existingAlert) existingAlert.remove();
+
+    var bar = document.createElement('div');
+
+    if (!data) {
+      bar.className = 'weather-bar wx-unavailable';
+      bar.textContent = '🌏 Forecast available ~2 weeks before trip';
+    } else {
+      bar.className = 'weather-bar';
+      var icon = WX_ICONS[data.code] || '🌡️';
+      var desc = WX_DESC[data.code] || 'Unknown';
+      var staleHtml = staleTime
+        ? ' <span class="wx-stale">(fetched ' + esc(staleTime) + ')</span>' : '';
+
+      bar.innerHTML =
+        '<span class="wx-icon">' + icon + '</span>' +
+        '<span class="wx-temps"><span class="wx-hi">' + Math.round(data.hi) + '°</span> / ' +
+        '<span class="wx-lo">' + Math.round(data.lo) + '°</span></span>' +
+        '<span class="wx-desc">' + esc(desc) + '</span>' +
+        '<span class="wx-rain">💧' + data.rain + '%</span>' +
+        staleHtml;
+
+      if (data.rain >= 60) {
+        var alert = document.createElement('div');
+        alert.className = 'rain-alert';
+        var tags = dayEl.querySelectorAll('.tag-hike');
+        if (tags.length > 0) {
+          alert.textContent = '⚠ Heavy rain expected on hike day — consider alternatives';
+        } else {
+          alert.textContent = '🌧 ' + data.rain + '% chance of rain — pack umbrella';
+        }
+        body.insertBefore(alert, body.firstChild);
+      }
+    }
+
+    body.insertBefore(bar, body.firstChild);
+  }
+
+  function renderAllWeather(weatherData, staleTime) {
+    if (!DATA.days) return;
+    for (var d = 0; d < DATA.days.length; d++) {
+      var day = DATA.days[d];
+      var dayEl = document.querySelector('.day-card:nth-child(' + (d + 1) + ')');
+      if (!dayEl) {
+        var dayCards = document.querySelectorAll('.day-card');
+        for (var j = 0; j < dayCards.length; j++) {
+          var numEl = dayCards[j].querySelector('.day-num');
+          if (numEl && numEl.textContent.trim() === String(day.day)) {
+            dayEl = dayCards[j];
+            break;
+          }
+        }
+      }
+      if (!dayEl) continue;
+      var dayData = weatherData ? weatherData[day.day] : null;
+      renderWeatherBar(dayEl, dayData, staleTime);
+    }
+  }
+
+  function wxRenderFromCache() {
+    var cached = wxGetCache();
+    if (!cached) return false;
+    var stale = wxFormatStale(cached.fetched);
+    renderAllWeather(cached.days, stale);
+    return true;
+  }
+
+  function wxFetch() {
+    if (!DATA.days || !DATA.meta) return Promise.resolve(false);
+
+    var locGroups = {};
+    for (var d = 0; d < DATA.days.length; d++) {
+      var day = DATA.days[d];
+      var loc = day.location;
+      if (!loc) continue;
+      var key = loc.lat + ',' + loc.lon;
+      if (!locGroups[key]) locGroups[key] = { lat: loc.lat, lon: loc.lon, days: [] };
+      locGroups[key].days.push({ num: day.day, date: day.date });
+    }
+
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    var maxForecast = new Date(today);
+    maxForecast.setDate(maxForecast.getDate() + 15);
+    var maxStr = maxForecast.toISOString().slice(0, 10);
+    var todayStr = today.toISOString().slice(0, 10);
+
+    var keys = Object.keys(locGroups);
+    var results = {};
+    var fetches = [];
+
+    for (var k = 0; k < keys.length; k++) {
+      (function (g) {
+        var dates = g.days.map(function (d) { return d.date; });
+        var startDate = dates.reduce(function (a, b) { return a < b ? a : b; });
+        var endDate = dates.reduce(function (a, b) { return a > b ? a : b; });
+
+        if (startDate < todayStr) startDate = todayStr;
+        if (endDate > maxStr) endDate = maxStr;
+        if (startDate > maxStr || endDate < todayStr) return;
+
+        var url = 'https://api.open-meteo.com/v1/forecast?' +
+          'latitude=' + g.lat + '&longitude=' + g.lon +
+          '&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weather_code' +
+          '&timezone=Asia/Tokyo&start_date=' + startDate + '&end_date=' + endDate;
+
+        fetches.push(
+          fetch(url).then(function (resp) {
+            if (!resp.ok) return;
+            return resp.json().then(function (json) {
+              if (json.daily && json.daily.time) {
+                var dateMap = {};
+                for (var i = 0; i < json.daily.time.length; i++) {
+                  dateMap[json.daily.time[i]] = {
+                    hi: json.daily.temperature_2m_max[i],
+                    lo: json.daily.temperature_2m_min[i],
+                    rain: json.daily.precipitation_probability_max[i],
+                    code: json.daily.weather_code[i]
+                  };
+                }
+                for (var j = 0; j < g.days.length; j++) {
+                  if (dateMap[g.days[j].date]) {
+                    results[g.days[j].num] = dateMap[g.days[j].date];
+                  }
+                }
+              }
+            });
+          }).catch(function () { /* network error */ })
+        );
+      })(locGroups[keys[k]]);
+    }
+
+    return Promise.all(fetches).then(function () {
+      if (Object.keys(results).length > 0) {
+        wxSetCache(results);
+        renderAllWeather(results, null);
+        return true;
+      }
+      return false;
+    });
+  }
+
   // ─── Header subtitle (trip countdown / current day) ───────
   function updateHeaderSub() {
     var sub = document.getElementById('header-sub');
@@ -774,7 +1192,7 @@
   var navLinks = document.querySelectorAll('.bottom-nav a');
   var sections = document.querySelectorAll('.content-section');
 
-  var VALID_SECTIONS = ['days', 'food', 'transit', 'phrases', 'sos'];
+  var VALID_SECTIONS = ['days', 'food', 'transit', 'phrases', 'sos', 'info'];
 
   function switchSection(target) {
     if (VALID_SECTIONS.indexOf(target) === -1) target = 'days';
@@ -941,7 +1359,7 @@
         for (var en = 0; en < sos.emergency_numbers.length; en++) {
           var num = sos.emergency_numbers[en];
           searchIndex.push({
-            text: [num.label, num.number, num.note_en].filter(Boolean).join(' ').toLowerCase(),
+            text: ['emergency', num.label, num.number, num.note_en].filter(Boolean).join(' ').toLowerCase(),
             section: 'sos',
             icon: '🚨',
             title: num.label,
@@ -949,11 +1367,20 @@
           });
         }
       }
+      if (sos.embassy) {
+        searchIndex.push({
+          text: ['embassy', sos.embassy.name_en, sos.embassy.address_en, sos.embassy.address_jp, sos.embassy.consular_hours].filter(Boolean).join(' ').toLowerCase(),
+          section: 'sos',
+          icon: '🏛',
+          title: sos.embassy.name_en,
+          detail: sos.embassy.consular_hours || ''
+        });
+      }
       if (sos.hotels) {
         for (var h = 0; h < sos.hotels.length; h++) {
           var hotel = sos.hotels[h];
           searchIndex.push({
-            text: [hotel.name_en, hotel.name_jp, hotel.city, hotel.address_jp, hotel.dates].filter(Boolean).join(' ').toLowerCase(),
+            text: ['hotel', hotel.name_en, hotel.name_jp, hotel.city, hotel.address_jp, hotel.dates].filter(Boolean).join(' ').toLowerCase(),
             section: 'sos',
             icon: '🏨',
             title: hotel.name_en,
@@ -961,17 +1388,49 @@
           });
         }
       }
+      if (sos.medical) {
+        for (var md = 0; md < sos.medical.length; md++) {
+          var med = sos.medical[md];
+          var medParts = ['medical', 'hospital', 'pharmacy', med.city, med.dates];
+          if (med.hospital) medParts.push(med.hospital.name_en, med.hospital.name_jp, med.hospital.note);
+          if (med.pharmacy) medParts.push(med.pharmacy.name, med.pharmacy.location);
+          searchIndex.push({
+            text: medParts.filter(Boolean).join(' ').toLowerCase(),
+            section: 'sos',
+            icon: '🏥',
+            title: med.hospital ? med.hospital.name_en : 'Medical — ' + med.city,
+            detail: med.city + ' · ' + med.dates
+          });
+        }
+      }
       if (sos.show_to_staff_cards) {
         for (var sc = 0; sc < sos.show_to_staff_cards.length; sc++) {
           var card = sos.show_to_staff_cards[sc];
           searchIndex.push({
-            text: [card.en, card.jp, card.romaji].filter(Boolean).join(' ').toLowerCase(),
+            text: ['show to staff', card.en, card.jp, card.romaji].filter(Boolean).join(' ').toLowerCase(),
             section: 'sos',
             icon: '📱',
             title: card.en,
             detail: card.jp
           });
         }
+      }
+    }
+
+    // Reservations
+    if (DATA.reservations && DATA.reservations.hotels) {
+      for (var ri = 0; ri < DATA.reservations.hotels.length; ri++) {
+        var rbk = DATA.reservations.hotels[ri];
+        var rpl = rbk.place_id ? placeById(rbk.place_id) : null;
+        var rParts = ['hotel', 'reservation', 'booking', rbk.check_in, rbk.check_out, rbk.room_notes];
+        if (rpl) rParts.push(rpl.name_en, rpl.name_jp, rpl.address_jp);
+        searchIndex.push({
+          text: rParts.filter(Boolean).join(' ').toLowerCase(),
+          section: 'info',
+          icon: '🏨',
+          title: rpl ? rpl.name_en : 'Hotel Reservation',
+          detail: rbk.check_in + ' → ' + rbk.check_out
+        });
       }
     }
   }
@@ -1127,7 +1586,8 @@
     loadJSON('./data/places.json'),
     loadJSON('./data/food.json'),
     loadJSON('./data/phrases.json'),
-    loadJSON('./data/sos.json')
+    loadJSON('./data/sos.json'),
+    loadJSON('./data/reservations.json')
   ]).then(function (results) {
     DATA.meta = results[0];
     DATA.days = results[1];
@@ -1135,6 +1595,7 @@
     DATA.food = results[3];
     DATA.phrases = results[4];
     DATA.sos = results[5];
+    DATA.reservations = results[6];
 
     updateHeaderSub();
     renderDays();
@@ -1142,7 +1603,24 @@
     renderTransit();
     renderPhrases();
     renderSOS();
+    renderInfo();
     buildSearchIndex();
+
+    // Open/closed badges
+    applyBadges();
+    setInterval(applyBadges, 60000);
+
+    // Weather
+    var hadCache = wxRenderFromCache();
+    if (navigator.onLine) {
+      wxFetch().catch(function () { return false; }).then(function (fetched) {
+        if (!fetched && !hadCache) {
+          renderAllWeather(null, null);
+        }
+      });
+    } else if (!hadCache) {
+      renderAllWeather(null, null);
+    }
   }).catch(function (err) {
     console.error('Data load failed:', err);
     document.getElementById('header-sub').textContent = 'Offline — cached data';

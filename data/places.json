@@ -14,9 +14,9 @@
       "thu": [["07:30", "17:30"]],
       "fri": [["07:30", "17:30"]],
       "sat": [["07:30", "17:30"]],
-      "sun": [["07:30", "17:30"]]
+      "sun": [["07:30", "17:30"]],
+      "closed_notes": "Hours are seasonal: Apr–Sep 07:30–17:30, Oct 07:30–17:00, Nov–Feb 08:00–17:00, Mar 08:00–17:00. Shown here for April."
     },
-    "closed_notes": "Hours are seasonal: Apr–Sep 07:30–17:30, Oct 07:30–17:00, Nov–Feb 08:00–17:00, Mar 08:00–17:00. Shown here for April.",
     "price": "¥600 (Great Buddha Hall)",
     "phone": "+81-742-22-5511",
     "url": "https://www.todaiji.or.jp/en/",
@@ -43,9 +43,9 @@
       "thu": [["06:30", "17:30"]],
       "fri": [["06:30", "17:30"]],
       "sat": [["06:30", "17:30"]],
-      "sun": [["06:30", "17:30"]]
+      "sun": [["06:30", "17:30"]],
+      "closed_notes": "Hours are seasonal: Mar–Oct 06:30–17:30, Nov–Feb 07:00–17:00. Shown here for April."
     },
-    "closed_notes": "Hours are seasonal: Mar–Oct 06:30–17:30, Nov–Feb 07:00–17:00. Shown here for April.",
     "price": "free (inner sanctuary ¥500)",
     "phone": "+81-742-22-7788",
     "url": "https://www.kasugataisha.or.jp/about/index_en.html",
@@ -86,9 +86,9 @@
       "thu": [["09:30", "16:30"]],
       "fri": [["09:30", "16:30"]],
       "sat": [["09:30", "16:30"]],
-      "sun": [["09:30", "16:30"]]
+      "sun": [["09:30", "16:30"]],
+      "recurring_closed": [{ "weekday": "tue" }]
     },
-    "recurring_closed": [{ "weekday": "tue" }],
     "price": "¥1,200 (includes Neiraku Museum)",
     "phone": "+81-742-25-0781",
     "url": "https://isuien.or.jp/en/",
@@ -115,10 +115,10 @@
       "thu": [["11:30", "20:00"]],
       "fri": [["11:30", "20:00"]],
       "sat": [["11:30", "20:00"]],
-      "sun": [["11:30", "20:00"]]
+      "sun": [["11:30", "20:00"]],
+      "recurring_closed": [{ "weekday": "mon" }],
+      "closed_notes": "Dining hours shown. Takeout sales counter closes earlier (11:30–15:00)."
     },
-    "recurring_closed": [{ "weekday": "mon" }],
-    "closed_notes": "Dining hours shown. Takeout sales counter closes earlier (11:30–15:00).",
     "price": "¥1,000–2,000",
     "sources": [],
     "verified_on": null,
@@ -141,9 +141,9 @@
       "thu": [["11:00", "16:00"]],
       "fri": [["11:00", "16:00"]],
       "sat": [["11:00", "16:00"]],
-      "sun": [["11:00", "16:00"]]
+      "sun": [["11:00", "16:00"]],
+      "closed_notes": "Eat-in hours shown (11:00–16:00). Takeout shop open longer (09:00–19:00)."
     },
-    "closed_notes": "Eat-in hours shown (11:00–16:00). Takeout shop open longer (09:00–19:00).",
     "price": "¥1,000–1,300",
     "sources": [],
     "verified_on": null,

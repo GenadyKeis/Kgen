@@ -1,4 +1,4 @@
-const CACHE_NAME = 'japan-v2-shell-11';
+const CACHE_NAME = 'japan-v2-shell-16';
 
 const SHELL_ASSETS = [
   './',
@@ -16,7 +16,8 @@ const DATA_ASSETS = [
   './data/places.json',
   './data/food.json',
   './data/phrases.json',
-  './data/sos.json'
+  './data/sos.json',
+  './data/reservations.json'
 ];
 
 const ALL_ASSETS = SHELL_ASSETS.concat(DATA_ASSETS);
