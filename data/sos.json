@@ -20,9 +20,9 @@
     },
     {
       "label": "AMDA Medical Info — English",
-      "number": "03-3204-2700",
-      "tel": "tel:0332042700",
-      "note_en": "Help finding English-speaking doctors. Mon–Fri 9:00–17:00."
+      "number": "03-6233-9266",
+      "tel": "tel:0362339266",
+      "note_en": "Free multilingual medical phone line — helps find a doctor and can interpret. Mon–Fri 10:00–16:00, closed public holidays. Toll-free from a Japanese line: 0120-339-266."
     }
   ],
   "embassy": {
@@ -31,151 +31,102 @@
     "address_en": "3 Nibancho, Chiyoda-ku, Tokyo 102-0084",
     "phone": "+81 3-3264-0911",
     "tel": "tel:+81332640911",
-    "email": "info@tokyo.mfa.gov.il",
+    "email": "consular@tokyo.mfa.gov.il",
     "consular_hours": "Mon–Fri 10:00–13:00",
-    "after_hours": "Call main line for emergency recording",
+    "after_hours": "Consular section direct line: 03-3264-0197. Closed on Israeli and Japanese holidays — during this trip that is Tue Nov 3 (Culture Day).",
     "website": "https://embassies.gov.il/japan/en/contacts",
     "lat": 35.6863,
     "lon": 139.7370
   },
   "hotels": [
-    {
-      "dates": "Apr 10–12",
-      "city": "Tokyo",
-      "name_en": "APA Hotel Ueno Ekiminami",
-      "name_jp": "アパホテル〈上野駅南〉",
-      "address_jp": "〒110-0005 東京都台東区上野6-7-21",
-      "phone": "+81 3-5807-7111",
-      "tel": "tel:+81358077111",
-      "show_to_staff": {
-        "jp": "アパホテル〈上野駅南〉\n東京都台東区上野6-7-21",
-        "en": "APA Hotel Ueno Ekiminami"
-      }
-    },
-    {
-      "dates": "Apr 13–16",
-      "city": "Osaka",
-      "name_en": "Osaka Excel Hotel Tokyu",
-      "name_jp": "大阪エクセルホテル東急",
-      "address_jp": "〒541-0058 大阪市中央区久太郎町4-1-15",
-      "phone": "+81 6-6252-0109",
-      "tel": "tel:+81662520109",
-      "show_to_staff": {
-        "jp": "大阪エクセルホテル東急\n大阪市中央区久太郎町4-1-15",
-        "en": "Osaka Excel Hotel Tokyu"
-      }
-    },
-    {
-      "dates": "Apr 17–20",
-      "city": "Hiroshima",
-      "name_en": "Daiwa Roynet Hotel Hiroshima-ekimae",
-      "name_jp": "ダイワロイネットホテル広島駅前",
-      "address_jp": "〒732-0057 広島市東区二葉の里3-5-7",
-      "phone": "+81 82-554-1455",
-      "tel": "tel:+81825541455",
-      "show_to_staff": {
-        "jp": "ダイワロイネットホテル広島駅前\n広島市東区二葉の里3-5-7",
-        "en": "Daiwa Roynet Hotel Hiroshima-ekimae"
-      }
-    },
-    {
-      "dates": "Apr 21–25",
-      "city": "Fukuoka",
-      "name_en": "KOKO HOTEL Hakata Station",
-      "name_jp": "KOKO HOTEL 博多駅前",
-      "address_jp": "〒812-0011 福岡市博多区博多駅前3-22-19",
-      "phone": "+81 92-476-9111",
-      "tel": "tel:+81924769111",
-      "show_to_staff": {
-        "jp": "KOKO HOTEL 博多駅前\n福岡市博多区博多駅前3-22-19",
-        "en": "KOKO HOTEL Hakata Station"
-      }
-    },
-    {
-      "dates": "Apr 26",
-      "city": "Tokyo",
-      "name_en": "APA Hotel Ueno Ekimae",
-      "name_jp": "アパホテル〈上野駅前〉",
-      "address_jp": "〒110-0015 東京都台東区東上野2-18-7",
-      "phone": "+81 3-5812-0311",
-      "tel": "tel:+81358120311",
-      "show_to_staff": {
-        "jp": "アパホテル〈上野駅前〉\n東京都台東区東上野2-18-7",
-        "en": "APA Hotel Ueno Ekimae"
-      }
-    }
+    { "place_id": "akihabara-washington", "city": "Tokyo", "dates": "Oct 22–28" },
+    { "place_id": "dormy-inn-kyoto", "city": "Kyoto", "dates": "Oct 28 – Nov 7" },
+    { "place_id": "sotetsu-fresa-hiroshima", "city": "Hiroshima", "dates": "Nov 7–9" },
+    { "place_id": "akihabara-washington", "city": "Tokyo", "dates": "Nov 9–11" }
   ],
   "medical": [
     {
-      "city": "Tokyo / Ueno",
-      "dates": "Apr 10–12, 26",
+      "city": "Tokyo",
+      "dates": "Oct 22–28 · Nov 9–11",
       "hospital": {
-        "name_en": "Eiju General Hospital",
-        "name_jp": "永寿総合病院",
-        "address": "Taito-ku Higashi Ueno 2-23-16",
-        "distance": "15 min walk from hotel",
-        "phone": "+81 3-3833-6151",
-        "tel": "tel:+81338336151",
-        "note": "Emergency dept available"
+        "name_en": "Mitsui Memorial Hospital",
+        "name_jp": "三井記念病院",
+        "address": "〒101-8643 東京都千代田区神田和泉町1",
+        "note": "Phone before you go — the hospital asks every emergency patient to call first, and may be at capacity. ¥8,800 off-hours surcharge, waived if they judge you need treatment. English help finding a doctor: Tokyo Himawari 03-5285-8181, daily 9:00–20:00. Nurse advice line: #7119 / 03-3212-2323, 24h.",
+        "hours": "Emergency reception 24h — at night, internal medicine and surgery only. Outpatient Mon–Fri 9:00–17:00, Sat 9:00–12:30; closed Sun & holidays.",
+        "distance": "7 min walk from JR Akihabara Showa-dori exit — the hotel is 1 min from the same station.",
+        "phone": "+81 3-3862-9111",
+        "tel": "tel:+81338629111",
+        "lat": 35.6999,
+        "lon": 139.7791,
+        "verified_on": "2026-08-15",
+        "confidence": "medium"
       },
       "pharmacy": {
-        "name": "Matsumoto Kiyoshi (マツモトキヨシ)",
-        "location": "Ameyoko",
-        "hours": "~10:00–21:00",
-        "note": "OTC meds, first aid, sunscreen."
+        "name": "Welcia Akihabara Ekimae (ウエルシア秋葉原駅前店)",
+        "location": "BiTO AKIBA 1F, Sotokanda 1-18-19 — at Akihabara Station, Electric Town exit side.",
+        "hours": "Store open 24 hours. Dispensing counter Mon–Sat 9:00–21:00, Sun 10:00–14:00 & 15:00–19:00; closed public holidays.",
+        "note": "Outside those dispensing hours it is over-the-counter only.",
+        "lat": 35.6988,
+        "lon": 139.7719,
+        "verified_on": "2026-08-15",
+        "confidence": "medium"
       }
     },
     {
-      "city": "Osaka / Honmachi",
-      "dates": "Apr 13–16",
+      "city": "Kyoto",
+      "dates": "Oct 28 – Nov 7",
       "hospital": {
-        "name_en": "Kitahama Clinic",
-        "name_jp": "北浜よしだクリニック",
-        "note": "English-speaking doctors · Near Kitahama Station",
-        "phone": "+81 6-6232-6601",
-        "tel": "tel:+81662326601",
-        "hours": "Weekdays 9:30–13:00, 15:00–18:30"
+        "name_en": "Takeda Hospital",
+        "name_jp": "康生会武田病院",
+        "address": "〒600-8558 京都市下京区塩小路通西洞院東入東塩小路町841-5",
+        "note": "Call the emergency line 075-361-1351 — not 075-361-1360, which is appointments only, weekdays 9:00–17:00. The hospital's own site runs in English, Chinese and Korean. Nurse advice line: #7119 / 0570-00-7119, 24h, free. ⚠ Kyoto City's after-hours clinic at Nijō has no adult internal medicine on weekday nights, so this hospital is the first call.",
+        "hours": "Emergency reception 24h (internal medicine, surgery, cardiology, neurosurgery). Outpatient 9:00–12:30 & 14:00–16:00; closed Sun & holidays.",
+        "distance": "Kyoto Station Central Exit — the hospital's own directions walk you there from the same gate the hotel uses, past the Central Post Office.",
+        "phone": "+81 75-361-1351",
+        "tel": "tel:+81753611351",
+        "lat": 34.9869,
+        "lon": 135.7559,
+        "verified_on": "2026-08-15",
+        "confidence": "medium"
       },
       "pharmacy": {
-        "name": "Daikoku Drug (ダイコクドラッグ)",
-        "location": "Shinsaibashi-suji",
-        "hours": "open late",
-        "note": "Multiple locations near Honmachi."
+        "name": "Kokumin Drug, Kyoto Porta (コクミンドラッグ 京都ポルタ店)",
+        "location": "Kyoto Porta B1F — the underground mall on Kyoto Station's north side, the hotel's own side.",
+        "hours": "Shop 7:00–22:30 daily. Dispensing counter Mon–Fri 9:00–14:00 & 15:00–20:00, Sat 9:00–14:00 & 15:00–18:00; closed Sun & holidays.",
+        "note": "Over-the-counter medicine is available across the whole 7:00–22:30 window. The map pin drops on Porta itself — B1F is one connected level and the drugstore zone is signposted from every entrance.",
+        "lat": 34.9871,
+        "lon": 135.7600,
+        "verified_on": "2026-08-15",
+        "confidence": "medium"
       }
     },
     {
       "city": "Hiroshima",
-      "dates": "Apr 17–20",
+      "dates": "Nov 7–9",
       "hospital": {
         "name_en": "Hiroshima City Hospital",
         "name_jp": "広島市立広島市民病院",
-        "address": "Naka-ku Motomachi 7-33",
-        "phone": "+81 82-221-1111",
-        "tel": "tel:+81822211111",
-        "note": "Emergency 24h"
+        "address": "〒730-8518 広島市中区基町7番33号",
+        "note": "Outside opening hours, report to the emergency reception in the East Building, 1F. Nurse advice line: #7119 / 082-246-2000, 24h. For an evening illness there is also Senda-machi Night Emergency Centre (千田町夜間急病センター), 082-504-9990, reception 19:30–22:30 daily, adults 15+ — they require you to phone before coming. ⚠ The hospital nearest the hotel, Futaba-no-sato (5 min from the Shinkansen exit), runs outpatient clinics Mon–Fri only, so it is shut on both nights of this stay.",
+        "hours": "Emergency 24h, 365 days.",
+        "distance": "Tram from JR Hiroshima Station, ~16 min to Kamiyachō-higashi, then ~7 min on foot; the hotel is 3 min from the station's south exit. ⚠ Last tram from the station is 22:01 (line 1) / 22:31 (line 2) — later than that, take a taxi from the station rank and show the address above.",
+        "phone": "+81 82-221-2291",
+        "tel": "tel:+81822212291",
+        "lat": 34.3977,
+        "lon": 132.4600,
+        "verified_on": "2026-08-15",
+        "confidence": "medium"
       },
       "pharmacy": {
-        "name": "Welcia (ウエルシア)",
-        "location": "near Hiroshima Station",
-        "hours": "~9:00–22:00"
-      }
-    },
-    {
-      "city": "Fukuoka / Hakata",
-      "dates": "Apr 21–25",
-      "hospital": {
-        "name_en": "Hakata Clinic",
-        "name_jp": "博多クリニック",
-        "address": "Hakataekimae 2-20-1",
-        "distance": "5 min from hotel",
-        "phone": "+81 92-471-2225",
-        "tel": "tel:+81924712225",
-        "hours": "Mon–Sat 9:00–12:30"
-      },
-      "pharmacy": {
-        "name": "Matsumoto Kiyoshi",
-        "location": "Hakata Station underground mall",
-        "hours": "~8:00–21:00"
+        "name": "Matsumoto Kiyoshi, ekie (マツモトキヨシ エキエ広島店)",
+        "location": "ekie 1F, inside Hiroshima Station on the south side — behind the same South Exit the hotel lists as a 3 min walk.",
+        "hours": "8:00–22:00 daily.",
+        "note": "The map pin drops on the ekie mall inside the station, not on the shop front.",
+        "lat": 34.3978,
+        "lon": 132.4765,
+        "verified_on": "2026-08-15",
+        "confidence": "medium"
       }
     }
   ],

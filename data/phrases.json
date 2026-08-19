@@ -27,16 +27,10 @@
           "romaji": "osusume wa nan desu ka?"
         },
         {
-          "en": "Firm noodles please",
-          "jp": "麺かためで",
-          "romaji": "men katame de",
-          "context": "Use at Hakata ramen shops — they'll ask noodle firmness"
-        },
-        {
-          "en": "Extra noodles please (ramen refill)",
-          "jp": "替え玉お願いします",
-          "romaji": "kaedama onegai shimasu",
-          "context": "Hakata ramen specialty — ~¥100–200 for another serving of noodles"
+          "en": "How long is the wait?",
+          "jp": "待ち時間はどのくらいですか？",
+          "romaji": "machi-jikan wa dono kurai desu ka?",
+          "context": "Ask before you commit — if the answer is more than a couple of minutes, thank them and walk. Every venue in this app has a backup"
         },
         {
           "en": "Check please",
@@ -64,7 +58,7 @@
     },
     {
       "id": "station",
-      "title": "At Train Stations",
+      "title": "Trains & Buses",
       "icon": "train",
       "phrases": [
         {
@@ -76,6 +70,12 @@
           "en": "Does this train go to ___?",
           "jp": "この電車は＿＿＿に行きますか？",
           "romaji": "kono densha wa ___ ni ikimasu ka?"
+        },
+        {
+          "en": "Does this bus go to ___?",
+          "jp": "このバスは＿＿＿に行きますか？",
+          "romaji": "kono basu wa ___ ni ikimasu ka?",
+          "context": "Ask the driver from the door before you board — nine of this trip's rides are buses or trams, and two of them take cash only"
         },
         {
           "en": "What time is the next train?",
@@ -96,6 +96,12 @@
           "en": "Where are the unreserved cars?",
           "jp": "自由席はどこですか？",
           "romaji": "jiyūseki wa doko desu ka?"
+        },
+        {
+          "en": "Top up my IC card please",
+          "jp": "チャージお願いします",
+          "romaji": "chāji onegai shimasu",
+          "context": "Hand over the card and a note. Works at a station machine, a convenience-store till, or a bus driver's console"
         }
       ]
     },
@@ -120,15 +126,10 @@
           "romaji": "chekkuauto wa nanji desu ka?"
         },
         {
-          "en": "Where is the onsen?",
-          "jp": "温泉はどこですか？",
-          "romaji": "onsen wa doko desu ka?"
-        },
-        {
-          "en": "I want to send luggage by takkyubin",
-          "jp": "宅配便を送りたいです",
-          "romaji": "takuhaibin wo okuritai desu",
-          "context": "Front desk can arrange — have destination hotel address ready"
+          "en": "Is there a private bath I can book?",
+          "jp": "貸切風呂はありますか？",
+          "romaji": "kashikiri-buro wa arimasu ka?",
+          "context": "The Kyoto hotel has a large shared bath, which is not what you're after. This asks for the reservable private one instead"
         },
         {
           "en": "What is the Wi-Fi password?",
@@ -198,6 +199,12 @@
           "romaji": "menzei dekimasu ka?"
         },
         {
+          "en": "Do you take cards?",
+          "jp": "カードは使えますか？",
+          "romaji": "kādo wa tsukaemasu ka?",
+          "context": "Worth asking before you order or queue. Small counters and two of this trip's buses are cash only"
+        },
+        {
           "en": "Where is the toilet?",
           "jp": "トイレはどこですか？",
           "romaji": "toire wa doko desu ka?"
@@ -254,6 +261,18 @@
           "en": "I feel sick",
           "jp": "具合が悪いです",
           "romaji": "guai ga warui desu"
+        },
+        {
+          "en": "Do you have medicine for this?",
+          "jp": "これに効く薬はありますか？",
+          "romaji": "kore ni kiku kusuri wa arimasu ka?",
+          "context": "At a pharmacy counter — say it and point at what hurts. The Emergency tab pins one pharmacy in each of your three cities"
+        },
+        {
+          "en": "Cold medicine / headache / stomach",
+          "jp": "風邪薬・頭痛薬・胃薬",
+          "romaji": "kazegusuri · zutsūyaku · igusuri",
+          "context": "The three words to show a pharmacist. Anything stronger than these needs a hospital, not a shop"
         }
       ]
     }

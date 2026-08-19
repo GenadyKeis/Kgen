@@ -1,13 +1,62 @@
 {
+  "flights": [
+    {
+      "id": "ly91",
+      "airline": "El Al",
+      "flight_no": "LY91",
+      "from": "TLV",
+      "from_name": "Tel Aviv Ben Gurion (T3)",
+      "to": "NRT",
+      "to_name": "Tokyo Narita (T1)",
+      "depart": "2026-10-21T19:45",
+      "arrive": "2026-10-22T13:20",
+      "seat": "41K",
+      "cabin": "Economy Flex (K)",
+      "baggage": "2PC"
+    },
+    {
+      "id": "ly92",
+      "airline": "El Al",
+      "flight_no": "LY92",
+      "from": "NRT",
+      "from_name": "Tokyo Narita (T1)",
+      "to": "TLV",
+      "to_name": "Tel Aviv Ben Gurion (T3)",
+      "depart": "2026-11-11T15:45",
+      "arrive": "2026-11-11T22:05",
+      "seat": "38A",
+      "cabin": "Economy Flex (M)",
+      "baggage": "2PC"
+    }
+  ],
   "hotels": [
     {
-      "place_id": "osaka-excel-hotel-tokyu",
-      "check_in": "2026-04-13",
-      "check_out": "2026-04-17",
-      "nights": 4,
-      "pin": "6857",
-      "room_notes": "Near Honmachi Station. Breakfast included.",
-      "pdf": "./trip-data/osaka-excel-hotel-tokyu.pdf"
+      "place_id": "akihabara-washington",
+      "check_in": "2026-10-22",
+      "check_out": "2026-10-28",
+      "nights": 6,
+      "room_notes": "Standard Double, single use, non-smoking · breakfast included. Check-in 14:00–22:00 — 22:00 is a hard close; check-out by 11:00. Nothing was prepaid: ¥175,695 for the six nights plus ¥1,200 of Tokyo lodging tax is paid at the property. ⚠ The dates cannot be changed. Free cancellation until 23:59 on Tue 20 Oct 2026; after that ¥29,805."
+    },
+    {
+      "place_id": "dormy-inn-kyoto",
+      "check_in": "2026-10-28",
+      "check_out": "2026-11-07",
+      "nights": 10,
+      "room_notes": "Double, non-smoking · breakfast included. Check-in from 15:00; check-out by 11:00. ⚠ ¥274,000 for the ten nights is due in full at check-in on 28 Oct, in Japanese yen — the ¥150 per-person-per-night hot-spring tax is already inside that figure, but the Kyoto city lodging tax, roughly ¥10,000, is not and is paid at the property. Free cancellation until 23:59 on Mon 26 Oct 2026."
+    },
+    {
+      "place_id": "sotetsu-fresa-hiroshima",
+      "check_in": "2026-11-07",
+      "check_out": "2026-11-09",
+      "nights": 2,
+      "room_notes": "Standard Single, non-smoking · breakfast included. Check-in 15:00–00:00; check-out by 11:00. ¥40,201 for the two nights plus ¥400 of Hiroshima prefectural lodging tax is paid at the property. Free cancellation until 23:59 on Wed 4 Nov 2026; after that the full stay is charged."
+    },
+    {
+      "place_id": "akihabara-washington",
+      "check_in": "2026-11-09",
+      "check_out": "2026-11-11",
+      "nights": 2,
+      "room_notes": "Single, non-smoking · breakfast included. The same property as the first stay, booked separately. Check-in 14:00–22:00 — 22:00 is a hard close; check-out by 11:00. Nothing was prepaid: ¥48,360 for the two nights plus about ¥400 of Tokyo lodging tax is paid at the property. ⚠ The dates cannot be changed. Free cancellation until 23:59 on Sat 7 Nov 2026; after that ¥24,180."
     }
   ]
 }

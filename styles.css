@@ -134,7 +134,7 @@ header .sub {
 }
 .search-wrapper input {
   width: 100%;
-  padding: 10px 80px 10px 14px;
+  padding: 10px 112px 10px 14px;
   border-radius: 12px;
   border: 1px solid var(--border);
   background: var(--card);
@@ -148,9 +148,15 @@ header .sub {
 .search-wrapper input:focus {
   border-color: var(--accent);
 }
+/* native search-input clear button would double up with our custom ✕ (audit N1) */
+.search-wrapper input::-webkit-search-cancel-button,
+.search-wrapper input::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
 .search-clear {
   position: absolute;
-  right: 50px;
+  right: 84px;
   font-size: 18px;
   color: var(--text-dim);
   cursor: pointer;
@@ -330,10 +336,22 @@ main {
   color: var(--text-dim);
   margin-top: 1px;
 }
+/* Tags live on their own row below the title so long titles never truncate
+   against them at phone width (audit S13) */
+.day-card .card-header {
+  flex-wrap: wrap;
+}
+.day-card .chevron {
+  order: 3;
+}
 .day-tags {
   display: flex;
   gap: 6px;
-  flex-shrink: 0;
+  flex-wrap: wrap;
+  order: 4;
+  flex-basis: 100%;
+  margin-top: 8px;
+  padding-left: 48px; /* aligns under the title, past the 38px day-num + gap */
 }
 
 /* ─── Tags ────────────────────────────────────────────────── */
@@ -345,10 +363,13 @@ main {
   padding: 3px 8px;
   border-radius: 6px;
   white-space: nowrap;
+  /* neutral fallback so unknown tags still read as chips (audit N4) */
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-dim);
 }
-.tag-transit { background: var(--tag-transit); color: #e3f2fd; }
+.tag-transit, .tag-shinkansen, .tag-travel { background: var(--tag-transit); color: #e3f2fd; }
 .tag-hike { background: var(--tag-hike); color: #e8f5e9; }
-.tag-culture, .tag-temples { background: var(--tag-culture); color: #f3e5f5; }
+.tag-culture, .tag-temples, .tag-temple, .tag-shrine { background: var(--tag-culture); color: #f3e5f5; }
 .tag-food { background: var(--tag-food); color: #fff3e0; }
 
 /* ─── Blocks (time-of-day groups within a day) ────────────── */
@@ -403,6 +424,45 @@ main {
 }
 .item-detail:last-child {
   margin-bottom: 0;
+}
+
+/* ─── Day notes & backup ─────────────────────────────────── */
+.day-notes {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: rgba(255,213,79,0.08);
+  border-radius: 8px;
+  border-left: 3px solid #ffd54f;
+}
+.day-note {
+  font-size: 13px;
+  color: var(--text);
+  opacity: 0.9;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+.day-note:last-child { margin-bottom: 0; }
+/* Top-of-day notes sit above the first block, so they lead the body rather than trail it */
+.day-notes-top { margin-top: 0; margin-bottom: 14px; }
+
+.day-backup {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: rgba(100,181,246,0.08);
+  border-radius: 8px;
+  border-left: 3px solid #64b5f6;
+}
+.day-backup-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64b5f6;
+  margin-bottom: 6px;
+}
+.day-backup-detail {
+  font-size: 13px;
+  color: var(--text);
+  opacity: 0.85;
+  line-height: 1.5;
 }
 
 /* ─── Place card (reusable) ───────────────────────────────── */
@@ -463,6 +523,30 @@ main {
   color: var(--link);
 }
 
+/* ─── Route maps on a hike block (block.maps) ─────────────────
+   Sits under the first hike block's title, above the legs, because
+   it is read before setting off rather than at a junction. Each
+   link carries its own note saying what it actually covers — three
+   of the AllTrails routes are partial or reversed, and a bare label
+   would hide that. Uses the hike-green of .btn-walk: these are the
+   same kind of thing, one for a place and one for a whole route. */
+.block-maps {
+  margin: 8px 0 10px;
+}
+.btn-map-route {
+  background: rgba(129, 199, 132, 0.25);
+  color: var(--link-hike);
+}
+.block-map-note {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-dim);
+  margin: 4px 0 8px 2px;
+}
+.block-map-note:last-child {
+  margin-bottom: 0;
+}
+
 /* ─── Transit box (within day blocks) ─────────────────────── */
 .transit-box {
   background: var(--card-open);
@@ -515,6 +599,29 @@ main {
   margin-top: 2px;
 }
 
+/* ─── Board-and-pay row (leg.payment) ─────────────────────────
+   Read standing in the door of a bus with both bags, so it must
+   separate from `detail` at a glance rather than reward reading. */
+.tleg-payment {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text);
+  margin-top: 6px;
+  padding: 8px 10px;
+  background: var(--card-open);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+}
+.tleg-payment-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 3px;
+}
+
 /* ─── Tap-to-copy feedback ────────────────────────────────── */
 .copyable {
   cursor: pointer;
@@ -536,10 +643,17 @@ main {
   font-weight: 600;
   z-index: 200;
   pointer-events: none;
-  animation: toast-fade 1.2s ease forwards;
+  /* The toast now carries an affordance sentence, not the word "Copied", so it
+     needs a width bound — centred with translateX(-50%) it would otherwise
+     bleed off BOTH edges on a narrow handset — and a longer life to be read.
+     ⚠ The animation duration and the JS removal timeout are a PAIR: at 1.2s
+     against a 1900 ms timeout the toast sat fully transparent for 700 ms. */
+  max-width: min(88vw, 340px);
+  text-align: center;
+  animation: toast-fade 1.8s ease forwards;
 }
 @keyframes toast-fade {
-  0%, 60% { opacity: 1; }
+  0%, 73% { opacity: 1; }
   100% { opacity: 0; }
 }
 
@@ -607,9 +721,32 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 40px 24px;
+  /* 🔴 NOT justify-content: center, and NOT overflow-y alone. Measured in
+     Chrome 2026-08-19: with `center`, content taller than the box overflows
+     BOTH edges and scrollTop refuses to move — the Japanese sat 87px above the
+     top with no way to reach it. Adding `overflow-y: auto` on top of `center`
+     makes it WORSE (-101px, still unreachable, only the bottom recovered).
+     flex-start + auto-margin pseudo-elements is the pattern that survives both
+     cases and needs no `safe center` support: the free space goes to the
+     pseudos, so short content is still perfectly centred (measured 221/221 and
+     272/272 on a 390x844 viewport) while overflowing content starts at the
+     scroll origin and both ends are reachable.
+     The case that fails without this: the SOS card
+     「日本語が話せません。英語を話せる方はいますか？」 needs 483px at 390px wide — fine on
+     any phone — but 654px at 260px wide, which is what ~150% page zoom gives. */
+  justify-content: flex-start;
+  overflow-y: auto;
+  /* 68px, not 40, top and bottom: the close button occupies 16-60px at the top
+     right, and at narrow widths the centred Japanese wraps the full width and
+     ran underneath it. Symmetric so the auto-margin centring stays true. */
+  padding: 68px 24px;
   text-align: center;
+}
+.fs-overlay::before,
+.fs-overlay::after {
+  content: '';
+  margin: auto;
+  flex: 0 0 auto;
 }
 .fs-jp {
   font-size: 36px;
@@ -634,8 +771,47 @@ main {
   margin-bottom: 24px;
   font-style: italic;
 }
+/* The overlay is white-on-black and ignores the theme variables, so .jp-btn's
+   card-coloured surface would be nearly invisible on it. Same shape as the food
+   card's controls, repainted for this background and sized for a thumb held out
+   at arm's length. */
+.fs-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 8px;
+}
+/* ⚠ Must be `.fs-overlay .fs-btn`, not `.fs-btn`. These buttons also carry
+   .jp-btn (they are the same control as the food card's), and .jp-btn is
+   defined ~400 lines further down this file — equal specificity, later wins,
+   so a bare .fs-btn silently lost every property to it. Measured 2026-08-19:
+   the buttons computed to 36px/13px on .jp-btn's rules instead of the 44px/15px
+   written here, and the black background was .jp-btn's var(--card) landing on
+   near-black by luck. The descendant selector puts it beyond doubt. */
+.fs-overlay .fs-btn {
+  color: #fff;
+  background: #222;
+  border: 1px solid #444;
+  font-size: 15px;
+  padding: 11px 16px;
+  min-height: 44px;
+}
+.fs-hint {
+  font-size: 12px;
+  color: #666;
+  margin-top: 14px;
+  max-width: 320px;
+  line-height: 1.5;
+}
+/* 🔴 fixed, NOT absolute. The overlay scrolls (see above), and an absolutely
+   positioned child scrolls WITH its content: measured 2026-08-19, scrolled to
+   the bottom of a long SOS card the close button sat at -334px, completely off
+   screen. The overlay is itself position:fixed inset:0, so a fixed child pins
+   to the same box and stays put while the content moves under it. This is the
+   ONLY exit control, on the emergency tab. */
 .fs-close {
-  position: absolute;
+  position: fixed;
   top: calc(16px + env(safe-area-inset-top));
   right: 16px;
   width: 44px;
@@ -674,6 +850,15 @@ main {
 .phrase-group-count {
   font-size: 12px;
   color: var(--text-dim);
+}
+/* The stated affordance for a tap target that has always been silent. Used by
+   the Phrases tab and by SOS's Show-to-Staff group. */
+.phrase-intro {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin: 0 0 10px;
+  padding: 0 2px;
 }
 .phrase-item {
   background: var(--card-open);
@@ -983,6 +1168,13 @@ a.food-badge.rating:active {
   font-weight: 700;
   color: var(--accent);
 }
+.food-how,
+.food-why {
+  font-size: 13px;
+  color: var(--text);
+  margin: 6px 0 4px 14px;
+  line-height: 1.5;
+}
 .food-note {
   font-size: 12px;
   color: var(--text-dim);
@@ -990,7 +1182,110 @@ a.food-badge.rating:active {
   line-height: 1.5;
 }
 
+/* ─── Show-the-screen Japanese block ─────────────────────────
+   Sized to be read by a member of staff at arm's length across a
+   counter, not by the phone's owner. Everything else on the card is
+   for him; this one line is for the person he is talking to. */
+.jp-say {
+  background: var(--card-open);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin: 8px 0 8px 14px;
+}
+.jp-say-text {
+  font-size: 21px;
+  line-height: 1.45;
+  font-weight: 600;
+  color: var(--text);
+  word-break: break-word;
+}
+.jp-say-romaji {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+.jp-say-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.jp-btn {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 11px;
+  cursor: pointer;
+  min-height: 36px;
+  transition: transform 0.1s;
+}
+.jp-btn:active {
+  transform: scale(0.95);
+}
+/* The Translate control is an <a>, not a <button> — see app.js. Match it to
+   its siblings so the row reads as three controls, not two and a link. */
+a.jp-btn {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.jp-say-hint {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 8px;
+  font-style: italic;
+}
+
 /* ─── Transit section ────────────────────────────────────── */
+/* Standing payment rules, above the day cards. Same card shape as .food-tips,
+   which is the block it replaces — these rules were shipped in the Food tab. */
+.payment-rules {
+  background: var(--card);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  overflow: hidden;
+}
+.payment-rules .card-header {
+  padding: 12px 16px;
+}
+.payment-rules-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.payment-rules-title {
+  font-weight: 600;
+  font-size: 15px;
+  flex: 1;
+}
+.payment-rule {
+  background: var(--card-open);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+}
+.payment-rule:last-child {
+  margin-bottom: 0;
+}
+.payment-rule-heading {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 3px;
+}
+.payment-rule-detail {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+
 .transit-day {
   background: var(--card);
   border-radius: 12px;
@@ -1046,6 +1341,19 @@ a.food-badge.rating:active {
   background: var(--card);
   border-radius: 12px;
   border: 1px solid var(--border);
+}
+.transit-total-note {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-dim);
+}
+
+/* "Data as of" stamp at the bottom of the Info section (REDESIGN.md §0) */
+.data-stamp {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-dim);
+  padding: 16px 0 4px;
 }
 
 /* ─── Search results ─────────────────────────────────────── */
@@ -1215,6 +1523,22 @@ a.food-badge.rating:active {
   color: var(--text-dim);
   margin-top: 2px;
 }
+.info-flight {
+  background: var(--card);
+  border-radius: 14px;
+  margin-bottom: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+}
+.info-flight-head {
+  margin-bottom: 12px;
+}
+.flight-no {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  font-family: 'SF Mono', 'Consolas', monospace;
+}
 .info-booking {
   margin-bottom: 12px;
 }
@@ -1222,6 +1546,8 @@ a.food-badge.rating:active {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 8px;
   padding: 10px 14px;
   background: rgba(240, 160, 96, 0.06);
   border-radius: 10px;
@@ -1232,6 +1558,7 @@ a.food-badge.rating:active {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--text-dim);
+  flex-shrink: 0;
 }
 .info-value {
   font-size: 18px;
@@ -1242,14 +1569,28 @@ a.food-badge.rating:active {
   padding: 2px 8px;
   border-radius: 6px;
   transition: background 0.15s;
+  min-width: 0;
+  margin-left: auto;
+  text-align: right;
+  overflow-wrap: anywhere;
 }
-.info-value:active {
+.info-value:not(.copyable) {
+  cursor: default;
+}
+.info-value.copyable:active {
   background: rgba(240, 160, 96, 0.15);
 }
 .info-notes {
   font-size: 13px;
   color: var(--text-dim);
   padding: 6px 0;
+}
+/* Says what tap-to-copy is for. A booking number is the one copyable with no
+   alternative control beside it — see the comment at the render site. */
+.info-copy-hint {
+  font-size: 12px;
+  color: var(--text-dim);
+  padding: 2px 0 8px;
 }
 .btn-pdf {
   display: inline-block;
@@ -1265,4 +1606,242 @@ a.food-badge.rating:active {
 }
 .btn-pdf:active {
   background: rgba(100, 181, 246, 0.2);
+}
+.btn-pdf-block {
+  display: block;
+  margin: 0 0 8px;
+}
+
+/* ─── Almanac ──────────────────────────────────────────────── */
+.btn-almanac {
+  background: rgba(206, 147, 216, 0.22);
+  color: #ce93d8;
+  font-family: inherit;
+}
+
+/* Tappable rows in the Almanac tab */
+.almanac-link {
+  cursor: pointer;
+}
+.almanac-link:active {
+  background: var(--card-open);
+}
+
+/* Full-screen entry overlay */
+body.modal-open {
+  overflow: hidden;
+}
+.almanac-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+.almanac-modal[hidden] {
+  display: none;
+}
+.almanac-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
+  background: rgba(18, 18, 18, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  flex: 0 0 auto;
+}
+body.oled-mode .almanac-modal-header {
+  background: rgba(0, 0, 0, 0.94);
+}
+.almanac-modal-close {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 14px;
+  min-height: 44px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.almanac-modal-close:active {
+  transform: scale(0.95);
+}
+.almanac-modal-badge {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ce93d8;
+}
+.almanac-modal-content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px 16px calc(28px + env(safe-area-inset-bottom));
+}
+.almanac-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+.almanac-name-jp {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-dim);
+}
+.almanac-sub {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 4px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Entry content — ported from almanac.html's own stylesheet and scoped here
+   so the standalone file and the in-app modal render the same way. */
+.almanac-entry .section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 18px 0 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.almanac-entry p,
+.almanac-entry li {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.almanac-entry ul {
+  padding-left: 20px;
+  margin-bottom: 8px;
+}
+.almanac-entry li {
+  margin-bottom: 4px;
+}
+.almanac-entry strong {
+  color: var(--text);
+}
+.almanac-entry .source {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-dim);
+  font-style: italic;
+}
+.almanac-entry .source::before {
+  content: "— ";
+}
+.almanac-entry .conflict {
+  background: rgba(255, 152, 0, 0.1);
+  border-left: 3px solid #ff9800;
+  padding: 10px 12px;
+  border-radius: 4px;
+  margin: 10px 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.almanac-entry .conflict-label {
+  display: block;
+  font-weight: 600;
+  color: #ff9800;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.almanac-entry .unverified {
+  background: rgba(100, 181, 246, 0.08);
+  border-left: 3px solid var(--link);
+  padding: 10px 12px;
+  border-radius: 4px;
+  margin: 10px 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.almanac-entry .unverified-label {
+  display: block;
+  font-weight: 600;
+  color: var(--link);
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.almanac-entry .links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.almanac-entry .links a {
+  display: inline-block;
+  padding: 8px 12px;
+  min-height: 44px;
+  line-height: 28px;
+  background: rgba(100, 181, 246, 0.14);
+  color: var(--link);
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.almanac-entry table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+  font-size: 14px;
+}
+.almanac-entry th {
+  text-align: left;
+  padding: 6px 8px;
+  background: var(--card);
+  color: var(--text-dim);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.almanac-entry td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.almanac-entry .subsection {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+}
+.almanac-entry .subsection-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.almanac-entry a.term {
+  color: #ce93d8;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+
+/* Seven tabs no longer fit at the six-tab spacing on a narrow phone */
+@media (max-width: 430px) {
+  .bottom-nav {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .bottom-nav a {
+    padding: 8px 4px;
+    font-size: 10px;
+    gap: 3px;
+  }
+  .nav-icon {
+    font-size: 17px;
+  }
 }

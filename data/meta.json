@@ -1,32 +1,121 @@
 {
-  "trip_name": "Japan April 2026",
+  "trip_name": "Japan Autumn 2026",
   "timezone": "Asia/Tokyo",
   "utc_offset_hours": 9,
-  "start_date": "2026-04-10",
-  "end_date": "2026-04-27",
-  "total_days": 18,
-  "route_summary": "Tokyo (4) → Osaka (4) → Hiroshima (4) → Fukuoka (5) → Tokyo (1)",
+  "start_date": "2026-10-22",
+  "end_date": "2026-11-11",
+  "total_days": 21,
+  "route_summary": "Tokyo (6n) → Kyoto (10n) → Hiroshima (2n) → Tokyo (2n)",
   "cities": [
-    { "name": "Tokyo", "days": [1, 2, 3, 18], "lat": 35.6762, "lon": 139.6503 },
-    { "name": "Osaka", "days": [4, 5, 6, 7], "lat": 34.6937, "lon": 135.5023 },
-    { "name": "Nara", "days": [5], "lat": 34.6851, "lon": 135.8048, "day_trip": true },
-    { "name": "Koyasan", "days": [6], "lat": 34.2130, "lon": 135.6000, "day_trip": true },
-    { "name": "Hiroshima", "days": [8, 11], "lat": 34.3853, "lon": 132.4553 },
-    { "name": "Miyajima", "days": [9], "lat": 34.2961, "lon": 132.3196, "day_trip": true },
-    { "name": "Onomichi", "days": [10], "lat": 34.4089, "lon": 133.2050, "day_trip": true },
-    { "name": "Fukuoka", "days": [12, 17], "lat": 33.5902, "lon": 130.4017 },
-    { "name": "Dazaifu", "days": [13], "lat": 33.5194, "lon": 130.5244, "day_trip": true },
-    { "name": "Nagasaki", "days": [14], "lat": 32.7503, "lon": 129.8779, "day_trip": true },
-    { "name": "Kumamoto", "days": [15], "lat": 32.8032, "lon": 130.7079, "day_trip": true },
-    { "name": "Karatsu", "days": [16], "lat": 33.4497, "lon": 129.9681, "day_trip": true }
+    {
+      "name": "Tokyo",
+      "days": [1, 2, 3, 4, 5, 6, 7, 19, 20, 21],
+      "lat": 35.6762,
+      "lon": 139.6503
+    },
+    {
+      "name": "Mount Takao",
+      "days": [5],
+      "lat": 35.6255,
+      "lon": 139.2433,
+      "day_trip": true
+    },
+    {
+      "name": "Kamakura",
+      "days": [6],
+      "lat": 35.3363,
+      "lon": 139.5468,
+      "day_trip": true
+    },
+    {
+      "name": "Kyoto",
+      "days": [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+      "lat": 34.9858,
+      "lon": 135.7588
+    },
+    {
+      "name": "Nara",
+      "days": [8, 9, 10],
+      "lat": 34.6851,
+      "lon": 135.8048,
+      "day_trip": true
+    },
+    {
+      "name": "Yoshino",
+      "days": [15],
+      "lat": 34.3663,
+      "lon": 135.858,
+      "day_trip": true
+    },
+    {
+      "name": "Uji",
+      "days": [16],
+      "lat": 34.8892,
+      "lon": 135.8074,
+      "day_trip": true
+    },
+    {
+      "name": "Hiroshima",
+      "days": [17, 18, 19],
+      "lat": 34.3853,
+      "lon": 132.4553
+    },
+    {
+      "name": "Miyajima",
+      "days": [18],
+      "lat": 34.2961,
+      "lon": 132.3196,
+      "day_trip": true
+    }
   ],
   "dates": [
-    "2026-04-10", "2026-04-11", "2026-04-12", "2026-04-13",
-    "2026-04-14", "2026-04-15", "2026-04-16", "2026-04-17",
-    "2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21",
-    "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25",
-    "2026-04-26", "2026-04-27"
+    "2026-10-22",
+    "2026-10-23",
+    "2026-10-24",
+    "2026-10-25",
+    "2026-10-26",
+    "2026-10-27",
+    "2026-10-28",
+    "2026-10-29",
+    "2026-10-30",
+    "2026-10-31",
+    "2026-11-01",
+    "2026-11-02",
+    "2026-11-03",
+    "2026-11-04",
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11"
   ],
-  "data_built_on": null,
-  "note": "This is the v1 April itinerary used as a schema validation dataset. The actual autumn trip content will replace this data."
+  "payment_rules": {
+    "title": "Paying — trains, buses, gates",
+    "items": [
+      {
+        "heading": "Trains: tap and forget",
+        "detail": "Every rail operator on this trip takes the Wallet Suica — JR and the Shinkansen gates, Keisei, Keiō, Tokyo Metro, Toei, Kintetsu, Keihan, Eizan and the Kyoto subway. Tap in, tap out, no thought required."
+      },
+      {
+        "heading": "Buses and trams: the door changes by city",
+        "detail": "Every road leg on this trip carries its own instructions — open the day and read the leg. The short version: Kyoto boards at the REAR and you pay on the way OUT; Nara city buses board at the FRONT and you pay on the way IN; the Nara Kōtsū #97 — the optional loop bus on 29 October, if it is running — is the odd one out, REAR door in, FRONT door out, and TWO taps, the opposite of the Nara city buses two days later; the Hiroshima trams take two taps from any door. One vehicle on the whole trip refuses the card altogether — the Yoshino substitute bus on 5 November, which is cash to the conductor."
+      },
+      {
+        "heading": "Temple and shrine gates: cash, always",
+        "detail": "Never arrive at a gate expecting to tap. Tōdai-ji is confirmed cash-only and the pattern holds across roughly forty sites — this is the single largest cash line of the trip."
+      },
+      {
+        "heading": "How much cash to carry",
+        "detail": "Land with ¥30,000–40,000. The Narita ATMs take foreign cards, so there is no reason to buy yen at an Israeli rate. Keep the Suica above about ¥3,000 and top it up from the phone with the Mastercard — foreign Visa cards are blocked at network level for Wallet top-up, and that affects top-up only, never the Shinkansen booking. The cash fallback works on the phone card too: any Seven Bank ATM, or a konbini register."
+      },
+      {
+        "heading": "The four nights that need the wallet",
+        "detail": "On 2 and 6 November in Kyoto there is no cashless path at all — first choice and backup are both cash-only. On 7 and 8 November in Hiroshima there is no credit-card path: one of the pair takes cash and PayPay, the other IC and nanaco but no cards, and 7 November's lunch is cash-only on top. Each is called out on its own day."
+      }
+    ]
+  },
+  "data_built_on": "2026-08-18",
+  "note": "Autumn 2026 itinerary — ratified by the v3 planner (planning/ITINERARY.md), dated at S2, booked at R6, exported at R7. Trip calendar is tied to the El Al bookings in reservations.json: start_date = LY91 arrival, end_date = LY92 departure."
 }
