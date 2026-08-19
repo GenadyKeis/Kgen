@@ -1201,6 +1201,19 @@ a.food-badge.rating:active {
   color: var(--text);
   word-break: break-word;
 }
+/* The order line is a tap target for the full-screen overlay, so it has to look
+   like one and meet the 44 px touch minimum on its own. */
+.jp-say-tap {
+  cursor: pointer;
+  padding: 6px 8px;
+  margin: -6px -8px;
+  min-height: 44px;
+  border-radius: 8px;
+  border: 1px dashed var(--border);
+}
+.jp-say-tap:active {
+  background: rgba(255, 255, 255, 0.06);
+}
 .jp-say-romaji {
   font-size: 13px;
   color: var(--text-dim);
@@ -1642,20 +1655,30 @@ body.modal-open {
 .almanac-modal[hidden] {
   display: none;
 }
+/* ⚠ Two things here are deliberate, and both are about the Back button going
+   dead on iOS after the content below it has been scrolled (user, 2026-08-19).
+   The bug does NOT reproduce in desktop Chrome — the button hit-tests fine and
+   closes — so these target the two known iOS causes rather than a reproduction:
+   1. NO `backdrop-filter`. It promotes the header to its own compositing layer,
+      and a composited layer stacked over a momentum-scrolling container is the
+      classic iOS stale-hit-test pairing. At 0.94 alpha the blur was doing almost
+      nothing visually, so the background is simply opaque now — no visual loss.
+   2. `position: relative; z-index: 1` so the header is unambiguously above the
+      scroller in paint order rather than relying on document order alone. */
 .almanac-modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
-  background: rgba(18, 18, 18, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #121212;
   border-bottom: 1px solid var(--border);
   flex: 0 0 auto;
+  position: relative;
+  z-index: 1;
 }
 body.oled-mode .almanac-modal-header {
-  background: rgba(0, 0, 0, 0.94);
+  background: #000;
 }
 .almanac-modal-close {
   background: var(--card);
@@ -1680,7 +1703,12 @@ body.oled-mode .almanac-modal-header {
 .almanac-modal-content {
   flex: 1 1 auto;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  /* ⛔ `-webkit-overflow-scrolling: touch` REMOVED. It has been a no-op since
+     iOS 13 (momentum scrolling is the default), and it is the single most
+     commonly reported cause of fixed/sibling controls losing their tap target
+     after a scroll — exactly the reported symptom. Nothing is lost by dropping
+     it; on iOS 13+ the scrolling behaves identically. */
+  overscroll-behavior: contain;
   padding: 16px 16px calc(28px + env(safe-area-inset-bottom));
 }
 .almanac-name {

@@ -185,7 +185,14 @@
     }
     overlay.innerHTML = html;
     document.body.appendChild(overlay);
-    overlay.querySelector('.fs-close').addEventListener('click', function () {
+    var fsClose = overlay.querySelector('.fs-close');
+    fsClose.addEventListener('click', function () { overlay.remove(); });
+    // Same insurance as the almanac Back button: this overlay scrolls too (a
+    // long SOS card overflows a small viewport), and §X.73.8 already caught
+    // this control being stranded once. `overlay.remove()` on an already
+    // removed node is a no-op, so a double fire costs nothing.
+    fsClose.addEventListener('touchend', function (e) {
+      e.preventDefault();
       overlay.remove();
     });
     bindJpSay(overlay);
@@ -788,7 +795,24 @@
             // counter, romaji so it can be attempted aloud, and three controls.
             if (rest.order_jp) {
               html += '<div class="jp-say">';
-              html += '<div class="jp-say-text">' + esc(rest.order_jp) + '</div>';
+              // Tap the Japanese to blow it up full-screen (user, 2026-08-19):
+              // "large letters and easy to show rather than people try to read it
+              // amongst english text in small font." Same overlay the phrases and
+              // SOS cards use — one branch, not a third implementation.
+              // ⚠ Bound on the TEXT, not the .jp-say container: the three buttons
+              // live in that container and a container handler would fire on them
+              // too. They already stopPropagation, but the narrower target is the
+              // one that cannot go wrong.
+              html += '<div class="jp-say-text jp-say-tap" role="button" tabindex="0"' +
+                ' data-fs-jp="' + esc(rest.order_jp) + '"' +
+                // Dish NAME only, not the description. All 42 `order` strings are
+                // "Name — description" and the longest runs 277 chars; the overlay
+                // exists to be turned around at a counter, and a paragraph of
+                // English under the Japanese is both noise and a real overflow
+                // risk on a small handset (§X.73.3 measured that failure).
+                ' data-fs-en="' + esc((rest.order || '').split('—')[0].trim()) + '"' +
+                ' data-fs-romaji="' + esc(rest.order_romaji || '') + '">' +
+                esc(rest.order_jp) + '</div>';
               if (rest.order_romaji) {
                 html += '<div class="jp-say-romaji">' + esc(rest.order_romaji) + '</div>';
               }
@@ -804,7 +828,7 @@
                 esc(encodeURIComponent(rest.order_jp)) + '">🌐 Translate</a>';
               html += '<button type="button" class="jp-btn" data-copy="' + esc(rest.order_jp) + '">📋 Copy</button>';
               html += '</div>';
-              html += '<div class="jp-say-hint">Show this screen to staff, or tap 🔊 to play it aloud.</div>';
+              html += '<div class="jp-say-hint">Tap the Japanese to show it full-screen in large type, or tap 🔊 to play it aloud.</div>';
               html += '</div>';
             }
             if (rest.order_why) {
@@ -852,7 +876,10 @@
     // and how much cash to land with.
     var pr = DATA.meta && DATA.meta.payment_rules;
     if (pr && pr.items && pr.items.length > 0) {
-      html += '<div class="payment-rules card-open">';
+      // ⛔ Collapsed by default (user, 2026-08-19). It is reference material he
+      // consults at a gate, not something he needs open every time he checks a
+      // departure — and it sat above 21 days of legs, pushing them down.
+      html += '<div class="payment-rules">';
       html += '<div class="card-header" data-toggle>';
       html += '<span class="payment-rules-icon">💴</span>';
       html += '<span class="payment-rules-title">' + esc(pr.title) + '</span>';
@@ -1206,6 +1233,19 @@
       copiers[c].addEventListener('click', function (e) {
         e.stopPropagation();
         copyText(this.getAttribute('data-copy'));
+      });
+    }
+    // The order line itself opens the shared full-screen overlay.
+    var taps = root.querySelectorAll('.jp-say-tap');
+    for (var s = 0; s < taps.length; s++) {
+      taps[s].addEventListener('click', function (e) {
+        e.stopPropagation();
+        showFullscreen({
+          jp: this.getAttribute('data-fs-jp'),
+          en: this.getAttribute('data-fs-en'),
+          romaji: this.getAttribute('data-fs-romaji'),
+          speakable: true
+        });
       });
     }
   }
@@ -2350,6 +2390,16 @@
   var almanacCloseBtn = document.getElementById('almanac-close');
   if (almanacCloseBtn) {
     almanacCloseBtn.addEventListener('click', function () { closeAlmanac(false); });
+    // ⚑ Belt and braces for the iOS report (2026-08-19): after scrolling the
+    // entry, the Back button sometimes did not register. If what iOS is eating
+    // is the synthesized `click` — which is what the first tap after momentum
+    // scrolling gets consumed by — then `touchend` still arrives. Double-firing
+    // is harmless: closeAlmanac() returns immediately when the modal is already
+    // hidden. preventDefault stops the same tap also producing a click.
+    almanacCloseBtn.addEventListener('touchend', function (e) {
+      e.preventDefault();
+      closeAlmanac(false);
+    });
   }
 
   document.addEventListener('keydown', function (e) {
