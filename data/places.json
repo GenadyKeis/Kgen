@@ -6871,67 +6871,66 @@
     "notes": "An oyster house on Miyajima, eighty-six seats, dating itself to 1948 and calling itself the house where grilled oysters were first served to the public — its own words for itself rather than an established fact. Half past ten to five, and on Saturdays half past ten to half past five, closed Wednesdays; last orders are half an hour before the close on either pattern. Its own site warns that the hours can change with the season. The travel board adds that when a Wednesday is a public holiday the closure moves to the day before or after, which does not arise between 22 October and 11 November 2026 because no Wednesday in that span is a holiday. The menu carries both of the island's dishes under one roof: grilled oysters, and anago-meshi at 2,900 yen with the grilled eel at 2,700, alongside udon, soba, tonkatsu and prawn-fry set meals. The shop's own site gives hours but no closing day, so the closing day and the seat count come from the two editorial channels also cited here, which agree."
   },
   {
-    "id": "kakiya-miyajima",
-    "name_en": "Kakiya",
-    "name_jp": "牡蠣屋",
-    "lat": 34.29856,
-    "lon": 132.3217,
-    "address_jp": "〒739-0588 広島県廿日市市宮島町539",
+    "id": "anagomeshi-ueno",
+    "name_en": "Anagomeshi Ueno",
+    "name_jp": "あなごめし うえの",
+    "lat": 34.31151,
+    "lon": 132.30352,
+    "address_jp": "〒739-0411 広島県廿日市市宮島口1-5-11",
     "category": "restaurant",
     "hours": {
       "mon": [
         [
-          "10:00",
-          "18:00"
+          "09:00",
+          "19:00"
         ]
       ],
       "tue": [
         [
-          "10:00",
-          "18:00"
+          "09:00",
+          "19:00"
         ]
       ],
       "wed": [
         [
-          "10:00",
+          "09:00",
           "18:00"
         ]
       ],
       "thu": [
         [
-          "10:00",
-          "18:00"
+          "09:00",
+          "19:00"
         ]
       ],
       "fri": [
         [
-          "10:00",
-          "18:00"
+          "09:00",
+          "19:00"
         ]
       ],
       "sat": [
         [
-          "10:00",
-          "18:00"
+          "09:00",
+          "19:00"
         ]
       ],
       "sun": [
         [
-          "10:00",
-          "18:00"
+          "09:00",
+          "19:00"
         ]
       ],
-      "closed_notes": "The shop states that it has no fixed closing day but does close irregularly, that its hours vary with the season, and that it may shut early once the day's oysters are gone, so an open day cannot be asserted in advance."
+      "closed_notes": "Open every day of the year by the shop’s own statement. Last order for eating in is 18:30. ⚠ On Wednesdays the shop sells bento only and stops at 18:00 — that does not bite on 8 Nov, which is a Sunday."
     },
-    "phone": "+81-50-5488-4819",
-    "url": "https://www.kaki-ya.jp/",
+    "price": "¥2,000–3,999",
+    "url": "https://y790901.gorp.jp/",
     "sources": [
-      "https://www.kaki-ya.jp/",
-      "https://y161600.gorp.jp/"
+      "https://y790901.gorp.jp/"
     ],
-    "verified_on": "2026-08-13",
+    "verified_on": "2026-08-22",
     "confidence": "medium",
-    "notes": "A shop that calls itself, on its own site, the only place on Miyajima handling oysters alone — its claim, not an independent survey, though the island's most prominent oyster house, Yakigaki no Hayashi, publishes a menu page headed \"dishes other than oysters\" (tonkatsu, ebi-fry, udon, soba, anago-meshi). In the middle of the Omotesando shopping street about ten minutes from the ferry pier, started by a craftsman who had spent forty years grilling oysters on the island. Its own site says it appears in the Michelin guide for the Hiroshima area. A hundred and ten seats including tatami, with a maximum of sixty seated for a party. Ten to six with last order at six — an hour later than Yakigaki no Hayashi's Sunday close and ninety minutes past its last order — but the shop qualifies that band three ways itself: the hours vary by season, irregular closing days occur, and it may close early once the oysters run out, so the card prints when it trades and refuses to assert that it is open. Its two channels give different postcodes, 739-0588 on the shop's own site and 739-0558 on its directory listing; the shop's own is what ships. The telephone number is the relay number that listing prints. The name is written 牡蠣屋."
+    "notes": "The anago-meshi house at Miyajimaguchi, two minutes from the ferry terminal on the mainland side, 32 seats, open 09:00–19:00 with a 18:30 last order and no closing day. It is on this card because it is the only anago house within reach that is still serving after Hayashi’s 16:30 last order has gone. ⚠ It is well known and it queues — reports of over an hour at the lunch opening are normal — so it is a late-afternoon fallback, not a midday plan."
   },
   {
     "id": "yumehyakusen-ekie",

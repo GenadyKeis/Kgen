@@ -36,6 +36,24 @@
   // next prose field bound to an attribute would be. In text position the
   // browser renders &quot; as ", and getAttribute() returns it decoded, so this
   // is invisible on every string in the dataset.
+  // 🔴 ONE RULE FOR TODAY, and every day-keyed tab now asks it. Until this it lived
+  // inline in renderDays() only: measured mid-trip, Days marked today, opened it and
+  // scrolled to it, while Food, Transit, Phrases, SOS and Info rendered 0 today markers
+  // and 0 open cards between them. Today's food card sat 1.4 screens down a stack of 20
+  // identical rows and its transit 1.3 down 21 — on the two tabs he opens standing up.
+  // 🔴 Declared HERE, not beside scrollToToday. As a `var` further down it was hoisted but
+  // unassigned when switchSection() runs during init, and `undefined.indexOf` threw — killing
+  // the load chain so the app sat on "Loading...". A constant used at init must be declared
+  // above the init.
+  var DAY_KEYED_SECTIONS = ['days', 'food', 'transit'];
+
+  function dayCardState(dayNum) {
+    var cur = DATA.meta ? tripDayNumber(DATA.meta) : NaN;
+    var total = DATA.meta ? DATA.meta.total_days : 0;
+    var inTrip = cur >= 1 && cur <= total;
+    return { isPast: inTrip && dayNum < cur, isToday: inTrip && dayNum === cur };
+  }
+
   function esc(s) {
     if (!s) return '';
     var d = document.createElement('div');
@@ -222,6 +240,17 @@
     overlay.className = 'fs-overlay';
     var html = '';
     html += '<button class="fs-close" aria-label="Close">✕</button>';
+    // ⚑ Pager. Today's meals routinely come in pairs — a first choice and a backup — and
+    // before this, comparing them meant closing the card, finding the other row and opening
+    // it again, at the counter. ‹ › re-open the overlay on the neighbour; the layout below is
+    // untouched, which matters because its flex-start + auto-margin pseudos are hard-won.
+    if (opts.pager && opts.pager.total > 1) {
+      html += '<div class="fs-pager">' +
+        '<button type="button" class="fs-page" data-page="-1" aria-label="Previous card">‹</button>' +
+        '<span class="fs-page-count">' + (opts.pager.index + 1) + ' of ' + opts.pager.total + '</span>' +
+        '<button type="button" class="fs-page" data-page="1" aria-label="Next card">›</button>' +
+      '</div>';
+    }
     if (opts.jp) html += '<div class="fs-jp">' + esc(opts.jp) + '</div>';
     if (opts.romaji) html += '<div class="fs-romaji">' + esc(opts.romaji) + '</div>';
     if (opts.en) html += '<div class="fs-en">' + esc(opts.en) + '</div>';
@@ -256,14 +285,47 @@
       e.preventDefault();
       overlay.remove();
     });
+    var pages = overlay.querySelectorAll('[data-page]');
+    for (var pg = 0; pg < pages.length; pg++) {
+      pages[pg].addEventListener('click', function (e) {
+        e.stopPropagation();
+        var step = parseInt(this.getAttribute('data-page'), 10);
+        var next = (opts.pager.index + step + opts.pager.total) % opts.pager.total;
+        overlay.remove();
+        openCounterCard(next);
+      });
+    }
     bindJpSay(overlay);
     if (navigator.vibrate) navigator.vibrate(10);
   }
 
   // ─── Collapsible toggle ───────────────────────────────────
+  // ⚑ `.accordion` on the container makes opening one card close its siblings. Days only:
+  // the tab is now a 21-row list you scan, and two open days put the second one three
+  // screens below where you tapped. Food and Transit keep their free-for-all — there you
+  // are comparing tonight against tomorrow, which is the opposite need.
   function toggleCard(el) {
+    var opening = !el.classList.contains('card-open');
+    var box = el.parentElement;
+    if (opening && box && box.classList.contains('accordion')) {
+      var open = box.querySelectorAll(':scope > .card-open');
+      for (var i = 0; i < open.length; i++) {
+        if (open[i] !== el) open[i].classList.remove('card-open');
+      }
+    }
     el.classList.toggle('card-open');
+    syncOpenDayHeader();
     if (navigator.vibrate) navigator.vibrate(10);
+  }
+
+  // 🔴 The block titles pin BELOW the day header, so they need its height — and it is not a
+  // constant. Measured 95px where the first version of this assumed 52, which put two block
+  // titles behind the header instead of under it. One open day at a time (the accordion
+  // guarantees it), so one variable is enough. Remeasured whenever that changes.
+  function syncOpenDayHeader() {
+    var open = document.querySelector('#section-days .day-card.card-open > .card-header');
+    document.documentElement.style.setProperty('--day-hdr-h',
+      (open ? Math.round(open.getBoundingClientRect().height) : 0) + 'px');
   }
 
   // ─── Place card renderer ──────────────────────────────────
@@ -353,38 +415,41 @@
       html += '<div class="place-info">' + infoParts.join('') + '</div>';
     }
 
-    // Action buttons
-    html += '<div class="btn-row">';
-    html += '<a class="btn btn-maps" href="' + mapsPinUrl(place) + '" target="_blank" rel="noopener">📍 Map</a>';
-    html += '<a class="btn btn-walk" href="' + mapsWalkUrl(place) + '" target="_blank" rel="noopener">🚶 Walk</a>';
-    // 🧭 Offline — only on the seven days that carry a walk.
-    // ⛔ NOT on all 75 place cards, and the reason is a measurement: the
-    // button count was cut 257 -> 232 an hour earlier on his own "tidy up"
-    // finding, and putting this everywhere would take it to 307 — further
-    // than where it started. On the 26 walking-day cards it costs 232 -> 258.
-    // ⚑ The rule is POSITIONAL, not a judgement about which places are
-    // remote: the day carries a `maps` array, i.e. it is a walking day.
-    // That is also exactly where Organic Maps beats Google Maps — no signal
-    // and a drawn path network. In a city with data, Google is the better map.
+    // Action buttons.
+    // 🔴 ONE PRIMARY, THE REST BEHIND "…" (user, 2026-08-22). Measured: the Days tab carried
+    // 452 buttons, and an open day card ran 4.4 screens on average. Map is the one control
+    // wanted while standing in front of the place; Walk, About, Web, Offline and Call are
+    // wanted occasionally and cost one extra tap each. 452 -> 232 visible.
+    // ⛔ NOTHING IS DELETED and no URL changed. Every ruling below is carried through intact:
+    // no ☎ on a restaurant, 🧭 Offline only on the seven walking days, 📖 About on every
+    // place that has an almanac entry, and the palette still encodes the DESTINATION APP —
+    // amber opens your map, blue opens a web page, accent is the phone.
+    var overflow = [];
+    overflow.push('<a class="btn btn-walk" href="' + mapsWalkUrl(place) + '" target="_blank" rel="noopener">🚶 Walk</a>');
     if (opts.offlineMap) {
-      html += '<a class="btn btn-maps" href="' + organicMapsUrl(place) + '">🧭 Offline</a>';
+      overflow.push('<a class="btn btn-maps" href="' + organicMapsUrl(place) + '">🧭 Offline</a>');
     }
-    // No 📞 on a restaurant. He does not speak Japanese and cannot hold a phone
-    // call with a Japanese venue — a standing constraint, restated at the R7
-    // walkthrough ("make sure there are no restaurants chosen where I need to
-    // call beforehand"). The number stays in places.json because it is true and
-    // a hotel front desk may yet dial it; what is wrong is the button offering
-    // him the call. Hotels and the medical records keep theirs: those are lines
-    // he can actually use, in English or through a desk.
     if (place.phone && place.category !== 'restaurant') {
-      html += '<a class="btn btn-call" href="tel:' + esc(place.phone) + '">📞 Call</a>';
+      overflow.push('<a class="btn btn-call" href="tel:' + esc(place.phone) + '">📞 Call</a>');
     }
     if (place.url) {
-      html += '<a class="btn btn-web" href="' + esc(place.url) + '" target="_blank" rel="noopener">🔗 Web</a>';
+      overflow.push('<a class="btn btn-web" href="' + esc(place.url) + '" target="_blank" rel="noopener">🔗 Web</a>');
     }
-    // Every sightseeing place has an almanac entry by construction — see loadAlmanac()
     if (ALMANAC_NO_ENTRY.indexOf(place.category) === -1) {
-      html += '<button class="btn btn-almanac" data-almanac="' + esc(place.id) + '">📖 About</button>';
+      overflow.push('<button class="btn btn-almanac" data-almanac="' + esc(place.id) + '">📖 About</button>');
+    }
+
+    html += '<div class="btn-row">';
+    html += '<a class="btn btn-maps" href="' + mapsPinUrl(place) + '" target="_blank" rel="noopener">📍 Map</a>';
+    // ⚠ The count is printed on the control. A bare "…" says there is more without saying how
+    // much, and the whole complaint this answers was not knowing what a card holds.
+    if (overflow.length) {
+      html += '<button type="button" class="btn btn-overflow" data-overflow aria-expanded="false">' +
+        '⋯ <span class="btn-overflow-n">' + overflow.length + '</span></button>';
+    }
+    html += '</div>';
+    if (overflow.length) {
+      html += '<div class="btn-row btn-overflow-row" hidden>' + overflow.join('') + '</div>';
     }
     html += '</div>';
     html += '</div>';
@@ -465,26 +530,53 @@
     // A path is a named way, not a POI, and the search does not resolve it.
     html += '<div class="info-copy-hint">Tap any Japanese place name to copy it — then paste it into your offline map.</div>';
 
+    // 🔴 A LIST, not twenty-one stacked cards. Measured: collapsed, this tab ran 6.9 screens
+    // of scrolling, every row two lines tall with its tags on a third. Today's job moved to
+    // the Today screen, so what is left is the evening-before read and the "which day was
+    // Miyajima" lookup — both scanning jobs. One line per day, grouped by the base you sleep
+    // in, and the day you tap opens in place.
+    html += '<div class="day-list accordion">';
+    var lastCity = null;
+
     for (var d = 0; d < DATA.days.length; d++) {
       var day = DATA.days[d];
-      var tripInProgress = currentDayNum >= 1 && currentDayNum <= totalDays;
-      var isPast = tripInProgress && day.day < currentDayNum;
-      var isToday = tripInProgress && day.day === currentDayNum;
+      // The city heading comes from the day record, so a move day ("Kyoto → Hiroshima")
+      // opens its own group rather than being filed under the place it left.
+      if (day.city !== lastCity) {
+        html += '<div class="day-group">' + esc(day.city) + '</div>';
+        lastCity = day.city;
+      }
+      var dState = dayCardState(day.day);
+      var isPast = dState.isPast;
+      var isToday = dState.isToday;
       var cls = 'day-card';
       if (isPast) cls += ' past';
-      if (isToday) cls += ' today card-open';
+      // ⚑ Today is MARKED here but no longer OPENED. It used to be both, and that was right
+      // when this tab was the home screen. It is not any more: Today has its own screen, and
+      // this one is for scanning — "which day was Miyajima". Measured, an auto-opened day
+      // took the list from 2.1 screens to 8.6 and pushed day 18 four screens further down
+      // than it needs to be. You still LAND on today; you just land on its row.
+      if (isToday) cls += ' today';
       else if (!isPast && DATA.days.length <= 3) cls += ' card-open';
 
       html += '<div class="' + cls + '">';
 
-      // Header
+      // Header — one line closed, the tags only once it is open.
       html += '<div class="card-header" data-toggle>';
       html += '<div class="day-num">' + day.day + '</div>';
       html += '<div class="day-meta">';
       html += '<div class="day-title">' + esc(day.title) + '</div>';
-      html += '<div class="day-sub">' + esc(day.weekday + ', ' + fmtDate(day.date) + ' — ' + day.city) + '</div>';
+      html += '<div class="day-sub">' + esc(day.weekday + ', ' + fmtDate(day.date)) +
+        (isToday ? ' <span class="day-now">Today</span>' : '') + '</div>';
       html += '</div>';
       if (day.tags && day.tags.length > 0) {
+        // ⚠ Dots while closed, words once open. The tag words were on a third line of every
+        // row — 21 of them — and closed they only need to answer "is this a hike day".
+        html += '<div class="day-dots">';
+        for (var dt = 0; dt < day.tags.length; dt++) {
+          html += '<span class="day-dot tag-' + esc(day.tags[dt]) + '" title="' + esc(day.tags[dt]) + '"></span>';
+        }
+        html += '</div>';
         html += '<div class="day-tags">';
         for (var t = 0; t < day.tags.length; t++) {
           html += '<span class="tag tag-' + esc(day.tags[t]) + '">' + esc(day.tags[t]) + '</span>';
@@ -515,7 +607,7 @@
       }
       for (var b = 0; b < blocks.length; b++) {
         var block = blocks[b];
-        html += '<div class="block">';
+        html += '<div class="block" id="d' + day.day + 'b' + b + '">';
         html += '<div class="block-title ' + esc(block.type) + '">' + esc(block.title) + '</div>';
 
         // Route maps. They hang off the FIRST hike block of a walking day, not off
@@ -590,9 +682,240 @@
       html += '</div>';
       html += '</div>';
     }
+    html += '</div>';
     container.innerHTML = html;
     bindCardToggles(container);
     bindCopyables(container);
+  }
+
+  // ─── Today ────────────────────────────────────────────────
+  // 🔴 The home screen, and the answer to the two measurements that started v3: today's
+  // show-to-staff card sat up to 5.5 screens inside an already-open Food day card, and only
+  // the Days tab knew what day it was. Everything here is a VIEW of data that already exists
+  // — no new fields, and no second copy of any string. It renders three ways: before the
+  // trip, during it, and after.
+  //
+  // ⛔ Sequence, never a clock. No item in days.json carries a time, so this screen cannot
+  // and must not claim to know where in the day he is: the blocks are listed in their order
+  // and he taps one. Nothing here advances by itself.
+
+  function todaysFoodCards(dayNum) {
+    var out = [];
+    var food = DATA.food;
+    if (!food || !food.days) return out;
+    for (var d = 0; d < food.days.length; d++) {
+      if (food.days[d].day !== dayNum) continue;
+      var meals = food.days[d].meals || [];
+      for (var m = 0; m < meals.length; m++) {
+        var slot = meals[m].slot;
+        for (var r = 0; r < meals[m].restaurants.length; r++) {
+          var rest = foodEntry(food, meals[m].restaurants[r]);
+          if (!rest.order_jp) continue;
+          var place = rest.place_id ? placeById(rest.place_id) : null;
+          out.push({
+            jp: rest.order_jp,
+            romaji: rest.order_romaji || '',
+            // Dish NAME only — the same rule the food card's own overlay applies. Every
+            // `order` string is "Name — description" and the longest runs 277 characters;
+            // a paragraph of English under the Japanese overflows a small handset.
+            en: (rest.order || '').split('—')[0].trim(),
+            slot: slot.charAt(0).toUpperCase() + slot.slice(1),
+            role: rest.role === 'backup' ? 'Backup' : '',
+            venue: place ? place.name_en : ''
+          });
+        }
+      }
+    }
+    return out;
+  }
+
+  function renderTodayCounterStrip(cards) {
+    if (!cards.length) return '';
+    var html = '<div class="today-head"><span class="today-head-label">Show at the counter</span>' +
+      '<span class="today-head-rule"></span><span class="today-head-note">' + cards.length +
+      ' today</span></div>';
+    html += '<div class="today-counter">';
+    for (var i = 0; i < cards.length; i++) {
+      var c = cards[i];
+      var meta = [c.slot, c.role, c.venue].filter(Boolean).join(' · ');
+      html += '<div class="today-card' + (c.role ? ' is-backup' : '') + '" data-counter="' + i + '">' +
+        '<div class="today-card-text">' +
+          '<div class="today-card-jp">' + esc(c.jp) + '</div>' +
+          '<div class="today-card-meta">' + esc(meta) + '</div>' +
+        '</div>' +
+        '<button type="button" class="today-card-say" data-speak="' + esc(c.jp) +
+          '" aria-label="Say it aloud">🔊</button>' +
+      '</div>';
+    }
+    return html + '</div>';
+  }
+
+  function renderTodayOrder(day) {
+    var blocks = day.blocks || [];
+    if (!blocks.length) return '';
+    var html = '<div class="today-head"><span class="today-head-label">Today, in order</span>' +
+      '<span class="today-head-rule"></span><span class="today-head-note">tap to open</span></div>';
+    html += '<div class="today-order">';
+    for (var b = 0; b < blocks.length; b++) {
+      var block = blocks[b];
+      var items = block.items || [];
+      var names = [];
+      for (var i = 0; i < items.length; i++) {
+        var pl = items[i].place_id ? placeById(items[i].place_id) : null;
+        if (pl) names.push(pl.name_en);
+        else if (items[i].label) names.push(items[i].label);
+      }
+      var sub = names.join(' · ');
+      // A pure-transit block names no place, so it says what it costs instead of nothing.
+      if (!sub && block.transit && block.transit.length) {
+        var cost = 0, n = block.transit.length;
+        for (var t = 0; t < block.transit.length; t++) {
+          if (typeof block.transit[t].cost_jpy === 'number') cost += block.transit[t].cost_jpy;
+        }
+        sub = n + ' leg' + (n !== 1 ? 's' : '') + (cost ? ' · ¥' + cost.toLocaleString() : '');
+      }
+      html += '<div class="today-row" data-goto-block="d' + day.day + 'b' + b + '">' +
+        '<span class="today-row-kind ' + esc(block.type) + '">' + esc(block.type) + '</span>' +
+        '<div class="today-row-text">' +
+          '<div class="today-row-title">' + esc(block.title) + '</div>' +
+          (sub ? '<div class="today-row-sub">' + esc(sub) + '</div>' : '') +
+        '</div>' +
+        '<span class="today-row-chev">▶</span>' +
+      '</div>';
+    }
+    return html + '</div>';
+  }
+
+  function renderToday() {
+    var container = document.getElementById('section-today');
+    if (!container || !DATA.meta || !DATA.days) return;
+    var meta = DATA.meta;
+    var cur = tripDayNumber(meta);
+    var html = '';
+
+    if (cur < 1) {
+      // Before departure there is no day to show, so it says what it does know and points at
+      // what matters now, rather than pretending to be a trip day.
+      var diff = -cur + 1;
+      html += '<div class="today-pre">' +
+        '<div class="today-pre-count">' + diff + '</div>' +
+        '<div class="today-pre-label">day' + (diff !== 1 ? 's' : '') + ' until departure</div>' +
+        '<div class="today-pre-route">' + esc(meta.route_summary) + '</div>' +
+        '<div class="today-chips">' +
+          '<button type="button" class="today-chip" data-goto="info">Bookings</button>' +
+          '<button type="button" class="today-chip" data-goto="days">The whole trip</button>' +
+          '<button type="button" class="today-chip" data-goto="almanac">Read ahead</button>' +
+        '</div></div>';
+      container.innerHTML = html;
+      bindTodayControls(container);
+      return;
+    }
+    if (cur > meta.total_days) {
+      container.innerHTML = '<div class="today-pre"><div class="today-pre-label">The trip is over.</div>' +
+        '<div class="today-pre-route">' + esc(meta.route_summary) + '</div></div>';
+      return;
+    }
+
+    var day = null;
+    for (var i = 0; i < DATA.days.length; i++) {
+      if (DATA.days[i].day === cur) { day = DATA.days[i]; break; }
+    }
+    if (!day) { container.innerHTML = '<div class="section-empty">No entry for today</div>'; return; }
+
+    html += '<div class="today-title">' + esc(day.title) + '</div>';
+    if (day.tags && day.tags.length) {
+      html += '<div class="day-tags today-tags">';
+      for (var t = 0; t < day.tags.length; t++) {
+        html += '<span class="tag tag-' + esc(day.tags[t]) + '">' + esc(day.tags[t]) + '</span>';
+      }
+      html += '</div>';
+    }
+
+    // ⚠ The .card-body wrapper exists because renderWeatherBar() inserts into one. Reusing
+    // that function whole is deliberate: it owns the icon table, the stale-fetch note and the
+    // heavy-rain alert, and a second implementation here would drift from Days in one change.
+    html += '<div class="today-weather"><div class="card-body"></div></div>';
+
+    if (day.notes_top && day.notes_top.length) {
+      for (var nt = 0; nt < day.notes_top.length; nt++) {
+        html += '<div class="day-note today-note">📌 ' + esc(day.notes_top[nt]) + '</div>';
+      }
+    }
+
+    html += renderTodayCounterStrip(todaysFoodCards(cur));
+    html += renderTodayOrder(day);
+
+    html += '<div class="today-chips">';
+    html += '<button type="button" class="today-chip is-primary" data-goto="food">Food today</button>';
+    html += '<button type="button" class="today-chip" data-goto="days">Full day</button>';
+    html += '<button type="button" class="today-chip" data-goto="transit">All legs</button>';
+    if (day.backup) {
+      html += '<button type="button" class="today-chip" data-backup="1">Backup plan</button>';
+    }
+    html += '</div>';
+
+    if (day.backup) {
+      html += '<div class="day-backup today-backup" hidden>' +
+        '<div class="day-backup-title">' + esc(day.backup.title) + '</div>' +
+        '<div class="day-backup-detail">' + esc(day.backup.detail) + '</div></div>';
+    }
+
+    container.innerHTML = html;
+    bindTodayControls(container);
+    TODAY_CARDS = todaysFoodCards(cur);
+  }
+
+  // Today's Japanese cards, held so the full-screen overlay can page between them without
+  // going back to the list. Rebuilt by renderToday(); empty outside the trip dates.
+  var TODAY_CARDS = [];
+
+  function bindTodayControls(root) {
+    var cards = root.querySelectorAll('[data-counter]');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].addEventListener('click', function (e) {
+        // The 🔊 button lives inside this row and speaks without opening anything.
+        if (e.target.closest('[data-speak]')) return;
+        openCounterCard(parseInt(this.getAttribute('data-counter'), 10));
+      });
+    }
+    var rows = root.querySelectorAll('[data-goto-block]');
+    for (var r = 0; r < rows.length; r++) {
+      rows[r].addEventListener('click', function () {
+        var id = this.getAttribute('data-goto-block');
+        switchSection('days');
+        // ⚠ after switchSection, which scrolls to today first — this lands on the block.
+        setTimeout(function () {
+          var el = document.getElementById(id);
+          if (el) el.scrollIntoView({ behavior: 'auto', block: 'center' });
+        }, 90);
+      });
+    }
+    var chips = root.querySelectorAll('[data-goto]');
+    for (var c = 0; c < chips.length; c++) {
+      chips[c].addEventListener('click', function () {
+        switchSection(this.getAttribute('data-goto'));
+      });
+    }
+    var backup = root.querySelector('[data-backup]');
+    if (backup) {
+      backup.addEventListener('click', function () {
+        var box = root.querySelector('.today-backup');
+        if (!box) return;
+        box.hidden = !box.hidden;
+        this.classList.toggle('is-on', !box.hidden);
+        if (!box.hidden) box.scrollIntoView({ behavior: 'auto', block: 'nearest' });
+      });
+    }
+    bindJpSay(root);
+  }
+
+  function openCounterCard(index) {
+    var c = TODAY_CARDS[index];
+    if (!c) return;
+    showFullscreen({
+      jp: c.jp, romaji: c.romaji, en: c.en, speakable: true,
+      pager: { index: index, total: TODAY_CARDS.length }
+    });
   }
 
   // ─── SOS section renderer ─────────────────────────────────
@@ -739,24 +1062,106 @@
   }
 
   // ─── Phrases section renderer ─────────────────────────────
-  function renderPhrases() {
+  // ─── Say & Show ───────────────────────────────────────────
+  // The Phrases tab, widened into the one place for "the thing I turn around". It had 44
+  // fixed phrases and nothing about the trip in it; the Japanese he actually needs on a given
+  // day — what he is ordering, and where he is going — lived in Food and Days. All three are
+  // the same gesture, so they are now one tab with a filter across the top.
+  //
+  // ⛔ No new strings. Today's orders come from the same foodEntry() merge the Food card uses
+  // and the place names from places.json, so nothing here can drift from what those show.
+
+  // ⚠ Restaurants are deliberately absent from the place list. `search_jp` resolves 11 of 43
+  // restaurants in an offline map — a control that works a quarter of the time, with no way
+  // to tell which quarter, is worse than one that is absent. Same rule as the place card.
+  function todaysPlaceNames(dayNum) {
+    var out = [], seen = {};
+    if (!DATA.days) return out;
+    var day = null;
+    for (var i = 0; i < DATA.days.length; i++) {
+      if (DATA.days[i].day === dayNum) { day = DATA.days[i]; break; }
+    }
+    if (!day) return out;
+    var blocks = day.blocks || [];
+    for (var b = 0; b < blocks.length; b++) {
+      var items = blocks[b].items || [];
+      for (var it = 0; it < items.length; it++) {
+        var pl = items[it].place_id ? placeById(items[it].place_id) : null;
+        if (!pl || !pl.name_jp || pl.category === 'restaurant') continue;
+        if (seen[pl.id]) continue;
+        seen[pl.id] = 1;
+        out.push({ id: pl.id, en: pl.name_en, jp: pl.name_jp, copy: pl.search_jp || pl.name_jp });
+      }
+    }
+    return out;
+  }
+
+  function renderSay() {
     var container = document.getElementById('section-phrases');
     if (!DATA.phrases || !DATA.phrases.groups) {
       container.innerHTML = '<div class="section-empty">Phrases not loaded</div>';
       return;
     }
-    var ICONS = {
-      utensils: '🍽', train: '🚃', hotel: '🏨', hiking: '🥾',
-      shopping: '🛍', emergency: '🚨'
-    };
-    var groups = DATA.phrases.groups;
-    var html = '';
-    // The rows have been tappable since the app was built and nothing ever said
-    // so — the same defect item 1 reported about the copyables: not purposeless,
-    // undiscoverable. The controls now live behind that tap, so the affordance
-    // has to be stated or they ship invisible.
-    html += '<div class="phrase-intro">Tap any phrase to show it full-screen — big enough to read across a counter, with 🔊 to play it aloud.</div>';
+    var ICONS = { utensils: '🍽', train: '🚃', hotel: '🏨', hiking: '🥾', shopping: '🛍', emergency: '🚨' };
+    var cur = DATA.meta ? tripDayNumber(DATA.meta) : NaN;
+    var inTrip = cur >= 1 && cur <= (DATA.meta ? DATA.meta.total_days : 0);
+    var orders = inTrip ? todaysFoodCards(cur) : [];
+    var places = inTrip ? todaysPlaceNames(cur) : [];
+    var hasToday = orders.length > 0 || places.length > 0;
 
+    var html = '';
+
+    // Outside the trip dates there is no "today" to filter to, so the control is not drawn
+    // at all rather than shown with two dead segments.
+    if (hasToday) {
+      html += '<div class="seg" role="tablist">' +
+        '<button type="button" class="seg-btn is-on" data-seg="today">Today</button>' +
+        '<button type="button" class="seg-btn" data-seg="places">Places</button>' +
+        '<button type="button" class="seg-btn" data-seg="phrases">Phrases</button>' +
+      '</div>';
+    }
+
+    if (orders.length) {
+      html += '<div class="say-pane" data-pane="today">';
+      html += '<div class="today-head"><span class="today-head-label">What you are ordering today</span>' +
+        '<span class="today-head-rule"></span></div>';
+      html += '<div class="today-counter">';
+      for (var o = 0; o < orders.length; o++) {
+        var c = orders[o];
+        var meta = [c.slot, c.role, c.venue].filter(Boolean).join(' · ');
+        html += '<div class="today-card' + (c.role ? ' is-backup' : '') + '" data-counter="' + o + '">' +
+          '<div class="today-card-text">' +
+            '<div class="today-card-jp">' + esc(c.jp) + '</div>' +
+            '<div class="today-card-meta">' + esc(meta) + '</div>' +
+          '</div>' +
+          '<button type="button" class="today-card-say" data-speak="' + esc(c.jp) +
+            '" aria-label="Say it aloud">🔊</button>' +
+        '</div>';
+      }
+      html += '</div></div>';
+    }
+
+    if (places.length) {
+      html += '<div class="say-pane" data-pane="places" hidden>';
+      html += '<div class="today-head"><span class="today-head-label">Where you are going today</span>' +
+        '<span class="today-head-rule"></span></div>';
+      html += '<div class="say-hint">Tap the Japanese to copy it, then paste it into your offline map.</div>';
+      html += '<div class="say-places">';
+      for (var p = 0; p < places.length; p++) {
+        html += '<div class="say-place">' +
+          '<div class="say-place-text">' +
+            '<div class="say-place-jp copyable" data-copy="' + esc(places[p].copy) +
+              '" data-copy-hint="paste into your offline map">' + esc(places[p].jp) + '</div>' +
+            '<div class="say-place-en">' + esc(places[p].en) + '</div>' +
+          '</div>' +
+        '</div>';
+      }
+      html += '</div></div>';
+    }
+
+    html += '<div class="say-pane" data-pane="phrases"' + (hasToday ? ' hidden' : '') + '>';
+    html += '<div class="phrase-intro">Tap any phrase to show it full-screen — big enough to read across a counter, with 🔊 to play it aloud.</div>';
+    var groups = DATA.phrases.groups;
     for (var g = 0; g < groups.length; g++) {
       var group = groups[g];
       var icon = ICONS[group.icon] || '💬';
@@ -768,23 +1173,48 @@
       html += '<span class="chevron">▶</span>';
       html += '</div>';
       html += '<div class="card-body">';
-      for (var p = 0; p < group.phrases.length; p++) {
-        var phrase = group.phrases[p];
-        html += '<div class="phrase-item" data-fs-jp="' + esc(phrase.jp) + '" data-fs-en="' + esc(phrase.en) + '" data-fs-romaji="' + esc(phrase.romaji) + '" data-fs-context="' + esc(phrase.context || '') + '">';
+      for (var ph = 0; ph < group.phrases.length; ph++) {
+        var phrase = group.phrases[ph];
+        html += '<div class="phrase-item" data-fs-jp="' + esc(phrase.jp) + '" data-fs-en="' + esc(phrase.en) +
+          '" data-fs-romaji="' + esc(phrase.romaji) + '" data-fs-context="' + esc(phrase.context || '') + '">';
         html += '<div class="phrase-en">' + esc(phrase.en) + '</div>';
         html += '<div class="phrase-jp">' + esc(phrase.jp) + '</div>';
         html += '<div class="phrase-romaji">' + esc(phrase.romaji) + '</div>';
         if (phrase.context) html += '<div class="phrase-context">' + esc(phrase.context) + '</div>';
         html += '</div>';
       }
-      html += '</div>';
-      html += '</div>';
+      html += '</div></div>';
     }
+    html += '</div>';
+
     container.innerHTML = html;
     bindCardToggles(container);
     bindPhraseItems(container);
-  }
+    bindCopyables(container);
+    bindJpSay(container);
 
+    // the counter rows here open the SAME overlay, pager and all, as the Today screen
+    var cards = container.querySelectorAll('[data-counter]');
+    for (var k = 0; k < cards.length; k++) {
+      cards[k].addEventListener('click', function (e) {
+        if (e.target.closest('[data-speak]')) return;
+        openCounterCard(parseInt(this.getAttribute('data-counter'), 10));
+      });
+    }
+
+    var segs = container.querySelectorAll('[data-seg]');
+    for (var sgi = 0; sgi < segs.length; sgi++) {
+      segs[sgi].addEventListener('click', function () {
+        var want = this.getAttribute('data-seg');
+        for (var a = 0; a < segs.length; a++) segs[a].classList.toggle('is-on', segs[a] === this);
+        var panes = container.querySelectorAll('[data-pane]');
+        for (var b = 0; b < panes.length; b++) {
+          panes[b].hidden = panes[b].getAttribute('data-pane') !== want;
+        }
+        window.scrollTo({ top: 0 });
+      });
+    }
+  }
   // A venue's order block (Tabelog link, dish, Japanese, why, backup) is a
   // property of the VENUE, not of the meal — 64 entries share 43 venues, and
   // three of the days serve mendokoro-honda. It lives once in food.venues and
@@ -982,7 +1412,9 @@
     if (food.days && food.days.length > 0) {
       for (var d = 0; d < food.days.length; d++) {
         var day = food.days[d];
-        html += '<div class="food-day">';
+        var fState = dayCardState(day.day);
+        html += '<div class="food-day' + (fState.isToday ? ' today card-open' : '') +
+          (fState.isPast ? ' past' : '') + '">';
         html += '<div class="card-header" data-toggle>';
         html += '<div class="day-num">' + day.day + '</div>';
         html += '<div class="day-meta">';
@@ -1204,7 +1636,9 @@
       if (dayCost > 0) costSub = ' · ¥' + dayCost.toLocaleString() + (hasPassLeg ? ' + JR Pass' : '');
       else if (hasPassLeg) costSub = ' · JR Pass';
 
-      html += '<div class="transit-day">';
+      var tState = dayCardState(day.day);
+      html += '<div class="transit-day' + (tState.isToday ? ' today card-open' : '') +
+        (tState.isPast ? ' past' : '') + '">';
       html += '<div class="card-header" data-toggle>';
       html += '<div class="day-num">' + day.day + '</div>';
       html += '<div class="day-meta">';
@@ -1800,18 +2234,30 @@
 
   function renderAllWeather(weatherData, staleTime) {
     if (!DATA.days) return;
+    // ⚑ Today first. Its bar is the same component reading the same cache — the Days card for
+    // today keeps its own, so the two cannot disagree.
+    var todayWx = document.querySelector('#section-today .today-weather');
+    if (todayWx && DATA.meta) {
+      var curDay = tripDayNumber(DATA.meta);
+      var td = weatherData ? weatherData[curDay] : null;
+      var tdDate = null;
+      for (var q = 0; q < DATA.days.length; q++) {
+        if (DATA.days[q].day === curDay) { tdDate = DATA.days[q].date; break; }
+      }
+      renderWeatherBar(todayWx, td, staleTime, td ? null : wxEmptyMessage(tdDate));
+    }
     for (var d = 0; d < DATA.days.length; d++) {
       var day = DATA.days[d];
-      var dayEl = document.querySelector('.day-card:nth-child(' + (d + 1) + ')');
-      if (!dayEl) {
-        var dayCards = document.querySelectorAll('.day-card');
-        for (var j = 0; j < dayCards.length; j++) {
-          var numEl = dayCards[j].querySelector('.day-num');
-          if (numEl && numEl.textContent.trim() === String(day.day)) {
-            dayEl = dayCards[j];
-            break;
-          }
-        }
+      // 🔴 Match by the day NUMBER, never by position. This used to try
+      // `.day-card:nth-child(d+1)` first and fall back to the number — and the compact list
+      // put a `.day-group` city heading between the cards, so nth-child now resolves to a
+      // DIFFERENT day and the fast path would have silently hung Miyajima's forecast on
+      // Hiroshima. The fallback was the correct lookup all along; it is now the only one.
+      var dayEl = null;
+      var dayCards = document.querySelectorAll('#section-days .day-card');
+      for (var j = 0; j < dayCards.length; j++) {
+        var numEl = dayCards[j].querySelector('.day-num');
+        if (numEl && numEl.textContent.trim() === String(day.day)) { dayEl = dayCards[j]; break; }
       }
       if (!dayEl) continue;
       var dayData = weatherData ? weatherData[day.day] : null;
@@ -2075,69 +2521,158 @@
   }
 
   // ─── Header subtitle (trip countdown / current day) ───────
+  // 🔴 The header states WHERE HE IS, not what the app is called. The largest text on screen
+  // used to read "Japan 2026" — 176px of header and nav is 21% of a 393x852 screen held
+  // permanently, and a fifth of it was spent on a title he cannot forget. Mid-trip the top
+  // line is now the date and day number and the heading is the city; before departure it
+  // falls back to the countdown and the trip name, because then there is no city to name.
   function updateHeaderSub() {
     var sub = document.getElementById('header-sub');
+    var title = document.getElementById('header-title');
     if (!sub || !DATA.meta) return;
     var meta = DATA.meta;
     var currentDay = tripDayNumber(meta);
 
-    if (currentDay < 0) {
-      var diff = -currentDay;
+    if (currentDay < 1) {
+      var diff = -currentDay + 1;
       sub.textContent = diff + ' day' + (diff !== 1 ? 's' : '') + ' until departure';
+      if (title) title.textContent = meta.trip_name || 'Japan 2026';
     } else if (currentDay <= meta.total_days) {
       var city = null;
       for (var i = 0; i < meta.cities.length; i++) {
-        if (meta.cities[i].days.indexOf(currentDay) !== -1) {
+        // ⚠ first match wins and day-trip entries share the day, so a base city listed
+        // before its day trip stays the heading — Kyoto, not Uji, on day 16.
+        if (meta.cities[i].days.indexOf(currentDay) !== -1 && !meta.cities[i].day_trip) {
           city = meta.cities[i];
           break;
         }
       }
+      var dayObj = null;
+      for (var d = 0; d < (DATA.days || []).length; d++) {
+        if (DATA.days[d].day === currentDay) { dayObj = DATA.days[d]; break; }
+      }
       sub.textContent = 'Day ' + currentDay + ' of ' + meta.total_days +
-        (city ? ' — ' + city.name : '');
+        (dayObj ? ' · ' + dayObj.weekday + ' ' + fmtDate(dayObj.date) : '');
+      if (title) title.textContent = city ? city.name : (dayObj ? dayObj.city : 'Japan 2026');
     } else {
       sub.textContent = meta.route_summary;
+      if (title) title.textContent = meta.trip_name || 'Japan 2026';
     }
   }
 
   // ─── Theme toggle (dark ↔ OLED) ───────────────────────────
   var themeBtn = document.getElementById('theme-toggle');
-  var MODES = ['dark', 'oled'];
-  var THEME_ICONS = { dark: '◐', oled: '⬛' };
-  var LABELS = { dark: 'Dark theme', oled: 'OLED theme' };
+  // ☀ DAY FIRST. The cycle used to be dark -> oled, i.e. a dark theme and a
+  // darker one, on a trip that is outdoors in daylight most of every day.
+  // Day is now the default and the ruling is that it STAYS put: no
+  // prefers-color-scheme, no sunrise/sunset (both offered, both declined
+  // 2026-08-22) — the phone's own schedule would still be dark at 06:00 on a
+  // hike morning. This button is the only thing that moves it.
+  var MODES = ['day', 'night', 'oled'];
+  var THEME_ICONS = { day: '☀', night: '◐', oled: '⬛' };
+  var LABELS = { day: 'Day theme', night: 'Night theme', oled: 'OLED theme' };
+  var THEME_META = { day: '#ffffff', night: '#1e1e1e', oled: '#000000' };
+  // One build shipped 'dark' as the stored value. Map it forward rather than
+  // silently resetting a handset that already has a preference.
+  var THEME_ALIAS = { dark: 'night' };
 
+  function readThemeMode() {
+    var m = localStorage.getItem('theme_mode');
+    if (THEME_ALIAS[m]) m = THEME_ALIAS[m];
+    return MODES.indexOf(m) === -1 ? 'day' : m;
+  }
+
+  // ⚠ OLED gets BOTH classes. night-mode carries the whole dark palette and
+  // oled-mode overrides only the four surfaces on top of it — so oled without
+  // night-mode would render black cards with Day-mode text on them.
   function applyTheme(mode) {
-    document.body.classList.remove('oled-mode');
+    document.body.classList.remove('night-mode', 'oled-mode');
+    if (mode === 'night' || mode === 'oled') document.body.classList.add('night-mode');
     if (mode === 'oled') document.body.classList.add('oled-mode');
     themeBtn.textContent = THEME_ICONS[mode];
     themeBtn.title = LABELS[mode];
     localStorage.setItem('theme_mode', mode);
 
     var metaTheme = document.querySelector('meta[name="theme-color"]');
-    if (metaTheme) metaTheme.content = mode === 'oled' ? '#000000' : '#1a1a1a';
+    if (metaTheme) metaTheme.content = THEME_META[mode];
   }
 
   // Guarded: a missing header element must not kill the whole app (audit N5)
   if (themeBtn) {
-    var savedTheme = localStorage.getItem('theme_mode') || 'dark';
-    if (MODES.indexOf(savedTheme) === -1) savedTheme = 'dark';
-    applyTheme(savedTheme);
+    applyTheme(readThemeMode());
 
     themeBtn.addEventListener('click', function () {
-      var current = localStorage.getItem('theme_mode') || 'dark';
+      var current = readThemeMode();
       var next = MODES[(MODES.indexOf(current) + 1) % MODES.length];
       applyTheme(next);
       if (navigator.vibrate) navigator.vibrate(10);
     });
   }
 
+  // SOS is reachable from every screen now that it is not a tab. Guarded like the theme
+  // button: a missing header element must not take the rest of the app down (audit N5).
+  var sosJump = document.getElementById('sos-jump');
+  if (sosJump) {
+    sosJump.addEventListener('click', function () {
+      switchSection('sos');
+      if (navigator.vibrate) navigator.vibrate(10);
+    });
+  }
+
+  // 🔴 The sticky offsets depend on the real header height, which is not a constant: it
+  // carries env(safe-area-inset-top) and grows on a notched handset, and it changes again
+  // when the day line wraps. Measured into a custom property instead of guessed, and
+  // remeasured on resize and orientation change.
+  function syncHeaderHeight() {
+    var h = document.getElementById('header');
+    if (!h) return;
+    document.documentElement.style.setProperty('--header-h', Math.round(h.getBoundingClientRect().height) + 'px');
+  }
+  syncHeaderHeight();
+  window.addEventListener('resize', function () { syncHeaderHeight(); syncOpenDayHeader(); });
+  window.addEventListener('orientationchange', function () { syncHeaderHeight(); syncOpenDayHeader(); });
+
   // ─── Bottom nav — section switching ───────────────────────
   var navLinks = document.querySelectorAll('.bottom-nav a');
   var sections = document.querySelectorAll('.content-section');
 
-  var VALID_SECTIONS = ['days', 'food', 'transit', 'phrases', 'sos', 'info', 'almanac'];
+  var VALID_SECTIONS = ['today', 'days', 'food', 'transit', 'phrases', 'sos', 'info', 'almanac', 'more'];
+
+  // Sections that no longer have a tab of their own. Reaching one keeps More lit, so the bar
+  // never shows nothing selected — and SOS lights nothing, because its control is the header
+  // button that is already visible on that screen.
+  var UNDER_MORE = { transit: 1, info: 1, almanac: 1 };
+
+  var MORE_ITEMS = [
+    { id: 'transit', icon: '🚃', title: 'Transit', sub: 'Every leg of every day, and the payment rules' },
+    { id: 'info', icon: '📋', title: 'Bookings', sub: 'Flights, hotels, confirmation numbers' },
+    { id: 'almanac', icon: '📖', title: 'Almanac', sub: 'What each place is, read at length' },
+    { id: 'sos', icon: '🚨', title: 'Emergency', sub: 'Numbers, hospitals, the lines to say' }
+  ];
+
+  function renderMore() {
+    var el = document.getElementById('section-more');
+    if (!el) return;
+    var html = '<div class="more-list">';
+    for (var i = 0; i < MORE_ITEMS.length; i++) {
+      var m = MORE_ITEMS[i];
+      html += '<button type="button" class="more-row' + (m.id === 'sos' ? ' is-sos' : '') +
+        '" data-goto="' + m.id + '">' +
+        '<span class="more-icon">' + m.icon + '</span>' +
+        '<span class="more-text"><span class="more-title">' + esc(m.title) + '</span>' +
+        '<span class="more-sub">' + esc(m.sub) + '</span></span>' +
+        '<span class="more-chev">▶</span></button>';
+    }
+    html += '</div>';
+    el.innerHTML = html;
+    var rows = el.querySelectorAll('[data-goto]');
+    for (var r = 0; r < rows.length; r++) {
+      rows[r].addEventListener('click', function () { switchSection(this.getAttribute('data-goto')); });
+    }
+  }
 
   function switchSection(target) {
-    if (VALID_SECTIONS.indexOf(target) === -1) target = 'days';
+    if (VALID_SECTIONS.indexOf(target) === -1) target = 'today';
 
     // The almanac tab is built the first time it is opened, not at startup.
     // ⚠ switchSection also runs from the initial #section-almanac hash, BEFORE the
@@ -2152,15 +2687,21 @@
     navLinks.forEach(function (a) { a.classList.remove('nav-active'); });
 
     var section = document.getElementById('section-' + target);
-    var link = document.querySelector('.bottom-nav a[data-section="' + target + '"]');
+    // A section reached from More has no tab of its own; light More instead of nothing.
+    var lit = UNDER_MORE[target] ? 'more' : target;
+    var link = document.querySelector('.bottom-nav a[data-section="' + lit + '"]');
     if (section) section.classList.add('active');
     if (link) link.classList.add('nav-active');
 
     history.replaceState(null, '', '#section-' + target);
     window.scrollTo({ top: 0 });
+    // ⚑ Land on today, every time, not only at startup. Switching INTO a day-keyed tab is
+    // exactly the moment the answer is wanted — he taps Food because he is about to eat.
+    // scrollToToday is a no-op on the other tabs and when the trip is not running.
+    scrollToToday(target);
   }
 
-  var initialSection = (location.hash || '').replace('#section-', '') || 'days';
+  var initialSection = (location.hash || '').replace('#section-', '') || 'today';
   switchSection(initialSection);
 
   navLinks.forEach(function (a) {
@@ -2690,13 +3231,34 @@
     });
   }
 
-  function scrollToToday() {
-    var todayCard = document.querySelector('#section-days.active .day-card.today');
+  // ⚠ Takes the section. The old version hard-coded `#section-days.active` and ran once at
+  // load, so switching to Food mid-trip landed you at day 1 with 20 collapsed cards between
+  // you and tonight's dinner. Only the three day-keyed tabs have a today to land on.
+  function scrollToToday(section) {
+    section = section || 'days';
+    if (DAY_KEYED_SECTIONS.indexOf(section) === -1) return;
+    var todayCard = document.querySelector('#section-' + section + '.active .today');
     if (!todayCard) return;
     setTimeout(function () {
       todayCard.scrollIntoView({ behavior: 'auto', block: 'start' });
     }, 50);
   }
+
+  // ⋯ reveals the rest of a place card's controls. Delegated for the same reason the almanac
+  // trigger is: these cards are re-rendered, and they appear on three tabs.
+  document.addEventListener('click', function (e) {
+    if (!e.target || !e.target.closest) return;
+    var more = e.target.closest('[data-overflow]');
+    if (!more) return;
+    e.preventDefault();
+    e.stopPropagation();
+    var row = more.parentElement.nextElementSibling;
+    if (!row || !row.classList.contains('btn-overflow-row')) return;
+    var open = !row.hidden;
+    row.hidden = open;
+    more.setAttribute('aria-expanded', String(!open));
+    more.classList.toggle('is-on', !open);
+  });
 
   // ─── Almanac triggers (delegated — cards are re-rendered) ──
   document.addEventListener('click', function (e) {
@@ -2758,10 +3320,12 @@
     }
 
     if (DATA.meta) updateHeaderSub();
+    renderToday();
+    renderMore();
     renderDays();
     renderFood();
     renderTransit();
-    renderPhrases();
+    renderSay();
     renderSOS();
     renderInfo();
     buildSearchIndex();

@@ -5,8 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#1a1a1a">
+  <!-- ⚠ `default`, not `black-translucent`. black-translucent forces WHITE status-bar
+       text and lets content run under it — invisible clock and battery on Day mode's
+       white header. `default` gives an opaque bar with dark glyphs; the trade is that
+       env(safe-area-inset-top) becomes 0, so the header falls back to its 20px padding. -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#ffffff">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -18,10 +22,15 @@
 
   <header id="header">
     <div class="header-text-block">
-      <h1>Japan 2026</h1>
       <div class="sub" id="header-sub">Loading...</div>
+      <h1 id="header-title">Japan 2026</h1>
     </div>
     <div class="header-search-icon" id="search-toggle" aria-label="Search" title="Search">🔍</div>
+    <!-- 🔴 SOS is a HEADER control, not a tab (user, 2026-08-22). In the bar it was one of
+         seven 42.2pt targets, below the 44pt minimum, and reachable only from the bar. Here
+         it is on every screen including inside an open day, and the bar it left is wider for
+         the tabs that stayed. -->
+    <button type="button" class="header-sos" id="sos-jump" aria-label="Emergency information" title="Emergency information">🚨</button>
     <div class="header-theme-toggle" id="theme-toggle" aria-label="Toggle Theme" title="Toggle OLED mode">◐</div>
   </header>
 
@@ -34,6 +43,10 @@
   </div>
 
   <main id="main">
+    <section id="section-today" class="content-section">
+      <div class="section-empty">Today could not be loaded — try reopening the app online</div>
+    </section>
+
     <section id="section-days" class="content-section">
       <div class="section-empty">Itinerary could not be loaded — try reopening the app online</div>
     </section>
@@ -61,6 +74,10 @@
     <section id="section-almanac" class="content-section">
       <div class="section-empty">Almanac could not be loaded — try reopening the app online</div>
     </section>
+
+    <!-- A launcher, not a container: Transit, Info and the Almanac keep their own sections
+         and their own hashes, and More is how you reach them now that they are not tabs. -->
+    <section id="section-more" class="content-section"></section>
   </main>
 
   <div id="almanac-modal" class="almanac-modal" hidden>
@@ -73,14 +90,15 @@
 
   <button id="back-to-top" class="back-to-top" aria-label="Back to top" hidden>↑</button>
 
+  <!-- 🔴 Five tabs (user, 2026-08-22). Seven gave 42.2pt targets, under the 44pt minimum;
+       five flexed across 393pt give 72.2pt each. Transit, Info and Almanac move behind More,
+       Phrases becomes Say, and SOS is pinned in the header. -->
   <nav class="bottom-nav" id="bottom-nav">
-    <a href="#section-days" data-section="days" class="nav-active"><span class="nav-icon">📅</span><span>Days</span></a>
+    <a href="#section-today" data-section="today" class="nav-active"><span class="nav-icon">🕐</span><span>Today</span></a>
+    <a href="#section-days" data-section="days"><span class="nav-icon">📅</span><span>Days</span></a>
     <a href="#section-food" data-section="food"><span class="nav-icon">🍜</span><span>Food</span></a>
-    <a href="#section-transit" data-section="transit"><span class="nav-icon">🚃</span><span>Transit</span></a>
-    <a href="#section-phrases" data-section="phrases"><span class="nav-icon">🗣</span><span>Phrases</span></a>
-    <a href="#section-sos" data-section="sos"><span class="nav-icon">🚨</span><span>SOS</span></a>
-    <a href="#section-info" data-section="info"><span class="nav-icon">📋</span><span>Info</span></a>
-    <a href="#section-almanac" data-section="almanac"><span class="nav-icon">📖</span><span>Almanac</span></a>
+    <a href="#section-phrases" data-section="phrases"><span class="nav-icon">🗣</span><span>Say</span></a>
+    <a href="#section-more" data-section="more"><span class="nav-icon">☰</span><span>More</span></a>
   </nav>
 
   <script src="app.js"></script>

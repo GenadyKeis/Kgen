@@ -1,11 +1,11 @@
 {
-  "name": "Japan Trip 2026",
-  "short_name": "Japan 2026",
+  "name": "Japan Trip 2026 (v3)",
+  "short_name": "Japan 2026 v3",
   "description": "Japan trip companion — offline itinerary, food, transit, phrasebook, SOS",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#1a1a1a",
-  "theme_color": "#1a1a1a",
+  "background_color": "#faf7f3",
+  "theme_color": "#ffffff",
   "icons": [
     {
       "src": "icon-192.png",

@@ -1,33 +1,163 @@
-/* ─── Theme tokens ─────────────────────────────────────────── */
+/* ─── Theme tokens ─────────────────────────────────────────────
+   🔴 DAY IS THE DEFAULT (user ruling, 2026-08-22). Until this build the app
+   had a dark theme and a darker one — `:root` was #121212 and the ◐ button
+   switched it to black — and not one `prefers-color-scheme` rule existed.
+   This is a trip spent outdoors: the audit measured the header and nav also
+   painting themselves translucent over scrolling content with a 12px blur,
+   which is the worst thing you can do to legibility in sunlight. Both bars
+   are now OPAQUE (`--chrome`) and the blur is gone from the stylesheet.
+   ⛔ Do NOT wire this to `prefers-color-scheme`. It was offered and declined:
+   the phone's own schedule would still be in Night mode at 06:00 on a hike
+   morning, which is exactly when he is outside. Day is held for the whole
+   trip and the ◐ button is the only thing that changes it.
+   ⚠ Every colour in this file resolves through a token — including the tints.
+   A tint is NOT a shared rgba(): rgba(255,183,77,0.25) reads as amber on
+   #1e1e1e and as nothing at all on white, so light and dark carry their own
+   values. Adding a literal colour below re-breaks Day mode silently. */
 :root {
-  --bg: #121212;
-  --card: #1e1e1e;
-  --card-open: #2a2a2a;
-  --text: #f5f3f0;
-  --text-dim: #c0b8ae;
-  --accent: #f0a060;
+  /* surfaces */
+  --bg: #faf7f3;
+  --card: #ffffff;
+  --card-open: #f4efe8;
+  --border: #ddd5c9;
+  --chrome: #ffffff;
+  /* text */
+  --text: #17150f;
+  --text-dim: #5f574c;
+  --on-accent: #ffffff;
+  /* accents — darkened from the night hues so they clear 4.5:1 on white */
+  --accent: #8f4a0c;
   --accent-dim: #c07838;
-  --link: #64b5f6;
-  --link-hike: #81c784;
-  --link-maps: #ffb74d;
+  /* ⚠ --accent-dim is a BORDER colour (3px left edges). A border has no contrast floor to
+     meet; TEXT does, and .phrase-context was borrowing it at 12px for 3.07:1 on white.
+     Separate token, so the edges keep their weight and the text becomes readable. */
+  --accent-quiet: #9c5715;
+  --link: #0f4c9a;
+  --link-hike: #256b29;
+  --link-maps: #7a4600;
+  --warn: #a35a00;
+  --block-morning: #7d5f00;
+  --block-evening: #6a1b9a;
+  --today-glow: rgba(143, 74, 12, 0.30);
+  /* tints — a wash of the accent on the card, not a shared alpha */
+  --tint-neutral: rgba(23, 21, 15, 0.05);
+  --tint-accent: rgba(143, 74, 12, 0.07);
+  --tint-accent-strong: rgba(143, 74, 12, 0.10);
+  --tint-maps: rgba(122, 70, 0, 0.07);
+  --tint-maps-strong: rgba(122, 70, 0, 0.10);
+  --tint-link: rgba(15, 76, 154, 0.06);
+  --tint-link-strong: rgba(15, 76, 154, 0.09);
+  --tint-purple: rgba(106, 27, 154, 0.10);
+  --tint-yellow: rgba(138, 106, 0, 0.10);
+  --tint-hike: rgba(37, 107, 41, 0.09);
+  --tint-warn: rgba(163, 90, 0, 0.09);
+  /* solid tag chips — pale text on a saturated block, unchanged by theme */
   --tag-transit: #1565c0;
   --tag-hike: #2e7d32;
   --tag-culture: #7b1fa2;
-  --tag-food: #e65100;
-  --border: #444444;
-  --today-glow: #f0a06055;
+  /* ⚠ #e65100 until now, and its pale text sat at 3.46:1 — a PRE-EXISTING failure, not one
+     the new tags introduced, found only because they were measured against the same test.
+     Darkened to clear 4.5. Also the left edge of the Food day cards, which deepens with it. */
+  --tag-food: #c34400;
+  /* ⚑ The other four tags in use. Until now garden, museum, shopping and walk had no rule
+     at all — they fell through to a neutral chip, and as a 7px DOT to nothing visible, on 11
+     of the 21 days. Hues are placed in the gaps the first four leave (blue ~250°, green
+     ~145°, purple ~305°, orange ~50°) so they stay apart at dot size.
+     ⚠ Placed by MEASUREMENT, not by taste. The four existing hues are fixed at 20°, 123°,
+     211° and 282°, leaving gaps of 103°, 88°, 71° and 98°; each new tag takes one gap's
+     middle — garden 54°, museum 172°, walk 247°, shopping 333°. The first try put walk at
+     198°, a slate, which was 13° from transit blue and indistinguishable as a 7px dot.
+     Smallest separation across all eight is now 35°. */
+  --tag-museum: #00695c;
+  --tag-garden: #7c7216;
+  --tag-shopping: #ad1457;
+  --tag-walk: #453a9c;
+  /* open/closing/closed/peak */
+  --status-open-bg: rgba(31, 92, 35, 0.10);
+  --status-open-fg: #1f5c23;
+  --status-closing-bg: rgba(150, 110, 0, 0.14);
+  --status-closing-fg: #7a5a00;
+  --status-closed-bg: rgba(179, 38, 30, 0.10);
+  --status-closed-fg: #b3261e;
+  --status-peak-bg: rgba(143, 74, 12, 0.11);
+  --status-peak-fg: #8f4a0c;
+  --wx-hi: #8f4416;
+  --wx-lo: #0f4c9a;
+  /* the full-screen card a stranger reads — BLACK ON WHITE in Day mode */
+  --overlay-bg: #ffffff;
+  --overlay-text: #111111;
+  --overlay-dim: #4a443b;
+  --overlay-faint: #7a7268;
+  --overlay-btn-bg: #f2ede6;
+  --overlay-btn-border: #d9d2c7;
+  --overlay-close-bg: #e8e2d8;
+  --sos-bg: #fdecea;
+  --sos-border: #e0a49c;
 }
 
-/* ─── OLED mode ────────────────────────────────────────────── */
+/* ─── Night mode ───────────────────────────────────────────────
+   The palette this app shipped with, unchanged in hue — only moved off
+   `:root` and behind a class. `.oled-mode` carries this too (applyTheme
+   adds both), so anything defined here is inherited by OLED. */
+body.night-mode {
+  --bg: #121212;
+  --card: #1e1e1e;
+  --card-open: #2a2a2a;
+  --border: #444444;
+  --chrome: #1e1e1e;
+  --text: #f5f3f0;
+  --text-dim: #c0b8ae;
+  --on-accent: #17150f;
+  --accent: #f0a060;
+  --accent-dim: #c07838;
+  --accent-quiet: #d9a570;
+  --link: #64b5f6;
+  --link-hike: #81c784;
+  --link-maps: #ffb74d;
+  --warn: #ff9800;
+  --block-morning: #ffd54f;
+  --block-evening: #ce93d8;
+  --today-glow: #f0a06055;
+  --tint-neutral: rgba(255, 255, 255, 0.08);
+  --tint-accent: rgba(240, 160, 96, 0.08);
+  --tint-accent-strong: rgba(240, 160, 96, 0.2);
+  --tint-maps: rgba(255, 183, 77, 0.1);
+  --tint-maps-strong: rgba(255, 183, 77, 0.25);
+  --tint-link: rgba(100, 181, 246, 0.08);
+  --tint-link-strong: rgba(100, 181, 246, 0.22);
+  --tint-purple: rgba(206, 147, 216, 0.22);
+  --tint-yellow: rgba(255, 213, 79, 0.08);
+  --tint-hike: rgba(124, 184, 122, 0.2);
+  --tint-warn: rgba(255, 152, 0, 0.1);
+  --status-open-bg: rgba(124, 184, 122, 0.2);
+  --status-open-fg: #7cb87a;
+  --status-closing-bg: rgba(224, 200, 80, 0.2);
+  --status-closing-fg: #e0c850;
+  --status-closed-bg: rgba(224, 112, 112, 0.15);
+  --status-closed-fg: #e07070;
+  --status-peak-bg: rgba(240, 160, 48, 0.2);
+  --status-peak-fg: #f0a030;
+  --wx-hi: #e09455;
+  --wx-lo: #6aadcf;
+  --overlay-bg: #000000;
+  --overlay-text: #ffffff;
+  --overlay-dim: #aaaaaa;
+  --overlay-faint: #888888;
+  --overlay-btn-bg: #222222;
+  --overlay-btn-border: #444444;
+  --overlay-close-bg: #333333;
+  --sos-bg: rgba(239, 83, 80, 0.16);
+  --sos-border: #6e2a26;
+}
+
+/* ─── OLED mode ────────────────────────────────────────────────
+   Night, taken to true black. Only the surfaces move. */
 body.oled-mode {
   --bg: #000000;
   --card: #1a1a1a;
   --card-open: #252525;
   --border: #3a3a3a;
-}
-body.oled-mode header,
-body.oled-mode .bottom-nav {
-  background: rgba(0, 0, 0, 0.92);
+  --chrome: #0d0d0d;
 }
 body.oled-mode .header-theme-toggle {
   color: var(--accent);
@@ -62,9 +192,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(18, 18, 18, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--chrome);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -77,25 +205,51 @@ header {
 }
 
 header h1 {
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 700;
   letter-spacing: -0.3px;
-  color: var(--accent);
+  color: var(--text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+/* ⚑ The day line now sits ABOVE the place name (markup reordered), so it reads as a
+   kicker rather than a caption: small caps in the accent, the city large underneath. */
 header .sub {
-  font-size: 12px;
-  color: var(--text-dim);
-  margin-top: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 /* ─── Header action buttons ────────────────────────────────── */
+/* The one control that must never take two taps. Red so it is found without reading,
+   44px so it clears the touch minimum the tab bar did not, and it keeps its own colour
+   in every theme rather than resolving through --accent. */
+.header-sos {
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  font-size: 17px;
+  line-height: 1;
+  background: var(--sos-bg);
+  border: 1px solid var(--sos-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.1s;
+}
+.header-sos:active { transform: scale(0.92); }
+
 .header-search-icon,
 .header-theme-toggle {
   font-size: 16px;
@@ -199,16 +353,22 @@ main {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(18, 18, 18, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--chrome);
   z-index: 100;
   border-top: 1px solid var(--border);
 }
+/* 🔴 flex: 1, and this is the whole point of taking SOS out of the bar. The items were
+   sized by their CONTENT under `justify-content: space-around`, so each target measured
+   42.2pt wide — under Apple's 44pt minimum — and REMOVING a tab changed that by nothing at
+   all: the six that remained were still 42.2. Measured 2026-08-22, which is the only reason
+   this was caught; the width claim had been made on the arithmetic alone. Flexed, the six
+   share the bar: (393 - 32) / 6 ≈ 60pt each. */
 .bottom-nav a {
+  flex: 1;
+  min-width: 0;
   font-size: 12px;
   font-weight: 600;
-  padding: 8px 8px;
+  padding: 8px 4px;
   border-radius: 12px;
   text-decoration: none;
   color: var(--text-dim);
@@ -222,11 +382,566 @@ main {
   transform: scale(0.92);
 }
 .bottom-nav a.nav-active {
-  background: rgba(212, 132, 90, 0.15);
+  background: var(--tint-accent-strong);
   color: var(--accent);
 }
 .nav-icon {
   font-size: 18px;
+}
+
+/* ─── Today ───────────────────────────────────────────────────
+   The home screen. Nothing here is a new component where an existing one fits: the weather
+   bar, the tag chips, the day-note and the backup box are the Days tab's, reused as they are.
+   What is new is the counter strip and the ordered block list. */
+#section-today {
+  padding-top: 14px;
+}
+.today-title {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.24;
+  letter-spacing: -0.4px;
+  text-wrap: pretty;
+}
+#section-today .day-tags {
+  padding-left: 0;
+  margin-top: 8px;
+}
+/* The weather slot carries a .card-body only so renderWeatherBar() can insert into it —
+   that padding is the Days card's and would double up here. */
+.today-weather > .card-body {
+  display: block;
+  padding: 0;
+  margin-top: 12px;
+}
+.today-note {
+  margin-top: 10px;
+}
+
+/* section rule: label, hairline, quiet count */
+.today-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+.today-head-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: var(--accent);
+}
+.today-head-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.today-head-note {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* ⚑ The counter strip — the whole reason this screen exists. Measured before it: the same
+   Japanese sat up to 5.5 screens inside an already-open Food day card, three taps and two
+   open-ended scrolls from cold. Here it is the first thing under the weather, and one tap
+   from full screen. */
+.today-counter {
+  margin-top: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.today-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 66px;
+  cursor: pointer;
+}
+.today-card.is-backup {
+  border-left-color: var(--accent-dim);
+}
+.today-card:active {
+  background: var(--card-open);
+}
+.today-card-text {
+  flex: 1;
+  min-width: 0;
+}
+.today-card-jp {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  /* One line. The full string opens full screen on tap, and a wrapped three-line order
+     pushes the second meal off the fold. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.today-card-meta {
+  font-size: 11.5px;
+  color: var(--text-dim);
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.today-card-say {
+  width: 46px;
+  height: 46px;
+  border-radius: 23px;
+  flex-shrink: 0;
+  font-size: 17px;
+  line-height: 1;
+  background: var(--card-open);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+.today-card-say:active {
+  transform: scale(0.94);
+}
+
+/* the day in sequence — order, not clock times, because the data has none */
+.today-order {
+  margin-top: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.today-row {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 52px;
+  cursor: pointer;
+}
+.today-row:active {
+  background: var(--card-open);
+}
+.today-row-kind {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  padding: 3px 7px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background: var(--tint-neutral);
+  color: var(--text-dim);
+}
+.today-row-kind.logistics { background: var(--tint-maps); color: var(--link-maps); }
+.today-row-kind.morning   { background: var(--tint-yellow); color: var(--block-morning); }
+.today-row-kind.afternoon { background: var(--tint-link); color: var(--link); }
+.today-row-kind.hike      { background: var(--tint-hike); color: var(--link-hike); }
+.today-row-kind.evening   { background: var(--tint-purple); color: var(--block-evening); }
+.today-row-text {
+  flex: 1;
+  min-width: 0;
+}
+.today-row-title {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.today-row-sub {
+  font-size: 11.5px;
+  color: var(--text-dim);
+  margin-top: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.today-row-chev {
+  font-size: 11px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+/* the cross-links — the same day, in the tabs that hold the rest of it */
+.today-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+}
+.today-chip {
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  min-height: 44px;
+  padding: 0 13px;
+  border-radius: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+.today-chip.is-primary {
+  background: var(--tint-accent-strong);
+  border-color: var(--accent-dim);
+  color: var(--accent);
+  font-weight: 700;
+}
+.today-chip.is-on {
+  background: var(--tint-accent-strong);
+  color: var(--accent);
+}
+.today-chip:active {
+  transform: scale(0.96);
+}
+.today-backup {
+  margin-top: 12px;
+}
+
+/* before departure and after the last day */
+.today-pre {
+  text-align: center;
+  padding: 34px 8px 8px;
+}
+.today-pre-count {
+  font-size: 60px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: 1;
+  color: var(--accent);
+}
+.today-pre-label {
+  font-size: 15px;
+  color: var(--text-dim);
+  margin-top: 6px;
+}
+.today-pre-route {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 18px;
+  line-height: 1.5;
+}
+.today-pre .today-chips {
+  justify-content: center;
+  margin-top: 22px;
+}
+
+/* ─── Full-screen pager ───────────────────────────────────────
+   🔴 position: fixed, for the same reason .fs-close is — the overlay scrolls, and an
+   absolutely positioned child scrolls away with the content. Pinned bottom-centre, clear of
+   .fs-close at the top right. */
+.fs-pager {
+  position: fixed;
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 310;
+}
+.fs-page {
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  font-size: 22px;
+  line-height: 1;
+  background: var(--overlay-btn-bg);
+  border: 1px solid var(--overlay-btn-border);
+  color: var(--overlay-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+.fs-page:active {
+  transform: scale(0.94);
+}
+.fs-page-count {
+  font-size: 13px;
+  color: var(--overlay-faint);
+  min-width: 62px;
+  text-align: center;
+}
+
+/* ─── Days as a list ──────────────────────────────────────────
+   🔴 6.9 screens of scrolling became about 1.5. Today's job moved to the Today screen, so
+   this tab is now the evening-before read and the "which day was Miyajima" lookup — both
+   scanning jobs, and a scanning job wants one line per row. */
+.day-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.day-group {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-dim);
+  margin: 14px 0 3px 2px;
+}
+.day-group:first-child {
+  margin-top: 4px;
+}
+#section-days .day-card {
+  margin-bottom: 0;
+}
+/* Closed: one line, a small chip, dots for the tags. Open: the day chip grows back and the
+   tag words return, because then there is room and they are being read rather than scanned. */
+#section-days .card-header {
+  padding: 8px 12px;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+#section-days .day-num {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  font-size: 13px;
+  background: var(--tint-accent-strong);
+  color: var(--accent);
+}
+#section-days .today .day-num,
+#section-days .card-open .day-num {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+#section-days .day-title {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#section-days .day-sub {
+  font-size: 11.5px;
+}
+.day-now {
+  color: var(--accent);
+  font-weight: 700;
+}
+.day-dots {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.day-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 4px;
+  /* ⚠ Kept as a fallback only. All eight tags now in days.json carry a colour, so this
+     should never paint — but a tag added later would otherwise render an invisible dot,
+     and an invisible control is worse than an ugly one. */
+  background: var(--text-dim);
+}
+/* the tag words are the open state only; closed, the dots carry it */
+#section-days .day-tags {
+  display: none;
+}
+#section-days .card-open .day-tags {
+  display: flex;
+  order: 4;
+  flex-basis: 100%;
+  padding-left: 40px;
+  margin-top: 6px;
+}
+#section-days .card-open .day-dots {
+  display: none;
+}
+#section-days .card-open .card-header {
+  flex-wrap: wrap;
+}
+#section-days .card-open .day-title {
+  white-space: normal;
+}
+
+/* ─── Say: the segmented filter ───────────────────────────── */
+.seg {
+  display: flex;
+  gap: 4px;
+  background: var(--card-open);
+  border-radius: 9px;
+  padding: 3px;
+  margin-bottom: 14px;
+}
+.seg-btn {
+  flex: 1;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  min-height: 38px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+.seg-btn.is-on {
+  background: var(--card);
+  color: var(--text);
+  font-weight: 700;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.09);
+}
+.say-hint {
+  font-size: 11.5px;
+  color: var(--text-dim);
+  margin-top: 5px;
+}
+.say-places {
+  margin-top: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.say-place {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+}
+.say-place-jp {
+  font-size: 17px;
+  font-weight: 600;
+}
+.say-place-en {
+  font-size: 11.5px;
+  color: var(--text-dim);
+  margin-top: 1px;
+}
+
+/* ─── More ────────────────────────────────────────────────────
+   A launcher for the three tabs that lost their slot, plus SOS — which also has its pinned
+   header button. Two ways to the emergency screen is deliberate; one way to it is not. */
+.more-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 6px;
+}
+.more-row {
+  font: inherit;
+  text-align: left;
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  color: var(--text);
+  cursor: pointer;
+}
+.more-row:active {
+  background: var(--card-open);
+}
+.more-row.is-sos {
+  background: var(--sos-bg);
+  border-color: var(--sos-border);
+}
+.more-icon {
+  font-size: 21px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.more-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.more-title {
+  font-size: 15px;
+  font-weight: 700;
+}
+.more-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.more-chev {
+  font-size: 11px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+/* ─── Density and orientation inside an open day ──────────────
+   Two problems, one pair of rules. An open day card ran 4.4 screens on average and 6.5 at
+   worst, and nothing on screen said which day or which stop you were looking at once you
+   were inside it. The day header and the block titles now pin as you scroll, so the answer
+   is always on screen — the card's own headings doing the work rather than a new bar. */
+/* 🔴 overflow MUST be visible for the sticky below to work. `.day-card` sets
+   `overflow: hidden` to clip its rounded corners, and ANY ancestor overflow other than
+   visible silently disables position:sticky on a descendant — the header simply scrolled
+   away with the content and measured -1768px off screen. `clip` does not help; it breaks
+   sticky the same way. The corners are restored on the header itself instead. */
+#section-days .day-card.card-open {
+  overflow: visible;
+  /* 🔴 And `filter: none`. `.day-card.past` carries `filter: grayscale(0.2)`, and a filtered
+     ancestor creates a containing block, which disables position:sticky on its descendants
+     exactly as overflow does. Fourteen of the twenty-one days are past mid-trip, so without
+     this the pinned header would have worked on the future days and silently not on the
+     past ones — the harder bug to notice of the two. Dimming an OPEN day is pointless
+     anyway: you opened it because you are reading it. */
+  filter: none;
+  opacity: 1;
+}
+#section-days .card-open > .card-header {
+  position: sticky;
+  top: var(--header-h, 88px);
+  z-index: 3;
+  background: var(--card-open);
+  border-bottom: 1px solid var(--border);
+  border-radius: 9px 9px 0 0;
+}
+#section-days .card-open .block-title {
+  position: sticky;
+  /* below the pinned card header, whose height is MEASURED into --day-hdr-h rather than
+     assumed — it is 95px here, and the 52px this first guessed put two block titles behind
+     the header rather than beneath it. */
+  top: calc(var(--header-h, 88px) + var(--day-hdr-h, 95px));
+  z-index: 2;
+  background: var(--card);
+  /* the title had only a bottom rule; pinned it needs to cover the text sliding under it */
+  padding-top: 8px;
+  margin-top: -8px;
+}
+
+/* ⋯ — the rest of a place card's controls, one tap away */
+.btn-overflow {
+  background: var(--tint-neutral);
+  color: var(--text-dim);
+  font-size: 15px;
+  letter-spacing: 1px;
+  gap: 4px;
+}
+.btn-overflow.is-on {
+  background: var(--tint-accent-strong);
+  color: var(--accent);
+}
+.btn-overflow-n {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.btn-overflow-row {
+  margin-top: 6px;
 }
 
 /* ─── Back to top ──────────────────────────────────────────── */
@@ -308,7 +1023,7 @@ main {
   height: 38px;
   border-radius: 10px;
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -318,7 +1033,7 @@ main {
 }
 .today .day-num {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 .day-meta {
   flex: 1;
@@ -364,13 +1079,17 @@ main {
   border-radius: 6px;
   white-space: nowrap;
   /* neutral fallback so unknown tags still read as chips (audit N4) */
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--tint-neutral);
   color: var(--text-dim);
 }
 .tag-transit, .tag-shinkansen, .tag-travel { background: var(--tag-transit); color: #e3f2fd; }
 .tag-hike { background: var(--tag-hike); color: #e8f5e9; }
 .tag-culture, .tag-temples, .tag-temple, .tag-shrine { background: var(--tag-culture); color: #f3e5f5; }
 .tag-food { background: var(--tag-food); color: #fff3e0; }
+.tag-museum { background: var(--tag-museum); color: #e0f2f1; }
+.tag-garden { background: var(--tag-garden); color: #f7fbe4; }
+.tag-shopping { background: var(--tag-shopping); color: #fce4ec; }
+.tag-walk { background: var(--tag-walk); color: #e8eaf6; }
 
 /* ─── Blocks (time-of-day groups within a day) ────────────── */
 .block {
@@ -388,10 +1107,10 @@ main {
   padding-bottom: 6px;
   border-bottom: 1px solid var(--border);
 }
-.block-title.morning { color: #ffd54f; }
+.block-title.morning { color: var(--block-morning); }
 .block-title.hike { color: var(--link-hike); }
-.block-title.afternoon { color: #64b5f6; }
-.block-title.evening { color: #ce93d8; }
+.block-title.afternoon { color: var(--link); }
+.block-title.evening { color: var(--block-evening); }
 .block-title.logistics { color: var(--link-maps); }
 
 /* ─── Items (within blocks) ───────────────────────────────── */
@@ -430,9 +1149,9 @@ main {
 .day-notes {
   margin-top: 12px;
   padding: 10px 12px;
-  background: rgba(255,213,79,0.08);
+  background: var(--tint-yellow);
   border-radius: 8px;
-  border-left: 3px solid #ffd54f;
+  border-left: 3px solid var(--block-morning);
 }
 .day-note {
   font-size: 13px;
@@ -448,14 +1167,14 @@ main {
 .day-backup {
   margin-top: 12px;
   padding: 10px 12px;
-  background: rgba(100,181,246,0.08);
+  background: var(--tint-link);
   border-radius: 8px;
-  border-left: 3px solid #64b5f6;
+  border-left: 3px solid var(--link);
 }
 .day-backup-title {
   font-size: 13px;
   font-weight: 600;
-  color: #64b5f6;
+  color: var(--link);
   margin-bottom: 6px;
 }
 .day-backup-detail {
@@ -503,7 +1222,7 @@ main {
   transform: scale(0.95);
 }
 .btn-maps {
-  background: rgba(255, 183, 77, 0.25);
+  background: var(--tint-maps-strong);
   color: var(--link-maps);
 }
 /* ⬇ COLOUR ENCODES THE DESTINATION APP, NOT THE TOPIC — walkthrough
@@ -517,19 +1236,19 @@ main {
    ⛔ No URL changed by any of this — his one constraint was that the
    directions stay correct, and they are byte-identical to before. */
 .btn-walk {
-  background: rgba(255, 183, 77, 0.25);
+  background: var(--tint-maps-strong);
   color: var(--link-maps);
 }
 .btn-transit {
-  background: rgba(255, 183, 77, 0.25);
+  background: var(--tint-maps-strong);
   color: var(--link-maps);
 }
 .btn-call {
-  background: rgba(240, 160, 96, 0.25);
+  background: var(--tint-accent-strong);
   color: var(--accent);
 }
 .btn-web {
-  background: rgba(100, 181, 246, 0.25);
+  background: var(--tint-link-strong);
   color: var(--link);
 }
 
@@ -547,7 +1266,7 @@ main {
    It shared the hike-green of .btn-walk, so a link to a Japanese temple
    PDF looked exactly like a button that opens turn-by-turn navigation. */
 .btn-map-route {
-  background: rgba(100, 181, 246, 0.25);
+  background: var(--tint-link-strong);
   color: var(--link);
 }
 .block-map-note {
@@ -589,9 +1308,9 @@ main {
   flex-shrink: 0;
   margin-top: 2px;
 }
-.tleg-badge.walk { background: rgba(124, 184, 122, 0.2); color: var(--link-hike); }
-.tleg-badge.transit { background: rgba(106, 173, 207, 0.2); color: var(--link); }
-.tleg-badge.private { background: rgba(224, 148, 85, 0.2); color: var(--link-maps); }
+.tleg-badge.walk { background: var(--tint-hike); color: var(--link-hike); }
+.tleg-badge.transit { background: var(--tint-link-strong); color: var(--link); }
+.tleg-badge.private { background: var(--tint-maps-strong); color: var(--link-maps); }
 .tleg-info {
   flex: 1;
   min-width: 0;
@@ -649,7 +1368,7 @@ main {
   left: 50%;
   transform: translateX(-50%);
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
   padding: 8px 20px;
   border-radius: 20px;
   font-size: 13px;
@@ -711,7 +1430,7 @@ main {
   gap: 6px;
   padding: 10px 16px;
   border-radius: 10px;
-  background: rgba(212, 132, 90, 0.15);
+  background: var(--tint-accent-strong);
   color: var(--accent);
   font-size: 14px;
   font-weight: 600;
@@ -729,7 +1448,7 @@ main {
 .fs-overlay {
   position: fixed;
   inset: 0;
-  background: #000;
+  background: var(--overlay-bg);
   z-index: 300;
   display: flex;
   flex-direction: column;
@@ -762,25 +1481,25 @@ main {
   flex: 0 0 auto;
 }
 .fs-jp {
-  font-size: 36px;
+  font-size: 40px;
   font-weight: 700;
-  color: #fff;
+  color: var(--overlay-text);
   line-height: 1.4;
   margin-bottom: 16px;
 }
 .fs-romaji {
   font-size: 18px;
-  color: #aaa;
+  color: var(--overlay-dim);
   margin-bottom: 12px;
 }
 .fs-en {
   font-size: 16px;
-  color: #888;
+  color: var(--overlay-faint);
   margin-bottom: 24px;
 }
 .fs-context {
   font-size: 14px;
-  color: #666;
+  color: var(--overlay-faint);
   margin-bottom: 24px;
   font-style: italic;
 }
@@ -803,16 +1522,16 @@ main {
    written here, and the black background was .jp-btn's var(--card) landing on
    near-black by luck. The descendant selector puts it beyond doubt. */
 .fs-overlay .fs-btn {
-  color: #fff;
-  background: #222;
-  border: 1px solid #444;
+  color: var(--overlay-text);
+  background: var(--overlay-btn-bg);
+  border: 1px solid var(--overlay-btn-border);
   font-size: 15px;
   padding: 11px 16px;
   min-height: 44px;
 }
 .fs-hint {
   font-size: 12px;
-  color: #666;
+  color: var(--overlay-faint);
   margin-top: 14px;
   max-width: 320px;
   line-height: 1.5;
@@ -830,9 +1549,9 @@ main {
   width: 44px;
   height: 44px;
   border-radius: 22px;
-  background: #333;
+  background: var(--overlay-close-bg);
   border: none;
-  color: #fff;
+  color: var(--overlay-text);
   font-size: 20px;
   display: flex;
   align-items: center;
@@ -903,7 +1622,7 @@ main {
 }
 .phrase-context {
   font-size: 12px;
-  color: var(--accent-dim);
+  color: var(--accent-quiet);
   margin-top: 4px;
   font-style: italic;
 }
@@ -1069,7 +1788,7 @@ main {
 /* Coin locker tip */
 .food-locker-tip {
   margin-top: 8px;
-  background: rgba(255, 183, 77, 0.1);
+  background: var(--tint-maps);
   border-radius: 10px;
   padding: 12px 14px;
   font-size: 13px;
@@ -1144,11 +1863,11 @@ main {
   white-space: nowrap;
 }
 .food-badge.backup {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--tint-neutral);
   color: var(--text-dim);
 }
 .food-badge.rating {
-  background: rgba(240, 160, 96, 0.2);
+  background: var(--tint-accent-strong);
   color: var(--accent);
   text-decoration: none;
 }
@@ -1225,7 +1944,7 @@ a.food-badge.rating:active {
   border: 1px dashed var(--border);
 }
 .jp-say-tap:active {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--tint-neutral);
 }
 .jp-say-romaji {
   font-size: 13px;
@@ -1482,6 +2201,20 @@ a.jp-btn {
   border-left: 3px solid var(--tag-transit);
   overflow: hidden;
 }
+/* ⚑ Today, on the other two day-keyed tabs. `.day-card.today` above styled the Days tab
+   only; Food and Transit rendered their 20 and 21 cards identically, so mid-trip there was
+   nothing on screen saying which one was now. Same glow, each keeping its own left edge —
+   food orange, transit blue — because that stripe is how the tab is recognised at a glance. */
+.food-day.today,
+.transit-day.today {
+  border-color: var(--accent);
+  box-shadow: 0 0 12px var(--today-glow);
+}
+.food-day.past,
+.transit-day.past {
+  opacity: 0.7;
+  filter: grayscale(0.2);
+}
 .transit-leg-count {
   font-size: 12px;
   color: var(--text-dim);
@@ -1597,11 +2330,11 @@ a.jp-btn {
   align-items: center;
   gap: 10px;
   padding: 10px 14px;
-  background: rgba(100, 181, 246, 0.08);
+  background: var(--tint-link);
   border-radius: 10px;
   margin-bottom: 12px;
   font-size: 13px;
-  border: 1px solid rgba(100, 181, 246, 0.15);
+  border: 1px solid var(--tint-link-strong);
 }
 .weather-bar .wx-icon {
   font-size: 20px;
@@ -1613,10 +2346,10 @@ a.jp-btn {
   white-space: nowrap;
 }
 .weather-bar .wx-hi {
-  color: #e09455;
+  color: var(--wx-hi);
 }
 .weather-bar .wx-lo {
-  color: #6aadcf;
+  color: var(--wx-lo);
 }
 .weather-bar .wx-desc {
   flex: 1;
@@ -1638,9 +2371,9 @@ a.jp-btn {
 }
 .rain-alert {
   padding: 10px 14px;
-  background: rgba(224, 148, 85, 0.12);
+  background: var(--tint-accent);
   border-radius: 10px;
-  border-left: 3px solid #e09455;
+  border-left: 3px solid var(--accent);
   margin-bottom: 12px;
   font-size: 13px;
   color: var(--text);
@@ -1660,20 +2393,20 @@ a.jp-btn {
   vertical-align: middle;
 }
 .status-badge.badge-open {
-  background: rgba(124, 184, 122, 0.2);
-  color: #7cb87a;
+  background: var(--status-open-bg);
+  color: var(--status-open-fg);
 }
 .status-badge.badge-closing {
-  background: rgba(224, 200, 80, 0.2);
-  color: #e0c850;
+  background: var(--status-closing-bg);
+  color: var(--status-closing-fg);
 }
 .status-badge.badge-closed {
-  background: rgba(224, 112, 112, 0.15);
-  color: #e07070;
+  background: var(--status-closed-bg);
+  color: var(--status-closed-fg);
 }
 .status-badge.badge-peak {
-  background: rgba(240, 160, 48, 0.2);
-  color: #f0a030;
+  background: var(--status-peak-bg);
+  color: var(--status-peak-fg);
   margin-left: 4px;
 }
 
@@ -1737,7 +2470,7 @@ a.jp-btn {
   flex-wrap: wrap;
   gap: 4px 8px;
   padding: 10px 14px;
-  background: rgba(240, 160, 96, 0.06);
+  background: var(--tint-accent);
   border-radius: 10px;
   margin-bottom: 6px;
 }
@@ -1766,7 +2499,7 @@ a.jp-btn {
   cursor: default;
 }
 .info-value.copyable:active {
-  background: rgba(240, 160, 96, 0.15);
+  background: var(--tint-accent-strong);
 }
 .info-notes {
   font-size: 13px;
@@ -1784,16 +2517,16 @@ a.jp-btn {
   display: inline-block;
   padding: 10px 16px;
   margin: 8px 0 4px;
-  background: rgba(100, 181, 246, 0.1);
+  background: var(--tint-link);
   color: var(--link);
   border-radius: 10px;
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;
-  border: 1px solid rgba(100, 181, 246, 0.2);
+  border: 1px solid var(--tint-link-strong);
 }
 .btn-pdf:active {
-  background: rgba(100, 181, 246, 0.2);
+  background: var(--tint-link-strong);
 }
 .btn-pdf-block {
   display: block;
@@ -1802,8 +2535,8 @@ a.jp-btn {
 
 /* ─── Almanac ──────────────────────────────────────────────── */
 .btn-almanac {
-  background: rgba(206, 147, 216, 0.22);
-  color: #ce93d8;
+  background: var(--tint-purple);
+  color: var(--block-evening);
   font-family: inherit;
 }
 
@@ -1846,14 +2579,11 @@ body.modal-open {
   justify-content: space-between;
   gap: 12px;
   padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
-  background: #121212;
+  background: var(--chrome);
   border-bottom: 1px solid var(--border);
   flex: 0 0 auto;
   position: relative;
   z-index: 1;
-}
-body.oled-mode .almanac-modal-header {
-  background: #000;
 }
 .almanac-modal-close {
   background: var(--card);
@@ -1873,7 +2603,7 @@ body.oled-mode .almanac-modal-header {
 .almanac-modal-badge {
   font-size: 13px;
   font-weight: 600;
-  color: #ce93d8;
+  color: var(--block-evening);
 }
 .almanac-modal-content {
   flex: 1 1 auto;
@@ -1944,8 +2674,8 @@ body.oled-mode .almanac-modal-header {
   content: "— ";
 }
 .almanac-entry .conflict {
-  background: rgba(255, 152, 0, 0.1);
-  border-left: 3px solid #ff9800;
+  background: var(--tint-warn);
+  border-left: 3px solid var(--warn);
   padding: 10px 12px;
   border-radius: 4px;
   margin: 10px 0;
@@ -1955,13 +2685,13 @@ body.oled-mode .almanac-modal-header {
 .almanac-entry .conflict-label {
   display: block;
   font-weight: 600;
-  color: #ff9800;
+  color: var(--warn);
   font-size: 12px;
   text-transform: uppercase;
   margin-bottom: 4px;
 }
 .almanac-entry .unverified {
-  background: rgba(100, 181, 246, 0.08);
+  background: var(--tint-link);
   border-left: 3px solid var(--link);
   padding: 10px 12px;
   border-radius: 4px;
@@ -1988,7 +2718,7 @@ body.oled-mode .almanac-modal-header {
   padding: 8px 12px;
   min-height: 44px;
   line-height: 28px;
-  background: rgba(100, 181, 246, 0.14);
+  background: var(--tint-link-strong);
   color: var(--link);
   text-decoration: none;
   border-radius: 8px;
@@ -2027,7 +2757,7 @@ body.oled-mode .almanac-modal-header {
   margin-bottom: 6px;
 }
 .almanac-entry a.term {
-  color: #ce93d8;
+  color: var(--block-evening);
   text-decoration: underline;
   text-decoration-style: dotted;
   text-underline-offset: 2px;
