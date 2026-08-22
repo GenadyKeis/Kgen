@@ -799,6 +799,160 @@
     return merged;
   }
 
+  // ─── "How it is eaten" guides ──────────────────────────────
+  // Added 2026-08-22 on the user's request: several dishes on this trip are
+  // assembled, mixed or dipped by the person eating them, and the card that
+  // says WHAT to order said nothing about that. The boundary against
+  // `order_how` is deliberate and worth keeping: order_how is getting the food
+  // in front of you (ticket machine, queue, payment, seating); a guide is what
+  // you do once it is there.
+  //
+  // Keyed off `how_to_eat`, an ARRAY of `food.cuisine_guides` slugs assigned by
+  // hand per venue — never derived from the free-text `cuisine` string, which
+  // has 41 distinct values over 66 entries. It rides the venue, so foodEntry()'s
+  // merge carries it and an entry-level override still wins.
+  //
+  // ⚠ Nested inside an already-collapsible day card, so it CANNOT reuse
+  // `.card-body`: `.card-open .card-body` is a DESCENDANT selector, and an open
+  // day would force every guide inside it open. The `.eat-*` classes exist for
+  // that reason and are not cosmetic. Same for `.eat-chevron` against
+  // `.card-open .chevron`, which would otherwise render every nested chevron
+  // rotated while its body was shut.
+  function renderEatGuide(g) {
+    var html = '<div class="eat-card">';
+    html += '<div class="eat-header" data-toggle>';
+    html += '<span class="eat-icon">' + esc(g.icon) + '</span>';
+    html += '<span class="eat-title">How it is eaten — ' + esc(g.title) + '</span>';
+    html += '<span class="eat-chevron">▶</span>';
+    html += '</div>';
+    html += '<div class="eat-body">';
+    if (g.title_jp) html += '<div class="eat-jp">' + esc(g.title_jp) + '</div>';
+    html += '<ul class="eat-lines">';
+    for (var j = 0; j < g.lines.length; j++) {
+      html += '<li>' + esc(g.lines[j]) + '</li>';
+    }
+    html += '</ul>';
+    if (g.sources && g.sources.length) {
+      var parts = [];
+      for (var s = 0; s < g.sources.length; s++) {
+        parts.push('<a href="' + esc(g.sources[s]) + '" target="_blank" rel="noopener">source ' +
+          (s + 1) + '</a>');
+      }
+      html += '<div class="eat-src">Checked ' + esc(g.verified_on) + ' · ' + parts.join(' · ') + '</div>';
+    }
+    html += '</div></div>';
+    return html;
+  }
+
+  function renderEatGuides(food, slugs) {
+    if (!slugs || !slugs.length) return '';
+    var guides = food.cuisine_guides || {};
+    var html = '';
+    for (var i = 0; i < slugs.length; i++) {
+      var g = guides[slugs[i]];
+      // A slug that resolves to nothing renders nothing rather than a bare id.
+      // sanity-check's FOOD_HOW_TO_EAT_UNKNOWN is what catches it before here.
+      if (g) html += renderEatGuide(g);
+    }
+    return html;
+  }
+
+  // ─── Quick prepared food near each base ────────────────────
+  // The other half of the 2026-08-22 request: not every meal is a restaurant.
+  // The useful axis is "open when I get back", not "near" — so each option
+  // leads with its hours, and the gaps are stated rather than papered over.
+  // Head-of-tab is the right home because these belong to a BASE, not to a day
+  // (three bases, twenty-one days) — which is the exact condition the deleted
+  // ekiben tips card failed to meet.
+  function renderQuickOption(o) {
+    var html = '<div class="quick-opt">';
+    html += '<div class="quick-opt-name">' + esc(o.name_en);
+    if (o.name_jp) html += ' <span class="quick-opt-jp">' + esc(o.name_jp) + '</span>';
+    html += '</div>';
+    html += '<div class="quick-opt-meta">' + esc(o.kind) + ' · ' + esc(o.walk) + '</div>';
+    html += '<div class="quick-opt-hours">🕒 ' + esc(o.hours) + '</div>';
+    html += '<div class="quick-opt-what">' + esc(o.what) + '</div>';
+    if (o.note) html += '<div class="quick-opt-note">' + longProse(o.note) + '</div>';
+    var btns = '';
+    if (typeof o.lat === 'number' && typeof o.lon === 'number') {
+      btns += '<a class="btn btn-maps" href="' + esc(mapsPinUrl(o)) +
+        '" target="_blank" rel="noopener">📍 Map</a>';
+    }
+    if (o.url) {
+      // btn-web, not a bare .btn: the palette encodes the DESTINATION APP —
+      // amber opens your map app, blue opens a web page — and a bare .btn has
+      // no background or colour of its own at all.
+      btns += '<a class="btn btn-web" href="' + esc(o.url) + '" target="_blank" rel="noopener">🔗 Web</a>';
+    }
+    if (btns) html += '<div class="quick-opt-actions">' + btns + '</div>';
+    return html + '</div>';
+  }
+
+  function renderQuickCard(food) {
+    var q = food.quick;
+    if (!q || !q.bases || !q.bases.length) return '';
+    var html = '<div class="payment-rules quick-card">';
+    html += '<div class="card-header" data-toggle>';
+    html += '<span class="payment-rules-icon">🏪</span>';
+    html += '<span class="payment-rules-title">Quick food near your base</span>';
+    html += '<span class="chevron">▶</span>';
+    html += '</div>';
+    html += '<div class="card-body">';
+    if (q.intro) html += '<div class="quick-intro">' + longProse(q.intro) + '</div>';
+    for (var b = 0; b < q.bases.length; b++) {
+      var base = q.bases[b];
+      html += '<div class="eat-card">';
+      html += '<div class="eat-header" data-toggle>';
+      html += '<span class="eat-icon">📍</span>';
+      html += '<span class="eat-title">' + esc(base.title) +
+        ' <span class="quick-nights">' + esc(base.nights) + '</span></span>';
+      html += '<span class="eat-chevron">▶</span>';
+      html += '</div>';
+      html += '<div class="eat-body">';
+      if (base.note) html += '<div class="quick-note">' + longProse(base.note) + '</div>';
+      for (var o = 0; o < base.options.length; o++) {
+        html += renderQuickOption(base.options[o]);
+      }
+      html += '</div></div>';
+    }
+    if (q.gaps && q.gaps.length) {
+      html += '<div class="quick-gaps"><div class="quick-gaps-title">Checked and not available</div>';
+      for (var gp = 0; gp < q.gaps.length; gp++) {
+        html += '<div class="quick-gap">' + longProse(q.gaps[gp]) + '</div>';
+      }
+      html += '</div>';
+    }
+    html += '</div></div>';
+    return html;
+  }
+
+  // The same guides, gathered once so they can be read through before the trip
+  // rather than only met at the table. One object, two surfaces — the prose
+  // lives in food.cuisine_guides and nothing is duplicated.
+  function renderEatIndexCard(food) {
+    var guides = food.cuisine_guides;
+    if (!guides) return '';
+    var slugs = Object.keys(guides);
+    if (!slugs.length) return '';
+    slugs.sort(function (a, b) {
+      return guides[a].title.localeCompare(guides[b].title);
+    });
+    var html = '<div class="payment-rules eat-index">';
+    html += '<div class="card-header" data-toggle>';
+    html += '<span class="payment-rules-icon">🥢</span>';
+    html += '<span class="payment-rules-title">How each dish is eaten</span>';
+    html += '<span class="chevron">▶</span>';
+    html += '</div>';
+    html += '<div class="card-body">';
+    html += '<div class="quick-intro">Every one of these also sits on the meal card it belongs to. ' +
+      'This is the same set in one place, to read through before you go.</div>';
+    for (var i = 0; i < slugs.length; i++) {
+      html += renderEatGuide(guides[slugs[i]]);
+    }
+    html += '</div></div>';
+    return html;
+  }
+
   // ─── Food section renderer ─────────────────────────────────
   function renderFood() {
     var container = document.getElementById('section-food');
@@ -816,6 +970,13 @@
     // April-fixture branches that no autumn data had fed since B6. The Food tab
     // now opens on day 1. Do not reintroduce a head-of-tab block without a fact
     // that belongs to no single day; that was the whole reason this one failed.
+    //
+    // ⇒ The two blocks below meet that condition on their face and are why the
+    // rule is worded as a condition rather than a ban: `quick` belongs to a BASE
+    // (three of them across twenty-one days) and a cuisine guide belongs to a
+    // DISH. Neither has a day it could be folded onto. Both ship collapsed.
+    html += renderQuickCard(food);
+    html += renderEatIndexCard(food);
 
     // Per-day food cards
     if (food.days && food.days.length > 0) {
@@ -953,6 +1114,9 @@
             if (rest.note) {
               html += '<div class="food-note">' + longProse(rest.note) + '</div>';
             }
+            // Last on the card, because it governs the last moment: everything
+            // above is choosing and ordering, this is the plate in front of him.
+            html += renderEatGuides(food, rest.how_to_eat);
 
             html += '</div>';
           }
@@ -2141,6 +2305,14 @@
               fParts.push(rest.cuisine, rest.order, rest.note, rest.price,
                 rest.order_how, rest.order_jp, rest.order_romaji,
                 rest.order_why, rest.order_backup);
+              // The eating guide renders on this card, so it has to be findable
+              // from it — text the search cannot see is presence without
+              // correctness. Titles only here; the full prose is indexed once,
+              // below, against the guide's own row.
+              for (var hg = 0; hg < (rest.how_to_eat || []).length; hg++) {
+                var gRef = (DATA.food.cuisine_guides || {})[rest.how_to_eat[hg]];
+                if (gRef) fParts.push(gRef.title, gRef.title_jp);
+              }
               var rPlace = rest.place_id ? placeById(rest.place_id) : null;
               if (rPlace) fParts.push(rPlace.name_en, rPlace.name_jp);
             }
@@ -2152,6 +2324,42 @@
             title: fday.city + (fday.subtitle ? ' — ' + fday.subtitle : ''),
             detail: 'Day ' + fday.day + ' food',
             day_num: fday.day
+          });
+        }
+      }
+
+      // One row per cuisine guide and one per base, both routed to Food where
+      // their head-of-tab cards live. Without these, searching "soba-yu" or
+      // "Yoshinoya" finds nothing at all — the prose exists only in these two
+      // blocks and belongs to no day.
+      var cg = DATA.food.cuisine_guides || {};
+      for (var cgk in cg) {
+        if (!cg.hasOwnProperty(cgk)) continue;
+        var guide = cg[cgk];
+        searchIndex.push({
+          text: [guide.title, guide.title_jp].concat(guide.lines || [])
+            .filter(Boolean).join(' ').toLowerCase(),
+          section: 'food',
+          icon: guide.icon || '🥢',
+          title: 'How it is eaten — ' + guide.title,
+          detail: guide.title_jp
+        });
+      }
+      if (DATA.food.quick && DATA.food.quick.bases) {
+        for (var qb = 0; qb < DATA.food.quick.bases.length; qb++) {
+          var qbase = DATA.food.quick.bases[qb];
+          var qParts = [qbase.title, qbase.nights, qbase.note];
+          for (var qo = 0; qo < qbase.options.length; qo++) {
+            var opt = qbase.options[qo];
+            qParts.push(opt.name_en, opt.name_jp, opt.kind, opt.hours,
+              opt.walk, opt.what, opt.note, opt.address_jp);
+          }
+          searchIndex.push({
+            text: qParts.filter(Boolean).join(' ').toLowerCase(),
+            section: 'food',
+            icon: '🏪',
+            title: 'Quick food — ' + qbase.title,
+            detail: qbase.nights
           });
         }
       }

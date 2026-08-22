@@ -1312,6 +1312,168 @@ a.jp-btn {
   color: var(--text-dim);
 }
 
+/* ─── Nested collapsibles: eating guides & quick-food bases ───
+   🔴 These deliberately do NOT reuse .card-body / .chevron. Both of those are
+   driven by DESCENDANT selectors (`.card-open .card-body`, `.card-open
+   .chevron`), and every one of these sits inside a day card that is itself
+   `.card-open` when the user is reading it — so the shared classes would print
+   nineteen guides permanently expanded, and rotate every nested chevron while
+   its body was shut. The child combinators below are the whole mechanism.
+   Do not "tidy" them back onto the shared names. */
+.eat-card {
+  background: var(--card-open);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  margin: 8px 0 4px 14px;
+  overflow: hidden;
+}
+.eat-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  min-height: 44px;
+  box-sizing: border-box;
+}
+.eat-icon {
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.eat-title {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  min-width: 0;
+}
+.eat-chevron {
+  font-size: 11px;
+  color: var(--text-dim);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.eat-card.card-open > .eat-header .eat-chevron {
+  transform: rotate(90deg);
+}
+.eat-body {
+  display: none;
+  padding: 0 12px 12px;
+}
+.eat-card.card-open > .eat-body {
+  display: block;
+}
+.eat-jp {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+.eat-lines {
+  margin: 0;
+  padding-left: 18px;
+}
+.eat-lines li {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text);
+  margin-bottom: 7px;
+}
+.eat-lines li:last-child {
+  margin-bottom: 0;
+}
+.eat-src {
+  margin-top: 9px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+/* Blue, not accent — these open a web page, and the palette encodes the
+   destination (amber = your map app · blue = a web page · accent = phone). */
+.eat-src a {
+  color: var(--link);
+}
+
+/* The head-of-tab index holds guides that are not nested in a day card, so give
+   them a little more room than the in-card copies. */
+.eat-index .eat-card,
+.quick-card .eat-card {
+  margin-left: 0;
+}
+
+/* ─── Quick prepared food ─────────────────────────────────── */
+.quick-intro,
+.quick-note {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.quick-nights {
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+.quick-opt {
+  border-top: 1px solid var(--border);
+  padding: 10px 0 2px;
+}
+.quick-opt:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+.quick-opt-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.quick-opt-jp {
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.quick-opt-meta {
+  font-size: 11px;
+  color: var(--text-dim);
+  font-style: italic;
+  margin-top: 2px;
+}
+.quick-opt-hours {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 4px;
+}
+.quick-opt-what,
+.quick-opt-note {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+.quick-opt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.quick-gaps {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.quick-gaps-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.quick-gap {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
 .transit-day {
   background: var(--card);
   border-radius: 12px;

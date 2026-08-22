@@ -2003,8 +2003,8 @@
     "id": "horyuji",
     "name_en": "Horyu-ji",
     "name_jp": "法隆寺",
-    "lat": 34.61401,
-    "lon": 135.73604,
+    "lat": 34.612724,
+    "lon": 135.734534,
     "address_jp": "〒636-0115 奈良県生駒郡斑鳩町法隆寺山内1-1",
     "category": "temple",
     "hours": {
@@ -2790,8 +2790,8 @@
     "name_en": "Shimogamo Shrine (Kamomioya)",
     "name_jp": "賀茂御祖神社（下鴨神社）",
     "search_jp": "下鴨神社",
-    "lat": 35.03699,
-    "lon": 135.77245,
+    "lat": 35.038978,
+    "lon": 135.773007,
     "address_jp": "〒606-0807 京都府京都市左京区下鴨泉川町59",
     "category": "shrine",
     "hours": {
@@ -4302,8 +4302,8 @@
     "id": "mendokoro-honda",
     "name_en": "Mendokoro Honda Akihabara",
     "name_jp": "麺処 ほん田 秋葉原本店",
-    "lat": 35.69864,
-    "lon": 139.77461,
+    "lat": 35.698201,
+    "lon": 139.774204,
     "address_jp": "東京都千代田区神田花岡町1-19",
     "category": "restaurant",
     "hours": {
@@ -5016,8 +5016,8 @@
     "id": "kaidashimen-kitada",
     "name_en": "Kaidashimen Kitada",
     "name_jp": "貝だし麺 きた田",
-    "lat": 34.98737,
-    "lon": 135.75401,
+    "lat": 34.98727,
+    "lon": 135.754755,
     "address_jp": "〒600-8233 京都府京都市下京区北不動堂町570-3",
     "category": "restaurant",
     "hours": {
@@ -5288,8 +5288,8 @@
     "id": "arata",
     "name_en": "Arata",
     "name_jp": "あらた",
-    "lat": 34.98321,
-    "lon": 135.75601,
+    "lat": 34.982053,
+    "lon": 135.756172,
     "address_jp": "〒601-8412 京都府京都市南区西九条院町24-4",
     "category": "restaurant",
     "hours": {
@@ -5977,8 +5977,8 @@
     "id": "wakakusa-curry",
     "name_en": "Wakakusa Curry Honpo",
     "name_jp": "若草カレー本舗",
-    "lat": 34.68035,
-    "lon": 135.82869,
+    "lat": 34.680775,
+    "lon": 135.828997,
     "address_jp": "〒630-8222 奈良県奈良市餅飯殿町38-1",
     "category": "restaurant",
     "hours": {
@@ -6039,8 +6039,8 @@
     "id": "kamameshi-shizuka-koen",
     "name_en": "Kamameshi Shizuka Koen-ten",
     "name_jp": "志津香 公園店",
-    "lat": 34.68483,
-    "lon": 135.83656,
+    "lat": 34.684345,
+    "lon": 135.83694,
     "address_jp": "奈良県奈良市登大路町59-11",
     "category": "restaurant",
     "hours": {
@@ -6097,8 +6097,8 @@
     "id": "denbe-kibune",
     "name_en": "Denbe",
     "name_jp": "伝兵衛",
-    "lat": 35.12142,
-    "lon": 135.76181,
+    "lat": 35.12098,
+    "lon": 135.76284,
     "address_jp": "〒601-1112 京都府京都市左京区鞍馬貴船町39",
     "category": "restaurant",
     "hours": {
@@ -6150,7 +6150,7 @@
     ],
     "verified_on": "2026-08-21",
     "confidence": "medium",
-    "notes": "A soba house at reasonable money on the Kibune lane by the Hongu shrine, 11:00 to 17:00, closed Thursdays — a single fixed closing day on a lane where most of the neighbours are course-menu ryokan kitchens taking bookings. That is what makes it usable: it is a walk-in noodle house exactly where the day needs one, on the way down the valley from the ridge crossing. Soba is the whole menu. The shop stopped serving the kamameshi it used to be known for in 2022 and says its soba line-up changes with the season — its own channel now calls it Soba Denbe, while the gnavi listing cited above still advertises the old dish. It shuts when the soba runs out rather than at a fixed hour, and opens somewhere between 11:00 and 11:30 depending on the day, so the 17:00 here is a ceiling and not a promise. Reservations are refused outright and seating is in arrival order; cards, electronic money and QR are all refused. Fifty-two seats, twelve downstairs and forty up. It has the river-platform seating the lane is known for, with the water running close under the tables — but that is a summer arrangement, so in November the meal is indoors. Twenty-four minutes on foot from Kibuneguchi station. There is no mapped node for the shop; the pin is the land-registry point for the address, which reverse-geocodes to the right block of Kurama-Kibune-cho."
+    "notes": "A soba house at reasonable money on the Kibune lane by the Hongu shrine, 11:00 to 17:00, closed Thursdays — a single fixed closing day on a lane where most of the neighbours are course-menu ryokan kitchens taking bookings. That is what makes it usable: it is a walk-in noodle house exactly where the day needs one, on the way down the valley from the ridge crossing. Soba is the whole menu. The shop stopped serving the kamameshi it used to be known for in 2022 and says its soba line-up changes with the season — its own channel now calls it Soba Denbe, while the gnavi listing cited above still advertises the old dish. It shuts when the soba runs out rather than at a fixed hour, and opens somewhere between 11:00 and 11:30 depending on the day, so the 17:00 here is a ceiling and not a promise. Reservations are refused outright and seating is in arrival order; cards, electronic money and QR are all refused. Fifty-two seats, twelve downstairs and forty up. It has the river-platform seating the lane is known for, with the water running close under the tables — but that is a summer arrangement, so in November the meal is indoors. Twenty-four minutes on foot from Kibuneguchi station. ⛑ The pin was 103-107 m out until 2026-08-22 — it had been set to the land-registry point for the address, which put it in trees across the valley. It is now the coordinate the shop's own gnavi and hitosara listings publish (35.121090,135.762870 and 35.120978,135.762836), which agree with each other to 14 m and with the user's own reading off the map to 3 m. ⚑ The map label may read DEMBEI rather than Denbe — 伝兵衛 romanises both ways, and OSM carries the building here as an unnamed restaurant node."
   },
   {
     "id": "kibune-club",
@@ -6219,8 +6219,8 @@
     "id": "suzuriishitei",
     "name_en": "Suzuriishi-tei",
     "name_jp": "硯石亭",
-    "lat": 35.0549,
-    "lon": 135.67234,
+    "lat": 35.054508,
+    "lon": 135.672459,
     "address_jp": "〒616-8292 京都府京都市右京区梅ケ畑高雄町5",
     "category": "restaurant",
     "hours": {
@@ -6582,8 +6582,8 @@
     "id": "kunimatsu-ekie",
     "name_en": "Kunimatsu + Musashibo",
     "name_jp": "くにまつ＋武蔵坊",
-    "lat": 34.398319,
-    "lon": 132.475952,
+    "lat": 34.397845,
+    "lon": 132.476273,
     "address_jp": "〒732-0822 広島県広島市南区松原町1-2 ekie 1F",
     "category": "restaurant",
     "hours": {
@@ -6937,8 +6937,8 @@
     "id": "yumehyakusen-ekie",
     "name_en": "Yume Hyakusen",
     "name_jp": "夢百選",
-    "lat": 34.398319,
-    "lon": 132.475952,
+    "lat": 34.397671,
+    "lon": 132.476124,
     "address_jp": "〒732-0822 広島県広島市南区松原町1-2 ekie 2F",
     "category": "restaurant",
     "hours": {
@@ -7236,8 +7236,8 @@
     "id": "chanko-kirishima-edonoren",
     "name_en": "Chanko Kirishima Ryogoku Edo Noren",
     "name_jp": "ちゃんこ霧島 両国江戸NOREN店",
-    "lat": 35.696163,
-    "lon": 139.792007,
+    "lat": 35.696162,
+    "lon": 139.792993,
     "address_jp": "〒130-0015 東京都墨田区横網1-3-20 両国江戸NOREN",
     "category": "restaurant",
     "hours": {
