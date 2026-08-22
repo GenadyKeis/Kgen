@@ -104,7 +104,7 @@
       },
       {
         "heading": "Temple and shrine gates: cash, always",
-        "detail": "Never arrive at a gate expecting to tap. Tōdai-ji is confirmed cash-only and the pattern holds across roughly forty sites — this is the single largest cash line of the trip."
+        "detail": "Never arrive at a gate expecting to tap. Tōdai-ji is confirmed cash-only and the pattern holds across roughly forty sites."
       },
       {
         "heading": "How much cash to carry",
@@ -116,6 +116,6 @@
       }
     ]
   },
-  "data_built_on": "2026-08-18",
+  "data_built_on": "2026-08-21",
   "note": "Autumn 2026 itinerary — ratified by the v3 planner (planning/ITINERARY.md), dated at S2, booked at R6, exported at R7. Trip calendar is tied to the El Al bookings in reservations.json: start_date = LY91 arrival, end_date = LY92 departure."
 }

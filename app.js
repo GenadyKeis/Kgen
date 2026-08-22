@@ -365,6 +365,20 @@
     var totalDays = DATA.meta ? DATA.meta.total_days : 0;
     var html = '';
 
+    // ⚑ The affordance line §X.50.4 ruled for, finally on the tab that needed it
+    // most. The Japanese place names have been tap-to-copy since §X.74 and this
+    // tab never said so: the toast was the whole affordance, and a toast only
+    // fires AFTER the tap, so the control could only be found by accident.
+    // ⛔ It was found by NOT being found — 2026-08-22 the user asked for a
+    // "clickable Japanese name to copy for Organic Maps" while holding a build
+    // that had shipped exactly that. `A CONTROL BEHIND AN UNDISCOVERED TAP IS
+    // NOT SHIPPED` — the same sentence already written about the phrase rows.
+    // ⚠ It says PLACE NAME on purpose. Trail names are NOT copyable and must
+    // not be implied here: tested on his handset 2026-08-22, 「6号路」 resolves
+    // to the wrong mountain and 「山の辺の道」 returns a long ambiguous list.
+    // A path is a named way, not a POI, and the search does not resolve it.
+    html += '<div class="info-copy-hint">Tap any Japanese place name to copy it — then paste it into your offline map.</div>';
+
     for (var d = 0; d < DATA.days.length; d++) {
       var day = DATA.days[d];
       var tripInProgress = currentDayNum >= 1 && currentDayNum <= totalDays;

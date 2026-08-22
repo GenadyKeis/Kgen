@@ -60,13 +60,13 @@
         "items": [
           {
             "place_id": "akihabara-washington",
-            "detail": "Check-in runs 14:00–22:00 and 22:00 is a hard close — you arrive around 15:35–16:40, with hours to spare. You carry both bags the whole way; there is no forwarding on this trip. The rest of the evening is deliberately empty: that slack is recovery, not spare time."
+            "detail": "Check-in runs 14:00–22:00 and 22:00 is a hard close — you arrive around 15:35–16:40, with hours to spare. You carry both bags the whole way; there is no forwarding on this trip. The rest of the evening is empty: that slack is recovery, not spare time."
           }
         ]
       }
     ],
     "notes_top": [
-      "💴 Get yen at the Narita ATM before you leave the airport — the Terminal 1 machines take foreign cards, so there is no reason to buy yen at an Israeli rate. Aim to be carrying ¥30,000–40,000 for the trip: the temple and shrine gates ahead of you are cash, and with about forty sites that is the single largest cash line of the trip."
+      "💴 Get yen at the Narita ATM before you leave the airport — the Terminal 1 machines take foreign cards, so there is no reason to buy yen at an Israeli rate. Aim to be carrying ¥30,000–40,000 for the trip: the temple and shrine gates ahead of you are cash, and there are about forty of them."
     ]
   },
   {
@@ -92,7 +92,7 @@
             "detail": "Akihabara · Shibuya · Shinjuku · Ginza. Three of the four — the pen and stationery, the watch, the Uniqlo flagship — cluster in Ginza."
           },
           {
-            "label": "Tax-free is free today, and that is why the date is pinned",
+            "label": "Tax-free is free today",
             "detail": "Anything bought on or before Oct 31 is exempted at the register, with nothing to do at Narita. From Nov 1 Japan switches to charging the tax up front and refunding it only after customs confirms export. Carry your passport."
           },
           {
@@ -153,7 +153,7 @@
         "items": [
           {
             "place_id": "tokyo-national-museum",
-            "detail": "The morning is Honkan and the Heiseikan — the deepest single collection of Japanese art and antiquities anywhere. Three things about the gate. On a Saturday the museum runs to 20:00, but last admission is 19:30. Your ¥2,100 Daitoku-ji exhibition ticket also admits you to the standing collection on the day you use it, so you pay nothing at the gate. And the main-gate ticket window can run over thirty minutes at busy times — walk past it. This day holds more than it can fit: if it runs long, skim the standing collection, which you saw in 2019."
+            "detail": "The morning is Honkan and the Heiseikan. The museum puts its own collection at about 120,000 objects, 90 of them National Treasures and 652 Important Cultural Properties. Three things about the gate. On a Saturday the museum runs to 20:00, but last admission is 19:30. Your ¥2,100 Daitoku-ji exhibition ticket also admits you to the standing collection on the day you use it, so you pay nothing at the gate. And the main-gate ticket window can run over thirty minutes at busy times — walk past it. This day holds more than it can fit: if it runs long, skim the standing collection, which you saw in 2019."
           }
         ]
       },
@@ -224,7 +224,7 @@
         "items": [
           {
             "label": "The day has two jobs",
-            "detail": "Finish whatever Friday did not, and absorb whatever Saturday’s Ueno day ran out of daylight for. It sits the day after Ueno for exactly that reason."
+            "detail": "Finish whatever Friday did not, and absorb whatever Saturday’s Ueno day ran out of daylight for."
           },
           {
             "label": "Sunday is the only day the streets close",
@@ -271,7 +271,7 @@
         "items": [
           {
             "label": "Buy lunch at the konbini",
-            "detail": "Nothing on this mountain can be relied on for lunch: both summit teahouses and the old soba house at the trailhead keep irregular closing days and none of them publishes a calendar. Buy onigiri or sandwiches in Akihabara before boarding and eat them at the summit deck. A hot bowl of tororo soba on the way down is the upside, not the plan."
+            "detail": "Nothing on this mountain can be relied on for lunch: the two summit teahouses, the two you pass walking up Trail 1 and the old soba house at the trailhead all keep irregular closing days, and none of them publishes a calendar. Buy onigiri or sandwiches in Akihabara before boarding and eat them at the summit deck. A hot bowl of tororo soba on the way down is the upside, not the plan — and the soba house at the foot last-orders at 16:30 on a weekday, so the descent has time in hand for it if it is open."
           }
         ]
       },
@@ -293,7 +293,7 @@
       },
       {
         "type": "hike",
-        "title": "Up Trail 1",
+        "title": "Up Trail 1 — 1号路",
         "maps": [
           { "label": "Trail map — Tokyo's Takao Visitor Centre", "url": "https://takaovc.ces-net.jp/?page_id=257", "note": "All six numbered trails plus Inariyama. Same office that posts trail closures." },
           { "label": "AllTrails — Trail 6, the way down", "url": "https://www.alltrails.com/trail/japan/tokyo/mount-takao-trail-6", "note": "Covers the descent only. ⚠ AllTrails has no Trail 1 route of its own — its Takao entries are Trails 2, 3, 4, 5, 6, Inariyama, and a combined Inariyama + Trail 1 — so our ascent is not mapped there as we walk it. ⚠ Ignore the orange \"Takao Partial Closure\" alert on that page — it is dated October 2025 and says Trail 6 is shut to downhill walkers. Tokyo's own visitor centre lifted that on 8 May 2026: \"Trail 6 can now be used for descent as well.\" The visitor centre link above is the live source." }
@@ -301,8 +301,8 @@
         "items": [],
         "transit": [
           {
-            "label": "On foot — Takaosanguchi → Yakuō-in (Trail 1)",
-            "detail": "The paved, graded route up through cedar forest and the Jōshinmon gate: an hour to an hour and a quarter at an unhurried pace. The cable car runs alongside if you need it — but walking up is the point of the day.",
+            "label": "On foot — Takaosanguchi → Yakuō-in (Trail 1 · 1号路)",
+            "detail": "The paved, graded route up through cedar forest and the Jōshinmon gate: an hour to an hour and a quarter at an unhurried pace. The cable car runs alongside if you need it — but walking up is the point of the day. ⚑ On a phone map the trails are labelled in Japanese only: this one is 「1号路」, written in full as 「自然研究路1号路」 and also signed 「表参道」, the temple approach. Past the 浄心門 gate it splits into 「男坂」, the 108-step staircase, and 「女坂」, the gentler curve — they rejoin, so either is right.",
             "origin_id": "takaosanguchi-station",
             "destination_id": "yakuoin",
             "mode": "walking",
@@ -347,12 +347,12 @@
       },
       {
         "type": "hike",
-        "title": "Down Trail 6",
+        "title": "Down Trail 6 — 6号路",
         "items": [],
         "transit": [
           {
-            "label": "On foot — the summit → Takaosanguchi (Trail 6)",
-            "detail": "The Biwa-taki valley: unpaved, beside the stream, the gentler of the two natural descents — an hour and a quarter to an hour and a half. If the legs are gone, the cable car runs down until 18:00 and the chairlift until about 16:30.",
+            "label": "On foot — the summit → Takaosanguchi (Trail 6 · 6号路)",
+            "detail": "The Biwa-taki valley: unpaved, beside the stream, the gentler of the two natural descents — an hour and a quarter to an hour and a half. If the legs are gone, the cable car runs down until 18:00 and the chairlift until about 16:30. ⚑ On a phone map look for 「6号路」 or 「自然研究路6号路」; the visitor centre also signs it 「琵琶滝コース」 after the waterfall it passes. ⚠ Do not take 「稲荷山コース」 or 「3号路」 by mistake — both are labelled up there and neither is this walk.",
             "origin_id": "mt-takao",
             "destination_id": "takaosanguchi-station",
             "mode": "walking",
@@ -378,7 +378,7 @@
       }
     ],
     "notes_top": [
-      "💴 Cash on the mountain, and cash again at dinner if you take the first choice: the summit teahouses and the stands along the trail take nothing else, and the tsukemen counter in Shinjuku is cash-only too. Both fallbacks take cards — so the only branch of this day that needs notes in your pocket is the one that goes well."
+      "💴 Cash on the mountain, and cash again at dinner if you take the first choice: the teahouses and the stands along the trail are a cash proposition, and the tsukemen counter in Shinjuku is cash-only too. One listing does put JCB and AMEX on the highest of the summit houses — not a wallet to walk up on. Both dinner fallbacks take cards, so the only branch of this day that needs notes in your pocket is the one that goes well."
     ],
     "backup": {
       "title": "If it rains — the day moves, and if it cannot move it shrinks",
@@ -483,7 +483,7 @@
       }
     ],
     "notes_top": [
-      "💴 A cash day from the gates to the table — Engaku-ji, Meigetsu-in, Kenchō-ji and the rest of the Kamakura temples take cash and nothing else, and so does tonight's dinner on Komachi-dōri. Draw enough before you leave Tokyo to cover both; there is no card anywhere on this day."
+      "💴 A cash day from the gates to the table — Engaku-ji, Meigetsu-in, Kenchō-ji and the rest of the Kamakura temples take cash and nothing else, and so does tonight's dinner on Komachi-dōri. Draw enough before you leave Tokyo to cover the day — the lunch counter by Kenchō-ji's gate publishes no payment methods at all, so treat it as cash too."
     ],
     "backup": {
       "title": "If it rains — the temples hold, the climb goes",
@@ -506,7 +506,7 @@
         "items": [
           {
             "place_id": "akihabara-washington",
-            "detail": "Breakfast on the 3rd floor is included and the buffet runs from 06:30; eat around 07:00–07:45, settle at the desk about 08:45 and leave at ~08:50. Nothing here was prepaid: ¥175,695 for the six nights plus ¥1,200 of lodging tax is paid at the property, so unless you settled it earlier in the stay you settle it at this desk — leave room for that in the 08:45. The early start is the point of the day: it buys you two extra hours in Kyoto."
+            "detail": "Breakfast on the 3rd floor is included and the buffet runs from 06:30; eat around 07:00–07:45, settle at the desk about 08:45 and leave at ~08:50. Nothing here was prepaid: ¥175,695 for the six nights plus ¥1,200 of lodging tax is paid at the property, so unless you settled it earlier in the stay you settle it at this desk — leave room for that in the 08:45."
           }
         ]
       },
@@ -517,7 +517,7 @@
         "transit": [
           {
             "label": "JR Yamanote or Keihin-Tōhoku — Akihabara → Tokyo",
-            "detail": "About four minutes — two stops on the Yamanote by way of Kanda, one on the Keihin-Tōhoku rapid, which skips it. The morning is timed around the ekiben counter rather than around the ride: leave the hotel about 08:50 and you are at the counter by about 09:10, twenty minutes before the 09:30 Nozomi. You stay inside the ordinary JR gates the whole way, which is what makes that stop work.",
+            "detail": "About four minutes — two stops on the Yamanote by way of Kanda, one on the Keihin-Tōhoku rapid, which skips it. Leave the hotel about 08:50 and you are at the counter by about 09:10, twenty minutes before the 09:30 Nozomi. You stay inside the ordinary JR gates the whole way, which is what makes that stop work.",
             "origin_id": "akihabara-station",
             "destination_id": "tokyo-station",
             "mode": "train",
@@ -585,7 +585,7 @@
         "items": [
           {
             "label": "The afternoon is deliberately uncommitted",
-            "detail": "Nothing is planned for this afternoon. It is a move day, and every Kansai day comes after it — the 09:30 train bought you about two extra hours here, on foot from the station, to spend however the day feels when you arrive."
+            "detail": "Nothing is planned for this afternoon — it is yours, on foot from the station, to spend however the day feels when you arrive."
           }
         ]
       }
@@ -640,7 +640,7 @@
         "transit": [
           {
             "label": "Walk — Hōryū-ji to Hōryūji Station",
-            "detail": "Back down the gate street the way you came in this morning, then south to the station. Lunch is on this walk, not at the other end: Nishinokyō has nowhere to eat. The Hōryūji-sandō bus does the same twenty minutes in five if one happens to be at the stop.",
+            "detail": "Lunch is on this walk, not at the other end: Nishinokyō has nowhere to eat. Coming out of the Yumedono, the first choice is three or four minutes south-east of it, and the two gate-street houses behind it are 400 m west — all three leave you the same twenty-minute walk south to the station. The Hōryūji-sandō bus does that twenty minutes in five if one happens to be at the stop.",
             "origin_id": "horyuji",
             "destination_id": "horyuji-station",
             "mode": "walking",
@@ -704,7 +704,7 @@
       }
     ],
     "notes": [
-      "✈ Read Kaidashimen Kitada's Instagram tonight. It is the single venue carrying four of the trip's dinner slots — the first choice on Oct 31 and Nov 5, the fallback tonight and on Nov 3 — and it closes on irregular days that it publishes nowhere. A reading from before the trip proves nothing about now."
+      "✈ Read Kaidashimen Kitada's Instagram tonight. It is the single venue carrying four of the trip's dinner slots — the first choice on Oct 30 and Nov 5, the fallback tonight and on Nov 3 — and it closes on irregular days that it publishes nowhere. A reading from before the trip proves nothing about now."
     ],
     "backup": {
       "title": "This day is Kansai's whole-day rain answer",
@@ -739,7 +739,7 @@
       },
       {
         "type": "hike",
-        "title": "Walk in through the town",
+        "title": "Walk in through the town — 山の辺の道",
         "maps": [
           { "label": "Course map — Nara Prefecture", "url": "https://www.pref.nara.lg.jp/site/aruku/1195.html", "note": "Printable sheets for the whole Tenri–Sakurai road, drawn on government survey maps." },
           { "label": "AllTrails — Yamanobe-no-michi", "url": "https://www.alltrails.com/trail/japan/nara/yamanobe-no-michi", "note": "Same road, mapped in the opposite direction — Sakurai to Tenri. We walk it north to south." }
@@ -748,7 +748,7 @@
         "transit": [
           {
             "label": "Walk — Tenri Station to Isonokami Jingū",
-            "detail": "Two and a half kilometres east, straight up the Tenri Hondōri arcade and over the Furu river: forty minutes, which is the shrine’s own figure. Convenience stores and supermarkets are at the station end if you want anything for the road.",
+            "detail": "Two and a half kilometres east, straight up the Tenri Hondōri arcade and over the Furu river: forty minutes. Convenience stores and supermarkets are at the station end if you want anything for the road.",
             "origin_id": "tenri-station",
             "destination_id": "isonokami-jingu",
             "mode": "walking",
@@ -768,12 +768,12 @@
       },
       {
         "type": "hike",
-        "title": "The road south — to the Yanagimoto midpoint",
+        "title": "The road south — to the Yanagimoto midpoint — 山の辺の道",
         "items": [],
         "transit": [
           {
             "label": "Walk — Isonokami Jingū to Chōgaku-ji",
-            "detail": "About 6.3 km of graded farm track along the hillside — orchards, stone-walled lanes, unattended vegetable stalls with an honesty box, and the tumulus of Emperor Sujin rising out of the rice, seen from its torii. Two hours and five minutes of walking, from the city’s own per-segment times. This is the longest walking distance on the trip and the least demanding ground on it: an elevation range of about 75 m, graded 2 of 5 by the prefecture, and never more than about twenty minutes from a station on the line if you want to stop.",
+            "detail": "About 6.3 km of graded farm track along the hillside — orchards, stone-walled lanes, unattended vegetable stalls with an honesty box, and the tumulus of Emperor Sujin rising out of the rice, seen from its torii. Two hours and five minutes of walking, from the city’s own per-segment times. This is the longest walking distance on the trip and the gentlest ground of its walking days: an elevation range of about 75 m, graded 2 of 5 by the prefecture, and never more than about twenty minutes from a station on the line if you want to stop.",
             "origin_id": "isonokami-jingu",
             "destination_id": "chogakuji",
             "mode": "walking",
@@ -793,7 +793,7 @@
       },
       {
         "type": "hike",
-        "title": "The road south — on to Hibara",
+        "title": "The road south — on to Hibara — 山の辺の道",
         "items": [],
         "transit": [
           {
@@ -991,7 +991,7 @@
           },
           {
             "label": "Kintetsu 20:28 → Kyoto ~21:15",
-            "detail": "The direct express north, no change. Two run in the window you want it — 20:28 and 20:54 — and the last direct is 22:27, so the museum closing at 20:00 leaves the choice open rather than forced. ⚑ If it has gone, or you would rather a Tier-1 timetable than this one, JR is the second, fully independent way home: twenty minutes on foot to JR Nara, then the 20:50 local (about seventy minutes) or the 21:20 Miyakoji rapid (about forty-five), with 21:50, 22:14, 22:42 and a 23:10 last behind them. It costs you about three quarters of an hour, and this evening is the one night of the ten where that matters — see tonight's food card.",
+            "detail": "The direct express north, no change. Two run in the window you want it — 20:28 and 20:54 — and the last direct is 22:27, so the museum closing at 20:00 leaves the choice open rather than forced. ⚑ If it has gone, or the board does not show it — these two Kintetsu times are not from the operator’s own timetable — JR is the second, fully independent way home: twenty minutes on foot to JR Nara, then the 20:50 local (about seventy minutes) or the 21:20 Miyakoji rapid (about forty-five), with 21:50, 22:14, 22:42 and a 23:10 last behind them. It costs you about three quarters of an hour, and this evening is the one night of the ten where that matters — see tonight's food card.",
             "origin_id": "kintetsu-nara-station",
             "destination_id": "kyoto-station",
             "mode": "train",
@@ -1003,7 +1003,7 @@
       }
     ],
     "backup": {
-      "title": "A wet Oct 31 is walked wet — you accepted that when you bought the ticket",
+      "title": "A wet Oct 31 is walked wet",
       "detail": "This day cannot swap with any other. The Shōsō-in ticket is for a fixed date and time slot, so a bad forecast does not move it. What rain actually costs you is the walking between the halls and the open terrace at Nigatsu-dō — the exhibition and the Great Buddha Hall are indoors, and Kasuga's corridors are roofed. A small loss on a day that is mostly halls."
     }
   },
@@ -1046,7 +1046,7 @@
       },
       {
         "type": "hike",
-        "title": "Up the switchback approach",
+        "title": "Up the switchback approach — 九十九折参道",
         "maps": [
           { "label": "Precinct and paths — Kurama-dera", "url": "https://kuramadera.or.jp/annai.html", "note": "The temple's own guide to the mountain paths. Its front page is where a path closure would be posted." },
           { "label": "AllTrails — Kurama to Kibune", "url": "https://www.alltrails.com/trail/japan/kyoto/kurama-trail", "note": "Matches our line over the ridge. Route shape only — it is not a source for whether the path is open." }
@@ -1068,7 +1068,7 @@
         "items": [
           {
             "place_id": "yuki-jinja",
-            "detail": "The tutelary shrine of Kurama, standing on the path itself. Its 1607 worship hall is built in the wari-haiden form — split in two with the approach running straight through the middle — and is an Important Cultural Property, as is its pair of guardian lion-dogs, the only ones in Japan shown holding a child. The great cedar beside it is about 800 years old. Ten to fifteen minutes, seen from outside on the way up."
+            "detail": "The tutelary shrine of Kurama, standing on the path itself. Its 1607 worship hall is built in the wari-haiden form — split in two with the approach running straight through the middle — and is an Important Cultural Property, as is its pair of guardian lion-dogs, which the shrine calls the only ones in Japan shown holding a child. The designated pair is reported to be on deposit at the Kyoto National Museum and the pair standing here a faithful copy — look under the paws either way. The great cedar beside it is about 800 years old. Ten to fifteen minutes, seen from outside on the way up."
           }
         ]
       },
@@ -1079,7 +1079,7 @@
         "transit": [
           {
             "label": "On foot — Yuki-jinja → Kurama-dera",
-            "detail": "The rest of the switchback. The thirty to forty-five minutes named below the gate covers the whole climb and is not split between the two stretches.",
+            "detail": "The rest of the switchback. The thirty to forty-five minutes named below the gate covers the whole climb.",
             "origin_id": "yuki-jinja",
             "destination_id": "kuramadera",
             "mode": "walking"
@@ -1092,18 +1092,18 @@
         "items": [
           {
             "place_id": "kuramadera",
-            "detail": "The main hall and the kongōshō stone mandala in the court in front of it — twenty to thirty minutes, and the hall is open 9:00 to 16:15. Then the Reihōden, two minutes above: three small floors, with the National Treasure Bishamonten triad on the top one. It shuts at 16:00 and closes on Tuesdays, and that 16:00 is why the mountain is taken in the morning. Thirty to forty-five minutes inside. Cash only, here and at the gate."
+            "detail": "The main hall and the kongōshō stone mandala in the court in front of it — twenty to thirty minutes, and the hall is open 9:00 to 16:15. Then the Reihōden, two minutes above: three small floors, with the National Treasure Bishamonten triad on the top one. It shuts at 16:00 and closes on Tuesdays. Thirty to forty-five minutes inside. Cash only, here and at the gate."
           }
         ]
       },
       {
         "type": "hike",
-        "title": "Over the ridge — the Shugyō-no-michi",
+        "title": "Over the ridge — 奥の院参道",
         "items": [],
         "transit": [
           {
-            "label": "On foot — the inner path over the ridge",
-            "detail": "The temple’s own training road, from behind the main hall past the Ikitsugi-no-mizu spring and the Sekurabe-ishi stone to the Kinone-michi, where the cedar roots lace the surface of the path. The whole crossing to the Nishi-mon gate at Kibune is about 3.9 km and sixty to ninety minutes — that is the figure for the crossing as a whole and it is not divided between the two stretches here. It is a forest path of roots and stone, and the temple’s own guidance is not to push on after rain or in failing light, which is exactly why the day goes up Kurama first.",
+            "label": "On foot — the inner path over the ridge (奥の院参道)",
+            "detail": "The temple’s own training road, from behind the main hall past the Ikitsugi-no-mizu spring and the Sekurabe-ishi stone to the Kinone-michi, where the cedar roots lace the surface of the path. The whole crossing to the Nishi-mon gate at Kibune is about 3.9 km and sixty to ninety minutes — that is the figure for the crossing as a whole. It is a forest path of roots and stone, and the temple’s own guidance is not to push on after rain or in failing light.",
             "origin_id": "kuramadera",
             "destination_id": "kurama-kibune-trail",
             "mode": "walking"
@@ -1112,7 +1112,7 @@
       },
       {
         "type": "hike",
-        "title": "Down into Kibune",
+        "title": "Down into Kibune — 木の根道",
         "items": [],
         "transit": [
           {
@@ -1259,7 +1259,7 @@
         "items": [
           {
             "place_id": "shimogamo-jinja",
-            "detail": "The National Treasure main hall seen from the chūmon, the seven zodiac sub-shrines around it, the Mitarashi pond and the arched bridge — three quarters of an hour to an hour and a quarter. The paid area opens at 10:00: the Ōi-dono that was the kitchen of the gods, the carriage house with its Aoi Matsuri material, and the rebuilt ten-foot-square hut Kamo no Chōmei wrote the Hōjōki in. Thirty to forty-five minutes if it is taken, and that 10:00 opening is one of the two reasons this day walks north rather than south."
+            "detail": "The National Treasure main hall seen from the chūmon, the seven zodiac sub-shrines around it, the Mitarashi pond and the arched bridge — three quarters of an hour to an hour and a quarter. The paid area opens at 10:00: the Ōi-dono that was the kitchen of the gods, the carriage house with its Aoi Matsuri material, and the rebuilt ten-foot-square hut Kamo no Chōmei wrote the Hōjōki in. Thirty to forty-five minutes if it is taken."
           }
         ]
       },
@@ -1284,7 +1284,7 @@
         "items": [
           {
             "place_id": "kamigamo-jinja",
-            "detail": "The other half of the Kamo pair: the two cones of raked sand in front of the Hosodono, the rōmon, and the Important Cultural Property sub-shrines along the stream — half an hour to an hour. The priest-guided visit into the inner court runs 10:00 to 16:00 every day, ¥500, and one person needs no reservation: the Kamo myth explained in the Naoraiden, the treasure display in the Takakuradono, and standing in front of the National Treasure main hall and its provisional twin. Twenty to thirty minutes, and it is the other reason for the day’s direction. ⚠ Ask at the office when you arrive whether the inner-court visit is running today: the shrine states plainly that it is suspended or re-timed for rites often, and Friday's phone call reduces that risk without retiring it. If it is off, nothing else on the day is affected — the precinct, the sand cones and the Shake-machi lane are all unchanged."
+            "detail": "The other half of the Kamo pair: the two cones of raked sand in front of the Hosodono, the rōmon, and the Important Cultural Property sub-shrines along the stream — half an hour to an hour. The priest-guided visit into the inner court runs 10:00 to 16:00 every day, ¥500, and one person needs no reservation: the Kamo myth explained in the Naoraiden, the treasure display in the Takakuradono, and standing in front of the National Treasure main hall and its provisional twin. Twenty to thirty minutes. ⚠ Ask at the office when you arrive whether the inner-court visit is running today: the shrine states plainly that it is suspended or re-timed for rites often. If it is off, nothing else on the day is affected — the precinct, the sand cones and the Shake-machi lane are all unchanged."
           }
         ]
       },
@@ -1364,7 +1364,7 @@
     ],
     "backup": {
       "title": "If it rains — the day loses the river, not the shrines",
-      "detail": "Both shrine precincts and the Daitoku-ji sub-temples work in rain. What a wet day takes is the three and a half kilometres of riverside path north between them: take one bus instead and the day still works, a little shorter and a little less joined up. This is the most weather-tolerant day in Kansai and it is the one you move a wet Oct 30, Nov 1 or Nov 3 into. ⚑ It gives half a day indoors — but it is not a substitute for the Ikaruga day, so don't spend it on a shower."
+      "detail": "Both shrine precincts and the Daitoku-ji sub-temples work in rain. What a wet day takes is the three and a half kilometres of riverside path north between them: take one bus instead and the day still works, a little shorter and a little less joined up. It is a day you can move a wet Oct 30, Nov 1 or Nov 3 into. ⚑ It gives half a day indoors — but it is not a substitute for the Ikaruga day, so don't spend it on a shower."
     }
   },
   {
@@ -1395,7 +1395,7 @@
       },
       {
         "type": "hike",
-        "title": "Out of the city on foot",
+        "title": "Out of the city on foot — 京都一周トレイル 西山コース",
         "maps": [
           { "label": "Kyoto Trail, Nishiyama course — Kyoto City", "url": "https://ja.kyoto.travel/tourism/article/trail/nishiyama.php", "note": "The city's own course page: Takao–Kiyotaki–Toriimoto–Arashiyama, our exact line written the other way round. Has an elevation profile; the printed guide map is sold separately." },
           { "label": "AllTrails — Kiyotaki to Jingo-ji", "url": "https://www.alltrails.com/trail/japan/kyoto/kiyotaki-bus-stop-kuya-falls-mount-takao", "note": "The middle stretch only. It does not include the walk out of Arashiyama, nor Saimyō-ji and Kōzan-ji." }
@@ -1423,7 +1423,7 @@
       },
       {
         "type": "hike",
-        "title": "Over the pass to Kiyotaki",
+        "title": "Over the pass to Kiyotaki — 清滝",
         "items": [],
         "transit": [
           {
@@ -1452,7 +1452,7 @@
         "transit": [
           {
             "label": "On foot — Kiyotaki → Jingo-ji",
-            "detail": "About three kilometres of valley floor with almost no gradient. The transport bureau’s own course gives it roughly two hours and calls it walkable by beginners, with a warning that the rock underfoot is slippery after rain. Then about 350 stone steps up from Takao-bashi to the gate, ten to thirty minutes depending on the legs. Both figures are the sources’ own and are not added together here.",
+            "detail": "About three kilometres of valley floor with almost no gradient. The transport bureau’s own course gives it roughly two hours and calls it walkable by beginners, with a warning that the rock underfoot is slippery after rain. Then about 350 stone steps up from Takao-bashi to the gate, ten to thirty minutes depending on the legs.",
             "origin_id": "kiyotaki",
             "destination_id": "jingoji",
             "mode": "walking"
@@ -1465,7 +1465,7 @@
         "items": [
           {
             "place_id": "jingoji",
-            "detail": "The middle of the day, entered about half past eleven against a four-o’clock close — nearly four and a half hours of margin, which is deliberate. The Kondō with its National Treasure Yakushi Nyorai, the pagoda, and the clay-disc throw off the Jizō-in terrace out over the gorge, which is where that practice began. Fifty minutes to an hour and ten. The Daishi-dō interior opening, which you ruled in on 7 August, runs 1 to 7 November, 09:00 to 16:00, for ¥500 on top of admission, and shows the Important Cultural Property carved-wood Kōbō Daishi that is not on view at any other time; it adds twenty to thirty minutes. The temple prints those dates without a year, so the 2026 repeat is confirmed close to the trip rather than assumed."
+            "detail": "The middle of the day, entered about half past eleven against a four-o’clock close — nearly four and a half hours of margin. The Kondō with its National Treasure Yakushi Nyorai, the pagoda, and the clay-disc throw off the Jizō-in terrace out over the gorge, which is where that practice began. Fifty minutes to an hour and ten. The Daishi-dō interior opening runs 1 to 7 November, 09:00 to 16:00, for ¥500 on top of admission, and shows the Important Cultural Property carved-wood Kōbō Daishi that is not on view at any other time; it adds twenty to thirty minutes. The temple prints those dates without a year, so treat the 2026 repeat as likely rather than certain."
           }
         ]
       },
@@ -1476,7 +1476,7 @@
         "transit": [
           {
             "label": "On foot — Jingo-ji → Saimyō-ji",
-            "detail": "Back down the steps, ten to fifteen minutes. Lunch at the Takao bridge sits here: the riverside places are indoors and open year-round, while the platforms out over the water are a summer thing and are gone by November. Then twenty minutes north along the river road.",
+            "detail": "Back down the steps, ten to fifteen minutes. Lunch sits inside that descent rather than after it: the two teahouses stand on the steps themselves, about half way down, not at the bridge. Both are indoors — Takao's riverbed platforms are a summer arrangement and are gone by November. Then twenty minutes north along the river road.",
             "origin_id": "jingoji",
             "destination_id": "saimyoji",
             "mode": "walking"
@@ -1514,7 +1514,7 @@
         "items": [
           {
             "place_id": "kozanji",
-            "detail": "The World Heritage stop, and the day’s last: the National Treasure Sekisui-in, which was Myōe’s own residential hall, the founder’s hall, and the oldest tea garden in Japan. Forty to fifty-five minutes. The Chōjū-giga scroll on show is a replica; the originals are not normally displayed. This temple’s five-o’clock close is the real deadline on the day — you should arrive about ten to three, or about twenty past if you take the Daishi-dō, so the day can run roughly two hours late before you lose anything."
+            "detail": "The World Heritage stop, and the day’s last: the National Treasure Sekisui-in, which was Myōe’s own residential hall; the founder’s hall; and the tea garden that carries the stone reading “Japan’s oldest tea garden”. Forty to fifty-five minutes. The Chōjū-giga scroll on show is a replica; the originals are not normally displayed. The temple’s own page puts the oldest garden across the Kiyotaki river and says this plot held a monks’ hall — so read the stone as a monument, not as the spot. This temple’s five-o’clock close is the real deadline on the day — you should arrive about ten to three, or about twenty past if you take the Daishi-dō, so the day can run roughly two hours late before you lose anything."
           }
         ]
       },
@@ -1596,13 +1596,13 @@
         "items": [
           {
             "place_id": "daigoji",
-            "detail": "Two National Treasures standing side by side: the Kondō, first raised by decree of Emperor Daigo in 926 and rebuilt under Hideyoshi with a hall moved from Kishū, and the five-storey pagoda finished in 951 — the oldest wooden building in Kyoto Prefecture, whose first storey carries mandalas that are a source of Japanese esoteric painting. Forty-five minutes to an hour. Then the Reihōkan treasure house, thirty to forty-five minutes and capped there on purpose: it is a very large holding, and the temple keeps one of its three rooms open the whole year round, so there is always something on."
+            "detail": "Two National Treasures standing side by side: the Kondō, first raised by decree of Emperor Daigo in 926 and rebuilt under Hideyoshi with a hall moved from Kishū, and the five-storey pagoda finished in 951 — the oldest wooden building in Kyoto Prefecture, whose first storey carries mandalas that are a source of Japanese esoteric painting. Forty-five minutes to an hour. Then the Reihōkan treasure house, thirty to forty-five minutes: it is a very large holding, and the temple keeps one of its three rooms open the whole year round, so there is always something on."
           }
         ]
       },
       {
         "type": "hike",
-        "title": "Up to Kami-Daigo",
+        "title": "Up to Kami-Daigo — 上醍醐",
         "maps": [
           { "label": "The upper temple — Daigo-ji", "url": "https://www.daigoji.or.jp/grounds/kamidaigo.html", "note": "One path up from the Nyonin-dō; the temple's own figure is about an hour. No printable trail sheet is published." },
           { "label": "AllTrails — Daigo-ji walking tour", "url": "https://www.alltrails.com/trail/japan/kyoto/daigo-ji-temple-walking-tour", "note": "7 km and 490 m of climbing, 3–3.5 hours, taking in the lower precinct as well as the climb." }
@@ -1611,7 +1611,7 @@
         "transit": [
           {
             "label": "On foot — the climb to Kami-Daigo",
-            "detail": "Check Daigo-ji’s front page before setting out. As this was written the temple’s own front page carried a notice that, because of a danger of landslides on part of the mountain path, entry to Kami-Daigo is prohibited for the time being — carried continuously since at least late June 2026, its wording hardening rather than lifting. The registration hours are still published underneath that notice, so the published schedule is not evidence that the mountain is open. You decided on 9 August to keep the day as it stands and settle this on the ground. If it is open: lunch first, then start the ascent about noon or half past. Registration is walk-in at the Nyonin-dō trailhead and the climb is on foot only. Treat 14:30 as the last entry — the temple’s page prints 15:00, but this day is built on the tighter figure. About 350 to 400 metres of climbing on relentlessly switchbacked stone steps, which the temple itself calls a steep mountain path. Allow two to two and a half hours for the round trip including the halls; the temple’s own guidance is about an hour each way and at least three hours if you take the halls in. Be back down at the foot by 17:00 — sunset in Kyoto on this date is 17:01, so that instruction is the real thing and not padding.",
+            "detail": "Check Daigo-ji’s front page before setting out. As this was written the temple’s own front page carried a notice that, because of a danger of landslides on part of the mountain path, entry to Kami-Daigo is prohibited for the time being — carried continuously since at least late June 2026, its wording hardening rather than lifting. The registration hours are still published underneath that notice, so the published schedule is not evidence that the mountain is open. Settle it on the ground. If it is open: lunch first, then start the ascent about noon or half past. Registration is walk-in at the Nyonin-dō trailhead and the climb is on foot only. Treat 14:30 as the last entry — the temple’s page prints 15:00; take the tighter one. About 350 to 400 metres of climbing on relentlessly switchbacked stone steps, which the temple itself calls a steep mountain path. Allow two to two and a half hours for the round trip including the halls; the temple’s own guidance is about an hour each way and at least three hours if you take the halls in. Be back down at the foot by 17:00 — sunset in Kyoto on this date is 17:01. ⚡ There is no trail name to look for on a map here — Daigo-ji’s own site calls it simply 山道, a mountain path. The label to find is the gate at the foot of it, 「女人堂」, and the destination 「上醐醤」.",
             "origin_id": "daigoji",
             "destination_id": "kami-daigo",
             "mode": "walking"
@@ -1624,7 +1624,7 @@
         "items": [
           {
             "place_id": "kami-daigo",
-            "detail": "Where Daigo-ji began in the ninth century, and the reason the climb is worth making rather than a viewpoint: the National Treasure Yakushi-dō and the National Treasure haiden of Kiyotaki-gū, the Nyoirin-dō and the Kaisan-dō — both Important Cultural Properties, the Kaisan-dō rebuilt by Hideyori in 1606 and the largest hall on the mountain — and the Daigo spring itself, whose water can still be drunk. The halls are seen mainly from the outside. No separate fee for the mountain is published anywhere on the temple’s site, and entry can also be refused for weather. If the mountain is shut on the day, the lower precinct alone runs two and a half to three hours, a half-day — and the two afternoons researched for that case are Sanjūsangen-dō, entirely indoors, and Tōfuku-ji, which will be at its most crowded in this window."
+            "detail": "Where Daigo-ji began in the ninth century, and what is up there is halls rather than a view: the National Treasure Yakushi-dō and the National Treasure haiden of Kiyotaki-gū, the Nyoirin-dō and the Kaisan-dō — both Important Cultural Properties, the Kaisan-dō rebuilt by Hideyori in 1606 and, in the temple's words, the largest hall on the mountain — and the Daigo spring itself, whose water can still be drunk. The halls are seen mainly from the outside. No separate fee for the mountain is published anywhere on the temple’s site, and entry can also be refused for weather. If the mountain is shut on the day, the lower precinct alone runs two and a half to three hours, a half-day — the afternoon then goes to Sanjūsangen-dō, entirely indoors, or Tōfuku-ji, which will be at its most crowded in this window."
           }
         ]
       },
@@ -1635,7 +1635,7 @@
         "transit": [
           {
             "label": "On foot — down from Kami-Daigo to Daigo Station",
-            "detail": "Down the same switchbacks and out through the precinct, then about ten minutes to the station. The descent sits inside the round-trip figure named on the way up and is not counted again here.",
+            "detail": "Down the same switchbacks and out through the precinct, then about ten minutes to the station. The descent sits inside the round-trip figure named on the way up.",
             "origin_id": "kami-daigo",
             "destination_id": "daigo-station",
             "mode": "walking"
@@ -1690,7 +1690,7 @@
         "transit": [
           {
             "label": "Kintetsu — Kyoto → Yoshino",
-            "detail": "South on the Kintetsu with a change at Kashiharajingū-mae. This is the longest travel day of the trip — the round trip is about three hours, at or just over the limit you set for a day trip, and you took it knowingly. The limited express is hourly, with all-stations locals behind it.",
+            "detail": "South on the Kintetsu with a change at Kashiharajingū-mae. The round trip is about three hours, the longest of the trip’s day trips. The limited express is hourly, with all-stations locals behind it.",
             "origin_id": "kyoto-station",
             "destination_id": "yoshino-station",
             "mode": "train",
@@ -1700,7 +1700,7 @@
           {
             "label": "Substitute bus — Yoshino Station → Kinpusen-ji",
             "detail": "Three minutes on foot from the platform to the cable station. The ropeway runs Friday to Monday only; Tuesday, Wednesday and Thursday get a substitute microbus instead, and this is a Thursday. Up at 09:35, 10:35, 11:05, 11:40, 12:05, 13:35, 14:35, 15:35 and 16:05, with a gap through the early afternoon. If it is full, the operator’s own instruction is to wait for the next one or to walk up the Nanamagari slope, thirty to thirty-five minutes, which needs no service at all. Then about fifteen minutes uphill on foot to the Zaō-dō.",
-            "payment": "🔴 CASH ONLY — the IC card does not work on this one, and it is the only vehicle on the trip where that is true. There is no door question: it is a microbus with a conductor, so you get on and pay the ¥500 on board. Have coins and small notes ready before you leave the station.",
+            "payment": "🔴 CASH ONLY — the IC card does not work on this one. There is no door question: it is a microbus with a conductor, so you get on and pay the ¥500 on board. Have coins and small notes ready before you leave the station.",
             "origin_id": "yoshino-station",
             "destination_id": "kinpusenji",
             "mode": "bus",
@@ -1715,7 +1715,7 @@
         "items": [
           {
             "place_id": "kinpusenji",
-            "detail": "The head temple of Shugendō, and the main reason for the day. The Zaō-dō is a National Treasure and, on the temple’s own reckoning, second in size among Japan’s ancient wooden buildings only to the Great Buddha Hall at Tōdai-ji. Inside stands the largest shrine cabinet in Japan, and the three Kongō Zaō Gongen are open for the autumn unveiling that runs 24 October to 30 November 2026 — the central one is over seven metres tall. A concurrent exhibition of paintings by Matsuda Daiji is in the Okuden Honji-dō. An hour to an hour and a half. Services can briefly restrict entry to the hall. The temple’s other National Treasure, the Niōmon, is inside a full dismantling repair that runs to 2028 and cannot be seen, and its two five-metre Niō are on deposit at a museum whose sculpture hall closes in September 2026 — in this trip’s window they are visible in neither place."
+            "detail": "The head temple of Kinpusen Shugen Honshū and the centre of Shugendō, and the main reason for the day. The Zaō-dō is a National Treasure and, on the temple’s own reckoning, second in size among Japan’s ancient wooden buildings only to the Great Buddha Hall at Tōdai-ji. Inside stands what the temple calls the largest shrine cabinet in the country, and the three Kongō Zaō Gongen are open for the autumn unveiling that runs 24 October to 30 November 2026 — the central one is over seven metres tall. A concurrent exhibition of paintings by Matsuda Daiji is in the Okuden Honji-dō. An hour to an hour and a half. Services can briefly restrict entry to the hall. The temple’s other National Treasure, the Niōmon, is inside a full dismantling repair that runs to 2028 and cannot be seen, and its two five-metre Niō are on deposit at a museum whose sculpture hall closes in September 2026 — in this trip’s window they are visible in neither place."
           }
         ]
       },
@@ -1725,13 +1725,13 @@
         "items": [
           {
             "place_id": "yoshimizu-jinja",
-            "detail": "Next door, and the only surviving temporary palace of the Southern Court. The shoin is the point of the visit: an Important Cultural Property the shrine calls the oldest surviving example of shoin-style residential architecture in Japan, with an unusually wide and shallow alcove, staggered shelves carried without a strut, and nail covers made of wood rather than metal. Three histories run through the same rooms — Yoshitsune, Shizuka Gozen and Benkei hiding here in 1185, Go-Daigo making it his palace in 1336, and Hideyoshi’s flower-viewing party of 1594, whose Noh masks and gold screens are shown here. From the precinct beside the car park is the Hitome Senbon view. About thirty minutes. The gate is open to five, but the shoin itself and the seal desk shut at 16:30. Lunch in the Naka-senbon cluster sits here: the mountain eateries close in the late afternoon, so lunch is on the mountain and dinner belongs to the base."
+            "detail": "Next door, and what the shrine calls the only surviving temporary palace of the Southern Court. The shoin is the point of the visit: an Important Cultural Property the shrine calls the oldest surviving example of shoin-style residential architecture in Japan, with an unusually wide and shallow alcove, staggered shelves carried without a strut, and nail covers made of wood rather than metal. Three histories run through the same rooms — Yoshitsune, Shizuka Gozen and Benkei hiding here in 1185, Go-Daigo making it his palace in 1336, and Hideyoshi’s flower-viewing party of 1594, whose Noh masks and gold screens are shown here. From the precinct beside the car park is the Hitome Senbon view. About thirty minutes. The gate is open to five, but the shoin itself and the seal desk shut at 16:30. Lunch in the Naka-senbon cluster sits here: the mountain eateries close in the late afternoon, so lunch is on the mountain and dinner belongs to the base."
           }
         ]
       },
       {
         "type": "hike",
-        "title": "Up through the Kami-senbon",
+        "title": "Up through the Kami-senbon — 上千本",
         "maps": [
           { "label": "Walking map — Yoshinoyama Tourist Association", "url": "https://yoshinoyama-kankou.com/maps/", "note": "Two sheets: the whole ridge from Shimo-senbon to Kami-senbon, and a second one for the Oku-senbon beyond it. Shows the climbs and walking times." },
           { "label": "AllTrails — Mikumari shrine loop", "url": "https://www.alltrails.com/trail/japan/nara/yoshino-mikumari-shrine-mount-yoshino-loop", "note": "12 km, 4–4.5 hours, and it names Kinpusen-ji and Mikumari. Drawn as a loop; ours is one way, up the ridge and down the village road." }
@@ -1740,7 +1740,7 @@
         "transit": [
           {
             "label": "On foot — Yoshimizu-jinja → Yoshino Mikumari-jinja",
-            "detail": "An hour and ten, past the Hanayagura viewpoint, on the paved village road that is the mountain — lined the whole way with temples, shops and lodgings, with somewhere to stop or turn back every few hundred metres. About 270 metres of climbing in total on this stretch.",
+            "detail": "An hour and ten, past the Hanayagura viewpoint, on the paved village road that is the mountain — lined the whole way with temples, shops and lodgings, with somewhere to stop or turn back every few hundred metres. About 270 metres of climbing in total on this stretch. ⚡ On a phone map there is no trail name to look for here — Yoshino labels areas, not paths: you are walking up through 「中千本」 into 「上千本」, and 「奥千本」 is the top. Navigate by the shrines instead — 吉水神社, 吉野水分神社, 金峯神社.",
             "origin_id": "yoshimizu-jinja",
             "destination_id": "yoshino-mikumari-jinja",
             "mode": "walking",
@@ -1760,12 +1760,12 @@
       },
       {
         "type": "hike",
-        "title": "Optional — on to the Oku-senbon",
+        "title": "Optional — on to the Oku-senbon — 奥千本",
         "items": [],
         "transit": [
           {
             "label": "On foot — Yoshino Mikumari-jinja → Kinpu-jinja",
-            "detail": "The optional top: twenty-five to thirty minutes up, then a loop of about forty. The Oku-senbon route bus runs at weekends and on holidays only, so on a Thursday you walk it both ways — about ninety minutes of climbing, which is why it is optional and why a Thursday all but rules it out. The day is whole without it.",
+            "detail": "The optional top: twenty-five to thirty minutes up, then a loop of about forty. The Oku-senbon route bus runs at weekends and on holidays only, so on a Thursday you walk it both ways — about ninety minutes of climbing, which all but rules it out on a Thursday. The day is whole without it.",
             "origin_id": "yoshino-mikumari-jinja",
             "destination_id": "kinpu-jinja",
             "mode": "walking",
@@ -1806,7 +1806,7 @@
           {
             "label": "Substitute bus — down from the village to Yoshino Station",
             "detail": "From the cable station below the Zaō-dō, not back up to the temple. The last descent by substitute bus is 16:20, an hour earlier than the ropeway’s would be. If it has gone, or is full, the walk down the Nanamagari slope needs no service at all — that is the operator’s own alternative and it is this day’s fallback.",
-            "payment": "🔴 CASH again, ¥500 to the conductor as you get on — no IC card on this vehicle either way. That is ¥1,000 in cash for the day’s two rides, and it is why the morning card says to carry coins.",
+            "payment": "🔴 CASH again, ¥500 to the conductor as you get on — no IC card on this vehicle either way. That is ¥1,000 in cash for the day’s two rides.",
             "origin_id": "kinpusenji",
             "destination_id": "yoshino-station",
             "mode": "bus",
@@ -1826,11 +1826,11 @@
       }
     ],
     "notes_top": [
-      "💴 Carry ¥2,000 or more in notes and coins this morning — the hardest cash requirement of the trip, on the day with the longest travel. The substitute bus is ¥500 each way and takes nothing else, Kinpusen-ji is ¥1,600, and the persimmon-leaf sushi counter is cash."
+      "💴 Carry ¥2,000 or more in notes and coins this morning. The substitute bus is ¥500 each way and takes nothing else, Kinpusen-ji is ¥1,600, and the persimmon-leaf sushi counter is cash."
     ],
     "backup": {
       "title": "If it rains — the whole day swaps to Taima-dera",
-      "detail": "A village road along a ridge, where the walking is the point, so rain takes the day rather than shortening it. Swap in a full day at Taima-dera: shorter, largely under cover, and on the same Kintetsu Minami-Osaka line, fifteen minutes on foot from Taimadera station. The temple states it is the only place in the country where both ancient pagodas survive — the East and West pagodas and the Mandara-dō main hall are all National Treasures — and admission is ¥1,000. A large loss against the ridge, and an honest day in its own right rather than a salvage."
+      "detail": "A village road along a ridge, where the walking is the point, so rain takes the day rather than shortening it. Swap in a full day at Taima-dera: shorter, largely under cover, and on the same Kintetsu Minami-Osaka line, fifteen minutes on foot from Taimadera station. The temple states it is the only place in the country where both ancient pagodas survive — the East and West pagodas and the Mandara-dō main hall are all National Treasures — and admission is ¥1,000. A large loss against the ridge."
     }
   },
   {
@@ -1850,13 +1850,13 @@
         "transit": [
           {
             "label": "JR Nara line — Kyoto → Uji",
-            "detail": "About twenty minutes by rapid, then ten minutes on foot to Byōdō-in. Arrive before half past nine: the Phoenix Hall interior is a same-day timed ticket that cannot be booked, which makes the early arrival the whole strategy of the day.",
+            "detail": "About twenty minutes by rapid, then ten minutes on foot to Byōdō-in. Arrive before half past nine: the Phoenix Hall interior is a same-day timed ticket that cannot be booked, so the early arrival is what gets you a slot.",
             "origin_id": "kyoto-station",
             "destination_id": "uji-station",
             "mode": "train",
             "duration_min": 20,
             "cost_jpy": 630,
-            "cost_note": "the day’s whole JR fare — Kyoto → Uji → Ōbaku → Kyoto. It is priced as one figure and is not split across the three rides, so it sits here on the first of them."
+            "cost_note": "the day’s whole JR fare — Kyoto → Uji → Ōbaku → Kyoto. It is shown once, here on the first of the three rides."
           }
         ]
       },
@@ -1902,7 +1902,7 @@
         "transit": [
           {
             "label": "JR Nara line — Uji → Ōbaku",
-            "detail": "Back over the bridge to the JR station and one stop north, about fifteen minutes with the walk. Matcha-town lunch sits before this, on the Byōdō-in approach — Uji is Japan’s premier matcha town and the meal is a real part of the day rather than a refuelling stop. The fare for this ride is already counted on the way out.",
+            "detail": "Back over the bridge to the JR station and one stop north, about fifteen minutes with the walk. Matcha-town lunch sits before this, on the Byōdō-in approach — allow a real meal, not a stop. The fare for this ride is already counted on the way out.",
             "origin_id": "ujigami-jinja",
             "destination_id": "obaku-station",
             "mode": "train",
@@ -1916,7 +1916,7 @@
         "items": [
           {
             "place_id": "manpukuji",
-            "detail": "Five minutes from the station, and unlike any other temple in Japan because it was built in the late-Ming Chinese manner and has kept it: the halls on a single axis with matching buildings mirrored left and right, swastika-pattern balustrades, round windows, peach-shaped carvings on the doors, the arched Ōbaku ceiling, and paths paved with square stones set as diamonds in imitation of a dragon’s scales. Founded in 1661 by Ingen Ryūki, who came from Fujian at sixty-three with twenty disciples and named it after his own temple; the sutras are still chanted in a Chinese reading. Three halls are National Treasures, among them the main hall, the only historic building in Japan made of teak. Thirty minutes to an hour, which is the temple’s own figure. Reception closes at 16:30."
+            "detail": "Five minutes from the station. It was built in the late-Ming Chinese manner and has kept it: the halls on a single axis with matching buildings mirrored left and right, swastika-pattern balustrades, round windows, peach-shaped carvings on the doors, the arched Ōbaku ceiling, and paths paved with square stones set as diamonds in imitation of a dragon’s scales. Founded in 1661 by Ingen Ryūki, who came from Fujian at sixty-three with twenty disciples and named it after his own temple; the sutras are still chanted in a Chinese reading. Three halls are National Treasures, among them the main hall, which the temple calls the only historic building in Japan made of teak. Thirty minutes to an hour, which is the temple’s own figure. Reception closes at 16:30."
           }
         ]
       },
@@ -1941,7 +1941,7 @@
     ],
     "backup": {
       "title": "If it rains — the day reorders rather than changes",
-      "detail": "Byōdō-in's museum, the Phoenix Hall interior and Manpuku-ji's halls are all indoors; the only exposed piece is the riverside walk across the Uji Bridge between them. In rain take it briskly, or take the train, and give the time back to the museum. The smallest weather loss of any day in Kansai — which is exactly why this is the day still ahead of you when Nov 1 or Nov 3 turns wet, and the natural one to trade into."
+      "detail": "Byōdō-in's museum, the Phoenix Hall interior and Manpuku-ji's halls are all indoors; the only exposed piece is the riverside walk across the Uji Bridge between them. In rain take it briskly, or take the train, and give the time back to the museum. Almost nothing here is lost to rain, so this is the natural day to trade into when Nov 1 or Nov 3 turns wet."
     }
   },
   {
@@ -2021,7 +2021,7 @@
         "transit": [
           {
             "label": "Walk — Hiroshima Station to Shukkei-en",
-            "detail": "Ten minutes on foot, after okonomiyaki in the station area — the city's own dish, eaten at lunch rather than saved for dinner. In rain the Hiroden tram to Shukkeien-mae plus two minutes on foot does the same job for ¥240 — any door, tap on and tap off; the walk is the plan, so that fare is not in the day's total below.",
+            "detail": "Ten minutes on foot, after okonomiyaki in the station area — the city's own dish. In rain the Hiroden tram to Shukkeien-mae plus two minutes on foot does the same job for ¥240 — any door, tap on and tap off; the walk is the plan, so that fare is not in the day's total below.",
             "origin_id": "jr-hiroshima-station",
             "destination_id": "shukkeien-garden",
             "mode": "walking",
@@ -2063,7 +2063,7 @@
         "items": [
           {
             "place_id": "peace-memorial-park",
-            "detail": "Thirty-five to forty minutes on foot, free and open at any hour. Tange set the axis so that the Cenotaph’s arch frames the Flame of Peace and the Dome on one line; the Children’s Peace Monument with Sadako’s cranes, the Korean A-bomb Victims Memorial and the Peace Bell are the other stops. It is busier on a Saturday — that is comfort rather than feasibility, and it is unavoidable, since Hiroshima has two days here and the other is a Sunday."
+            "detail": "Thirty-five to forty minutes on foot, free and open at any hour. Tange set the axis so that the Cenotaph’s arch frames the Flame of Peace and the Dome on one line; the Children’s Peace Monument with Sadako’s cranes, the Korean A-bomb Victims Memorial and the Peace Bell are the other stops. It is busier on a Saturday."
           },
           {
             "place_id": "a-bomb-dome",
@@ -2081,7 +2081,7 @@
         "items": [
           {
             "place_id": "peace-memorial-museum",
-            "detail": "The end of the day, with nothing after it: the introductory display, then the reality of the bombing, the danger of nuclear weapons, and Hiroshima’s road since — the Main Building is Tange’s 1955 hall, which holds the belongings and the testimony. An hour forty-five to two hours. The 17:30 shown here is the last walk-up entry, not the close: between 17:30 and 18:30 you need an online timed slot, and you chose walk-in. The museum runs to 19:00 with last admission at 18:30, so a late entry still gets the whole visit — and even a badly delayed day gets you here by about 16:15, an hour and a quarter clear. This is the one place on the day with room to spare: take it slower if you want to."
+            "detail": "The end of the day, with nothing after it: the introductory display, then the reality of the bombing, the danger of nuclear weapons, and Hiroshima’s road since — the Main Building is Tange’s 1955 hall, which holds the belongings and the testimony. An hour forty-five to two hours. The 17:30 shown here is the last walk-up entry, not the close: between 17:30 and 18:30 you need an online timed slot, and none is booked. The museum runs to 19:00 with last admission at 18:30, so a late entry still gets the whole visit — and even a badly delayed day gets you here by about 16:15, an hour and a quarter clear of the walk-up door. Take it slower if you want to."
           }
         ]
       },
@@ -2105,7 +2105,7 @@
       }
     ],
     "notes_top": [
-      "💴 Hiroshima is the most cash-dependent city on the trip. The okonomiyaki counters take cash and nothing else, and the Peace Museum's ¥200 and Shukkei-en's ¥350 are both paid at the gate. Draw at the station on arrival if you are short."
+      "💴 The okonomiyaki counters take cash and nothing else, and the Peace Museum's ¥200 and Shukkei-en's ¥350 are both paid at the gate. Draw at the station on arrival if you are short."
     ],
     "backup": {
       "title": "If it rains — the art museum takes Shukkei-en's hour",
@@ -2129,7 +2129,7 @@
         "transit": [
           {
             "label": "JR Sanyō line — Hiroshima → Miyajimaguchi",
-            "detail": "About twenty-three minutes. Go early: the shrine opens at 06:30, earlier than anything else on the trip, and the whole day is built on having the mountain behind you in daylight.",
+            "detail": "About twenty-three minutes. Go early: the shrine opens at 06:30, and the mountain has to be behind you in daylight.",
             "origin_id": "jr-hiroshima-station",
             "destination_id": "miyajimaguchi-station",
             "mode": "train",
@@ -2156,7 +2156,7 @@
         "items": [
           {
             "place_id": "itsukushima-shrine",
-            "detail": "Twelve to fifteen minutes along the foreshore from the pier, then forty to forty-five minutes inside. A one-way circuit of corridors standing on pillars over the water, the Marōdo shrine, the hirabutai platform and the only over-water Noh stage in Japan. The combined ticket adds the Treasure Hall — take it only if you want it; the day does not need it. The East Corridor — the entry leg of the one-way circuit — is under structural reinforcement until December 2026, which covers this date. The shrine has announced no closure or diversion, and its construction page is where one would appear."
+            "detail": "Twelve to fifteen minutes along the foreshore from the pier, then forty to forty-five minutes inside. A one-way circuit of corridors standing on pillars over the water, the Marōdo shrine, the hirabutai platform and the Noh stage of 1680, built out over the sea — so the resonating jar that normally sits under a Noh floor cannot, and the floor itself is made to carry the sound of the feet. The combined ticket adds the Treasure Hall — take it only if you want it; the day does not need it. The East Corridor — the entry leg of the one-way circuit — is under structural reinforcement until December 2026, which covers this date. The shrine has announced no closure or diversion, and its construction page is where one would appear."
           }
         ]
       },
@@ -2166,7 +2166,7 @@
         "items": [
           {
             "place_id": "toyokuni-senjokaku",
-            "detail": "Eight minutes up from the shrine, about twenty-five minutes there. Hideyoshi’s 1587 sutra hall, 857 tatami, left with no ceiling and no front wall because he died before it was finished — you walk into an unfinished building. The five-storey pagoda beside it is fully wrapped for repair and cannot be seen as itself; the scaffolding stands until 20 November 2027, so it outlasts this trip by a year. Its 16:30 close is the earliest gate on the island."
+            "detail": "Eight minutes up from the shrine, about twenty-five minutes there. Hideyoshi’s 1587 sutra hall, 857 tatami, left with no ceiling and no front wall because he died before it was finished — you walk into an unfinished building. The five-storey pagoda beside it is fully wrapped for repair and cannot be seen as itself; the scaffolding stands until 20 November 2027, so it outlasts this trip by a year. It closes at 16:30, an hour before Itsukushima Shrine."
           }
         ]
       },
@@ -2176,7 +2176,7 @@
         "items": [
           {
             "place_id": "daishoin-temple",
-            "detail": "Fifteen minutes on the lanes from Senjōkaku, then forty-five minutes to an hour. The Shingon head temple of the Omuro school: the henjōkutsu cave lined with the eighty-eight icons of the Shikoku pilgrimage, sutra wheels set into the stair handrail, ranks of rakan. It is free, it is the last thing before the climb, and the Misen trailhead starts here — which is why the harder of the two courses is the one taken upward."
+            "detail": "Fifteen minutes on the lanes from Senjōkaku, then forty-five minutes to an hour. The Shingon head temple of the Omuro school: the henjōkutsu cave lined with the eighty-eight icons of the Shikoku pilgrimage, sutra wheels set into the stair handrail, ranks of rakan. It is free, it is the last thing before the climb, and the Misen trailhead starts here."
           }
         ]
       },
@@ -2191,7 +2191,7 @@
         "transit": [
           {
             "label": "On foot — Daishō-in → the summit of Misen",
-            "detail": "2.6 km and 535 m from sea level, stone steps almost the whole way, marked by the twenty-four chō stones and entering the inscribed primeval forest from the bottom. The tourism association gives an hour and a half to two hours including rests; sources pricing the whole mountain on foot say three to five hours; plan on two to two and a half hours up. It is rated harder than the Momijidani course and is steeper underfoot than Takao — the hardest single effort of the trip, said plainly. Nothing is sold on the mountain: carry food and water.",
+            "detail": "2.6 km and 535 m from sea level, stone steps almost the whole way, marked by the twenty-four chō stones and entering the inscribed primeval forest from the bottom. The tourism association gives an hour and a half to two hours including rests; sources pricing the whole mountain on foot say three to five hours; plan on two to two and a half hours up. It is rated harder than the Momijidani course and is steeper underfoot than Takao — the hardest single effort of the trip. Nothing is sold on the mountain: carry food and water.",
             "origin_id": "daishoin-temple",
             "destination_id": "mt-misen",
             "mode": "walking",
@@ -2216,7 +2216,7 @@
         "transit": [
           {
             "label": "On foot — down to Momijidani and the town",
-            "detail": "The gentler of the two courses, an hour and a quarter to an hour and a half down — faster than the ascent but not half of it, because it is stone step and root the whole way. It lands at Momijidani Park, fifteen minutes from the Omotesandō street where the deliberately late lunch sits: anago-meshi, grilled Setouchi oysters, momiji-manjū off the griddle. The pier is the far end of that same street. If the climb has run long, come down the way you went up: the temple's own advice is that the Daishō-in course stays light longer, and Momijidani is a valley that darkens early. If your legs are finished at the top, the ropeway is the alternative descent — but take it by about 14:30 or not at all: November is its busiest month, the descent queue is the notorious one and can run to an hour on a Sunday, the last car down is 16:30, and the only fallback to a queue is this walk, which you do not want to begin at dusk.",
+            "detail": "The gentler of the two courses, an hour and a quarter to an hour and a half down — faster than the ascent but not half of it, because it is stone step and root the whole way. It lands at Momijidani Park, fifteen minutes from the Omotesandō street where the late lunch sits: anago-meshi, grilled Setouchi oysters, momiji-manjū off the griddle. The pier is the far end of that same street. If the climb has run long, come down the way you went up: the temple's own advice is that the Daishō-in course stays light longer, and Momijidani is a valley that darkens early. If your legs are finished at the top, the ropeway is the alternative descent — but take it by about 14:30 or not at all: November is its busiest month, the descent queue is the notorious one and can run to an hour on a Sunday, the last car down is 16:30, and the only fallback to a queue is this walk, which you do not want to begin at dusk.",
             "origin_id": "mt-misen",
             "destination_id": "miyajima-ferry-terminal",
             "mode": "walking",
@@ -2230,7 +2230,7 @@
         "items": [
           {
             "label": "Machiya-dōri, then the torii as the light goes",
-            "detail": "About forty-five minutes, and the only thing on the day with no closing time — so it takes up whatever ran late. The back lane behind the tourist street, then the shore. Sunset is 17:12 and civil dusk 17:38, and you are down off the mountain around 14:45, so this is an unhurried end to the day rather than a squeeze."
+            "detail": "About forty-five minutes, and the one thing on the day that closes at no hour — the summit deck shuts at 16:00, Senjōkaku at 16:30, Daishō-in at 17:00 and the shrine at 17:30 — so it takes up whatever ran late. The back lane behind the tourist street, then the shore. Sunset is 17:12 and civil dusk 17:38, and you are down off the mountain around 14:45, so this is an unhurried end to the day."
           }
         ]
       },
@@ -2268,7 +2268,7 @@
     ],
     "backup": {
       "title": "If it rains — the island keeps its halls and loses its mountain",
-      "detail": "A washout keeps Itsukushima Shrine, Senjōkaku, Daishō-in and the Treasure Hall, and adds the Miyajima Public Aquarium — ¥1,420, 9:00 to 17:00, last admission 16:00 — for about five hours in all, a half-day. The Miyajima History and Folklore Museum is a second indoor option and is available only because this is a Sunday: it closes on Mondays. This is a large loss, and it should be called one — what goes is the climb up through the inscribed primeval forest and the summit, which is the reason the day exists."
+      "detail": "A washout keeps Itsukushima Shrine, Senjōkaku, Daishō-in and the Treasure Hall, and adds the Miyajima Public Aquarium — ¥1,420, 9:00 to 17:00, last admission 16:00 — for about five hours in all, a half-day. The Miyajima History and Folklore Museum is a second indoor option and is available only because this is a Sunday: it closes on Mondays. This is a large loss: what goes is the climb up through the inscribed primeval forest and the summit, which is the reason the day exists."
     }
   },
   {
@@ -2287,7 +2287,7 @@
         "items": [
           {
             "place_id": "sotetsu-fresa-hiroshima",
-            "detail": "Breakfast, then out of the room by 11:00. The 2nd-floor self-cloak covers the check-out day as well, so the bags go back in there and the last hour and a half is genuinely free — the same IC-card lock as on arrival, with the station coin lockers as the fallback. Nothing is planned for this morning. You chose the midday train to take the check-in risk off the day, and a free Hiroshima morning is what that cost — spend it however you like."
+            "detail": "Breakfast, then out of the room by 11:00. The 2nd-floor self-cloak covers the check-out day as well, so the bags go back in there and the last hour and a half is genuinely free — the same IC-card lock as on arrival, with the station coin lockers as the fallback. Nothing is planned for this morning — spend it however you like."
           }
         ]
       },
@@ -2329,7 +2329,7 @@
             "mode": "train",
             "duration_min": 230,
             "cost_jpy": 19560,
-            "cost_note": "flexible smartEX, reserved; the same seat at a station counter is ¥19,760, and the cheaper early-bird product was declined so that this ladder of fallbacks stays free to use"
+            "cost_note": "flexible smartEX, reserved — every train in the ladder can be taken at no extra cost; the same seat at a station counter is ¥19,760"
           }
         ]
       },
@@ -2364,7 +2364,7 @@
         "items": [
           {
             "place_id": "akihabara-washington",
-            "detail": "The same property as the first stay, booked separately. The desk takes check-ins from 14:00 to 22:00 and that close is hard; arriving about 16:55 leaves roughly five hours of margin, which is the whole reason the midday train was chosen. The booking cannot be date-changed. ¥48,360 for the two nights plus about ¥400 of Tokyo lodging tax is paid at the property — nothing was prepaid. Dinner tonight carries no clock at all, the most relaxed evening of the trip."
+            "detail": "The same property as the first stay, booked separately. The desk takes check-ins from 14:00 to 22:00 and that close is hard; arriving about 16:55 leaves roughly five hours of margin. The booking cannot be date-changed. ¥48,360 for the two nights plus about ¥400 of Tokyo lodging tax is paid at the property — nothing was prepaid. Nothing follows dinner tonight."
           }
         ]
       }
@@ -2426,7 +2426,7 @@
         "items": [
           {
             "place_id": "edo-tokyo-museum",
-            "detail": "Two and a half to three hours, and it takes them. Reopened on 31 March 2026 after a four-year renewal into an immersive museum: a walk-in Nakamura-za playhouse, a tenement room you can now enter, the 26-metre Nihonbashi span and the full-scale Hattori clock tower of 1890s Ginza, and projection-mapped galleries running Edo into Tokyo. It is the single best narrative venue for the city’s own history. Last admission is half an hour before the close; no booking is needed and same-day tickets are sold at the door."
+            "detail": "Two and a half to three hours, and it takes them. Reopened on 31 March 2026 after a four-year renewal into an immersive museum: a walk-in Nakamura-za playhouse, a tenement room you can now enter, the 26-metre Nihonbashi span and the full-scale Hattori clock tower of 1890s Ginza, and projection-mapped galleries running Edo into Tokyo. Last admission is half an hour before the close; no booking is needed and same-day tickets are sold at the door."
           }
         ]
       },
