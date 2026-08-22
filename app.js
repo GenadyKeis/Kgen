@@ -451,9 +451,38 @@
     if (overflow.length) {
       html += '<div class="btn-row btn-overflow-row" hidden>' + overflow.join('') + '</div>';
     }
-    html += '</div>';
+    // 🔴 ONE closing div, for the .item opened at the top. There were TWO here: the button
+    // row used to be closed by the first and .item by the second, and when the row learned to
+    // close itself the second became an EXTRA that closed .item's PARENT — the .block on Days,
+    // the .food-restaurant on Food. The browser then reparented everything after it, so 20 of
+    // 21 day cards fell out of the day list and 78 of 152 blocks out of their card.
     html += '</div>';
     return html;
+  }
+
+  // 🔴 A BALANCE GUARD, added 2026-08-22 after a single extra `</div>` in renderPlaceCard
+  // shipped to his phone. It closed .item's PARENT as well as .item, so the browser
+  // reparented everything after it: 20 of 21 day cards fell out of the day list, 78 of 152
+  // blocks out of their card, 10 of 33 meals out of their day, and a 615px Japanese address
+  // — no longer contained by anything — stretched the document to 648px on a 393px screen.
+  // Safari shrank the page to fit and he got two thirds of a layout.
+  // ⚠ Nothing in the toolchain could see it: `node --check` parses JS, not generated HTML;
+  // sanity-check reads JSON; and every contrast sweep I ran queried COMPUTED STYLE, which is
+  // perfectly happy in a mis-nested tree. The defect was structural and only a structural
+  // check finds it. One regex per render, five renders a load.
+  function applyHTML(container, html, label) {
+    if (!container) return;
+    // ⚠ split(), not a regex. The first version of this counted with /<div\b/ and the
+    // build step turned that \b into a literal BACKSPACE character, so it matched nothing
+    // and every render reported '0 <div>'. A guard that is silently wrong is worse than no
+    // guard; string splitting has nothing to escape.
+    var open = html.split('<div').length - 1;
+    var close = html.split('</div>').length - 1;
+    if (open !== close) {
+      console.error('[render] ' + label + ': ' + open + ' <div> vs ' + close +
+        ' </div> — the tree will be reparented. Fix the renderer, not the symptom.');
+    }
+    container.innerHTML = html;
   }
 
   // ─── Transit leg renderer ─────────────────────────────────
@@ -683,7 +712,7 @@
       html += '</div>';
     }
     html += '</div>';
-    container.innerHTML = html;
+    applyHTML(container, html, 'renderDays');
     bindCardToggles(container);
     bindCopyables(container);
   }
@@ -806,7 +835,7 @@
           '<button type="button" class="today-chip" data-goto="days">The whole trip</button>' +
           '<button type="button" class="today-chip" data-goto="almanac">Read ahead</button>' +
         '</div></div>';
-      container.innerHTML = html;
+      applyHTML(container, html, 'renderToday');
       bindTodayControls(container);
       return;
     }
@@ -860,7 +889,7 @@
         '<div class="day-backup-detail">' + esc(day.backup.detail) + '</div></div>';
     }
 
-    container.innerHTML = html;
+    applyHTML(container, html, 'renderToday');
     bindTodayControls(container);
     TODAY_CARDS = todaysFoodCards(cur);
   }
@@ -1056,7 +1085,7 @@
       html += '</div>';
     }
 
-    container.innerHTML = html;
+    applyHTML(container, html, 'renderSOS');
     bindShowToStaff(container);
     bindCopyables(container);
   }
@@ -1187,7 +1216,7 @@
     }
     html += '</div>';
 
-    container.innerHTML = html;
+    applyHTML(container, html, 'renderSay');
     bindCardToggles(container);
     bindPhraseItems(container);
     bindCopyables(container);
@@ -1561,7 +1590,7 @@
       }
     }
 
-    container.innerHTML = html;
+    applyHTML(container, html, 'renderFood');
     bindCardToggles(container);
     bindCopyables(container);
     bindJpSay(container);
@@ -1699,7 +1728,7 @@
         '</div>';
     }
 
-    container.innerHTML = html;
+    applyHTML(container, html, 'renderTransit');
     bindCardToggles(container);
   }
 
@@ -1854,7 +1883,7 @@
         (DATA.meta.trip_name ? ' · ' + esc(DATA.meta.trip_name) : '') + '</div>';
     }
 
-    container.innerHTML = html;
+    applyHTML(container, html, 'renderInfo');
     bindCardToggles(container);
     bindCopyables(container);
   }

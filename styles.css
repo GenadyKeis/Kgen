@@ -1196,6 +1196,16 @@ main {
 .place-info span {
   white-space: nowrap;
 }
+/* ⚠ …except the address, which is the one item here that is a SENTENCE rather than a chip.
+   Japanese addresses run to 40+ unbroken characters — 〒600-8175 京都府… measured 615px against
+   a 393px screen — and nowrap made that a 615px box. It was invisible while every ancestor
+   clipped it; making an open day card `overflow: visible` for the sticky header took the
+   clipping away and it started widening the whole document instead. The hours and the price
+   still must not break mid-token, so only this one wraps. */
+.place-info .copyable {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
 
 /* ─── Action buttons ──────────────────────────────────────── */
 .btn-row {
