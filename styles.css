@@ -506,13 +506,23 @@ main {
   background: rgba(255, 183, 77, 0.25);
   color: var(--link-maps);
 }
+/* ⬇ COLOUR ENCODES THE DESTINATION APP, NOT THE TOPIC — walkthrough
+   finding 2026-08-22: "I feel like there is some inconsistency in the
+   directions buttons/links." It was real. Green used to mean BOTH "Google
+   walking directions" (.btn-walk) AND "an external web page"
+   (.btn-map-route), while blue meant "Directions" whether walking or
+   transit. A colour spanning 'opens your map app' and 'opens a website'
+   cannot be learned, which is why four buttons in one block read as noise.
+   ⇒ amber = opens your MAP APP · blue = opens a WEB PAGE · accent = phone.
+   ⛔ No URL changed by any of this — his one constraint was that the
+   directions stay correct, and they are byte-identical to before. */
 .btn-walk {
-  background: rgba(129, 199, 132, 0.25);
-  color: var(--link-hike);
+  background: rgba(255, 183, 77, 0.25);
+  color: var(--link-maps);
 }
 .btn-transit {
-  background: rgba(100, 181, 246, 0.25);
-  color: var(--link);
+  background: rgba(255, 183, 77, 0.25);
+  color: var(--link-maps);
 }
 .btn-call {
   background: rgba(240, 160, 96, 0.25);
@@ -533,9 +543,12 @@ main {
 .block-maps {
   margin: 8px 0 10px;
 }
+/* A ROUTE MAP IS A WEB PAGE, and now says so — blue, and 📄 not 🗺.
+   It shared the hike-green of .btn-walk, so a link to a Japanese temple
+   PDF looked exactly like a button that opens turn-by-turn navigation. */
 .btn-map-route {
-  background: rgba(129, 199, 132, 0.25);
-  color: var(--link-hike);
+  background: rgba(100, 181, 246, 0.25);
+  color: var(--link);
 }
 .block-map-note {
   font-size: 12px;
@@ -1872,4 +1885,21 @@ body.oled-mode .almanac-modal-header {
   .nav-icon {
     font-size: 17px;
   }
+}
+
+/* ─── Long prose, collapsed behind a tap ─────────────────────
+   Walkthrough finding 2026-08-22: the food cards carry 107,505 characters
+   across 322 fields and a single card filled his whole screen. Nothing is
+   deleted — the first sentence stays visible and the rest is one tap away. */
+[hidden] { display: none !important; }
+.prose-toggle {
+  display: inline;
+  background: none;
+  border: 0;
+  padding: 0 0 0 4px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--link);
+  cursor: pointer;
+  text-decoration: underline;
 }

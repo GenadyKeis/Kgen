@@ -133,6 +133,50 @@
     showCopyToast(hint);
   }
 
+  // ─── Long prose, collapsed behind a tap ──────────────────
+  // Walkthrough finding, 2026-08-22: "The prose is all over the place… it
+  // takes the whole screen. It's hard to see the important parts." Measured
+  // before changing anything: 322 prose fields on the food cards carrying
+  // 107,505 characters — 85 over 400, 16 over 700, worst 1,650. The card he
+  // photographed is 1,634, about 36 lines on his handset, and is the 2nd
+  // worst of 322 rather than an outlier.
+  // ⚑ The prose pass ALREADY RAN and this is what survived it, so the fix is
+  // not more editing — the RENDERER has to separate the action from the
+  // reasoning. First sentence always visible, the rest one tap away.
+  // ⛔ Deletes nothing and re-researches nothing: every character is still
+  // on the card, which is why this was the first thing to do and the
+  // 322-field schema sweep was refused.
+  var PROSE_LIMIT = 320;
+
+  function longProse(text) {
+    if (!text) return '';
+    if (text.length <= PROSE_LIMIT) return esc(text);
+    // Cut at the end of a sentence so the visible half is never a fragment.
+    // Japanese full stops count: several fields end a clause with 。
+    var m = /^[\s\S]{40,}?[.!?。？！](\s|$)/.exec(text);
+    var head = m ? m[0].trim() : text.slice(0, 200);
+    if (head.length > PROSE_LIMIT) head = text.slice(0, PROSE_LIMIT);
+    var rest = text.slice(head.length).trim();
+    if (!rest) return esc(text);
+    return esc(head) +
+      ' <span class="prose-rest" hidden>' + esc(rest) + '</span>' +
+      '<button type="button" class="prose-toggle">more</button>';
+  }
+
+  function bindProseToggles(root) {
+    var els = root.querySelectorAll('.prose-toggle');
+    for (var i = 0; i < els.length; i++) {
+      els[i].addEventListener('click', function (e) {
+        e.stopPropagation();
+        var rest = this.previousElementSibling;
+        if (!rest) return;
+        var isOpen = !rest.hidden;
+        rest.hidden = isOpen;
+        this.textContent = isOpen ? 'more' : 'less';
+      });
+    }
+  }
+
   function showCopyToast(hint) {
     var existing = document.querySelector('.copy-toast');
     if (existing) existing.remove();
@@ -319,7 +363,18 @@
   }
 
   // ─── Transit leg renderer ─────────────────────────────────
-  function renderTransitLegs(legs) {
+  // `coveredNext` is the set of place ids the NEXT block renders as its own
+  // card. A walking leg's button and that card's 🚶 Walk are byte-identical
+  // URLs — mapsWalkUrl() takes no origin, so both route from current location
+  // — so showing both puts the same control on screen twice, which is half of
+  // the "inconsistency in the directions buttons" he reported 2026-08-22.
+  // ⛔ Measured before cutting: of 39 walking legs with a mappable
+  // destination, 25 have that destination in the very next block and 14 have
+  // it NOWHERE ELSE ON THE DAY. Only the 25 are suppressed; for the other 14
+  // this button is the only way there and it stays.
+  // ⚠ The Transit TAB passes nothing, because it renders no place cards —
+  // there the leg button is always the only control.
+  function renderTransitLegs(legs, coveredNext) {
     if (!legs || legs.length === 0) return '';
     var html = '<div class="transit-box">';
     for (var i = 0; i < legs.length; i++) {
@@ -343,9 +398,11 @@
       // Transit directions link
       var origin = placeById(leg.origin_id);
       var dest = placeById(leg.destination_id);
-      if (origin && dest) {
+      var duplicated = leg.mode === 'walking' && coveredNext &&
+        coveredNext.indexOf(leg.destination_id) !== -1;
+      if (origin && dest && !duplicated) {
         var tUrl = leg.mode === 'walking' ? mapsWalkUrl(dest) : mapsTransitUrl(origin, dest);
-        html += '<a class="btn btn-transit" href="' + tUrl + '" target="_blank" rel="noopener" style="margin-top:6px;display:inline-flex;">🗺 Directions</a>';
+        html += '<a class="btn btn-transit" href="' + tUrl + '" target="_blank" rel="noopener" style="margin-top:6px;display:inline-flex;">' + (leg.mode === 'walking' ? '🚶 Walk' : '🚉 Directions') + '</a>';
       }
       html += '</div>';
       html += '</div>';
@@ -441,7 +498,7 @@
             var bm = block.maps[m];
             if (!bm || !bm.url) continue;
             html += '<a class="btn btn-map-route" href="' + esc(bm.url) + '" target="_blank" rel="noopener">' +
-              '🗺 ' + esc(bm.label || 'Route map') + '</a>';
+              '📄 ' + esc(bm.label || 'Route map') + '</a>';
             if (bm.note) html += '<div class="block-map-note">' + esc(bm.note) + '</div>';
           }
           html += '</div>';
@@ -449,7 +506,14 @@
 
         // Transit legs in this block
         if (block.transit && block.transit.length > 0) {
-          html += renderTransitLegs(block.transit);
+          var nextItems = [];
+          var nextBlock = blocks[b + 1];
+          if (nextBlock && nextBlock.items) {
+            for (var ni = 0; ni < nextBlock.items.length; ni++) {
+              if (nextBlock.items[ni].place_id) nextItems.push(nextBlock.items[ni].place_id);
+            }
+          }
+          html += renderTransitLegs(block.transit, nextItems);
         }
 
         // Items in this block
@@ -797,7 +861,7 @@
             // Renders ABOVE the dish, because it governs the moment before it.
             if (rest.order_how) {
               html += '<div class="food-how">';
-              html += '<span class="food-order-label">How to order:</span> ' + esc(rest.order_how);
+              html += '<span class="food-order-label">How to order:</span> ' + longProse(rest.order_how);
               html += '</div>';
             }
             if (rest.order) {
@@ -846,13 +910,13 @@
               html += '</div>';
             }
             if (rest.order_why) {
-              html += '<div class="food-why"><span class="food-order-label">Why this one:</span> ' + esc(rest.order_why) + '</div>';
+              html += '<div class="food-why"><span class="food-order-label">Why this one:</span> ' + longProse(rest.order_why) + '</div>';
             }
             if (rest.order_backup) {
-              html += '<div class="food-why"><span class="food-order-label">If not that:</span> ' + esc(rest.order_backup) + '</div>';
+              html += '<div class="food-why"><span class="food-order-label">If not that:</span> ' + longProse(rest.order_backup) + '</div>';
             }
             if (rest.note) {
-              html += '<div class="food-note">' + esc(rest.note) + '</div>';
+              html += '<div class="food-note">' + longProse(rest.note) + '</div>';
             }
 
             html += '</div>';
@@ -870,6 +934,7 @@
     bindCardToggles(container);
     bindCopyables(container);
     bindJpSay(container);
+    bindProseToggles(container);
   }
 
   // ─── Transit section renderer ──────────────────────────────
@@ -979,7 +1044,7 @@
         var dest = placeById(leg.destination_id);
         if (origin && dest) {
           var tUrl = leg.mode === 'walking' ? mapsWalkUrl(dest) : mapsTransitUrl(origin, dest);
-          html += '<a class="btn btn-transit" href="' + tUrl + '" target="_blank" rel="noopener">🗺 Directions</a>';
+          html += '<a class="btn btn-transit" href="' + tUrl + '" target="_blank" rel="noopener">' + (leg.mode === 'walking' ? '🚶 Walk' : '🚉 Directions') + '</a>';
         }
 
         html += '</div>';
