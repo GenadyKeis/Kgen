@@ -62,6 +62,23 @@
       place.lat + ',' + place.lon + '&travelmode=walking';
   }
 
+  // Organic Maps, raw-coordinate form. 🔴 VERIFIED ON HIS HANDSET
+  // 2026-08-22 before a single button was built, because a URL scheme's
+  // REGISTRATION is a property of his phone that nothing here can see:
+  // `geo:35.62523,139.24369?z=15` fell back to a Safari web search (geo: is
+  // an Android convention Organic Maps does not claim on iOS), while
+  // `om://map?v=1&ll=...&n=...` opened the app on Mount Takao.
+  // ⛔ Do NOT switch this to the om://o4B4pYZsRs point form — that is a ge0
+  // short code this app would have to ENCODE, and encoding it wrong produces
+  // a button that opens the right app at the wrong place, which is worse
+  // than no button. The ll= form needs no encoding at all.
+  // The n= label is the Japanese name so the pin reads like the map around
+  // it; Organic Maps labels its Japanese data in Japanese.
+  function organicMapsUrl(place) {
+    return 'om://map?v=1&ll=' + place.lat + ',' + place.lon +
+      '&n=' + encodeURIComponent(place.search_jp || place.name_jp || place.name || '');
+  }
+
   function mapsTransitUrl(originPlace, destPlace) {
     return 'https://www.google.com/maps/dir/?api=1' +
       '&origin=' + originPlace.lat + ',' + originPlace.lon +
@@ -340,6 +357,18 @@
     html += '<div class="btn-row">';
     html += '<a class="btn btn-maps" href="' + mapsPinUrl(place) + '" target="_blank" rel="noopener">📍 Map</a>';
     html += '<a class="btn btn-walk" href="' + mapsWalkUrl(place) + '" target="_blank" rel="noopener">🚶 Walk</a>';
+    // 🧭 Offline — only on the seven days that carry a walk.
+    // ⛔ NOT on all 75 place cards, and the reason is a measurement: the
+    // button count was cut 257 -> 232 an hour earlier on his own "tidy up"
+    // finding, and putting this everywhere would take it to 307 — further
+    // than where it started. On the 26 walking-day cards it costs 232 -> 258.
+    // ⚑ The rule is POSITIONAL, not a judgement about which places are
+    // remote: the day carries a `maps` array, i.e. it is a walking day.
+    // That is also exactly where Organic Maps beats Google Maps — no signal
+    // and a drawn path network. In a city with data, Google is the better map.
+    if (opts.offlineMap) {
+      html += '<a class="btn btn-maps" href="' + organicMapsUrl(place) + '">🧭 Offline</a>';
+    }
     // No 📞 on a restaurant. He does not speak Japanese and cannot hold a phone
     // call with a Japanese venue — a standing constraint, restated at the R7
     // walkthrough ("make sure there are no restaurants chosen where I need to
@@ -478,6 +507,12 @@
       }
 
       var blocks = day.blocks || [];
+      // A day "carries a walk" when one of its blocks has a route-map array.
+      // Same seven days the hike maps hang off: 5, 9, 11, 13, 14, 15, 18.
+      var dayHasWalk = false;
+      for (var hw = 0; hw < blocks.length; hw++) {
+        if (blocks[hw].maps && blocks[hw].maps.length > 0) { dayHasWalk = true; break; }
+      }
       for (var b = 0; b < blocks.length; b++) {
         var block = blocks[b];
         html += '<div class="block">';
@@ -523,7 +558,7 @@
           var place = item.place_id ? placeById(item.place_id) : null;
 
           if (place) {
-            html += renderPlaceCard(place, item.detail);
+            html += renderPlaceCard(place, item.detail, { offlineMap: dayHasWalk });
           } else if (item.label) {
             html += '<div class="item">';
             html += '<div class="item-name">' + esc(item.label) + '</div>';
