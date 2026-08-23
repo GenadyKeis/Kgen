@@ -1258,115 +1258,85 @@
     return merged;
   }
 
-  // ─── "How it is eaten" guides ──────────────────────────────
-  // Added 2026-08-22 on the user's request: several dishes on this trip are
-  // assembled, mixed or dipped by the person eating them, and the card that
-  // says WHAT to order said nothing about that. The boundary against
-  // `order_how` is deliberate and worth keeping: order_how is getting the food
-  // in front of you (ticket machine, queue, payment, seating); a guide is what
-  // you do once it is there.
+  // ─── "How it is eaten" guides — DELETED 2026-08-23 ─────────
+  // Shipped 2026-08-22, rebuilt twice on 2026-08-23, then cut by the user on the
+  // same day: "Delete this feature." He had opened two guides at random on the
+  // phone and both were wrong — the second ("absolutely nonsensical") was curry
+  // udon, sourced from women's lifestyle etiquette columns that teach how to look
+  // ELEGANT eating it, which is not how to eat it.
   //
-  // Keyed off `how_to_eat`, an ARRAY of `food.cuisine_guides` slugs assigned by
-  // hand per venue — never derived from the free-text `cuisine` string, which
-  // has 41 distinct values over 66 entries. It rides the venue, so foodEntry()'s
-  // merge carries it and an entry-level override still wins.
+  // 🔴 The defect was never the formatting, and three rounds of restructuring it
+  // was the mistake. A guide was written from the DISH and hung on a venue with
+  // nothing checking the venue does the thing — nobody verified Tsukumo hands out
+  // paper aprons, or that Marugo puts a sesame mortar on the table, which was
+  // tonkatsu's entire first step. Generic cuisine advice attached to a specific
+  // restaurant is how a card comes to say something untrue at the counter.
   //
-  // ⚠ Nested inside an already-collapsible day card, so it CANNOT reuse
-  // `.card-body`: `.card-open .card-body` is a DESCENDANT selector, and an open
-  // day would force every guide inside it open. The `.eat-*` classes exist for
-  // that reason and are not cosmetic. Same for `.eat-chevron` against
-  // `.card-open .chevron`, which would otherwise render every nested chevron
-  // rotated while its body was shut.
+  // ⇒ REPLACED 2026-08-23 by `food.dish_guides`, on a plan the user commissioned
+  // the same day (`planning/EATING-GUIDES-PLAN.md`, drafts and sourcing in
+  // `EATING-GUIDES-DRAFTS.md`). This block used to end "do not rebuild this";
+  // read that as the standard the replacement had to meet, because it is the one
+  // it was designed against. What changed is not the formatting — it is that
+  // **no sentence in a guide asserts what any venue does.** Venue-dependent gear
+  // is written as a condition ("If a small mortar of sesame seeds is on the
+  // table…"), so a card cannot be wrong about a table it has never seen. Every
+  // step carries its source URL in the data, recipe and cooking pages were
+  // refused at the URL before being read, and five steps that still asserted
+  // gear — an oshibori, a tonsui, salt, a whole egg, a hera — were rewritten in
+  // a separate cross-check pass rather than by the reasoning that drafted them.
   //
-  // ─ Staged steps (2026-08-23) ─
-  // The user could not hold these guides in his head. Asked what failed, he named
-  // two things: the words for the objects, and the order of operations. A flat
-  // bullet list carries neither — tsukemen's closing step and tonkatsu's FIRST
-  // step render identically. So a guide's prose is now `steps`, each carrying a
-  // `when` drawn from EAT_STAGES and nothing else, rendered in that fixed order
-  // under a stage label. `lines` is the old flat shape and still renders; guides
-  // are migrated a few at a time and both shapes ship until the last one is done.
-  // sanity-check enforces exactly one of the two, the stage vocabulary, and the
-  // ordering — a step out of stage order is a data error, not a render decision.
-  var EAT_STAGES = ['Before it comes', 'When it lands', 'Eating it', 'To finish', "Don't"];
+  // ⚠ `checkDishGuides()` in sanity-check.js is SHAPE-ONLY and says so in its own
+  // comment. It is not the reason to trust this; the reason is the sourcing, and
+  // the test is the user opening guides at random on his phone.
+  //
+  // ⚑ `.eat-card` / `.eat-header` / `.eat-body` / `.eat-icon` / `.eat-title` /
+  // `.eat-chevron` SURVIVE this deletion — renderQuickCard() uses them for its
+  // per-base collapsibles and would have lost its open/shut behaviour with them.
+  // They are nested inside an already-collapsible card and so cannot reuse
+  // `.card-body` / `.chevron`: those are DESCENDANT selectors and an open parent
+  // would force every child open. Only the guide-only rules went (`.eat-stage`,
+  // `.eat-lines`, `.eat-jp`, `.eat-src`, `.eat-index`). renderDishGuides()
+  // below reuses the six survivors and adds its own `.dg-*` rules — the retired
+  // names are not revived, so an old flags.json stays readable.
 
-  // The prose of a guide whichever shape it is in. The search index reads this,
-  // not `lines` — indexing only the old shape would have made a migrated guide
-  // unfindable by its own text.
-  function eatGuideProse(g) {
-    if (g.steps && g.steps.length) {
-      var out = [];
-      for (var i = 0; i < g.steps.length; i++) out.push(g.steps[i].text);
-      return out;
-    }
-    return g.lines || [];
-  }
-
-  // Consecutive steps sharing a `when` render under ONE label. Repeating
-  // "Eating it" over three bullets is the noise this change exists to remove.
-  function renderEatSteps(steps) {
-    var html = '';
-    var open = null;
-    for (var i = 0; i < steps.length; i++) {
-      var s = steps[i];
-      if (s.when !== open) {
-        if (open !== null) html += '</ul>';
-        html += '<div class="eat-stage' + (s.when === "Don't" ? ' eat-stage-dont' : '') +
-          '">' + esc(s.when) + '</div><ul class="eat-lines">';
-        open = s.when;
-      }
-      html += '<li>' + esc(s.text) + '</li>';
-    }
-    if (open !== null) html += '</ul>';
-    return html;
-  }
-
-  // showSources is FALSE on the copy that rides a meal card. "Checked 2026-08-22
-  // · source 1 · source 2" under every guide is my audit trail, and it was
-  // sitting in front of him at the table where it changes nothing he does (his
-  // ruling, 2026-08-22). It still renders in the head-of-tab index, which is the
-  // surface for reading these through before the trip — there, checking a claim
-  // is the point.
-  function renderEatGuide(g, showSources) {
-    var html = '<div class="eat-card">';
-    html += '<div class="eat-header" data-toggle>';
-    html += '<span class="eat-icon">' + esc(g.icon) + '</span>';
-    html += '<span class="eat-title">How it is eaten — ' + esc(g.title) + '</span>';
-    html += '<span class="eat-chevron">▶</span>';
+  // ─── Dish guides — what to do at the table, by dish ────────
+  // Sibling of renderQuickCard() in every structural respect: one collapsible
+  // card at the head of the Food tab holding eleven nested `.eat-card`
+  // collapsibles, all of them shut on load. It earns head-of-tab space on the
+  // same stated condition the deleted ekiben card failed — a dish belongs to no
+  // single day, the way a base belongs to no single day.
+  //
+  // ⚠ Citations live in the data and are deliberately NOT rendered. They are how
+  // the claim was checked, which is a fact about my work rather than about his
+  // dinner; a card that argues for itself is the thing he ruled out on
+  // 2026-08-21 ("I won't be wasting time on the trip reading you justifications").
+  function renderDishGuides(food) {
+    var dg = food.dish_guides;
+    if (!dg || !dg.guides || !dg.guides.length) return '';
+    var html = '<div class="payment-rules dish-guides-card">';
+    html += '<div class="card-header" data-toggle>';
+    html += '<span class="payment-rules-icon">🥢</span>';
+    html += '<span class="payment-rules-title">How each dish is eaten</span>';
+    html += '<span class="chevron">▶</span>';
     html += '</div>';
-    html += '<div class="eat-body">';
-    if (g.title_jp) html += '<div class="eat-jp">' + esc(g.title_jp) + '</div>';
-    if (g.steps && g.steps.length) {
-      html += renderEatSteps(g.steps);
-    } else {
-      html += '<ul class="eat-lines">';
-      for (var j = 0; j < (g.lines || []).length; j++) {
-        html += '<li>' + esc(g.lines[j]) + '</li>';
+    html += '<div class="card-body">';
+    if (dg.intro) html += '<div class="quick-intro">' + longProse(dg.intro) + '</div>';
+    for (var i = 0; i < dg.guides.length; i++) {
+      var guide = dg.guides[i];
+      if (!guide.steps || !guide.steps.length) continue;
+      html += '<div class="eat-card">';
+      html += '<div class="eat-header" data-toggle>';
+      html += '<span class="eat-icon">' + esc(guide.icon || '🍽') + '</span>';
+      html += '<span class="eat-title">' + esc(guide.title) + '</span>';
+      html += '<span class="eat-chevron">▶</span>';
+      html += '</div>';
+      html += '<div class="eat-body"><ol class="dg-steps">';
+      for (var s = 0; s < guide.steps.length; s++) {
+        html += '<li class="dg-step">' + longProse(guide.steps[s].text) + '</li>';
       }
-      html += '</ul>';
-    }
-    if (showSources && g.sources && g.sources.length) {
-      var parts = [];
-      for (var s = 0; s < g.sources.length; s++) {
-        parts.push('<a href="' + esc(g.sources[s]) + '" target="_blank" rel="noopener">source ' +
-          (s + 1) + '</a>');
-      }
-      html += '<div class="eat-src">Checked ' + esc(g.verified_on) + ' · ' + parts.join(' · ') + '</div>';
+      html += '</ol></div></div>';
     }
     html += '</div></div>';
-    return html;
-  }
-
-  function renderEatGuides(food, slugs) {
-    if (!slugs || !slugs.length) return '';
-    var guides = food.cuisine_guides || {};
-    var html = '';
-    for (var i = 0; i < slugs.length; i++) {
-      var g = guides[slugs[i]];
-      // A slug that resolves to nothing renders nothing rather than a bare id.
-      // sanity-check's FOOD_HOW_TO_EAT_UNKNOWN is what catches it before here.
-      if (g) html += renderEatGuide(g, false);
-    }
     return html;
   }
 
@@ -1412,6 +1382,20 @@
     html += '</div>';
     html += '<div class="card-body">';
     if (q.intro) html += '<div class="quick-intro">' + longProse(q.intro) + '</div>';
+    // The eat-in/takeaway tax question, "atatamemasu ka", the three
+    // discount-sticker waves and the missing street bins. These shipped inside
+    // the deleted `bought-food` cuisine guide and the delete took them out of
+    // the app entirely — a consequence its own commit message flagged. Re-homed
+    // here on the user's instruction: they belong to a BASE and to every konbini
+    // and supermarket in this card, not to any one dish.
+    if (q.till && q.till.lines && q.till.lines.length) {
+      html += '<div class="quick-till">';
+      html += '<div class="quick-till-title">' + esc(q.till.title || 'At the till') + '</div>';
+      for (var t = 0; t < q.till.lines.length; t++) {
+        html += '<div class="quick-till-line">' + longProse(q.till.lines[t]) + '</div>';
+      }
+      html += '</div>';
+    }
     for (var b = 0; b < q.bases.length; b++) {
       var base = q.bases[b];
       html += '<div class="eat-card">';
@@ -1434,33 +1418,6 @@
         html += '<div class="quick-gap">' + longProse(q.gaps[gp]) + '</div>';
       }
       html += '</div>';
-    }
-    html += '</div></div>';
-    return html;
-  }
-
-  // The same guides, gathered once so they can be read through before the trip
-  // rather than only met at the table. One object, two surfaces — the prose
-  // lives in food.cuisine_guides and nothing is duplicated.
-  function renderEatIndexCard(food) {
-    var guides = food.cuisine_guides;
-    if (!guides) return '';
-    var slugs = Object.keys(guides);
-    if (!slugs.length) return '';
-    slugs.sort(function (a, b) {
-      return guides[a].title.localeCompare(guides[b].title);
-    });
-    var html = '<div class="payment-rules eat-index">';
-    html += '<div class="card-header" data-toggle>';
-    html += '<span class="payment-rules-icon">🥢</span>';
-    html += '<span class="payment-rules-title">How each dish is eaten</span>';
-    html += '<span class="chevron">▶</span>';
-    html += '</div>';
-    html += '<div class="card-body">';
-    html += '<div class="quick-intro">Every one of these also sits on the meal card it belongs to. ' +
-      'This is the same set in one place, to read through before you go.</div>';
-    for (var i = 0; i < slugs.length; i++) {
-      html += renderEatGuide(guides[slugs[i]], true);
     }
     html += '</div></div>';
     return html;
@@ -1489,7 +1446,7 @@
     // (three of them across twenty-one days) and a cuisine guide belongs to a
     // DISH. Neither has a day it could be folded onto. Both ship collapsed.
     html += renderQuickCard(food);
-    html += renderEatIndexCard(food);
+    html += renderDishGuides(food);
 
     // Per-day food cards
     if (food.days && food.days.length > 0) {
@@ -1631,7 +1588,6 @@
             }
             // Last on the card, because it governs the last moment: everything
             // above is choosing and ordering, this is the plate in front of him.
-            html += renderEatGuides(food, rest.how_to_eat);
 
             html += '</div>';
           }
@@ -2929,14 +2885,6 @@
               fParts.push(rest.cuisine, rest.order, rest.note, rest.price,
                 rest.order_how, rest.order_jp, rest.order_romaji,
                 rest.order_why, rest.order_backup);
-              // The eating guide renders on this card, so it has to be findable
-              // from it — text the search cannot see is presence without
-              // correctness. Titles only here; the full prose is indexed once,
-              // below, against the guide's own row.
-              for (var hg = 0; hg < (rest.how_to_eat || []).length; hg++) {
-                var gRef = (DATA.food.cuisine_guides || {})[rest.how_to_eat[hg]];
-                if (gRef) fParts.push(gRef.title, gRef.title_jp);
-              }
               var rPlace = rest.place_id ? placeById(rest.place_id) : null;
               if (rPlace) fParts.push(rPlace.name_en, rPlace.name_jp);
             }
@@ -2952,27 +2900,20 @@
         }
       }
 
-      // One row per cuisine guide and one per base, both routed to Food where
-      // their head-of-tab cards live. Without these, searching "soba-yu" or
-      // "Yoshinoya" finds nothing at all — the prose exists only in these two
-      // blocks and belongs to no day.
-      var cg = DATA.food.cuisine_guides || {};
-      for (var cgk in cg) {
-        if (!cg.hasOwnProperty(cgk)) continue;
-        var guide = cg[cgk];
-        searchIndex.push({
-          text: [guide.title, guide.title_jp].concat(eatGuideProse(guide))
-            .filter(Boolean).join(' ').toLowerCase(),
-          section: 'food',
-          icon: guide.icon || '🥢',
-          title: 'How it is eaten — ' + guide.title,
-          detail: guide.title_jp
-        });
-      }
+      // One row per base, routed to Food where its head-of-tab card lives.
+      // Without it, searching "Yoshinoya" finds nothing at all — that prose
+      // belongs to no day. ⚑ The `till` block is folded into EVERY base row
+      // rather than getting a row of its own: it is one card that all the bases
+      // share, so "atatamemasu" should land wherever he is looking.
       if (DATA.food.quick && DATA.food.quick.bases) {
+        var tillText = '';
+        if (DATA.food.quick.till && DATA.food.quick.till.lines) {
+          tillText = [DATA.food.quick.till.title]
+            .concat(DATA.food.quick.till.lines).filter(Boolean).join(' ');
+        }
         for (var qb = 0; qb < DATA.food.quick.bases.length; qb++) {
           var qbase = DATA.food.quick.bases[qb];
-          var qParts = [qbase.title, qbase.nights, qbase.note];
+          var qParts = [qbase.title, qbase.nights, qbase.note, tillText];
           for (var qo = 0; qo < qbase.options.length; qo++) {
             var opt = qbase.options[qo];
             qParts.push(opt.name_en, opt.name_jp, opt.kind, opt.hours,
@@ -2984,6 +2925,29 @@
             icon: '🏪',
             title: 'Quick food — ' + qbase.title,
             detail: qbase.nights
+          });
+        }
+      }
+
+      // One row per dish guide, routed to Food. A guide belongs to no day, so
+      // without this "soba-yu" or "sūpu-wari" finds nothing — which is exactly
+      // what the 2026-08-23 delete left behind and its commit message recorded.
+      // ⚠ Only `text` is indexed, never the source URLs: a hit on a hostname
+      // would open a card that does not show the URL it matched.
+      if (DATA.food.dish_guides && DATA.food.dish_guides.guides) {
+        var dgs = DATA.food.dish_guides.guides;
+        for (var gi = 0; gi < dgs.length; gi++) {
+          var gRec = dgs[gi];
+          var gParts = [gRec.title, gRec.id];
+          for (var gs = 0; gs < (gRec.steps || []).length; gs++) {
+            gParts.push(gRec.steps[gs].text);
+          }
+          searchIndex.push({
+            text: gParts.filter(Boolean).join(' ').toLowerCase(),
+            section: 'food',
+            icon: gRec.icon || '🥢',
+            title: gRec.title,
+            detail: 'How it is eaten'
           });
         }
       }

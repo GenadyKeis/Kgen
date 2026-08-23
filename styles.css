@@ -2093,61 +2093,65 @@ a.jp-btn {
 .eat-card.card-open > .eat-body {
   display: block;
 }
-.eat-jp {
-  font-size: 12px;
-  color: var(--text-dim);
-  margin-bottom: 8px;
-}
-/* The stage label that heads each group of steps. Small, upper-case and dim: it
-   is a signpost through the guide, not a line to read — the steps under it carry
-   the instruction. First one loses its top margin so the body does not open on a
-   gap. */
-.eat-stage {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin: 11px 0 5px;
-}
-.eat-stage:first-of-type,
-.eat-jp + .eat-stage {
-  margin-top: 0;
-}
-/* The traps read in the warning colour, so a guide's one "don't" is findable
-   without reading the guide. */
-.eat-stage-dont {
-  color: var(--warn);
-}
-.eat-lines {
-  margin: 0;
-  padding-left: 18px;
-}
-.eat-lines li {
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--text);
-  margin-bottom: 7px;
-}
-.eat-lines li:last-child {
-  margin-bottom: 0;
-}
-.eat-src {
-  margin-top: 9px;
-  font-size: 11px;
-  color: var(--text-dim);
-}
-/* Blue, not accent — these open a web page, and the palette encodes the
-   destination (amber = your map app · blue = a web page · accent = phone). */
-.eat-src a {
-  color: var(--link);
+/* A base card is not nested in a day card, so it does not need the indent the
+   .eat-card default carries. ⚑ These .eat-* classes are the QUICK FOOD card's
+   now — the cuisine guides that first introduced them were deleted 2026-08-23
+   and took .eat-stage / .eat-lines / .eat-jp / .eat-src / .eat-index with them.
+   The ones left are load-bearing: a base card sits inside the collapsible Food
+   card, so it cannot reuse .card-body / .chevron, which are descendant
+   selectors an open parent would force open. */
+.quick-card .eat-card,
+.dish-guides-card .eat-card {
+  margin-left: 0;
 }
 
-/* The head-of-tab index holds guides that are not nested in a day card, so give
-   them a little more room than the in-card copies. */
-.eat-index .eat-card,
-.quick-card .eat-card {
-  margin-left: 0;
+/* ─── Dish guides ─────────────────────────────────────────────
+   Numbered action steps inside a nested .eat-card. New names, deliberately:
+   .eat-stage / .eat-lines / .eat-jp / .eat-src / .eat-index were retired with
+   the 2026-08-23 delete and are not revived. Citations are in the data and are
+   never rendered, so there is no source rule here and there should not be one. */
+.dg-steps {
+  margin: 0;
+  padding: 0 0 0 20px;
+  list-style: decimal;
+}
+.dg-step {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  padding-left: 2px;
+}
+.dg-step::marker {
+  color: var(--accent);
+  font-weight: 600;
+}
+.dg-step:last-child {
+  margin-bottom: 0;
+}
+
+/* ─── Quick food: the till block ───────────────────────────── */
+.quick-till {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+.quick-till-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.quick-till-line {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+.quick-till-line:last-child {
+  margin-bottom: 0;
 }
 
 /* ─── Quick prepared food ─────────────────────────────────── */

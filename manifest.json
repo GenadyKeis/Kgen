@@ -1,6 +1,6 @@
 {
-  "name": "Japan Trip 2026 (v3)",
-  "short_name": "Japan 2026 v3",
+  "name": "Japan Trip 2026",
+  "short_name": "Japan 2026",
   "description": "Japan trip companion — offline itinerary, food, transit, phrasebook, SOS",
   "start_url": "./",
   "display": "standalone",
