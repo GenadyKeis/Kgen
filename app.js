@@ -1277,7 +1277,57 @@
   // that reason and are not cosmetic. Same for `.eat-chevron` against
   // `.card-open .chevron`, which would otherwise render every nested chevron
   // rotated while its body was shut.
-  function renderEatGuide(g) {
+  //
+  // ─ Staged steps (2026-08-23) ─
+  // The user could not hold these guides in his head. Asked what failed, he named
+  // two things: the words for the objects, and the order of operations. A flat
+  // bullet list carries neither — tsukemen's closing step and tonkatsu's FIRST
+  // step render identically. So a guide's prose is now `steps`, each carrying a
+  // `when` drawn from EAT_STAGES and nothing else, rendered in that fixed order
+  // under a stage label. `lines` is the old flat shape and still renders; guides
+  // are migrated a few at a time and both shapes ship until the last one is done.
+  // sanity-check enforces exactly one of the two, the stage vocabulary, and the
+  // ordering — a step out of stage order is a data error, not a render decision.
+  var EAT_STAGES = ['Before it comes', 'When it lands', 'Eating it', 'To finish', "Don't"];
+
+  // The prose of a guide whichever shape it is in. The search index reads this,
+  // not `lines` — indexing only the old shape would have made a migrated guide
+  // unfindable by its own text.
+  function eatGuideProse(g) {
+    if (g.steps && g.steps.length) {
+      var out = [];
+      for (var i = 0; i < g.steps.length; i++) out.push(g.steps[i].text);
+      return out;
+    }
+    return g.lines || [];
+  }
+
+  // Consecutive steps sharing a `when` render under ONE label. Repeating
+  // "Eating it" over three bullets is the noise this change exists to remove.
+  function renderEatSteps(steps) {
+    var html = '';
+    var open = null;
+    for (var i = 0; i < steps.length; i++) {
+      var s = steps[i];
+      if (s.when !== open) {
+        if (open !== null) html += '</ul>';
+        html += '<div class="eat-stage' + (s.when === "Don't" ? ' eat-stage-dont' : '') +
+          '">' + esc(s.when) + '</div><ul class="eat-lines">';
+        open = s.when;
+      }
+      html += '<li>' + esc(s.text) + '</li>';
+    }
+    if (open !== null) html += '</ul>';
+    return html;
+  }
+
+  // showSources is FALSE on the copy that rides a meal card. "Checked 2026-08-22
+  // · source 1 · source 2" under every guide is my audit trail, and it was
+  // sitting in front of him at the table where it changes nothing he does (his
+  // ruling, 2026-08-22). It still renders in the head-of-tab index, which is the
+  // surface for reading these through before the trip — there, checking a claim
+  // is the point.
+  function renderEatGuide(g, showSources) {
     var html = '<div class="eat-card">';
     html += '<div class="eat-header" data-toggle>';
     html += '<span class="eat-icon">' + esc(g.icon) + '</span>';
@@ -1286,12 +1336,16 @@
     html += '</div>';
     html += '<div class="eat-body">';
     if (g.title_jp) html += '<div class="eat-jp">' + esc(g.title_jp) + '</div>';
-    html += '<ul class="eat-lines">';
-    for (var j = 0; j < g.lines.length; j++) {
-      html += '<li>' + esc(g.lines[j]) + '</li>';
+    if (g.steps && g.steps.length) {
+      html += renderEatSteps(g.steps);
+    } else {
+      html += '<ul class="eat-lines">';
+      for (var j = 0; j < (g.lines || []).length; j++) {
+        html += '<li>' + esc(g.lines[j]) + '</li>';
+      }
+      html += '</ul>';
     }
-    html += '</ul>';
-    if (g.sources && g.sources.length) {
+    if (showSources && g.sources && g.sources.length) {
       var parts = [];
       for (var s = 0; s < g.sources.length; s++) {
         parts.push('<a href="' + esc(g.sources[s]) + '" target="_blank" rel="noopener">source ' +
@@ -1311,7 +1365,7 @@
       var g = guides[slugs[i]];
       // A slug that resolves to nothing renders nothing rather than a bare id.
       // sanity-check's FOOD_HOW_TO_EAT_UNKNOWN is what catches it before here.
-      if (g) html += renderEatGuide(g);
+      if (g) html += renderEatGuide(g, false);
     }
     return html;
   }
@@ -1406,7 +1460,7 @@
     html += '<div class="quick-intro">Every one of these also sits on the meal card it belongs to. ' +
       'This is the same set in one place, to read through before you go.</div>';
     for (var i = 0; i < slugs.length; i++) {
-      html += renderEatGuide(guides[slugs[i]]);
+      html += renderEatGuide(guides[slugs[i]], true);
     }
     html += '</div></div>';
     return html;
@@ -2907,7 +2961,7 @@
         if (!cg.hasOwnProperty(cgk)) continue;
         var guide = cg[cgk];
         searchIndex.push({
-          text: [guide.title, guide.title_jp].concat(guide.lines || [])
+          text: [guide.title, guide.title_jp].concat(eatGuideProse(guide))
             .filter(Boolean).join(' ').toLowerCase(),
           section: 'food',
           icon: guide.icon || '🥢',

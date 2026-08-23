@@ -50,14 +50,31 @@
       "title": "Soba and udon",
       "title_jp": "そば・うどん",
       "icon": "🥢",
-      "lines": [
-        "🔴 Cold (zaru / mori): dip about the last third of the strands into the tsuyu. Sinking the whole bundle drowns the flour flavour the shop is selling.",
-        "Put the wasabi and the other yakumi ON the noodles and dip that, rather than stirring them into the tsuyu — dissolved, the wasabi loses its edge.",
-        "Draw the mouthful up in one go. The air is what carries the smell.",
-        "🔴 At a SOBA shop — not a udon one — a jug of cloudy soba-yu (そば湯), the water the noodles were boiled in, comes out at the end. Swirl it first, because the good part settles, then pour it into what is left of your tsuyu and drink that."
+      "steps": [
+        {
+          "when": "When it lands",
+          "text": "Almost every bowl here is the hot kind, noodles already in the broth. 🔴 The broth is the dish, not a sauce — taste it before the noodles."
+        },
+        {
+          "when": "Eating it",
+          "text": "Draw the mouthful up in one go. The air is what carries the smell."
+        },
+        {
+          "when": "Eating it",
+          "text": "🔴 Cold soba — zaru or mori on the menu — is the other case: noodles on a tray, dipping sauce in a cup. Dip about the last third of the strands; the whole bundle drowns the flour flavour."
+        },
+        {
+          "when": "Eating it",
+          "text": "Cold, wasabi and spring onion go ON the noodles, not stirred into the cup — dissolved, it loses its edge."
+        },
+        {
+          "when": "To finish",
+          "text": "🔴 After a COLD order a soba shop — not a udon one — brings a jug of the water the noodles boiled in (soba-yu). Swirl it, the good part settles, then pour it into what is left of your sauce and drink."
+        }
       ],
       "sources": [
-        "https://sobahonda.com/blog_soba_howtoeat/"
+        "https://sobahonda.com/blog_soba_howtoeat/",
+        "https://sobauchi-tokyo.com/sobauchi-tokyo/soba-tabekata/"
       ],
       "verified_on": "2026-08-22"
     },
@@ -96,12 +113,31 @@
       "title": "Sukiyaki and shabu-shabu",
       "title_jp": "すき焼き・しゃぶしゃぶ",
       "icon": "🍲",
-      "lines": [
-        "🔴 At a Kyoto sukiyaki house of this class YOU DO NOT COOK. A member of staff kneels at the table and does the whole pot — sugar onto the iron, the beef, then the vegetables — and keeps doing it course by course. Sit back; reaching in is taking the job off them.",
-        "Your one job is the raw egg. Beat it in the small bowl and dip each piece as it is handed over; it cools the meat enough to eat and coats it.",
-        "Shabu-shabu is the opposite — that one IS yours. Take a slice, swim it in the broth, and lift it out the moment the colour starts to turn; beef wants to stay pink in the middle. ⚠ Pork is the exception and has to go through.",
-        "Ponzu or the sesame sauce for dipping — try one slice in each rather than committing the whole plate.",
-        "Ask for the shime (〆) when the pot is nearly done: rice or noodles cooked in the broth everything else came out of."
+      "steps": [
+        {
+          "when": "When it lands",
+          "text": "🔴 Sukiyaki here is cooked FOR you: staff kneel at the table and work the iron pan — sugar, beef, then vegetables — course by course. Reaching in takes the job off them."
+        },
+        {
+          "when": "When it lands",
+          "text": "Your one job is the raw egg: beat it in the small bowl."
+        },
+        {
+          "when": "Eating it",
+          "text": "Dip each piece as it is handed over — it cools the meat enough to eat and coats it."
+        },
+        {
+          "when": "Eating it",
+          "text": "Shabu-shabu is the opposite: that pot is yours, swim a slice in the stock and lift it out as the colour turns, beef pink in the middle. Two dips — sharp citrus-soy, sweeter sesame — try a slice in each."
+        },
+        {
+          "when": "To finish",
+          "text": "Ask for the shime (〆) when the pot is nearly done: rice or noodles cooked in the broth everything else came out of."
+        },
+        {
+          "when": "Don't",
+          "text": "⚠ Pork on a shabu-shabu plate must cook through — no pink."
+        }
       ],
       "sources": [
         "https://precious.jp/articles/-/15418",
@@ -129,10 +165,23 @@
       "title": "Tonkatsu",
       "title_jp": "とんかつ",
       "icon": "🐖",
-      "lines": [
-        "🔴 If a small ridged mortar of sesame seeds arrives, that is the sauce dish. Grind the seeds first — about five to seven turns, leaving them half whole; ground to powder the aroma goes.",
-        "Then pour the sauce into the mortar and dip each piece of cutlet in it. The bottle is not for pouring over the pork.",
-        "Karashi mustard goes onto the cutlet first, and that piece then goes into the sesame sauce."
+      "steps": [
+        {
+          "when": "When it lands",
+          "text": "🔴 The small ridged bowl of sesame seeds is the sauce dish, not a garnish. Grind them with the wooden pestle — five to seven turns, left half whole; powdered, the smell goes."
+        },
+        {
+          "when": "When it lands",
+          "text": "Pour the sauce from the bottle into that bowl."
+        },
+        {
+          "when": "Eating it",
+          "text": "Dip each piece of cutlet in it — the bottle is not for pouring over the pork."
+        },
+        {
+          "when": "Eating it",
+          "text": "The yellow mustard on the plate goes on the cutlet first, and that piece then goes in the sauce."
+        }
       ],
       "sources": [
         "https://www.shend-trend.com/post-14157/"
@@ -199,6 +248,26 @@
       ],
       "verified_on": "2026-08-22"
     },
+"curry-udon": {
+      "title": "Curry udon",
+      "title_jp": "カレーうどん",
+      "icon": "🍛",
+      "steps": [
+        {
+          "when": "When it lands",
+          "text": "It splashes, and the shop knows. If a paper apron is offered, take it — wearing one is not a breach, it is what they are for."
+        },
+        {
+          "when": "Eating it",
+          "text": "🔴 Fold each strand instead of pulling it up: catch it with the chopstick tips and fold it against the bowl about three times, which makes one mouthful. Grip it low, and bring the bowl close."
+        }
+      ],
+      "sources": [
+        "https://joshi-spa.jp/1194450",
+        "https://otonasalone.jp/177928/"
+      ],
+      "verified_on": "2026-08-23"
+    },
     "curry-rice": {
       "title": "Japanese curry-rice",
       "title_jp": "カレーライス",
@@ -225,21 +294,6 @@
       "sources": [
         "https://www.tirakita.com/food/achaar.shtml",
         "https://macaro-ni.jp/102993"
-      ],
-      "verified_on": "2026-08-22"
-    },
-    "yudofu-yuba": {
-      "title": "Yudōfu",
-      "title_jp": "湯豆腐",
-      "icon": "♨️",
-      "lines": [
-        "🔴 The pot comes to the table with the dish of tare sitting down inside it, so the sauce arrives warm. Lift that out first, before you go looking for it.",
-        "Take the tofu straight out of the pot with your chopsticks as soon as it is hot through, and dip it. ⚠ Left simmering it goes rubbery — the one thing that spoils this dish is leaving it in.",
-        "The yakumi are yours to build: spring onion, katsuobushi, grated daikon, shichimi. ⚑ A house with good tofu will tell you to try one piece with nothing but shichimi — that is the one where the tofu itself shows."
-      ],
-      "sources": [
-        "https://www.walkerplus.com/article/219746/",
-        "https://nanzenjitofu.jp/recipes/%E4%BA%AC%E9%A2%A8%E6%B9%AF%E8%B1%86%E8%85%90/"
       ],
       "verified_on": "2026-08-22"
     },
@@ -996,8 +1050,7 @@
     },
     "matsumotoya-horyuji": {
       "how_to_eat": [
-        "soba-udon",
-        "teishoku"
+        "soba-udon"
       ],
       "tabelog_url": "https://tabelog.com/en/nara/A2902/A290203/29001232/",
       "order_how": "Table service, no reservations needed — a coach-tour dining hall at the Hōryū-ji gate with a quieter dining room and café alongside it, so a table is not the problem. ⚠ Carry cash: its own listing takes JCB and nothing else, and no channel of the shop's mentions Visa, Mastercard, e-money or QR. ⚠ It publishes no weekly closing day but states that it closes irregularly, so an open day cannot be asserted in advance.",
@@ -1054,8 +1107,7 @@
     },
     "suzuriishitei": {
       "how_to_eat": [
-        "soba-udon",
-        "yudofu-yuba"
+        "soba-udon"
       ],
       "tabelog_url": "https://tabelog.com/en/kyoto/A2601/A260403/26004993/",
       "order_how": "🔴 Cash — its listing states that cards, electronic money and QR are all refused, and the day's gates are cash too. A mountain teahouse standing on the stone steps themselves, about half way between the Takao bridge and Jingo-ji's gate. Order at the counter and sit on the benches out front.",
@@ -1103,7 +1155,8 @@
     },
     "tsukumo-udon": {
       "how_to_eat": [
-        "soba-udon"
+        "soba-udon",
+        "curry-udon"
       ],
       "tabelog_url": "https://tabelog.com/en/kyoto/A2601/A260101/26031063/",
       "order_how": "Order at the counter; every card, Suica and the QR apps are all accepted. Thirty-five seats — 21 at the counter, 14 at tables — on the second basement level of Kyoto Station, at the east exit. ⚑ 07:00 to 22:00 with last orders at 21:30, no closing day, which is what makes it the answer when a day has run long.",

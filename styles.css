@@ -2098,6 +2098,27 @@ a.jp-btn {
   color: var(--text-dim);
   margin-bottom: 8px;
 }
+/* The stage label that heads each group of steps. Small, upper-case and dim: it
+   is a signpost through the guide, not a line to read — the steps under it carry
+   the instruction. First one loses its top margin so the body does not open on a
+   gap. */
+.eat-stage {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 11px 0 5px;
+}
+.eat-stage:first-of-type,
+.eat-jp + .eat-stage {
+  margin-top: 0;
+}
+/* The traps read in the warning colour, so a guide's one "don't" is findable
+   without reading the guide. */
+.eat-stage-dont {
+  color: var(--warn);
+}
 .eat-lines {
   margin: 0;
   padding-left: 18px;
