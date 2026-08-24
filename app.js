@@ -28,6 +28,21 @@
     return Math.floor((today - start) / 86400000) + 1;
   }
 
+  // Days until he LEAVES — the outbound flight's date, in the phone's own time, not Day 1.
+  // tripDayNumber() counts to meta.start_date (2026-10-22, Narita arrival) in Japan time,
+  // and both countdowns also added 1 to it, so on 24 Aug 2026 the app said 59 while El Al
+  // said 57: one day for the +1, one for counting to the arrival instead of the departure
+  // (LY91 leaves TLV on 21 Oct). Before the trip he is not in Japan, so local midnight is
+  // the right day boundary. Falls back to start_date if reservations failed to load.
+  function daysUntilDeparture(meta) {
+    var flights = DATA.reservations && DATA.reservations.flights;
+    var dep = (flights && flights[0] && flights[0].depart) ? flights[0].depart.slice(0, 10) : meta.start_date;
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var target = new Date(dep + 'T00:00:00');
+    return Math.round((target - today) / 86400000);
+  }
+
   // textContent -> innerHTML escapes & < > but NOT the double quote, and this
   // app puts esc() output inside double-quoted attributes everywhere
   // (data-copy, data-speak, data-fs-jp, href="tel:…"). Five data strings today
@@ -825,7 +840,7 @@
     if (cur < 1) {
       // Before departure there is no day to show, so it says what it does know and points at
       // what matters now, rather than pretending to be a trip day.
-      var diff = -cur + 1;
+      var diff = daysUntilDeparture(meta);
       html += '<div class="today-pre">' +
         '<div class="today-pre-count">' + diff + '</div>' +
         '<div class="today-pre-label">day' + (diff !== 1 ? 's' : '') + ' until departure</div>' +
@@ -2573,7 +2588,7 @@
     var currentDay = tripDayNumber(meta);
 
     if (currentDay < 1) {
-      var diff = -currentDay + 1;
+      var diff = daysUntilDeparture(meta);
       sub.textContent = diff + ' day' + (diff !== 1 ? 's' : '') + ' until departure';
       if (title) title.textContent = meta.trip_name || 'Japan 2026';
     } else if (currentDay <= meta.total_days) {
