@@ -422,7 +422,8 @@
     var infoParts = [];
     var hoursTxt = todayHoursSummary(place);
     if (hoursTxt) infoParts.push('<span class="place-hours">' + esc(hoursTxt) + '</span>');
-    if (place.price) infoParts.push('<span>' + esc(place.price) + '</span>');
+    // ⚠ NOT nowrap: a price is often a sentence (Sanbō-in's runs 114 characters) — see .place-price.
+    if (place.price) infoParts.push('<span class="place-price">' + esc(place.price) + '</span>');
     if (place.address_jp) {
       infoParts.push('<span class="copyable" data-copy="' + esc(place.address_jp) + '">' + esc(place.address_jp) + '</span>');
     }

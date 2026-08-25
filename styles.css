@@ -1196,13 +1196,17 @@ main {
 .place-info span {
   white-space: nowrap;
 }
-/* ⚠ …except the address, which is the one item here that is a SENTENCE rather than a chip.
+/* ⚠ …except the address AND the price, which are SENTENCES rather than chips.
    Japanese addresses run to 40+ unbroken characters — 〒600-8175 京都府… measured 615px against
    a 393px screen — and nowrap made that a 615px box. It was invisible while every ancestor
    clipped it; making an open day card `overflow: visible` for the sticky header took the
-   clipping away and it started widening the whole document instead. The hours and the price
-   still must not break mid-token, so only this one wraps. */
-.place-info .copyable {
+   clipping away and it started widening the whole document instead.
+   🔴 2026-08-25: the 08-22 fix wrapped only the address and the SAME defect shipped in the
+   price — Nara National Museum's is 99 characters (570px), Sanbō-in's 114 — so Days 10 and
+   the Daigo-ji day were still shrunk to two thirds. Every free-text field in this row wraps;
+   only the hours chip ("Today (JST): 09:00–17:00") is short enough to stay nowrap. */
+.place-info .copyable,
+.place-info .place-price {
   white-space: normal;
   overflow-wrap: anywhere;
 }
