@@ -242,9 +242,9 @@
       "https://www.kasugataisha.or.jp/about/basic/",
       "https://www.kasugataisha.or.jp/guidance/index/"
     ],
-    "verified_on": "2026-08-08",
+    "verified_on": "2026-09-04",
     "confidence": "medium",
-    "notes": "Founded in 768 by decree of Empress Shotoku as the tutelary shrine of the Fujiwara, and a World Heritage site: four National Treasure sanctuaries, twenty-seven more buildings that are Important Cultural Properties, and some three thousand lanterns, stone along the approach and bronze along the corridors, of which more than half of all the Muromachi-period lanterns surviving in Japan are here. The rebuilding of the sanctuaries every twenty years has now been done sixty times. The worship hall of the main shrine opens 6:30–17:30 from March to October and 7:00–17:00 from November to February — the times shown are the October ones, and the visit falls on 31 October; the shrine’s own site header quotes a looser general figure of 6:00–18:00. Worship at the outer hall is free. The special worship that takes you inside the corridor — past the hanging lanterns to the Chumon gate, the Mikasa-yama worship point and the Fujinami-no-ya lantern room — is 9:00–16:00 and ¥700, and it is closed on the 1st, 11th and 21st of every month and on certain festival days; 31 October is not one of them. The Kokuhoden treasure hall is 10:00–17:00, last entry 16:30, ¥700. The Manyo Botanical Garden, some three hundred plants named in the Manyoshu, is 9:00–16:30 with last entry 16:00 and ¥700, closed Tuesdays from June to March. Amulets, charms and seals are issued from 9:00 until closing. About an hour for the corridors and lantern galleries, half as much again if the special worship is taken."
+    "notes": "Founded in 768 by decree of Empress Shotoku as the tutelary shrine of the Fujiwara, and a World Heritage site: four National Treasure sanctuaries, twenty-seven more buildings that are Important Cultural Properties, and some three thousand lanterns, stone along the approach and bronze along the corridors, of which more than half of all the Muromachi-period lanterns surviving in Japan are here. The rebuilding of the sanctuaries every twenty years has now been done sixty times. The worship hall of the main shrine opens 6:30–17:30 from March to October and 7:00–17:00 from November to February — the times shown are the October ones, and the visit falls on 31 October; the shrine’s own site header quotes a looser general figure of 6:00–18:00. Worship at the outer hall is free. The special worship that takes you inside the corridor — past the hanging lanterns to the Chumon gate, the Mikasa-yama worship point and the Fujinami-no-ya lantern room — is 9:00–16:00 and ¥700, and it is closed for the morning of the 1st, 11th and 21st of every month and of the festival dates the shrine lists; 31 October is not one of them. The Kokuhoden treasure hall is 10:00–17:00, last entry 16:30, ¥700. The Manyo Botanical Garden, some three hundred plants named in the Manyoshu, is 9:00–16:30 with last entry 16:00 and ¥700, closed Tuesdays from June to March. Amulets, charms and seals are issued from 9:00 until closing. About an hour for the corridors and lantern galleries, half as much again if the special worship is taken."
   },
   {
     "id": "demachiyanagi-station",
@@ -1995,7 +1995,7 @@
       "https://www.tokyo-park.or.jp/teien/en/kiyosumi/index.html",
       "https://www.tokyo-park.or.jp/teien/en/kiyosumi/outline.html"
     ],
-    "verified_on": "2026-08-08",
+    "verified_on": "2026-09-04",
     "confidence": "medium",
     "notes": "The optional add-on at the end of the day — a strolling garden of famous named stones around the Daisensui pond, with the Ryotei pavilion standing over the water. Two Oedo-line stops east of Ryogoku. 9:00–17:00, last entry 16:30; open every day except Dec 29–Jan 1. ¥150, ¥70 for over-65s. About 40 minutes to walk the pond circuit."
   },
@@ -2053,10 +2053,13 @@
     },
     "price": "¥2,000 (cash only)",
     "phone": "+81-745-75-2555",
-    "sources": [],
-    "verified_on": "2026-08-08",
+    "sources": [
+      "https://horyuji.or.jp/annai/"
+    ],
+    "verified_on": "2026-09-04",
     "confidence": "medium",
-    "notes": "The Western Precinct — the kondo and the five-storey pagoda — with the Daihozoin treasure galleries and the octagonal Yumedono of the Eastern Precinct. One ¥2,000 ticket covers all three precincts and is payable in cash only. Hours are 8:00–17:00 from 22 February to 3 November and 8:00–16:30 from 4 November to 21 February, with reception closing 30 minutes before; the Oct 29 visit falls in the earlier set. The Yumedono’s hidden Guze Kannon is unveiled each autumn from 22 October to 22 November, so it is on show on the day of the visit. About 20 minutes on foot from JR Horyuji Station, or the bus to Horyuji-sando. Allow 1.5–2 hours for the full precinct."
+    "notes": "The Western Precinct — the kondo and the five-storey pagoda — with the Daihozoin treasure galleries and the octagonal Yumedono of the Eastern Precinct. One ¥2,000 ticket covers all three precincts and is payable in cash only. Hours are 8:00–17:00 from 22 February to 3 November and 8:00–16:30 from 4 November to 21 February, with reception closing 30 minutes before; the Oct 29 visit falls in the earlier set. The Yumedono’s hidden Guze Kannon is unveiled each autumn from 22 October to 22 November, so it is on show on the day of the visit. About 20 minutes on foot from JR Horyuji Station, or the bus to Horyuji-sando. Allow 1.5–2 hours for the full precinct.",
+    "url": "https://horyuji.or.jp/annai/"
   },
   {
     "id": "yakushiji",
@@ -3361,9 +3364,9 @@
       "https://www.daigoji.or.jp/faq/index.html",
       "https://www.daigoji.or.jp/"
     ],
-    "verified_on": "2026-08-09",
+    "verified_on": "2026-09-04",
     "confidence": "medium",
-    "notes": "CLOSED AT THE TIME OF WRITING — CHECK THE TEMPLE’S FRONT PAGE BEFORE SETTING OUT. Daigo-ji’s own front page carries the notice that, because of a danger of landslides on part of the mountain path, entry to Kami-Daigo is prohibited for the time being. That notice has been carried continuously since at least late June 2026, its wording hardening from a weather warning, to a pending safety inspection of the approach, to the present landslide wording. The standing schedule below is still published underneath it, so the schedule is not evidence that the mountain is open; only a fresh reading of the front page is. This is where Daigo-ji began: the ninth-century original of the temple, holding the National Treasure Yakushi-do and the National Treasure haiden of Kiyotaki-gu, the Nyoirin-do and the Kaisan-do — both Important Cultural Properties — and the Daigo spring, which Shobo is said to have found by spiritual power at the retreat he built here and whose water can still be drunk. The Kaisan-do, rebuilt by Toyotomi Hideyori in 1606, is in the temple's words the largest hall on the mountain. The pin is on the Yakushi-do at the summit precinct, not on the trailhead. Access, when it is open, is on foot only and only from the Nyonin-do trailhead below, where climbers write themselves into an entry register; the temple gives the climb as about an hour each way and says a visit including the halls needs at least three hours. Registration is open 09:00 to 15:00 from 1 March to the first Sunday of December and 09:00 to 14:00 in winter, and the temple instructs climbers to be back down at the foot by 17:00. Entry can also be refused for weather. No separate fee for the mountain is published anywhere on the temple’s site. The halls are seen mainly from the outside."
+    "notes": "CLOSED AT THE TIME OF WRITING — CHECK THE TEMPLE’S FRONT PAGE BEFORE SETTING OUT. Daigo-ji’s own front page carries the notice that, because of a danger of landslides on part of the mountain path, entry to Kami-Daigo is prohibited for the time being. That notice has been carried continuously since at least late June 2026, its wording hardening from a weather warning, to a pending safety inspection of the approach, to the present landslide wording. It was still there, unchanged, on 4 September 2026. The standing schedule below is still published underneath it, so the schedule is not evidence that the mountain is open; only a fresh reading of the front page is. This is where Daigo-ji began: the ninth-century original of the temple, holding the National Treasure Yakushi-do and the National Treasure haiden of Kiyotaki-gu, the Nyoirin-do and the Kaisan-do — both Important Cultural Properties — and the Daigo spring, which Shobo is said to have found by spiritual power at the retreat he built here and whose water can still be drunk. The Kaisan-do, rebuilt by Toyotomi Hideyori in 1606, is in the temple's words the largest hall on the mountain. The pin is on the Yakushi-do at the summit precinct, not on the trailhead. Access, when it is open, is on foot only and only from the Nyonin-do trailhead below, where climbers write themselves into an entry register; the temple gives the climb as about an hour each way and says a visit including the halls needs at least three hours. Registration is open 09:00 to 15:00 from 1 March to the first Sunday of December and 09:00 to 14:00 in winter, and the temple instructs climbers to be back down at the foot by 17:00. Entry can also be refused for weather. No separate fee for the mountain is published anywhere on the temple’s site. The halls are seen mainly from the outside."
   },
   {
     "id": "daigo-station",
@@ -5122,17 +5125,26 @@
           "10:00",
           "22:00"
         ]
+      ],
+      "recurring_closed": [
+        {
+          "weekday": "thu",
+          "nth": [
+            3
+          ]
+        }
       ]
     },
     "phone": "+81-75-341-8050",
     "url": "https://r.gnavi.co.jp/k90phaj30000/",
     "sources": [
       "https://r.gnavi.co.jp/k90phaj30000/map/",
-      "https://city.living.jp/citymate/citymate350/mate_going_out/1360056/"
+      "https://city.living.jp/citymate/citymate350/mate_going_out/1360056/",
+      "https://tabelog.com/en/kyoto/A2601/A260101/26034294/"
     ],
     "verified_on": "2026-08-12",
     "confidence": "medium",
-    "notes": "The shop keeps no channel of its own. The address and the telephone number here are printed on its Rakuten Gurunavi listing, which carries no hours and no closing day today. The hours of 10:00 to 22:00 with last order at 21:30 and the Wednesday closure are printed on City Living Web's shop-data block, which repeats the same address and the same number. Both were read on 12 August 2026, and neither prints any further monthly closure."
+    "notes": "The shop keeps no channel of its own. The address and the telephone number here are printed on its Rakuten Gurunavi listing, which carries no hours and no closing day today. The hours of 10:00 to 22:00 with last order at 21:30 and the Wednesday closure are printed on City Living Web's shop-data block, which repeats the same address and the same number. Both were read on 12 August 2026, and neither prints any further monthly closure. Its Tabelog listing, read 20 August 2026, adds a closure on the third Thursday of each month; the hours block carries it, and none of the three visits falls on one."
   },
   {
     "id": "moritaya-kyoto-isetan",
@@ -7322,5 +7334,170 @@
     "verified_on": "2026-08-13",
     "confidence": "medium",
     "notes": "A chanko house inside Ryogoku Edo NOREN, eighty-eight seats, with the whole room available for a private booking. Lunch eleven to three with last order at two, dinner five to ten with last order at nine. It is the restaurant of the former ozeki Kirishima and serves the chanko recipe of the Michinoku stable, with the wrestler's ceremonial apron on display; the kitchen also does seasonal Japanese cooking. Cards, transport money and five QR wallets are all taken. The pin is the Edo NOREN building, which the map confirms by name thirty-eight metres away, and it is deliberately not the other restaurant of the same name that stands about seventy metres south, which is a different address and not this record."
+  },
+  {
+    "id": "tofukuji",
+    "name_en": "Tofuku-ji",
+    "name_jp": "東福寺",
+    "search_jp": "東福寺",
+    "lat": 34.97717,
+    "lon": 135.77458,
+    "address_jp": "京都府京都市東山区本町15丁目778",
+    "category": "temple",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ]
+    },
+    "price": "¥1,000 combined (Hōjō garden ¥600 + Tsūten-kyō and Kaisan-dō ¥600); the grounds, the Sanmon exterior and the Zen hall exterior are free",
+    "url": "https://tofukuji.jp/guide/",
+    "sources": [
+      "https://tofukuji.jp/guide/",
+      "https://tofukuji.jp/news/%e6%8b%9d%e8%a6%b3%e6%96%99%e9%87%91%e5%a4%89%e6%9b%b4%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b%e3%80%80%e4%bb%a4%e5%92%8c8%e5%b9%b411%e6%9c%881%e6%97%a5%e3%82%88%e3%82%8a/",
+      "https://tofukuji.jp/history/",
+      "https://tofukuji.jp/guide/honbo/",
+      "https://tofukuji.jp/access/"
+    ],
+    "verified_on": "2026-09-04",
+    "confidence": "high",
+    "notes": "Head temple of the Tōfuku-ji branch of Rinzai Zen, built 1236–1255 for the regent Kujō Michiie, who took one character each from Tōdai-ji and Kōfuku-ji for its name and meant it to be Kyoto's largest monastery. The Sanmon is a National Treasure, rebuilt in the early Muromachi period; the Zen hall of 1347, the Tōsu latrine, the bath house, the Gekka-mon and the Rokuhara-mon are Important Cultural Properties. The Tsūten-kyō is the covered bridge over the Sengyokukan ravine between the main hall and the Kaisan-dō, first raised in 1380; the founder's hall holds the image of Enni Ben'en, who died here in 1280. The Hōjō gardens on all four sides of the abbot's hall were laid out by Shigemori Mirei in 1939 and registered as a national Place of Scenic Beauty in 2014. Hours on the temple's own page: 1 April to 31 October and 1 to 13 November 9:00–16:00, reception ends 16:00, gate closes 16:30 — the set shown here; 14 November to 6 December, the autumn viewing period, the bridge opens at 8:30 and the combined ticket is withdrawn; 7 December to 31 March 9:00–15:30, gate 16:00. Fees from 1 November 2026: Hōjō garden ¥600, Tsūten-kyō with the Kaisan-dō ¥600, combined ¥1,000, and during the autumn viewing period the bridge alone is ¥1,000. No re-entry. The 4 November visit falls before the autumn viewing period, so ordinary fees and no crowd control apply. About ten minutes on foot from JR or Keihan Tōfukuji station, per the temple's access page. The temple prints no telephone number on its visiting or contact pages, so none ships here. The pin resolves by name to the temple in its own 本町15丁目 block."
+  },
+  {
+    "id": "fushimi-inari",
+    "name_en": "Fushimi Inari Taisha",
+    "name_jp": "伏見稲荷大社",
+    "search_jp": "伏見稲荷大社",
+    "lat": 34.96714,
+    "lon": 135.77324,
+    "address_jp": "〒612-0882 京都府京都市伏見区深草藪之内町68",
+    "category": "shrine",
+    "hours": {
+      "mon": [
+        [
+          "00:00",
+          "23:59"
+        ]
+      ],
+      "tue": [
+        [
+          "00:00",
+          "23:59"
+        ]
+      ],
+      "wed": [
+        [
+          "00:00",
+          "23:59"
+        ]
+      ],
+      "thu": [
+        [
+          "00:00",
+          "23:59"
+        ]
+      ],
+      "fri": [
+        [
+          "00:00",
+          "23:59"
+        ]
+      ],
+      "sat": [
+        [
+          "00:00",
+          "23:59"
+        ]
+      ],
+      "sun": [
+        [
+          "00:00",
+          "23:59"
+        ]
+      ]
+    },
+    "price": "free",
+    "phone": "+81-75-641-7331",
+    "url": "https://inari.jp/",
+    "sources": [
+      "https://inari.jp/about/",
+      "https://inari.jp/about/faq/",
+      "https://inari.jp/trip/map01/",
+      "https://inari.jp/about/history/num02/",
+      "https://ja.kyoto.travel/tourism/single01.php?category_id=7&tourism_id=448"
+    ],
+    "verified_on": "2026-09-04",
+    "confidence": "high",
+    "notes": "Head shrine of the roughly thirty thousand Inari shrines in Japan. The deity was enshrined on Inari-yama on the first horse day of the second month of 711, by the shrine's own account, and the whole mountain — the southernmost of the Higashiyama peaks, about 870,000 square metres with its western foot — is the precinct. About ten thousand torii stand along the mountain paths, given since the Edo period in thanks for prayers answered. The main hall is an Important Cultural Property rebuilt in 1499 after the whole shrine burned in the Ōnin war of 1468; the upper and middle shrines on the mountain were never rebuilt and survive as sacred sites marked by the votive stones called otsuka. The peaks are Ichi-no-mine, Ni-no-mine, San-no-mine, Ai-no-mine and Kōjin-ga-mine; climbing round them is called o-yama-suru, and the shrine's own page says pilgrims do it day and night. Kyoto City's official tourism register prints no closing time for the grounds, worship day and night, no closing day, prayer reception 8:30–16:30, the amulet counter 8:00–18:00, and a visit time of 120 minutes including the mountain loop; the times shown here are all-day for that reason. Free. Eating is allowed only in the designated rest areas, not while walking. JR Inari station is at the foot of the approach. The pin is on the main hall, resolved by name; it reverse-geocodes into 深草藪之内町, the address's own district."
+  },
+  {
+    "id": "tofukuji-station",
+    "name_en": "Tofukuji Station",
+    "name_jp": "東福寺駅",
+    "lat": 34.98099,
+    "lon": 135.76994,
+    "address_jp": "京都府京都市東山区本町十四丁目",
+    "category": "station",
+    "url": "https://tofukuji.jp/access/",
+    "sources": [
+      "https://tofukuji.jp/access/"
+    ],
+    "verified_on": "2026-09-04",
+    "confidence": "medium",
+    "notes": "JR Nara line and Keihan main line, sharing one station; one stop from Kyoto Station on the JR side. About ten minutes on foot south to the temple, per the temple's own access page. The street address is OpenStreetMap's, resolved by the station's name."
+  },
+  {
+    "id": "inari-station",
+    "name_en": "JR Inari Station",
+    "name_jp": "稲荷駅",
+    "lat": 34.96674,
+    "lon": 135.77084,
+    "address_jp": "京都府京都市伏見区深草稲荷御前町",
+    "category": "station",
+    "url": "https://ja.kyoto.travel/tourism/single01.php?category_id=7&tourism_id=448",
+    "sources": [
+      "https://ja.kyoto.travel/tourism/single01.php?category_id=7&tourism_id=448"
+    ],
+    "verified_on": "2026-09-04",
+    "confidence": "medium",
+    "notes": "JR Nara line, two stops from Kyoto Station and one from Tōfukuji. The shrine's approach begins directly outside the station, per Kyoto City's tourism register. The street address is OpenStreetMap's, resolved by the station's name."
   }
 ]

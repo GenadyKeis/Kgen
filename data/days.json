@@ -972,7 +972,7 @@
         "items": [
           {
             "place_id": "kasuga-taisha",
-            "detail": "Fifteen to twenty minutes through the deer park, up the lantern-lined approach. Worship at the outer hall is free, and the corridors with their bronze lanterns are the reason to be here — three quarters of an hour to an hour. The special worship that takes you inside the corridor is ¥700 and runs 9:00–16:00, so be at its desk by about 15:30; it is suspended on the 1st, 11th and 21st of the month, and today is none of those."
+            "detail": "Fifteen to twenty minutes through the deer park, up the lantern-lined approach. Worship at the outer hall is free, and the corridors with their bronze lanterns are the reason to be here — three quarters of an hour to an hour. The special worship that takes you inside the corridor is ¥700 and its desk runs 9:00–16:00, so be there by about 15:30. It shuts for the morning — not the day — on the 1st, 11th and 21st of the month and on a list of festival dates the shrine publishes; today is none of them, and you are coming in the afternoon regardless."
           }
         ]
       },
@@ -1561,8 +1561,8 @@
     "date": "2026-11-04",
     "weekday": "Wed",
     "city": "Kyoto",
-    "title": "Daigo-ji & the climb to Kami-Daigo",
-    "tags": ["temple", "hike"],
+    "title": "Daigo-ji, Tōfuku-ji & the Fushimi Inari loop",
+    "tags": ["temple","shrine","hike"],
     "location": { "lat": 34.9512, "lon": 135.8218 },
     "hotel_id": "dormy-inn-kyoto",
     "blocks": [
@@ -1612,44 +1612,66 @@
         ]
       },
       {
-        "type": "hike",
-        "title": "Up to Kami-Daigo — 上醍醐",
-        "maps": [
-          { "label": "The upper temple — Daigo-ji", "url": "https://www.daigoji.or.jp/grounds/kamidaigo.html", "note": "One path up from the Nyonin-dō; the temple's own figure is about an hour. No printable trail sheet is published." },
-          { "label": "AllTrails — Daigo-ji walking tour", "url": "https://www.alltrails.com/trail/japan/kyoto/daigo-ji-temple-walking-tour", "note": "7 km and 490 m of climbing, 3–3.5 hours, taking in the lower precinct as well as the climb." }
-        ],
+        "type": "afternoon",
+        "title": "Only if Daigo-ji has reopened the mountain — Kami-Daigo",
+        "items": [
+          {
+            "place_id": "kami-daigo",
+            "detail": "⛔ Shut as of 4 September 2026, and since June: Daigo-ji's front page says entry to the upper mountain is forbidden for the time being because part of the path is at risk of collapse. Read that page on the morning of 4 November. If the notice is still there, skip this card — the afternoon below is the day. If it has gone, this replaces the afternoon below: lunch first, sign the register at the Nyonin-dō trailhead (open 09:00–15:00, start by 12:30), about an hour up on switchbacked stone steps and two to two and a half hours for the round trip with the halls, back at the foot by 17:00 as the temple asks. What is up there is halls, not a view: the National Treasure Yakushi-dō and the National Treasure haiden of Kiyotaki-gū, the Nyoirin-dō and the Kaisan-dō — the Kaisan-dō rebuilt by Hideyori in 1606 — and the Daigo spring, whose water can still be drunk. No separate fee for the mountain is published, and entry can be refused for weather."
+          }
+        ]
+      },
+      {
+        "type": "logistics",
+        "title": "South to Tōfuku-ji",
         "items": [],
         "transit": [
           {
-            "label": "On foot — the climb to Kami-Daigo",
-            "detail": "Check Daigo-ji’s front page before setting out. As this was written the temple’s own front page carried a notice that, because of a danger of landslides on part of the mountain path, entry to Kami-Daigo is prohibited for the time being — carried continuously since at least late June 2026, its wording hardening rather than lifting. The registration hours are still published underneath that notice, so the published schedule is not evidence that the mountain is open. Settle it on the ground. If it is open: lunch first, then start the ascent about noon or half past. Registration is walk-in at the Nyonin-dō trailhead and the climb is on foot only. Treat 14:30 as the last entry — the temple’s page prints 15:00; take the tighter one. About 350 to 400 metres of climbing on relentlessly switchbacked stone steps, which the temple itself calls a steep mountain path. Allow two to two and a half hours for the round trip including the halls; the temple’s own guidance is about an hour each way and at least three hours if you take the halls in. Be back down at the foot by 17:00 — sunset in Kyoto on this date is 17:01. ⚡ There is no trail name to look for on a map here — Daigo-ji’s own site calls it simply 山道, a mountain path. The label to find is the gate at the foot of it, 「女人堂」, and the destination 「上醐醤」.",
-            "origin_id": "daigoji",
-            "destination_id": "kami-daigo",
-            "mode": "walking"
+            "label": "Tōzai line then JR — Daigo → Tōfukuji, changing at Rokujizō",
+            "detail": "The 13:29 Tōzai line two stops to Rokujizō, then the JR Nara line north to Tōfukuji, in at 13:52 — twenty-three minutes, one change, and trains every ten minutes or so behind it. The temple is about ten minutes on foot south of the station. ⛔ Only if Daigo-ji's front page has dropped its landslide notice by the morning of 4 November does the climb to Kami-Daigo come back into play instead of this afternoon: registration at the Nyonin-dō is open 09:00–15:00, the climb is about an hour each way on switchbacked stone steps, and the temple asks you to be back at the foot by 17:00. As checked on 4 September 2026 the mountain was shut and had been since June.",
+            "origin_id": "daigo-station",
+            "destination_id": "tofukuji-station",
+            "mode": "train",
+            "duration_min": 23,
+            "cost_jpy": 420,
+            "cost_note": "one way, IC; ¥260 subway + ¥160 JR"
           }
         ]
       },
       {
         "type": "afternoon",
-        "title": "Kami-Daigo",
+        "title": "Tōfuku-ji",
         "items": [
           {
-            "place_id": "kami-daigo",
-            "detail": "Where Daigo-ji began in the ninth century, and what is up there is halls rather than a view: the National Treasure Yakushi-dō and the National Treasure haiden of Kiyotaki-gū, the Nyoirin-dō and the Kaisan-dō — both Important Cultural Properties, the Kaisan-dō rebuilt by Hideyori in 1606 and, in the temple's words, the largest hall on the mountain — and the Daigo spring itself, whose water can still be drunk. The halls are seen mainly from the outside. No separate fee for the mountain is published anywhere on the temple’s site, and entry can also be refused for weather. If the mountain is shut on the day, the lower precinct alone runs two and a half to three hours, a half-day — the afternoon then goes to Sanjūsangen-dō, entirely indoors, or Tōfuku-ji, which will be at its most crowded in this window."
+            "place_id": "tofukuji",
+            "detail": "In the gate about 14:00 and out by 15:20; reception closes at 16:00 and there is no re-entry. The Sanmon, a National Treasure, is seen from outside; the Zen hall of 1347 and the Tōsu beside it are the oldest of their kind in the country. Then the two paid areas, on one ¥1,000 ticket: the Tsūten-kyō bridge across the maple ravine to the founder's hall, and the abbot's hall with Shigemori Mirei's four gardens of 1939 round it — the checkerboard of re-used paving stones on the north side is the one people come for. An hour to an hour and a half. On 4 November the temple is ten days short of its autumn viewing regime, so ordinary fees and no crowd control apply."
+          }
+        ]
+      },
+      {
+        "type": "logistics",
+        "title": "One stop south",
+        "items": [],
+        "transit": [
+          {
+            "label": "JR Nara line — Tōfukuji → Inari",
+            "detail": "Two minutes, one stop, every eight to ten minutes: 15:30, 15:37, 15:48. The shrine's approach starts outside the station. Lunch, if it has not happened, is on this approach — see the Food tab.",
+            "origin_id": "tofukuji-station",
+            "destination_id": "inari-station",
+            "mode": "train",
+            "duration_min": 2,
+            "cost_jpy": 150,
+            "cost_note": "one way, IC"
           }
         ]
       },
       {
         "type": "hike",
-        "title": "Back down",
-        "items": [],
-        "transit": [
+        "title": "Fushimi Inari — the mountain loop",
+        "items": [
           {
-            "label": "On foot — down from Kami-Daigo to Daigo Station",
-            "detail": "Down the same switchbacks and out through the precinct, then about ten minutes to the station. The descent sits inside the round-trip figure named on the way up.",
-            "origin_id": "kami-daigo",
-            "destination_id": "daigo-station",
-            "mode": "walking"
+            "place_id": "fushimi-inari",
+            "detail": "Through the Rōmon and past the main hall, then into the torii. The loop over Inari-yama is about four kilometres with 233 metres of climbing on steps, two to two and a half hours round: up through the Senbon Torii to Yotsutsuji, where the city opens out below, then round the summit peaks — Ichi-no-mine is the top — and back down the other side of the circuit to the same point. There is no gate and no closing time, and the shrine's own page says pilgrims climb day and night, so a descent in the dusk with the lanterns lit is the ordinary way to finish. Sunset is 17:01; be over the top by about 16:45 to be on the lower slopes as the light goes. Short version if the legs are done: up to Yotsutsuji and back, about an hour. Eat only in the marked rest areas, not on the move — the shrine's own rule."
           }
         ]
       },
@@ -1659,29 +1681,21 @@
         "items": [],
         "transit": [
           {
-            "label": "Kyoto subway, Tōzai line — Daigo → Yamashina",
-            "detail": "The same interchange in reverse.",
-            "origin_id": "daigo-station",
-            "destination_id": "yamashina-station",
-            "mode": "train",
-            "cost_jpy": 260,
-            "cost_note": "one way; ¥520 the round trip"
-          },
-          {
-            "label": "JR — Yamashina → Kyoto",
-            "detail": "Six minutes back into Kyoto Station.",
-            "origin_id": "yamashina-station",
+            "label": "JR Nara line — Inari → Kyoto",
+            "detail": "Five minutes, two stops, straight into Kyoto Station: 17:40, 17:50, 17:57 and every ten minutes or so after. There is no last-train question here — 20:46, 21:03, 22:45, 23:08 and 23:34 all run on a Wednesday.",
+            "origin_id": "inari-station",
             "destination_id": "kyoto-station",
             "mode": "train",
-            "cost_jpy": 180,
-            "cost_note": "one way; ¥360 the round trip"
+            "duration_min": 5,
+            "cost_jpy": 150,
+            "cost_note": "one way, IC"
           }
         ]
       }
     ],
     "backup": {
-      "title": "If it rains — the mountain goes, the temple stays",
-      "detail": "The lower precinct is largely covered and rain barely touches it: Sanbō-in and its garden, the Kondō and the pagoda standing side by side, and the treasure house. What a wet day takes is the climb — 350 to 400 metres of switchbacked stone steps that the temple itself calls a steep mountain path, and which it can refuse for weather on its own account. Drop it and this becomes a half-day; fill the afternoon with Sanjūsangen-dō, entirely indoors — the same fallback the climb's own card gives you if the mountain is closed. A moderate loss — what goes is the mountain, not the temple."
+      "title": "If it rains — the loop goes, the halls stay",
+      "detail": "The morning barely notices rain: Sanbō-in and its garden, the Kondō and the pagoda, the treasure house taken in full. Tōfuku-ji's bridge is covered and the abbot's-hall gardens are seen from its verandas. What a wet day takes is the Inari loop — wet stone steps for two hours are not the hike the day wants — so the shrine becomes the Rōmon, the main hall and the first stretch of torii, half an hour, and the day ends early. A moderate loss: the walk goes, everything built stays."
     }
   },
   {
@@ -2229,7 +2243,7 @@
         "transit": [
           {
             "label": "On foot — down to Momijidani and the town",
-            "detail": "The gentler of the two courses, an hour and a quarter to an hour and a half down — faster than the ascent but not half of it, because it is stone step and root the whole way. It lands at Momijidani Park, fifteen minutes from the Omotesandō street where the late lunch sits: anago-meshi, and momiji-manjū off the griddle. The pier is the far end of that same street. If the climb has run long, come down the way you went up: the temple's own advice is that the Daishō-in course stays light longer, and Momijidani is a valley that darkens early. If your legs are finished at the top, the ropeway is the alternative descent — but take it by about 14:30 or not at all: November is its busiest month, the descent queue is the notorious one and can run to an hour on a Sunday, the last car down is 16:30, and the only fallback to a queue is this walk, which you do not want to begin at dusk.",
+            "detail": "The gentler of the two courses, an hour and a quarter to an hour and a half down — faster than the ascent but not half of it, because it is stone step and root the whole way. It lands at Momijidani Park, fifteen minutes from the Omotesandō street where the late lunch sits: anago-meshi, and momiji-manjū off the griddle. The pier is the far end of that same street. If the climb has run long, come down the way you went up: the temple's own advice is that the Daishō-in course stays light longer, and Momijidani is a valley that darkens early. If your legs are finished at the top, the ropeway is the alternative descent — and 8 November is one of its reservation-only days, so you hold a booking: no. 0000139725, 14:00–14:15, one person. Show the QR code in the confirmation email (Reservations tab) at the platform; be at the summit station inside that window, because the booking lapses once its time has passed. Even with it you may wait for a car — November is the ropeway's busiest month — the last car down is 16:30, and the only fallback to a queue is this walk, which you do not want to begin at dusk.",
             "origin_id": "mt-misen",
             "destination_id": "miyajima-ferry-terminal",
             "mode": "walking",
@@ -2277,7 +2291,7 @@
       }
     ],
     "notes_top": [
-      "💴 Cash on the island: the shrine gate, the lunch counters on the Omotesandō street, and the ropeway's ¥2,000 return if you use it. The ferry is the exception — one tap at the gate covers it, with no counter and no errand."
+      "💴 Cash on the island: the shrine gate, the lunch counters on the Omotesandō street, and the ropeway's ¥1,100 one way down if you use it — the reservation holds a place, not a ticket. The ferry is the exception — one tap at the gate covers it, with no counter and no errand."
     ],
     "backup": {
       "title": "If it rains — the island keeps its halls and loses its mountain",
@@ -2466,7 +2480,7 @@
         "items": [
           {
             "place_id": "kiyosumi-teien",
-            "detail": "Forty minutes to an hour, and the day works without it — this is how you make the day longer or shorter, decided on the day itself. A stroll garden built around the Daisensui pond, with famous named stones set along the circuit and the Ryōtei pavilion standing out over the water."
+            "detail": "Forty minutes to an hour, and the day works without it — this is how you make the day longer or shorter, decided on the day itself. 🔴 It is the clock that decides, not the mood: the gate shuts at 17:00 and last entry is 16:30. Be walking in by about 16:15 for a real forty minutes; leave the museum any later than about 16:00 and the coda is off. A stroll garden built around the Daisensui pond, with famous named stones set along the circuit and the Ryōtei pavilion standing out over the water."
           }
         ]
       },

@@ -1628,8 +1628,19 @@
       "city": "Kyoto",
       "meals": [
         {
+          "slot": "lunch",
+          "time_hint": "Between the temples — about 12:30 at Daigo, or held to the Inari approach about 15:45",
+          "restaurants": [
+            {
+              "role": "primary",
+              "cuisine": "Shrine-approach food at Fushimi Inari, or a carried konbini lunch",
+              "note": "⚠ Daigo-ji's own restaurant has been shut for renewal since 1 June 2026 with no reopening date on the temple's page, so do not count on eating inside the precinct. Two honest shapes: buy onigiri at the konbini by Daigo station before 09:00 and eat in the precinct, or hold lunch until the Inari approach at about 15:45, where the street between the station and the gate is lined with counters — none of them is checked here, so this is a street to walk, not a venue to aim for. 🔴 The shrine's own rule: eat only in the marked rest areas, never while walking. Either way, be through lunch before the loop; there is nothing to eat on the mountain paths."
+            }
+          ]
+        },
+        {
           "slot": "dinner",
-          "time_hint": "At base — back at Kyoto Station around 17:30–18:00, and the descent from Kami-Daigo may run late",
+          "time_hint": "At base — back at Kyoto Station about 17:45–18:05 off the Inari train",
           "restaurants": [
             {
               "place_id": "kyoto-yamaroku",
@@ -1637,7 +1648,7 @@
               "badges": ["tabelog ↗", "Shokudō Hyakumeiten 2026"],
               "cuisine": "Saikyō-yaki — miso-cured grilled fish set meals",
               "price": "¥2,000–2,999",
-              "note": "Dinner service is 16:00 to 20:00 with last order 19:30. The descent from Kami-Daigo is the part of this day that can run long, and the backup below trades until one in the morning. Reservations are not accepted at all: numbered tickets are issued at the door, and with 21 seats a wait is plausible between 18:00 and 19:00. ⚠ Like Morita-ya eleven floors above it, it follows the department store's own calendar, which is not published far enough ahead to read; tonight's backup is outside that building."
+              "note": "Dinner service is 16:00 to 20:00 with last order 19:30. The Inari loop is the part of this day that can run long, and the trains home run every ten minutes; the backup below trades until one in the morning. Reservations are not accepted at all: numbered tickets are issued at the door, and with 21 seats a wait is plausible between 18:00 and 19:00. ⚠ Like Morita-ya eleven floors above it, it follows the department store's own calendar, which is not published far enough ahead to read; tonight's backup is outside that building."
             },
             {
               "place_id": "honke-daiichi-asahi",
@@ -1645,7 +1656,7 @@
               "badges": ["tabelog ↗", "Ramen WEST Hyakumeiten 2025"],
               "cuisine": "Kyoto shōyu ramen",
               "price": "¥1,000–1,999",
-              "note": "Five minutes on foot from the hotel, and it runs to one in the morning — if Daigo runs past the primary's 19:30 last order, there is no hour tonight can reach at which this kitchen is shut. ⚑ Check the sign on arrival: a second Kyoto shop at Sanjō-Kawaramachi keeps the same Thursday closure at a different address, so the closing day alone will not tell the two apart. This is the honten, at Higashi-Shiokōji Mukaihata-chō 845."
+              "note": "Five minutes on foot from the hotel, and it runs to one in the morning — if the Inari loop runs past the primary's 19:30 last order, there is no hour tonight can reach at which this kitchen is shut. ⚑ Check the sign on arrival: a second Kyoto shop at Sanjō-Kawaramachi keeps the same Thursday closure at a different address, so the closing day alone will not tell the two apart. This is the honten, at Higashi-Shiokōji Mukaihata-chō 845."
             }
           ]
         }
@@ -1901,7 +1912,7 @@
         },
         {
           "slot": "dinner",
-          "time_hint": "Back at Ryōgoku about 17:15, or about 18:00 if the Kiyosumi garden coda is taken — a table around 17:45–18:15",
+          "time_hint": "Back at Ryōgoku between about 16:30 and 17:15 whether or not the Kiyosumi garden coda is taken — the garden shuts at 17:00 — so a table from about 17:30",
           "restaurants": [
             {
               "place_id": "tonkatsu-hasegawa-ryogoku",
@@ -1909,7 +1920,7 @@
               "badges": ["tabelog ↗", "Tonkatsu Hyakumeiten 2026"],
               "cuisine": "Tonkatsu",
               "price": "¥1,000–2,999",
-              "note": "On Yokozuna Yokochō, off Ryōgoku's east exit. Last order 22:00, which makes the Kiyosumi detour free: back at Ryōgoku about 18:00 with it, about 17:15 without, and neither competes with dinner. ✅ Open all year bar a new-year closure, with no irregular closing days. ⚑ The upside option: Teuchi Ren (手打式 らぁ麺 蓮), eight minutes on foot and six from Morishita, so it sits on the Kiyosumi axis, 17:00 to 22:00, closed Mondays. 🔴 Take it only if there is no line: seven seats, cash only, and waiting inside is not permitted. On the last night, with no following day to absorb a failed walk-in, that is a bet and not a fallback. ⚑ The kanji is 蓮, not 練 — the wrong character will not find it on the ground."
+              "note": "On Yokozuna Yokochō, off Ryōgoku's east exit. Last order 22:00, which makes the Kiyosumi detour free: the garden shuts at 17:00, so you are back at Ryōgoku by about 17:15 with it and earlier without, and neither competes with dinner. ✅ Open all year bar a new-year closure, with no irregular closing days. ⚑ The upside option: Teuchi Ren (手打式 らぁ麺 蓮), eight minutes on foot and six from Morishita, so it sits on the Kiyosumi axis, 17:00 to 22:00, closed Mondays. 🔴 Take it only if there is no line: seven seats, cash only, and waiting inside is not permitted. On the last night, with no following day to absorb a failed walk-in, that is a bet and not a fallback. ⚑ The kanji is 蓮, not 練 — the wrong character will not find it on the ground."
             },
             {
               "place_id": "mendokoro-honda",
@@ -1917,7 +1928,7 @@
               "badges": ["tabelog ↗", "Ramen TOKYO Hyakumeiten 2020–2023 · 2025"],
               "cuisine": "Handmade-noodle shōyu ramen",
               "price": "¥1,000–1,999",
-              "note": "At Akihabara, two Sōbu stops from Ryōgoku and about four minutes — and 150 metres from the hotel, so it is also the answer if you simply ride straight home. ⚑ But check the clock before you ride: its evening service does not open until 18:00, so on the early version of this day — back at Ryōgoku about 17:15, at Akihabara by about 17:25 — you would be standing outside it. Either take the Kiyosumi garden coda and arrive after six, or eat at the primary in Ryōgoku, which is already serving."
+              "note": "At Akihabara, two Sōbu stops from Ryōgoku and about four minutes — and 150 metres from the hotel, so it is also the answer if you simply ride straight home. ⚑ But check the clock before you ride: its evening service does not open until 18:00, and either version of this day has you at Akihabara by about 17:30 — the garden coda cannot stretch it, because Kiyosumi shuts at 17:00. Eat at the primary in Ryōgoku, which is already serving, or drop the bag at the hotel and come back here at six."
             }
           ]
         }
