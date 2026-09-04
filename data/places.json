@@ -118,7 +118,7 @@
     "sources": [],
     "verified_on": "2026-08-08",
     "confidence": "medium",
-    "notes": "Kintetsu Nara Line, underground, at the east end of the Higashimuki arcade with the Gyoki fountain plaza above it. It is the closest station to the park — about fifteen minutes on foot east along Noborioji to the Nara National Museum — but it is a different building from JR Nara, about 1.1 km west, and the two are never interchangeable in a leg: the Kyoto legs on 31 October are JR. No operator page could be cited; Kintetsu publishes no per-station page, so the pin and the address are from OpenStreetMap and its Japanese reverse geocode."
+    "notes": "Kintetsu Nara Line, underground, at the east end of the Higashimuki arcade with the Gyoki fountain plaza above it. It is the closest station to the park — about fifteen minutes on foot east along Noborioji to the Nara National Museum — but it is a different building from JR Nara, about 1.1 km west, and the two are never interchangeable in a leg: on 31 October both Kyoto legs are Kintetsu, and JR Nara is that evening’s fallback only. No operator page could be cited; Kintetsu publishes no per-station page, so the pin and the address are from OpenStreetMap and its Japanese reverse geocode."
   },
   {
     "id": "todaiji",
@@ -1149,7 +1149,7 @@
     ],
     "verified_on": "2026-08-08",
     "confidence": "medium",
-    "notes": "~3 min walk from Kyoto Station Central (Karasuma) Gate — north side. Natural hot spring bath (Hanabotaru-no-yu); guests with visible tattoos are barred from the public baths. Free front-desk luggage hold. Breakfast included."
+    "notes": "~3 min walk from Kyoto Station Central (Karasuma) Gate — north side. Natural hot spring bath (Hanabotaru-no-yu); guests with visible tattoos are barred from the public baths. Free front-desk luggage hold. Breakfast included: 06:30–09:30, last entry 09:00, 1F Café & Lounge OASIS."
   },
   {
     "id": "sotetsu-fresa-hiroshima",
@@ -2667,11 +2667,12 @@
     "sources": [
       "https://shosoin-ten.jp/info/",
       "https://shosoin-ten.jp/info/ticket/",
-      "https://narashikanko.or.jp/spot/detail_10043.html"
+      "https://narashikanko.or.jp/spot/detail_10043.html",
+      "https://www.narahaku.go.jp/news/20260309_15166/"
     ],
-    "verified_on": "2026-08-08",
-    "confidence": "medium",
-    "notes": "The 78th Shoso-in Exhibition runs 24 October to 9 November 2026 with no closing day inside the run, 8:00–18:00 and to 20:00 on Fridays, Saturdays, Sundays and public holidays, last entry one hour before closing. Those are the times shown here, because the run covers most of the trip and the museum’s ordinary calendar would be the wrong badge for nearly all of it: outside the run it keeps 9:30–17:00, last entry 16:30, and closes on Mondays. The exhibition opens the imperial repository of Todai-ji once a year, and its 2026 ticketing was still unannounced on 8 August — the exhibition site says the ticket information comes in late August, and entry has been by dated and timed ticket bought in advance in recent years. The permanent Buddhist sculpture hall shows about a hundred statues from the Asuka to the Kamakura periods, National Treasures among them, and costs ¥700 for adults; the exhibition ticket also admits you to it. There is no visitor car park. Allow about 1.5–2 hours for the exhibition — an hour is enough only if it is empty, and it will not be."
+    "verified_on": "2026-09-04",
+    "confidence": "high",
+    "notes": "The 78th Shoso-in Exhibition runs 24 October to 9 November 2026 with no closing day inside the run, 8:00–18:00 and to 20:00 on Fridays, Saturdays, Sundays and public holidays, last entry one hour before closing. Those are the times shown here, because the run covers most of the trip and the museum’s ordinary calendar would be the wrong badge for nearly all of it: outside the run it keeps 9:30–17:00, last entry 16:30, and closes on Mondays. The exhibition opens the imperial repository of Todai-ji once a year. Entry is by dated, timed ticket only — ¥2,000 general, sold from 4 September 2026 through e-tix and Lawson Ticket — with a fixed entry window (thirty minutes, forty-five for a few slots), no entry outside it, no time limit inside, no changes or refunds. A 10:30 ticket for Saturday 31 October is held; the image is in the Documents list. The museum’s Buddhist sculpture hall is closed for renovation from 14 September 2026 until about spring 2028, so the exhibition ticket no longer includes it; the Bronze Ware Hall is free during the run and shows a selection of the museum’s statues on its upper floor. There is no visitor car park. Allow about 1.5–2 hours for the exhibition — an hour is enough only if it is empty, and it will not be."
   },
   {
     "id": "naramachi",
@@ -2701,7 +2702,7 @@
     "sources": [],
     "verified_on": "2026-08-08",
     "confidence": "medium",
-    "notes": "JR West — the Yamatoji, Nara and Manyo Mahoroba (Sakurai) lines. The Kyoto legs on this day are the Nara Line rapid, which arrives here and not at the Kintetsu station. Nara city loop buses to the park, Todai-ji and Kasuga leave from the east side. The Kintetsu station is a separate building about 1.1 km east, roughly a fifteen-minute walk along Sanjo-dori — the two are never interchangeable in a leg. No operator page could be cited: JR West publishes station pages only under undiscoverable ids, so the pin and the address are from OpenStreetMap and its Japanese reverse geocode."
+    "notes": "JR West — the Yamatoji, Nara and Manyo Mahoroba (Sakurai) lines. On 31 October the Kyoto legs run from the Kintetsu station, not here; this station is that evening’s fallback only, and on a Saturday night its trains to Kyoto are all locals. Nara city loop buses to the park, Todai-ji and Kasuga leave from the east side. The Kintetsu station is a separate building about 1.1 km east, roughly a fifteen-minute walk along Sanjo-dori — the two are never interchangeable in a leg. No operator page could be cited: JR West publishes station pages only under undiscoverable ids, so the pin and the address are from OpenStreetMap and its Japanese reverse geocode."
   },
   {
     "id": "tadasu-no-mori",

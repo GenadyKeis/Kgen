@@ -1453,27 +1453,27 @@
       "meals": [
         {
           "slot": "lunch",
-          "time_hint": "Nara city, after Kasuga-taisha and on the way down towards Naramachi",
+          "time_hint": "Nara, straight out of the Shōsō-in at about 12:30 — the arcade is ten minutes west, and the hillside halls come after",
           "restaurants": [
             {
               "place_id": "wakakusa-curry",
               "role": "primary",
               "badges": ["tabelog ↗", "Curry WEST Hyakumeiten 2026"],
               "cuisine": "Spice curry",
-              "note": "🔴 There is no lunch deadline here, whichever Shōsō-in slot you hold: last entry 19:25, last order 19:30, no midday break. In the Mochiidono covered arcade, ten to twelve minutes west of the museum — and everything is plated to order, so nothing sells out. ⚑ Two minutes further on is Menya K (麺屋K), an eleven-seat Ramen WEST Hyakumeiten counter that shuts when it sells out: if the arcade shows no line, take it as an upgrade. Nothing depends on it, and after about 15:00 assume it is gone rather than fifty-fifty."
+              "note": "🔴 There is no lunch deadline here: last entry 19:25, last order 19:30, no midday break. In the Mochiidono covered arcade, ten to twelve minutes west of the museum — and everything is plated to order, so nothing sells out. ⚑ Two minutes further on is Menya K (麺屋K), an eleven-seat Ramen WEST Hyakumeiten counter that shuts when it sells out: at 12:45 it is likely still serving, and if the arcade shows no line, take it as an upgrade. Nothing depends on it."
             },
             {
               "place_id": "kamameshi-shizuka-koen",
               "role": "backup",
               "badges": ["tabelog ↗"],
               "cuisine": "Kamameshi — rice cooked to order over a flame",
-              "note": "In Nara Park itself, by the museum — the only one of the day's three that needs no walk west into the arcades. 🔴 16:00 is the last order, not the close. It is the cover for the day running late rather than early: the half-hour queue reported around 11:20 is a weekday figure and a peak Saturday runs longer than that, but by 15:00 it is gone either way. ⚠ It declares one irregular closure a month. If that closure lands on the 31st, the primary answers at any hour and the only cost is the walk west into the arcade."
+              "note": "In Nara Park itself, by the museum door — the only one of the day’s three that needs no walk west into the arcades. ⚠ At 12:30 on a peak Saturday expect its queue, so walk past unless the door is clear. 🔴 16:00 is the last order, not the close; by 15:00 the queue is gone, which makes it the answer if you come off the hillside hungry instead of eating at midday. ⚠ It declares one irregular closure a month. If that closure lands on the 31st, the primary answers at any hour and the only cost is the walk west into the arcade."
             }
           ]
         },
         {
           "slot": "dinner",
-          "time_hint": "At base — back at Kyoto Station around 21:15, off the 20:28 Kintetsu express from Nara",
+          "time_hint": "At base — back at Kyoto Station about 18:40, off the 17:44 Kintetsu express from Nara",
           "restaurants": [
             {
               "place_id": "honke-daiichi-asahi",
@@ -1481,14 +1481,14 @@
               "badges": ["tabelog ↗", "Ramen WEST Hyakumeiten 2025"],
               "cuisine": "Kyoto shōyu ramen",
               "price": "¥1,000–1,999",
-              "note": "Five minutes from the hotel, and it runs to one in the morning — nothing tonight can arrive too late for it. ⚑ The Nara alternative is still open: if you are out of the Shōsō-in by 19:45 rather than 20:00, Tori-soba Zagin at Kintetsu Nara (105 m from the station on the Konishi-dōri arcade, Saturday 11:00 to 21:00, last order 20:30, walk-in only, no closing day) becomes comfortable and is worth taking, with four later trains behind it. Decide on the night."
+              "note": "Five minutes from the hotel, and it runs to one in the morning — nothing tonight can arrive too late for it. ⚑ The Nara alternative is comfortable now that the day ends by daylight: Tori-soba Zagin at Kintetsu Nara (105 m from the station on the Konishi-dōri arcade, Saturday 11:00 to 21:00, last order 20:30, walk-in only, no closing day) — eat there before the train and the evening in Kyoto is free. Decide on the day."
             },
             {
               "place_id": "arata",
               "role": "backup",
               "badges": ["tabelog ↗", "Okonomiyaki Hyakumeiten 2025"],
               "cuisine": "Kyoto beta-yaki okonomiyaki and teppanyaki",
-              "note": "Last order 22:15, and ten minutes on foot from the Hachijō exit — 700 m, measured 2026-08-22 — which is the side the Kintetsu from Nara arrives on. ⚠ On the Kintetsu you are at the station ~21:15, so the walk lands you ~21:25 with an hour in hand. ⛔ Cash only while the primary takes cards — carry notes for it. ⚑ Reservations here are recommended, not merely accepted."
+              "note": "Last order 22:15, and ten minutes on foot from the Hachijō exit — 700 m, measured 2026-08-22 — which is the side the Kintetsu from Nara arrives on. On the 17:44 express you are at the station about 18:40, with hours in hand. ⛔ Cash only while the primary takes cards — carry notes for it. ⚑ Reservations here are recommended, not merely accepted."
             }
           ]
         }
