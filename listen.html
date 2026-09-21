@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listen — Japan Autumn 2026</title>
+<link rel="icon" href="icon-192.png">
+<!--
+  A clean, article-shaped page for Safari's own "Listen to Page" (aA menu). Requested
+  2026-09-21 after the in-app speechSynthesis read-aloud proved robotic and stopped the
+  moment the screen locked — Safari's Listen to Page uses the good system voice and keeps
+  playing locked. This page only has to give Safari plain text to read.
+  The text is built from almanac.html at load, so there is no second copy of the prose.
+  Same cleaning as the deleted in-app narrator: source lines, links, Japanese script and
+  emoji markers are dropped, because none of them survive being read aloud.
+  Addressed by the URL HASH (#id=… / #day=…), never a query string: the service worker
+  matches its cache by full URL, so a query would miss the cached page offline.
+-->
+<style>
+  :root { --bg: #f8f5ef; --text: #1d1b16; --dim: #6b655a; --link: #8a4b12; --rule: #ddd5c6; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #151515; --text: #e6e2d8; --dim: #9a9488; --link: #e0a25a; --rule: #333; }
+  }
+  html { background: var(--bg); }
+  body { margin: 0 auto; max-width: 680px; padding: 16px 18px 80px; background: var(--bg); color: var(--text);
+    font: 18px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  nav.top { padding: 4px 0 14px; font-size: 15px; }
+  a { color: var(--link); }
+  h1 { font-size: 26px; line-height: 1.25; margin: 6px 0 4px; }
+  h2 { font-size: 22px; line-height: 1.3; margin: 34px 0 2px; padding-top: 18px; border-top: 1px solid var(--rule); }
+  h3 { font-size: 18px; margin: 22px 0 4px; }
+  p { margin: 0 0 12px; }
+  p.sub { color: var(--dim); font-size: 15px; }
+  ul.index { padding-left: 20px; }
+  ul.index li { margin: 6px 0; }
+  .empty { color: var(--dim); }
+</style>
+</head>
+<body>
+<nav class="top"><a href="./index.html">← Back to the app</a></nav>
+<article id="out"><p class="empty">Loading…</p></article>
+<script>
+(function () {
+  var out = document.getElementById('out');
+
+  function clean(t) {
+    return String(t || '')
+      .replace(/[\u3000-\u303F\u3040-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uFF00-\uFFEF]+/g, '')
+      .replace(/[\u{1F300}-\u{1FAFF}\u2600-\u27BF\u2B00-\u2BFF\uFE0F\u200D]/gu, '')
+      .replace(/\u21D2/g, ' - ')
+      .replace(/\u2192/g, ' to ')
+      .replace(/(\d)\s*[\u2013\u2014-]\s*(\d)/g, '$1 to $2')
+      .replace(/~\s*(\d)/g, 'about $1')
+      .replace(/\(\s*[,;:]?\s*\)/g, '')
+      .replace(/\s+([,.;:!?)])/g, '$1')
+      .replace(/\(\s+/g, '(')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function hashParams() {
+    var p = {}, h = location.hash.replace(/^#/, '');
+    if (!h) return p;
+    h.split('&').forEach(function (kv) {
+      var i = kv.indexOf('=');
+      if (i > 0) p[decodeURIComponent(kv.slice(0, i))] = decodeURIComponent(kv.slice(i + 1));
+    });
+    return p;
+  }
+  function placeName(el) {
+    var n = el.querySelector('.place-name');
+    if (!n) return el.getAttribute('data-place-id');
+    var t = '';
+    for (var i = 0; i < n.childNodes.length; i++) {
+      if (n.childNodes[i].nodeType === 3) t += n.childNodes[i].nodeValue;
+    }
+    return clean(t) || el.getAttribute('data-place-id');
+  }
+
+  // One place as article HTML: name (h2), its one-line description, then each section
+  // as a heading and paragraphs. Sourcing lines and link blocks are left out.
+  function placeHtml(el, lvl) {
+    var h = 'h' + lvl, sub = 'h' + (lvl + 1);
+    var html = '<' + h + '>' + esc(placeName(el)) + '</' + h + '>';
+    var line = el.querySelector('.place-id-line');
+    if (line && clean(line.textContent)) html += '<p class="sub">' + esc(clean(line.textContent)) + '.</p>';
+    var body = el.querySelector('.place-body');
+    if (!body) return html;
+    var nodes = body.querySelectorAll('.section-title, p, li, .unverified');
+    for (var i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      if (n.classList.contains('source') || n.closest('.links')) continue;
+      if (n.classList.contains('unverified') && n.querySelector('p')) continue;
+      var t = clean(n.textContent);
+      if (!/[A-Za-z]{2}/.test(t)) continue;
+      if (n.classList.contains('section-title')) html += '<' + sub + '>' + esc(t.replace(/[.:]$/, '')) + '</' + sub + '>';
+      else html += '<p>' + esc(t) + '</p>';
+    }
+    return html;
+  }
+
+  function render(doc) {
+    var params = hashParams();
+    var kids = doc.body.children, days = [], cur = null, i;
+    for (i = 0; i < kids.length; i++) {
+      var k = kids[i];
+      if (k.classList.contains('day-header')) {
+        var h2 = k.querySelector('h2'), ds = k.querySelector('.day-sub');
+        cur = { day: k.getAttribute('data-day') || '', title: clean(h2 && h2.textContent), sub: clean(ds && ds.textContent), places: [] };
+        days.push(cur);
+      } else if (k.classList.contains('place') && cur) {
+        cur.places.push(k);
+      }
+    }
+
+    if (params.id) {
+      var hit = null;
+      days.forEach(function (d) { d.places.forEach(function (p) { if (p.getAttribute('data-place-id') === params.id) hit = p; }); });
+      if (!hit) { out.innerHTML = '<p class="empty">No almanac entry for that place.</p>'; return; }
+      document.title = placeName(hit) + ' — listen';
+      out.innerHTML = placeHtml(hit, 1);
+      return;
+    }
+
+    if (params.day) {
+      var day = days.filter(function (d) { return String(d.day) === String(params.day); })[0];
+      if (!day) { out.innerHTML = '<p class="empty">No almanac day like that.</p>'; return; }
+      var head = day.day === 'substitutes' ? day.title : 'Day ' + day.day + '. ' + day.title;
+      document.title = head + ' — listen';
+      var html = '<h1>' + esc(head) + '</h1>' + (day.sub ? '<p class="sub">' + esc(day.sub) + '</p>' : '');
+      day.places.forEach(function (p) { html += placeHtml(p, 2); });
+      out.innerHTML = html;
+      return;
+    }
+
+    // No hash: an index to pick from.
+    var idx = '<h1>Listen</h1><p class="sub">Open an entry or a whole day, then in Safari tap aA and choose Listen to Page.</p>';
+    days.forEach(function (d) {
+      var label = d.day === 'substitutes' ? d.title : 'Day ' + d.day + ' — ' + d.title;
+      idx += '<h2><a href="#day=' + encodeURIComponent(d.day) + '">' + esc(label) + '</a></h2><ul class="index">';
+      d.places.forEach(function (p) {
+        idx += '<li><a href="#id=' + encodeURIComponent(p.getAttribute('data-place-id')) + '">' + esc(placeName(p)) + '</a></li>';
+      });
+      idx += '</ul>';
+    });
+    out.innerHTML = idx;
+  }
+
+  var doc = null;
+  function go() { if (doc) { render(doc); window.scrollTo(0, 0); } }
+  fetch('./almanac.html').then(function (r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.text();
+  }).then(function (text) {
+    doc = new DOMParser().parseFromString(text, 'text/html');
+    go();
+  }).catch(function () {
+    out.innerHTML = '<p class="empty">The almanac could not be loaded. Open the app online once and it will be cached for offline use.</p>';
+  });
+  window.addEventListener('hashchange', go);
+})();
+</script>
+</body>
+</html>

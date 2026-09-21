@@ -1,4 +1,4 @@
-const CACHE_NAME = 'japan-v2-shell-70';
+const CACHE_NAME = 'japan-v2-shell-71';
 
 const SHELL_ASSETS = [
   './',
@@ -10,6 +10,7 @@ const SHELL_ASSETS = [
   // almanac EDIT reaches installed clients only via a CACHE_NAME bump — the same
   // rule the other shell files follow.
   './almanac.html',
+  './listen.html',
   './manifest.json',
   './icon-192.png',
   './icon-512.png'

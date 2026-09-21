@@ -2526,224 +2526,6 @@
     return almanacPromise;
   }
 
-  // ─── Almanac read-aloud ─────────────────────────────────
-  // Requested 2026-09-21: walk with headphones, press a button, hear the entry
-  // while looking around. It is speechSynthesis on the handset — the same engine
-  // as 🔊 Say it — so it needs no signal and no audio files (the almanac is ~6 h of
-  // speech; recorded, it would be ~130 MB of cache).
-  // ⚠ UNVERIFIED ON HIS PHONE: whether iOS keeps speaking with the screen LOCKED.
-  // The wake lock below keeps the screen on while it plays so the feature does not
-  // depend on the answer; his lock-screen test decides whether that is still needed.
-  // The text is NOT DATA.almanac[id].text: that field is the lower-cased search
-  // index and carries every `.source` line ("checked 2026-08-15"), URLs and the
-  // 🔴 ⚑ ⚠ markers — read aloud, that is citation noise in his ear.
-  var narr = { chunks: [], heads: [], idx: 0, playing: false, gen: 0, rate: 1,
-               wake: null, wakeOn: true, bar: null };
-
-  function narrClean(t) {
-    return t
-      // Japanese script: an English voice cannot read it and mangles the line.
-      .replace(/[\u3000-\u303F\u3040-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uFF00-\uFFEF]+/g, '')
-      .replace(/[\u{1F300}-\u{1FAFF}\u2600-\u27BF\u2B00-\u2BFF\uFE0F\u200D]/gu, '')
-      .replace(/\u21D2/g, ' - ')          // the implication arrow becomes a pause
-      .replace(/\u2192/g, ' to ')
-      .replace(/(\d)\s*[\u2013\u2014-]\s*(\d)/g, '$1 to $2')
-      .replace(/~\s*(\d)/g, 'about $1')
-      .replace(/\(\s*[,;:]?\s*\)/g, '')
-      .replace(/\s+([,.;:!?)])/g, '$1')
-      .replace(/\(\s+/g, '(')
-      .replace(/\s+/g, ' ')
-      .trim();
-  }
-
-  // Sentence-split anything long: short utterances are the reliable ones on iOS.
-  function narrSplit(text) {
-    if (text.length <= 420) return [text];
-    var parts = text.match(/[^.!?]+[.!?]+["')\]]*\s*|[^.!?]+$/g) || [text];
-    var out = [], cur = '';
-    for (var i = 0; i < parts.length; i++) {
-      if (cur && (cur + parts[i]).length > 420) { out.push(cur.trim()); cur = ''; }
-      cur += parts[i];
-    }
-    if (cur.trim()) out.push(cur.trim());
-    return out;
-  }
-
-  function narrBuild(entryHtml) {
-    var doc = new DOMParser().parseFromString('<div id="r">' + entryHtml + '</div>', 'text/html');
-    var root = doc.getElementById('r');
-    var chunks = [], heads = [];
-    var nodes = root.querySelectorAll('.section-title, p, li, .unverified');
-    for (var i = 0; i < nodes.length; i++) {
-      var n = nodes[i];
-      if (n.classList.contains('source') || n.closest('.links')) continue;
-      // A .unverified box holds <p>s of its own; read the box's text only through them.
-      if (n.classList.contains('unverified') && n.querySelector('p')) continue;
-      var isHead = n.classList.contains('section-title');
-      var t = narrClean(n.textContent || '');
-      if (!/[A-Za-z]{2}/.test(t)) continue;
-      if (isHead) {
-        heads.push(chunks.length);
-        chunks.push({ text: t.replace(/[.:]?$/, '.'), head: t });
-      } else {
-        var pieces = narrSplit(t);
-        for (var j = 0; j < pieces.length; j++) chunks.push({ text: pieces[j] });
-      }
-    }
-    return { chunks: chunks, heads: heads };
-  }
-
-  function narrVoice() {
-    var voices = (window.speechSynthesis.getVoices && window.speechSynthesis.getVoices()) || [];
-    var best = null, bestScore = -1;
-    for (var i = 0; i < voices.length; i++) {
-      var v = voices[i];
-      if (!v.lang || v.lang.toLowerCase().indexOf('en') !== 0) continue;
-      var sc = 1;
-      if (/premium|enhanced/i.test(v.name)) sc += 4;
-      if (v.localService) sc += 2;
-      if (/^en[-_](us|gb)$/i.test(v.lang)) sc += 1;
-      if (sc > bestScore) { best = v; bestScore = sc; }
-    }
-    return best;
-  }
-
-  function narrHeadIndexAt(idx) {
-    var h = -1;
-    for (var i = 0; i < narr.heads.length; i++) { if (narr.heads[i] <= idx) h = i; }
-    return h;
-  }
-
-  function narrUpdateUi() {
-    var bar = narr.bar;
-    if (!bar) return;
-    var toggle = bar.querySelector('[data-narr="toggle"]');
-    if (toggle) toggle.textContent = narr.playing ? '⏸ Pause' : (narr.idx > 0 && narr.idx < narr.chunks.length ? '▶ Resume' : '🎧 Listen');
-    var st = bar.querySelector('.almanac-listen-status');
-    if (st) {
-      var h = narrHeadIndexAt(narr.idx);
-      if (narr.idx >= narr.chunks.length && narr.chunks.length) st.textContent = 'Finished';
-      else if (h >= 0) st.textContent = 'Section ' + (h + 1) + ' of ' + narr.heads.length + ' · ' + narr.chunks[narr.heads[h]].head;
-      else st.textContent = narr.chunks.length ? 'Ready' : 'Nothing to read';
-    }
-  }
-
-  function narrWake(on) {
-    try {
-      if (on && narr.wakeOn && navigator.wakeLock && !narr.wake) {
-        navigator.wakeLock.request('screen').then(function (l) {
-          narr.wake = l;
-          l.addEventListener('release', function () { narr.wake = null; });
-        }).catch(function () {});
-      } else if (!on && narr.wake) {
-        narr.wake.release(); narr.wake = null;
-      }
-    } catch (e) {}
-  }
-
-  function narrSpeak(gen) {
-    if (gen !== narr.gen || !narr.playing) return;
-    if (narr.idx >= narr.chunks.length) {
-      narr.playing = false; narrWake(false); narrUpdateUi(); return;
-    }
-    var u = new SpeechSynthesisUtterance(narr.chunks[narr.idx].text);
-    u.rate = narr.rate;
-    var v = narrVoice();
-    if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-US'; }
-    u.onend = function () {
-      if (gen !== narr.gen) return;
-      narr.idx++; narrUpdateUi(); narrSpeak(gen);
-    };
-    u.onerror = function (ev) {
-      if (gen !== narr.gen) return;
-      if (ev && (ev.error === 'interrupted' || ev.error === 'canceled')) return;
-      narr.idx++; narrSpeak(gen);   // one bad chunk must not end the walk
-    };
-    window.speechSynthesis.speak(u);
-    narrUpdateUi();
-  }
-
-  function narrStart(fromIdx) {
-    narr.gen++;
-    var gen = narr.gen;
-    narr.idx = fromIdx;
-    narr.playing = true;
-    // cancel() straight before speak() can swallow the new utterance on iOS (see
-    // speakJapanese) — so cancel only if something is queued, and speak on the
-    // next tick.
-    if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
-      window.speechSynthesis.cancel();
-    }
-    narrWake(true);
-    narrUpdateUi();
-    setTimeout(function () { narrSpeak(gen); }, 80);
-  }
-
-  function narrStop() {
-    narr.gen++;
-    narr.playing = false;
-    narr.idx = 0;
-    try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {}
-    narrWake(false);
-    narrUpdateUi();
-  }
-
-  function narrPause() {
-    narr.gen++;
-    narr.playing = false;
-    try { window.speechSynthesis.cancel(); } catch (e) {}
-    narrWake(false);
-    narrUpdateUi();
-  }
-
-  function narrJump(dir) {
-    if (!narr.heads.length) return;
-    var h = narrHeadIndexAt(narr.idx);
-    // Past the first chunk of a section, ⏮ restarts that section rather than
-    // jumping to the one before it.
-    if (dir < 0 && h >= 0 && narr.idx > narr.heads[h] + 1) dir = 0;
-    var target = Math.max(0, Math.min(narr.heads.length - 1, h + dir));
-    if (h < 0 && dir > 0) target = 0;
-    var at = narr.heads[target];
-    if (narr.playing) narrStart(at); else { narr.idx = at; narrUpdateUi(); }
-  }
-
-  function bindAlmanacListen(content, entry) {
-    narrStop();
-    var bar = content.querySelector('.almanac-listen');
-    narr.bar = bar;
-    if (!bar || !entry) return;
-    var built = narrBuild(entry.html);
-    narr.chunks = built.chunks;
-    narr.heads = built.heads;
-    narr.idx = 0;
-    narrUpdateUi();
-    bar.addEventListener('click', function (e) {
-      var b = e.target.closest('[data-narr]');
-      if (!b) return;
-      var act = b.getAttribute('data-narr');
-      if (act === 'toggle') {
-        if (narr.playing) narrPause();
-        else narrStart(narr.idx >= narr.chunks.length ? 0 : narr.idx);
-      } else if (act === 'prev') narrJump(-1);
-      else if (act === 'next') narrJump(1);
-      else if (act === 'rate') {
-        narr.rate = narr.rate >= 1.4 ? 1 : (narr.rate >= 1.2 ? 1.4 : 1.2);
-        b.textContent = narr.rate + '×';
-        if (narr.playing) narrStart(narr.idx);   // the rate applies from the current paragraph
-      } else if (act === 'wake') {
-        narr.wakeOn = !narr.wakeOn;
-        b.textContent = narr.wakeOn ? '🔆 Screen on' : '🌙 Screen off';
-        if (narr.playing) narrWake(narr.wakeOn);
-      }
-    });
-  }
-
-  document.addEventListener('visibilitychange', function () {
-    // A wake lock is released when the page is hidden; take it back on return.
-    if (document.visibilityState === 'visible' && narr.playing) narrWake(true);
-  });
-
   function openAlmanac(placeId) {
     var modal = document.getElementById('almanac-modal');
     var content = document.getElementById('almanac-content');
@@ -2772,16 +2554,24 @@
       if (entry && entry.sub) {
         html += '<div class="almanac-sub">' + esc(entry.sub) + '</div>';
       }
-      if (entry && 'speechSynthesis' in window) {
+      if (entry) {
+        // Safari's own "Listen to Page" reads listen.html with the good system voice and
+        // keeps going with the screen locked; the in-app speechSynthesis version did neither
+        // (user, 2026-09-21), so it was removed. The hash, not a query string: the service
+        // worker matches its cache by full URL.
+        var listenDay = '';
+        var lg = DATA.almanacDays || [];
+        for (var lgi = 0; lgi < lg.length; lgi++) {
+          if (lg[lgi].placeIds.indexOf(placeId) !== -1) { listenDay = lg[lgi].day; break; }
+        }
         html += '<div class="almanac-listen">' +
           '<div class="almanac-listen-row">' +
-          '<button type="button" class="jp-btn" data-narr="prev" aria-label="Previous section">⏮</button>' +
-          '<button type="button" class="jp-btn almanac-listen-main" data-narr="toggle">🎧 Listen</button>' +
-          '<button type="button" class="jp-btn" data-narr="next" aria-label="Next section">⏭</button>' +
-          '<button type="button" class="jp-btn" data-narr="rate" aria-label="Speed">' + narr.rate + '×</button>' +
-          '<button type="button" class="jp-btn" data-narr="wake">' + (narr.wakeOn ? '🔆 Screen on' : '🌙 Screen off') + '</button>' +
+          '<a class="jp-btn almanac-listen-main" href="listen.html#id=' + encodeURIComponent(placeId) + '">🎧 Listen to this entry</a>' +
+          (listenDay && listenDay !== 'substitutes'
+            ? '<a class="jp-btn almanac-listen-main" href="listen.html#day=' + encodeURIComponent(listenDay) + '">🎧 Whole day ' + esc(listenDay) + '</a>'
+            : '') +
           '</div>' +
-          '<div class="almanac-listen-status"></div></div>';
+          '<div class="almanac-listen-status">Then in Safari: tap aA, choose Listen to Page.</div></div>';
       }
       if (entry) {
         html += '<div class="almanac-entry">' + entry.html + '</div>';
@@ -2790,7 +2580,6 @@
       }
       content.innerHTML = html;
       bindCopyables(content);
-      bindAlmanacListen(content, entry);
       content.scrollTop = 0;
     }).catch(function () {
       content.innerHTML = '<div class="section-empty">The almanac could not be loaded. ' +
@@ -2803,7 +2592,6 @@
     if (!modal || modal.hidden) return;
     modal.hidden = true;
     document.body.classList.remove('modal-open');
-    narrStop();
     var pushed = almanacPushedState;
     almanacPushedState = false;
     if (pushed && !fromPopstate) history.back();
@@ -2833,6 +2621,8 @@
         html += '</div>';
 
         html += '<div class="card-body">';
+        html += '<a class="jp-btn almanac-day-listen" href="listen.html#day=' + encodeURIComponent(grp.day) + '">🎧 Listen to ' +
+          (grp.day === 'substitutes' ? 'these entries' : 'day ' + esc(grp.day)) + '</a>';
         for (var p = 0; p < grp.placeIds.length; p++) {
           var pid = grp.placeIds[p];
           var place = placeById(pid);

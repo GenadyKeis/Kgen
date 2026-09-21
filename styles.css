@@ -2737,6 +2737,13 @@ body.modal-open {
 .almanac-listen-main {
   flex: 1 1 110px;
 }
+a.almanac-listen-main {
+  text-align: center;
+  justify-content: center;
+}
+.almanac-day-listen {
+  margin: 4px 0 8px;
+}
 .almanac-listen-status {
   font-size: 12px;
   color: var(--text-dim);
