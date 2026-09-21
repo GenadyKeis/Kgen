@@ -1,6 +1,21 @@
 {
   "quick": {
     "intro": "Not every night ends in a restaurant. These are the places near each base that are still open when a day runs late, checked against their operators’ own pages. Read the closing time, not the distance.",
+    "till": {
+      "title": "At the till, and on the way out",
+      "lines": [
+        "🔴 You are asked whether you are eating in. That question is not small talk: the shop sets the tax from your answer at the moment of sale — 10% eating in, 8% taking away — and it does not change afterwards whatever you then do. Say takeaway and take it away.",
+        "You will also be asked “atatamemasu ka?” (温めますか？) — shall I heat it? Hai (はい) yes, daijōbu desu (だいじょうぶです) no. Chopsticks are asked about separately and handed over at the counter.",
+        "🔴 Supermarket discount stickers come in three waves: around 16:00–17:00 at 10–20% off, around 19:00–20:00 at 20–30%, and from one to two hours before closing at 30% down to half price. Bento, lunch plates and sushi get an extra pass at about 14:00–16:00.",
+        "⚑ The wave starts EARLY when rain is forecast, because the customers come early too.",
+        "⚠ There are almost no bins on Japanese streets. The bin is beside the shop counter or its door — use it before you walk out, or the packaging comes back to the hotel with you."
+      ],
+      "sources": [
+        "https://www.u-c-zeirishi.com/eat-in-tax-evasion/",
+        "https://www.j-cast.com/2025/09/07507223.html?p=all"
+      ],
+      "verified_on": "2026-08-22"
+    },
     "bases": [
       {
         "id": "tokyo-akihabara",
@@ -412,10 +427,297 @@
       "⛔ Two hubs have no shop worth walking to: Yoshino station, and Uji station itself. Both are covered above — buy in Kyoto before you board."
     ]
   },
+  "dish_guides": {
+    "intro": "What to do at the table, by dish — not by restaurant. Every line is true of the dish wherever it is served, and anything that depends on what the shop puts in front of you is written as a condition, so nothing here tells you a table has something on it that it may not.",
+    "guides": [
+      {
+        "id": "tsukemen",
+        "title": "Tsukemen — dipping noodles",
+        "icon": "🍜",
+        "steps": [
+          {
+            "text": "First mouthful with nothing on it — a few strands straight off the pile.",
+            "sources": [
+              "https://news.yahoo.co.jp/expert/articles/840ee61efb93a3feceb794f08fe55899f9880878"
+            ]
+          },
+          {
+            "text": "Lift a few strands at a time and dip them. Don’t tip the broth over the noodles: a small dip at a time is what keeps the broth hot, and cold broth wrecks the bowl.",
+            "sources": [
+              "https://news.yahoo.co.jp/expert/articles/840ee61efb93a3feceb794f08fe55899f9880878"
+            ]
+          },
+          {
+            "text": "When the noodles are gone, ask for sūpu-wari (スープ割り) — the broth comes back thinned with hot dashi, to drink. Some counters put a pot out to do it yourself, and some shops don’t offer it at all.",
+            "sources": [
+              "https://tsukemen-ikkenni-shikazu.com/blog/a-thorough-explanation-of-how-to-enjoy-tsukemen-soup-with-broth-tips-for-enjoying-it-to-the-last-drop/"
+            ]
+          },
+          {
+            "text": "Pour the hot dashi in a little at a time and taste as you go. All at once and it goes flat.",
+            "sources": [
+              "https://tsukemen-ikkenni-shikazu.com/blog/a-thorough-explanation-of-how-to-enjoy-tsukemen-soup-with-broth-tips-for-enjoying-it-to-the-last-drop/"
+            ]
+          }
+        ],
+        "verified_on": "2026-08-23"
+      },
+      {
+        "id": "tonkatsu",
+        "title": "Tonkatsu — pork cutlet",
+        "icon": "🍖",
+        "steps": [
+          {
+            "text": "If a small mortar of sesame seeds is on the table, grind it while you wait. Stop when you can smell the sesame — about seven-tenths ground — then pour the sauce into the mortar and dip the cutlet in that. Plenty of shops don’t do sesame at all.",
+            "sources": [
+              "https://x.com/shinjukusaboten/status/1817756761673339267",
+              "https://note.com/sakakishinichiro/n/n92a2f9925a54"
+            ]
+          },
+          {
+            "text": "Start two or three slices in from the wide, meaty end rather than at the near edge — that is where the frying lands most evenly.",
+            "sources": [
+              "https://nikkan-spa.jp/1603358"
+            ]
+          },
+          {
+            "text": "Eat the first pieces bare — or with salt, if salt is on the table — and leave any sauce for the last two or three. Sauce on a hot cutlet softens the crust immediately.",
+            "sources": [
+              "https://nikkan-spa.jp/1603358"
+            ]
+          }
+        ],
+        "verified_on": "2026-08-23"
+      },
+      {
+        "id": "sukiyaki",
+        "title": "Sukiyaki — beef in the iron pan",
+        "icon": "🥩",
+        "steps": [
+          {
+            "text": "If the egg comes whole, beat it in the small bowl before the first meat is ready. That bowl is the one thing at this table that is yours to do.",
+            "sources": [
+              "https://foodmedia.tenpos.com/knowledge/33584/"
+            ]
+          },
+          {
+            "text": "If a server is cooking the pot, leave it alone: don’t turn the meat, don’t add anything, take what is put in front of you.",
+            "sources": [
+              "https://retty.me/area/PRE26/ARE658/SUB11101/100000026675/",
+              "https://note.com/hirosuke07/n/n1e23e2689c20"
+            ]
+          },
+          {
+            "text": "Roll the meat through the egg and eat it straight away. The egg drops the temperature enough to eat it hot off the pan, and takes the edge off the sugar-and-soy.",
+            "sources": [
+              "https://foodmedia.tenpos.com/knowledge/33584/"
+            ]
+          }
+        ],
+        "verified_on": "2026-08-23"
+      },
+      {
+        "id": "soba",
+        "title": "Soba — buckwheat noodles",
+        "icon": "🥢",
+        "steps": [
+          {
+            "text": "Look at what arrives. Noodles already sitting in hot broth: there is nothing to dip and no ritual — eat. Noodles on a basket or tray with the broth in a separate cup: dip.",
+            "sources": [
+              "https://soba-navi.jp/soba-culture-history/soba-tabekata-manner/"
+            ]
+          },
+          {
+            "text": "Hot bowl: a light shake of shichimi if the shaker is there. The broth in a hot bowl is mixed weaker than dipping broth, so drinking it down is normal.",
+            "sources": [
+              "https://soba-navi.jp/soba-culture-history/soba-tabekata-manner/"
+            ]
+          },
+          {
+            "text": "Take a small amount per mouthful and pull air in with the noodles. The slurp is the point, not a lapse.",
+            "sources": [
+              "https://sobahonda.com/blog_soba_howtoeat/"
+            ]
+          },
+          {
+            "text": "Eat it inside about five minutes. Soba goes soft fast.",
+            "sources": [
+              "https://sobahonda.com/blog_soba_howtoeat/"
+            ]
+          },
+          {
+            "text": "Cold tray only: dip the last third of the noodles, not the whole length. Wasabi goes on the noodles, not stirred into the broth.",
+            "sources": [
+              "https://sobahonda.com/blog_soba_howtoeat/",
+              "https://www.ukiya.co.jp/column/043-2/"
+            ]
+          },
+          {
+            "text": "Cold tray only: soba-yu, the cloudy cooking water, may come at the end — pour it into the leftover dipping broth and drink that. It isn’t served everywhere, and a hot bowl usually doesn’t get it.",
+            "sources": [
+              "https://soba-navi.jp/soba-culture-history/soba-tabekata-manner/"
+            ]
+          }
+        ],
+        "verified_on": "2026-08-23"
+      },
+      {
+        "id": "okonomiyaki-hiroshima",
+        "title": "Okonomiyaki, Hiroshima style",
+        "icon": "🥞",
+        "steps": [
+          {
+            "text": "If it is set down on the hot plate in front of you, eat it there with the small spatula (hera) — or ask for chopsticks if you would rather. On a dish, chopsticks.",
+            "sources": [
+              "https://hirano-fukuoka.com/advice.html"
+            ]
+          },
+          {
+            "text": "Cut bite-sized squares off the near edge as you go — not pizza wedges. A wedge will not sit on the hera.",
+            "sources": [
+              "https://www.anago-chikuwa.co.jp/blog/2019/06/29/post-12096/"
+            ]
+          },
+          {
+            "text": "Work through the cabbage side before you get into the noodle layer. The noodles hold the heat and will burn your mouth.",
+            "sources": [
+              "https://www.anago-chikuwa.co.jp/blog/2019/06/29/post-12096/",
+              "https://hirano-fukuoka.com/advice.html"
+            ]
+          }
+        ],
+        "verified_on": "2026-08-23"
+      },
+      {
+        "id": "kamameshi",
+        "title": "Kamameshi — rice in its own iron pot",
+        "icon": "🍚",
+        "steps": [
+          {
+            "text": "Lift the lid and mix the toppings right through the rice before serving any of it. The rice against the hot iron comes out firmer than the rice in the middle, and mixing is what evens that out.",
+            "sources": [
+              "https://hachikamaya.com/howtoenjoy/"
+            ]
+          },
+          {
+            "text": "The pot slides while you stir and the iron is hot — steady it with the towel or a napkin rather than a bare hand.",
+            "sources": [
+              "https://kama-ichie.com/kamameshi/"
+            ]
+          },
+          {
+            "text": "Serve one bowl at a time and put the lid back on between them, or what is left dries out.",
+            "sources": [
+              "https://kama-ichie.com/kamameshi/"
+            ]
+          },
+          {
+            "text": "The scorched layer on the bottom is the last thing out of the pot. If it won’t lift, put the lid back for a minute — under-steamed okoge is what refuses to come away.",
+            "sources": [
+              "https://kama-ichie.com/kamameshi/"
+            ]
+          },
+          {
+            "text": "If there is hot tea or dashi at the table, the last bowlful takes it poured over.",
+            "sources": [
+              "https://kama-ichie.com/kamameshi/",
+              "https://hachikamaya.com/howtoenjoy/"
+            ]
+          }
+        ],
+        "verified_on": "2026-08-23"
+      },
+      {
+        "id": "anago-meshi",
+        "title": "Anago-meshi — grilled conger eel on rice",
+        "icon": "🍱",
+        "steps": [
+          {
+            "text": "Eaten in, it comes hot off the grill — nothing to add, nothing to mix.",
+            "sources": [
+              "https://serai.jp/gourmet/225732"
+            ]
+          },
+          {
+            "text": "The box is not a bowl that went cold: it is built to be eaten at room temperature, and it keeps improving for the first couple of hours as the tare works down into the rice. Don’t go looking for somewhere to reheat it.",
+            "sources": [
+              "https://serai.jp/gourmet/225732",
+              "https://www.anagomeshi.com/bento.html"
+            ]
+          }
+        ],
+        "verified_on": "2026-08-23"
+      },
+      {
+        "id": "kakinoha-zushi",
+        "title": "Kakinoha-zushi — sushi in a persimmon leaf",
+        "icon": "🍣",
+        "steps": [
+          {
+            "text": "Peel the leaf back from one side only, like a banana skin, until half the sushi shows, and eat it straight out of the leaf. Your fingers never touch the rice.",
+            "sources": [
+              "https://shop.izasa.co.jp/lp/tabekata"
+            ]
+          },
+          {
+            "text": "The leaf is not eaten. It is there to keep the fish, and it is bitter.",
+            "sources": [
+              "https://shop.izasa.co.jp/lp/tabekata",
+              "https://www.izasa.co.jp/blog/kakinoha_tabekata-572/"
+            ]
+          },
+          {
+            "text": "Room temperature is the point — the rice is at its best around 20°C. If a box has been sitting somewhere cold, give it time out of the bag before you start.",
+            "sources": [
+              "https://shop.izasa.co.jp/lp/tabekata"
+            ]
+          }
+        ],
+        "verified_on": "2026-08-23"
+      },
+      {
+        "id": "saikyo-yaki",
+        "title": "Grilled fish — saikyō-yaki and any yakizakana",
+        "icon": "🐟",
+        "steps": [
+          {
+            "text": "Work from the left across to the right, taking the upper, backbone side before the belly. On a fillet that means straight along from the near edge rather than digging into the middle.",
+            "sources": [
+              "https://tankuma.jp/column/6821/",
+              "https://www.toranomon-ichiba.com/column/t-category/gyokai/yakizakana-tabekata.html"
+            ]
+          },
+          {
+            "text": "Never turn the fish over. If it is a whole fish, lift the backbone clear with the chopsticks and eat the underside where it lies.",
+            "sources": [
+              "https://www.toranomon-ichiba.com/column/t-category/gyokai/yakizakana-tabekata.html",
+              "https://tankuma.jp/column/6821/"
+            ]
+          },
+          {
+            "text": "Put the bones together at the far side of the plate as they come out.",
+            "sources": [
+              "https://www.toranomon-ichiba.com/column/t-category/gyokai/yakizakana-tabekata.html"
+            ]
+          },
+          {
+            "text": "Eat the skin with the flesh rather than leaving it at the side.",
+            "sources": [
+              "https://www.toranomon-ichiba.com/column/t-category/gyokai/yakizakana-tabekata.html"
+            ]
+          }
+        ],
+        "verified_on": "2026-08-23"
+      }
+    ]
+  },
   "venues": {
     "mendokoro-honda": {
       "tabelog_url": "https://tabelog.com/en/tokyo/A1310/A131001/13246285/",
-      "order_how": "🔴 Ticket machine, and the rule is not the obvious one. The machine stands OUTSIDE the shop, but you do NOT buy first — signs on the wall ask you to join the back of the queue with no ticket. A member of staff comes down the line and asks whether you have bought one; that is your cue to step out, buy, and return to your place. The machine takes cards, Suica and QR.",
+      "order_how": "🔴 Ticket machine, and the rule is not the obvious one. Where the machine stands has changed — older reports put it outside the shop, a 2026 one inside — but either way you do NOT buy first — signs on the wall ask you to join the back of the queue with no ticket. A member of staff comes down the line and asks whether you have bought one; that is your cue to step out, buy, and return to your place. The machine takes cards, Suica and QR.",
+      "machine_buttons": [{"jp": "醤油ラーメン", "en": "Shōyu ramen — the plain bowl", "pick": true}, {"jp": "特製醤油ラーメン", "en": "Special shōyu — 7 slices of pork, an egg, better nori"}],
+      "machine_hint": "The special may be printed 特製醤油 without ラーメン.",
+      "machine_src": "Menu names: map.yahoo.co.jp/v3/place/2elVx3eGgf6/menu (lists 特製醤油, 特製醤油ラーメン, 醤油ラーメン), read 2026-09-21. Machine layout NOT seen; one search snippet says a new machine went in 2026-07-30 (unverified) — recheck the shop X @T_N_W2020HONDA in October.",
       "order": "Shōyu ramen — the flagship bowl. A tare blended from five soy sauces over a broth drawn from chicken, pork, dried sardine and clam, with thin noodles cut in-house from three Japanese wheat flours.",
       "order_jp": "醤油ラーメンを ひとつ お願いします",
       "order_romaji": "Shōyu rāmen o hitotsu onegai shimasu",
@@ -424,7 +726,10 @@
     },
     "kamayoshi": {
       "tabelog_url": "https://tabelog.com/en/tokyo/A1310/A131002/13201863/",
-      "order_how": "Order at the counter — staff take it, no ticket machine. Cards, Suica and QR are all accepted. Fourteen seats and no reservations. ⚠ Two things the shop asks in writing: it has no storage, so do not arrive with the trolley — leave luggage at the hotel first; and at weekday lunch it asks you to free the table 20–30 minutes after eating. Neither applies if you go at dinner.",
+      "order_how": "🔴 Ticket machine just inside the door — buy the ticket first, then take a seat and hand it over. Cards, Suica and QR are listed for the shop; whether the machine itself takes them is not confirmed, so carry cash. Fourteen seats and no reservations. ⚠ Two things the shop asks in writing: it has no storage, so do not arrive with the trolley — leave luggage at the hotel first; and at weekday lunch it asks you to free the table 20–30 minutes after eating. Neither applies if you go at dinner.",
+      "machine_buttons": [{"jp": "ごぼう天うどん", "en": "Burdock-tempura udon — the order", "pick": true}, {"jp": "とりちくわ天うどん", "en": "Chicken and fish-cake tempura udon"}, {"jp": "肉うどん", "en": "Beef udon"}],
+      "machine_hint": "Hot or cold: あつあつ is hot, ひやひや is cold.",
+      "machine_src": "Ticket machine inside the door: tokyo-tabearuki.com/kamayoshi-kanda (posted 2020-07, updated 2023-05) and buruchan.com/mensho_kamayoshi (review 2025-05-26: 食券機, staff help). Labels: ごぼう天うどん (tokyo-tabearuki); とりちくわ天うどん, 肉うどん, あつあつ/ひやひや (tablemark.co.jp/udon/tkubiyori/86.html). The old card said \"no ticket machine\" — contradicted by all three. Read 2026-09-21.",
       "order": "Gobō-ten udon — burdock in tempura batter, fried fresh and laid across the noodles in big pieces.",
       "order_jp": "ごぼう天うどんを ひとつ お願いします",
       "order_romaji": "Gobō-ten udon o hitotsu onegai shimasu",
@@ -461,6 +766,8 @@
     "gonokami-seisakusho": {
       "tabelog_url": "https://tabelog.com/en/tokyo/A1304/A130401/13120708/",
       "order_how": "🔴 Ticket machine, and 🔴 CASH ONLY. The machine is INSIDE, and what you do depends on whether there is a line: if the pavement outside is clear, walk in and buy at the machine; if people are waiting on the street, join the end and let staff call you in — do not walk past a line to the machine. ⚑ At the hour this day arrives there is usually no line. ⚑ When you hand the ticket over you are asked one question: nami-mori or ko-mori (並盛 / 小盛), regular or small portion. Say 'nami-mori' for regular.",
+      "machine_buttons": [{"jp": "海老つけ麺", "en": "Shrimp tsukemen — the base bowl", "pick": true}, {"jp": "海老つけ麺 味玉入り", "en": "The same, with a marinated egg"}, {"jp": "海老トマトつけ麺", "en": "Shrimp-tomato tsukemen"}, {"jp": "海老味噌つけ麺", "en": "Shrimp-miso tsukemen"}],
+      "machine_src": "Menu names: gonokamiseisakusho.com/shinjyuku.html (the shop's own menu page), read 2026-09-21. Machine layout NOT seen.",
       "order": "Ebi tsukemen — cold noodles you dip into a hot, almost sauce-thick soup made from a large quantity of sweet shrimp.",
       "order_jp": "海老つけ麺を ひとつ お願いします",
       "order_romaji": "Ebi tsukemen o hitotsu onegai shimasu",
@@ -479,6 +786,8 @@
     "rokurinsha": {
       "tabelog_url": "https://tabelog.com/en/tokyo/A1302/A130201/13093047/",
       "order_how": "🔴 Ticket machine, pay first — cash and transport IC both work at it. Staff walk the head of the queue to the machine, so join the line first and buy when you are brought forward. The touch panel's main split is tsukemen versus chūka soba. ⚠ Before 10:00 the shop serves a morning-only menu and the regular bowls are not available; at dinner that does not apply.",
+      "machine_buttons": [{"jp": "特製つけめん", "en": "Special tsukemen — the order", "pick": true}, {"jp": "つけめん", "en": "Plain tsukemen"}, {"jp": "中華そば", "en": "Chūka soba — the hot ramen, not the dipping bowl"}],
+      "machine_src": "Menu names from search-result snippets of Retty/Hotpepper/Tabelog listings (特製つけめん（小）, 特製中華そば（並）, つけめん, 辛つけめん), read 2026-09-21; the shop's own pages were image-only. Sizes print as （小）/（並）. Machine layout NOT seen.",
       "order": "Tokusei tsukemen — very thick, wavy noodles served cold beside a dense, long-reduced pork-and-fish dipping broth, with the shop's own shredded pork and a marinated egg added.",
       "order_jp": "特製つけめんを ひとつ お願いします",
       "order_romaji": "Tokusei tsukemen o hitotsu onegai shimasu",
@@ -512,7 +821,9 @@
     },
     "kaidashimen-kitada": {
       "tabelog_url": "https://tabelog.com/en/kyoto/A2601/A260101/26036754/",
-      "order_how": "Order at the counter; cards and QR are accepted. Only eleven seats, no reservations. ⚑ It runs straight through from seven in the morning to ten at night with no midday break, which is what makes it the fallback whenever a day lands back in Kyoto at an hour when nothing else is serving.",
+      "order_how": "🔴 Ticket machine just inside the door on your right — buy the ticket first, then take a seat. It is a display-type machine and takes cashless payment. Only eleven seats, no reservations. ⚑ It runs straight through from seven in the morning to ten at night with no midday break, which is what makes it the fallback whenever a day lands back in Kyoto at an hour when nothing else is serving.",
+      "machine_buttons": [{"jp": "貝だし麺", "en": "Shellfish-broth ramen — the order", "pick": true}, {"jp": "蛤らぁ麺", "en": "Clam-only ramen"}, {"jp": "貝のしぐれ煮ごはん", "en": "Side: shellfish simmered in soy, over rice"}],
+      "machine_src": "kyotopi.jp/articles/rnb0L (article 2024-09-04): 「店内入ってすぐ右手に券売機」, display-type, cashless; labels 貝だし麺 / 蛤らぁ麺 / 中華そば / 貝のしぐれ煮ごはん. Read 2026-09-21. The old card said \"Order at the counter\".",
       "order": "Kai-dashi men — ramen in a clear shellfish broth: asari and hamaguri clams and scallops, simmered down. ⚑ Not a meat-free bowl, whatever the name suggests: the shop's ramen come topped with chāshū, and both pork and chicken appear on its board.",
       "order_jp": "貝だし麺を ひとつ お願いします",
       "order_romaji": "Kai-dashi men o hitotsu onegai shimasu",
@@ -584,7 +895,10 @@
     },
     "kunimatsu-ekie": {
       "tabelog_url": "https://tabelog.com/en/hiroshima/A3401/A340121/34024373/",
-      "order_how": "⚠ Credit cards are NOT accepted, but Suica and nanaco are. Counter seats only, inside the ekie complex at Hiroshima Station, so it is reachable without leaving the building. No reservations. ⚑ Ask for soy on the Musashibō half when you order — Kunimatsu's half is sesame only, and that difference is the whole reason for this order.",
+      "order_how": "🔴 Ticket machine — buy before you sit. ⚠ Credit cards are NOT accepted, but Suica and nanaco are. Counter seats only, inside the ekie complex at Hiroshima Station, so it is reachable without leaving the building. No reservations. ⚑ Ask for soy on the Musashibō half when you order — Kunimatsu's half is sesame only, and that difference is the whole reason for this order.",
+      "machine_buttons": [{"jp": "ハーフ＆ハーフ", "en": "Half-and-half — the order", "pick": true}],
+      "machine_hint": "Older reviews print the set as ごまハーフ＆ハーフセット.",
+      "machine_src": "Machine at the entrance: tabicocolo.com and syokuki.com snippets. Label: syokuki.com/archives/21295 (2018 — old; the 2026 machine may differ). Read 2026-09-21. Machine layout NOT seen.",
       "order": "Half-and-half — one bowl split between the two shops' versions of shiru-nashi tantanmen, Hiroshima's soupless dandan noodles, with a soft egg and rice.",
       "order_jp": "ハーフ＆ハーフを ひとつ お願いします",
       "order_romaji": "Hāfu ando hāfu o hitotsu onegai shimasu",
@@ -620,7 +934,10 @@
     },
     "ginjo-ramen-kubota": {
       "tabelog_url": "https://tabelog.com/en/kyoto/A2601/A260101/26004660/",
-      "order_how": "🔴 CASH ONLY — no cards, no e-money, no QR. Ten seats, counter only, no reservations. It runs a lunch service and then a separate evening one, so it is shut through the middle of the afternoon.",
+      "order_how": "🔴 Ticket machine — buy before you sit. 🔴 CASH ONLY — no cards, no e-money, no QR. Ten seats, counter only, no reservations. It runs a lunch service and then a separate evening one, so it is shut through the middle of the afternoon.",
+      "machine_buttons": [{"jp": "吟醸つけ麺 味噌", "en": "Miso tsukemen — the order", "pick": true}, {"jp": "吟醸醤油らーめん", "en": "The soy ramen — the lighter bowl"}],
+      "machine_hint": "The order is printed with つけ麺 BEFORE 味噌, not the way it is spoken.",
+      "machine_src": "Miso tsukemen label 「吟醸つけ麺 味噌」: kyoto-gourmet.info/kyoto-ramen/miso/kubota (page dated 2026-08-17, one review — it also calls the soy bowl 鶏醤油ラーメン, which disagrees with the card's 吟醸醤油らーめん; unresolved). Machine just inside the entrance: 4travel/Hotpepper snippet, read 2026-09-21. Machine layout NOT seen.",
       "order": "Ginjō miso tsukemen — thick noodles dipped into a broth of three misos, Shinshū miso with gochujang and tenmenjan, wok-fried with pork mince, fish powder and the shop's own chilli oil.",
       "order_jp": "吟醸味噌つけ麺を ひとつ お願いします",
       "order_romaji": "Ginjō miso tsukemen o hitotsu onegai shimasu",
@@ -638,12 +955,12 @@
     },
     "chanko-kirishima-edonoren": {
       "tabelog_url": "https://tabelog.com/en/tokyo/A1312/A131201/13202196/",
-      "order_how": "Cards, Suica and QR accepted. Eighty-eight seats inside the Edo NOREN hall directly outside Ryōgoku station's west exit — the building with a full-size sumo ring in its atrium. Reservations taken. Cooked at the table.",
-      "order": "Kirishima chanko — the Michinoku stable's own recipe, a clear chicken-based pot finished at your table.",
-      "order_jp": "ちゃんこ鍋を ひとつ お願いします",
-      "order_romaji": "Chanko-nabe o hitotsu onegai shimasu",
+      "order_how": "🔴 ORDER THE SET, NOT THE COURSE. The lunch course (昼十両, ¥3,850) states 「こちらのメニューは二人前よりご注文承ります」 — two portions minimum, so it is shut to you. The hiru-gozen sets carry no minimum: they are individual paper pots, one per person. ⚠ Both gozen are WEEKDAY ONLY, and day 20 is a Tuesday, so they are on. Cards, Suica and QR accepted. Eighty-eight seats inside the Edo NOREN hall directly outside Ryōgoku station's west exit — the building with a full-size sumo ring in its atrium. Reservations taken. Cooked at the table.",
+      "order": "Hiru-gozen — the weekday lunch set: an individual paper-pot chanko on the Michinoku stable's recipe, with small dishes and sashimi. The west set (昼御膳-西-) is ¥1,650; the east one (昼御膳-東-) is ¥2,200 and adds a five-piece sashimi and fried chicken.",
+      "order_jp": "昼御膳を ひとつ お願いします",
+      "order_romaji": "Hiru-gozen o hitotsu onegai shimasu",
       "order_why": "The restaurant belongs to the former ōzeki Kirishima, and its own page says the pot is his stable's recipe rather than a general-purpose one; the ceremonial apron he wore as a wrestler hangs in the room. ⚑ The Michinoku stable itself no longer exists — he reached the sumo association's retirement age of 65 in April 2024, the stable closed and its wrestlers moved to Otowayama. The building is worth the walk on its own: Edo NOREN keeps a full-size dohyō on its ground floor.",
-      "order_backup": "Kirishima teba-saki, the shop's own fried chicken wings, are ¥700 and are what the menu puts beside the pot. ⚑ Ask for the rice or noodles at the end, cooked in the remaining broth."
+      "order_backup": "Kirishima teba-saki, the shop's own fried chicken wings, are ¥700 and are what the menu puts beside the pot. ⚑ The gozen is a complete tray, so do not count on the rice-and-noodle finish here — that belongs to the full pot, and it is the primary (Ami) that serves you one."
     },
     "hiraso-horyuji": {
       "order_how": "Table service, at the gate of Hōryū-ji — half shop, half restaurant, with a café counter as well. You can eat in and buy boxes to take away from the same building.",
@@ -731,7 +1048,9 @@
     },
     "tsukumo-udon": {
       "tabelog_url": "https://tabelog.com/en/kyoto/A2601/A260101/26031063/",
-      "order_how": "Order at the counter; every card, Suica and the QR apps are all accepted. Thirty-five seats — 21 at the counter, 14 at tables — on the second basement level of Kyoto Station, at the east exit. ⚑ 07:00 to 22:00 with last orders at 21:30, no closing day, which is what makes it the answer when a day has run long.",
+      "order_how": "🔴 Ticket machine at the front of the shop — buy the ticket first, then hand it over at the counter. Cards, Suica and QR are listed for the shop; whether the machine itself takes them is not confirmed, so carry cash. Thirty-five seats — 21 at the counter, 14 at tables — on the second basement level of Kyoto Station, at the east exit. ⚑ 07:00 to 22:00 with last orders at 21:30, no closing day, which is what makes it the answer when a day has run long.",
+      "machine_buttons": [{"jp": "鶏卵カレーうどん", "en": "Egg-and-curry udon — the order", "pick": true}],
+      "machine_src": "Machine in front of the shop: kyotopi.jp/articles/g4Vbp snippet. Label 鶏卵カレーうどん: kyotopi.jp/articles/0CJFD (2024-02-23). Read 2026-09-21. The old card said \"Order at the counter\".",
       "order": "Keiran curry udon (鶏卵カレーうどん) — the bowl the shop leads with: curry broth over its own udon with egg through it.",
       "order_jp": "鶏卵カレーうどんを ひとつ お願いします",
       "order_romaji": "Keiran karē udon o hitotsu onegai shimasu",
@@ -1154,27 +1473,27 @@
       "meals": [
         {
           "slot": "lunch",
-          "time_hint": "Nara city, after Kasuga-taisha and on the way down towards Naramachi",
+          "time_hint": "Nara, straight out of the Shōsō-in at about 12:30 — the arcade is ten minutes west, and the hillside halls come after",
           "restaurants": [
             {
               "place_id": "wakakusa-curry",
               "role": "primary",
               "badges": ["tabelog ↗", "Curry WEST Hyakumeiten 2026"],
               "cuisine": "Spice curry",
-              "note": "🔴 There is no lunch deadline here, whichever Shōsō-in slot you hold: last entry 19:25, last order 19:30, no midday break. In the Mochiidono covered arcade, ten to twelve minutes west of the museum — and everything is plated to order, so nothing sells out. ⚑ Two minutes further on is Menya K (麺屋K), an eleven-seat Ramen WEST Hyakumeiten counter that shuts when it sells out: if the arcade shows no line, take it as an upgrade. Nothing depends on it, and after about 15:00 assume it is gone rather than fifty-fifty."
+              "note": "🔴 There is no lunch deadline here: last entry 19:25, last order 19:30, no midday break. In the Mochiidono covered arcade, ten to twelve minutes west of the museum — and everything is plated to order, so nothing sells out. ⚑ Two minutes further on is Menya K (麺屋K), an eleven-seat Ramen WEST Hyakumeiten counter that shuts when it sells out: at 12:45 it is likely still serving, and if the arcade shows no line, take it as an upgrade. Nothing depends on it."
             },
             {
               "place_id": "kamameshi-shizuka-koen",
               "role": "backup",
               "badges": ["tabelog ↗"],
               "cuisine": "Kamameshi — rice cooked to order over a flame",
-              "note": "In Nara Park itself, by the museum — the only one of the day's three that needs no walk west into the arcades. 🔴 16:00 is the last order, not the close. It is the cover for the day running late rather than early: the half-hour queue reported around 11:20 is a weekday figure and a peak Saturday runs longer than that, but by 15:00 it is gone either way. ⚠ It declares one irregular closure a month. If that closure lands on the 31st, the primary answers at any hour and the only cost is the walk west into the arcade."
+              "note": "In Nara Park itself, by the museum door — the only one of the day’s three that needs no walk west into the arcades. ⚠ At 12:30 on a peak Saturday expect its queue, so walk past unless the door is clear. 🔴 16:00 is the last order, not the close; by 15:00 the queue is gone, which makes it the answer if you come off the hillside hungry instead of eating at midday. ⚠ It declares one irregular closure a month. If that closure lands on the 31st, the primary answers at any hour and the only cost is the walk west into the arcade."
             }
           ]
         },
         {
           "slot": "dinner",
-          "time_hint": "At base — back at Kyoto Station around 21:15, off the 20:28 Kintetsu express from Nara",
+          "time_hint": "At base — back at Kyoto Station about 18:40, off the 17:44 Kintetsu express from Nara",
           "restaurants": [
             {
               "place_id": "honke-daiichi-asahi",
@@ -1182,14 +1501,14 @@
               "badges": ["tabelog ↗", "Ramen WEST Hyakumeiten 2025"],
               "cuisine": "Kyoto shōyu ramen",
               "price": "¥1,000–1,999",
-              "note": "Five minutes from the hotel, and it runs to one in the morning — nothing tonight can arrive too late for it. ⚑ The Nara alternative is still open: if you are out of the Shōsō-in by 19:45 rather than 20:00, Tori-soba Zagin at Kintetsu Nara (105 m from the station on the Konishi-dōri arcade, Saturday 11:00 to 21:00, last order 20:30, walk-in only, no closing day) becomes comfortable and is worth taking, with four later trains behind it. Decide on the night."
+              "note": "Five minutes from the hotel, and it runs to one in the morning — nothing tonight can arrive too late for it. ⚑ The Nara alternative is comfortable now that the day ends by daylight: Tori-soba Zagin at Kintetsu Nara (105 m from the station on the Konishi-dōri arcade, Saturday 11:00 to 21:00, last order 20:30, walk-in only, no closing day) — eat there before the train and the evening in Kyoto is free. Decide on the day."
             },
             {
               "place_id": "arata",
               "role": "backup",
               "badges": ["tabelog ↗", "Okonomiyaki Hyakumeiten 2025"],
               "cuisine": "Kyoto beta-yaki okonomiyaki and teppanyaki",
-              "note": "Last order 22:15, and ten minutes on foot from the Hachijō exit — 700 m, measured 2026-08-22 — which is the side the Kintetsu from Nara arrives on. ⚠ On the Kintetsu you are at the station ~21:15, so the walk lands you ~21:25 with an hour in hand. ⛔ Cash only while the primary takes cards — carry notes for it. ⚑ Reservations here are recommended, not merely accepted."
+              "note": "Last order 22:15, and ten minutes on foot from the Hachijō exit — 700 m, measured 2026-08-22 — which is the side the Kintetsu from Nara arrives on. On the 17:44 express you are at the station about 18:40, with hours in hand. ⛔ Cash only while the primary takes cards — carry notes for it. ⚑ Reservations here are recommended, not merely accepted."
             }
           ]
         }
@@ -1329,8 +1648,19 @@
       "city": "Kyoto",
       "meals": [
         {
+          "slot": "lunch",
+          "time_hint": "Between the temples — about 12:30 at Daigo, or held to the Inari approach about 15:45",
+          "restaurants": [
+            {
+              "role": "primary",
+              "cuisine": "Shrine-approach food at Fushimi Inari, or a carried konbini lunch",
+              "note": "⚠ Daigo-ji's own restaurant has been shut for renewal since 1 June 2026 with no reopening date on the temple's page, so do not count on eating inside the precinct. Two honest shapes: buy onigiri at the konbini by Daigo station before 09:00 and eat in the precinct, or hold lunch until the Inari approach at about 15:45, where the street between the station and the gate is lined with counters — none of them is checked here, so this is a street to walk, not a venue to aim for. 🔴 The shrine's own rule: eat only in the marked rest areas, never while walking. Either way, be through lunch before the loop; there is nothing to eat on the mountain paths."
+            }
+          ]
+        },
+        {
           "slot": "dinner",
-          "time_hint": "At base — back at Kyoto Station around 17:30–18:00, and the descent from Kami-Daigo may run late",
+          "time_hint": "At base — back at Kyoto Station about 17:45–18:05 off the Inari train",
           "restaurants": [
             {
               "place_id": "kyoto-yamaroku",
@@ -1338,7 +1668,7 @@
               "badges": ["tabelog ↗", "Shokudō Hyakumeiten 2026"],
               "cuisine": "Saikyō-yaki — miso-cured grilled fish set meals",
               "price": "¥2,000–2,999",
-              "note": "Dinner service is 16:00 to 20:00 with last order 19:30. The descent from Kami-Daigo is the part of this day that can run long, and the backup below trades until one in the morning. Reservations are not accepted at all: numbered tickets are issued at the door, and with 21 seats a wait is plausible between 18:00 and 19:00. ⚠ Like Morita-ya eleven floors above it, it follows the department store's own calendar, which is not published far enough ahead to read; tonight's backup is outside that building."
+              "note": "Dinner service is 16:00 to 20:00 with last order 19:30. The Inari loop is the part of this day that can run long, and the trains home run every ten minutes; the backup below trades until one in the morning. Reservations are not accepted at all: numbered tickets are issued at the door, and with 21 seats a wait is plausible between 18:00 and 19:00. ⚠ Like Morita-ya eleven floors above it, it follows the department store's own calendar, which is not published far enough ahead to read; tonight's backup is outside that building."
             },
             {
               "place_id": "honke-daiichi-asahi",
@@ -1346,7 +1676,7 @@
               "badges": ["tabelog ↗", "Ramen WEST Hyakumeiten 2025"],
               "cuisine": "Kyoto shōyu ramen",
               "price": "¥1,000–1,999",
-              "note": "Five minutes on foot from the hotel, and it runs to one in the morning — if Daigo runs past the primary's 19:30 last order, there is no hour tonight can reach at which this kitchen is shut. ⚑ Check the sign on arrival: a second Kyoto shop at Sanjō-Kawaramachi keeps the same Thursday closure at a different address, so the closing day alone will not tell the two apart. This is the honten, at Higashi-Shiokōji Mukaihata-chō 845."
+              "note": "Five minutes on foot from the hotel, and it runs to one in the morning — if the Inari loop runs past the primary's 19:30 last order, there is no hour tonight can reach at which this kitchen is shut. ⚑ Check the sign on arrival: a second Kyoto shop at Sanjō-Kawaramachi keeps the same Thursday closure at a different address, so the closing day alone will not tell the two apart. This is the honten, at Higashi-Shiokōji Mukaihata-chō 845."
             }
           ]
         }
@@ -1602,7 +1932,7 @@
         },
         {
           "slot": "dinner",
-          "time_hint": "Back at Ryōgoku about 17:15, or about 18:00 if the Kiyosumi garden coda is taken — a table around 17:45–18:15",
+          "time_hint": "Back at Ryōgoku between about 16:30 and 17:15 whether or not the Kiyosumi garden coda is taken — the garden shuts at 17:00 — so a table from about 17:30",
           "restaurants": [
             {
               "place_id": "tonkatsu-hasegawa-ryogoku",
@@ -1610,7 +1940,7 @@
               "badges": ["tabelog ↗", "Tonkatsu Hyakumeiten 2026"],
               "cuisine": "Tonkatsu",
               "price": "¥1,000–2,999",
-              "note": "On Yokozuna Yokochō, off Ryōgoku's east exit. Last order 22:00, which makes the Kiyosumi detour free: back at Ryōgoku about 18:00 with it, about 17:15 without, and neither competes with dinner. ✅ Open all year bar a new-year closure, with no irregular closing days. ⚑ The upside option: Teuchi Ren (手打式 らぁ麺 蓮), eight minutes on foot and six from Morishita, so it sits on the Kiyosumi axis, 17:00 to 22:00, closed Mondays. 🔴 Take it only if there is no line: seven seats, cash only, and waiting inside is not permitted. On the last night, with no following day to absorb a failed walk-in, that is a bet and not a fallback. ⚑ The kanji is 蓮, not 練 — the wrong character will not find it on the ground."
+              "note": "On Yokozuna Yokochō, off Ryōgoku's east exit. Last order 22:00, which makes the Kiyosumi detour free: the garden shuts at 17:00, so you are back at Ryōgoku by about 17:15 with it and earlier without, and neither competes with dinner. ✅ Open all year bar a new-year closure, with no irregular closing days. ⚑ The upside option: Teuchi Ren (手打式 らぁ麺 蓮), eight minutes on foot and six from Morishita, so it sits on the Kiyosumi axis, 17:00 to 22:00, closed Mondays. 🔴 Take it only if there is no line: seven seats, cash only, and waiting inside is not permitted. On the last night, with no following day to absorb a failed walk-in, that is a bet and not a fallback. ⚑ The kanji is 蓮, not 練 — the wrong character will not find it on the ground."
             },
             {
               "place_id": "mendokoro-honda",
@@ -1618,7 +1948,7 @@
               "badges": ["tabelog ↗", "Ramen TOKYO Hyakumeiten 2020–2023 · 2025"],
               "cuisine": "Handmade-noodle shōyu ramen",
               "price": "¥1,000–1,999",
-              "note": "At Akihabara, two Sōbu stops from Ryōgoku and about four minutes — and 150 metres from the hotel, so it is also the answer if you simply ride straight home. ⚑ But check the clock before you ride: its evening service does not open until 18:00, so on the early version of this day — back at Ryōgoku about 17:15, at Akihabara by about 17:25 — you would be standing outside it. Either take the Kiyosumi garden coda and arrive after six, or eat at the primary in Ryōgoku, which is already serving."
+              "note": "At Akihabara, two Sōbu stops from Ryōgoku and about four minutes — and 150 metres from the hotel, so it is also the answer if you simply ride straight home. ⚑ But check the clock before you ride: its evening service does not open until 18:00, and either version of this day has you at Akihabara by about 17:30 — the garden coda cannot stretch it, because Kiyosumi shuts at 17:00. Eat at the primary in Ryōgoku, which is already serving, or drop the bag at the hotel and come back here at six."
             }
           ]
         }

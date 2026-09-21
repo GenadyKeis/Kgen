@@ -28,6 +28,21 @@
     return Math.floor((today - start) / 86400000) + 1;
   }
 
+  // Days until he LEAVES — the outbound flight's date, in the phone's own time, not Day 1.
+  // tripDayNumber() counts to meta.start_date (2026-10-22, Narita arrival) in Japan time,
+  // and both countdowns also added 1 to it, so on 24 Aug 2026 the app said 59 while El Al
+  // said 57: one day for the +1, one for counting to the arrival instead of the departure
+  // (LY91 leaves TLV on 21 Oct). Before the trip he is not in Japan, so local midnight is
+  // the right day boundary. Falls back to start_date if reservations failed to load.
+  function daysUntilDeparture(meta) {
+    var flights = DATA.reservations && DATA.reservations.flights;
+    var dep = (flights && flights[0] && flights[0].depart) ? flights[0].depart.slice(0, 10) : meta.start_date;
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var target = new Date(dep + 'T00:00:00');
+    return Math.round((target - today) / 86400000);
+  }
+
   // textContent -> innerHTML escapes & < > but NOT the double quote, and this
   // app puts esc() output inside double-quoted attributes everywhere
   // (data-copy, data-speak, data-fs-jp, href="tel:…"). Five data strings today
@@ -407,7 +422,8 @@
     var infoParts = [];
     var hoursTxt = todayHoursSummary(place);
     if (hoursTxt) infoParts.push('<span class="place-hours">' + esc(hoursTxt) + '</span>');
-    if (place.price) infoParts.push('<span>' + esc(place.price) + '</span>');
+    // ⚠ NOT nowrap: a price is often a sentence (Sanbō-in's runs 114 characters) — see .place-price.
+    if (place.price) infoParts.push('<span class="place-price">' + esc(place.price) + '</span>');
     if (place.address_jp) {
       infoParts.push('<span class="copyable" data-copy="' + esc(place.address_jp) + '">' + esc(place.address_jp) + '</span>');
     }
@@ -728,6 +744,13 @@
   // and must not claim to know where in the day he is: the blocks are listed in their order
   // and he taps one. Nothing here advances by itself.
 
+  function machinePick(rest) {
+    var mb = rest.machine_buttons;
+    if (!mb || !mb.length) return '';
+    for (var i = 0; i < mb.length; i++) { if (mb[i].pick) return mb[i].jp; }
+    return mb[0].jp;
+  }
+
   function todaysFoodCards(dayNum) {
     var out = [];
     var food = DATA.food;
@@ -750,7 +773,11 @@
             en: (rest.order || '').split('—')[0].trim(),
             slot: slot.charAt(0).toUpperCase() + slot.slice(1),
             role: rest.role === 'backup' ? 'Backup' : '',
-            venue: place ? place.name_en : ''
+            venue: place ? place.name_en : '',
+            // The word to find on the ticket machine (see the food card's machine block).
+            // The counter cards carried only the SPOKEN sentence, which appears on no
+            // button — and this is the surface he opens first, standing outside the shop.
+            machine: machinePick(rest)
           });
         }
       }
@@ -771,6 +798,7 @@
         '<div class="today-card-text">' +
           '<div class="today-card-jp">' + esc(c.jp) + '</div>' +
           '<div class="today-card-meta">' + esc(meta) + '</div>' +
+          (c.machine ? '<div class="today-card-machine">🎫 Machine: ' + esc(c.machine) + '</div>' : '') +
         '</div>' +
         '<button type="button" class="today-card-say" data-speak="' + esc(c.jp) +
           '" aria-label="Say it aloud">🔊</button>' +
@@ -825,7 +853,7 @@
     if (cur < 1) {
       // Before departure there is no day to show, so it says what it does know and points at
       // what matters now, rather than pretending to be a trip day.
-      var diff = -cur + 1;
+      var diff = daysUntilDeparture(meta);
       html += '<div class="today-pre">' +
         '<div class="today-pre-count">' + diff + '</div>' +
         '<div class="today-pre-label">day' + (diff !== 1 ? 's' : '') + ' until departure</div>' +
@@ -1162,6 +1190,7 @@
           '<div class="today-card-text">' +
             '<div class="today-card-jp">' + esc(c.jp) + '</div>' +
             '<div class="today-card-meta">' + esc(meta) + '</div>' +
+            (c.machine ? '<div class="today-card-machine">🎫 Machine: ' + esc(c.machine) + '</div>' : '') +
           '</div>' +
           '<button type="button" class="today-card-say" data-speak="' + esc(c.jp) +
             '" aria-label="Say it aloud">🔊</button>' +
@@ -1272,11 +1301,22 @@
   // tonkatsu's entire first step. Generic cuisine advice attached to a specific
   // restaurant is how a card comes to say something untrue at the counter.
   //
-  // ⛔ Do not rebuild this from `cuisine`, or from a dish name, or from any
-  // general source about a cuisine. The bar it failed is: about the dish the card
-  // ORDERS · verified AT THAT VENUE · and not knowing it leaves him stuck rather
-  // than inelegant. Anything that clears all three belongs on the venue's own
-  // fields, where the venue is the subject.
+  // ⇒ REPLACED 2026-08-23 by `food.dish_guides`, on a plan the user commissioned
+  // the same day (`planning/EATING-GUIDES-PLAN.md`, drafts and sourcing in
+  // `EATING-GUIDES-DRAFTS.md`). This block used to end "do not rebuild this";
+  // read that as the standard the replacement had to meet, because it is the one
+  // it was designed against. What changed is not the formatting — it is that
+  // **no sentence in a guide asserts what any venue does.** Venue-dependent gear
+  // is written as a condition ("If a small mortar of sesame seeds is on the
+  // table…"), so a card cannot be wrong about a table it has never seen. Every
+  // step carries its source URL in the data, recipe and cooking pages were
+  // refused at the URL before being read, and five steps that still asserted
+  // gear — an oshibori, a tonsui, salt, a whole egg, a hera — were rewritten in
+  // a separate cross-check pass rather than by the reasoning that drafted them.
+  //
+  // ⚠ `checkDishGuides()` in sanity-check.js is SHAPE-ONLY and says so in its own
+  // comment. It is not the reason to trust this; the reason is the sourcing, and
+  // the test is the user opening guides at random on his phone.
   //
   // ⚑ `.eat-card` / `.eat-header` / `.eat-body` / `.eat-icon` / `.eat-title` /
   // `.eat-chevron` SURVIVE this deletion — renderQuickCard() uses them for its
@@ -1284,7 +1324,50 @@
   // They are nested inside an already-collapsible card and so cannot reuse
   // `.card-body` / `.chevron`: those are DESCENDANT selectors and an open parent
   // would force every child open. Only the guide-only rules went (`.eat-stage`,
-  // `.eat-lines`, `.eat-jp`, `.eat-src`, `.eat-index`).
+  // `.eat-lines`, `.eat-jp`, `.eat-src`, `.eat-index`). renderDishGuides()
+  // below reuses the six survivors and adds its own `.dg-*` rules — the retired
+  // names are not revived, so an old flags.json stays readable.
+
+  // ─── Dish guides — what to do at the table, by dish ────────
+  // Sibling of renderQuickCard() in every structural respect: one collapsible
+  // card at the head of the Food tab holding eleven nested `.eat-card`
+  // collapsibles, all of them shut on load. It earns head-of-tab space on the
+  // same stated condition the deleted ekiben card failed — a dish belongs to no
+  // single day, the way a base belongs to no single day.
+  //
+  // ⚠ Citations live in the data and are deliberately NOT rendered. They are how
+  // the claim was checked, which is a fact about my work rather than about his
+  // dinner; a card that argues for itself is the thing he ruled out on
+  // 2026-08-21 ("I won't be wasting time on the trip reading you justifications").
+  function renderDishGuides(food) {
+    var dg = food.dish_guides;
+    if (!dg || !dg.guides || !dg.guides.length) return '';
+    var html = '<div class="payment-rules dish-guides-card">';
+    html += '<div class="card-header" data-toggle>';
+    html += '<span class="payment-rules-icon">🥢</span>';
+    html += '<span class="payment-rules-title">How each dish is eaten</span>';
+    html += '<span class="chevron">▶</span>';
+    html += '</div>';
+    html += '<div class="card-body">';
+    if (dg.intro) html += '<div class="quick-intro">' + longProse(dg.intro) + '</div>';
+    for (var i = 0; i < dg.guides.length; i++) {
+      var guide = dg.guides[i];
+      if (!guide.steps || !guide.steps.length) continue;
+      html += '<div class="eat-card">';
+      html += '<div class="eat-header" data-toggle>';
+      html += '<span class="eat-icon">' + esc(guide.icon || '🍽') + '</span>';
+      html += '<span class="eat-title">' + esc(guide.title) + '</span>';
+      html += '<span class="eat-chevron">▶</span>';
+      html += '</div>';
+      html += '<div class="eat-body"><ol class="dg-steps">';
+      for (var s = 0; s < guide.steps.length; s++) {
+        html += '<li class="dg-step">' + longProse(guide.steps[s].text) + '</li>';
+      }
+      html += '</ol></div></div>';
+    }
+    html += '</div></div>';
+    return html;
+  }
 
   // ─── Quick prepared food near each base ────────────────────
   // The other half of the 2026-08-22 request: not every meal is a restaurant.
@@ -1328,6 +1411,20 @@
     html += '</div>';
     html += '<div class="card-body">';
     if (q.intro) html += '<div class="quick-intro">' + longProse(q.intro) + '</div>';
+    // The eat-in/takeaway tax question, "atatamemasu ka", the three
+    // discount-sticker waves and the missing street bins. These shipped inside
+    // the deleted `bought-food` cuisine guide and the delete took them out of
+    // the app entirely — a consequence its own commit message flagged. Re-homed
+    // here on the user's instruction: they belong to a BASE and to every konbini
+    // and supermarket in this card, not to any one dish.
+    if (q.till && q.till.lines && q.till.lines.length) {
+      html += '<div class="quick-till">';
+      html += '<div class="quick-till-title">' + esc(q.till.title || 'At the till') + '</div>';
+      for (var t = 0; t < q.till.lines.length; t++) {
+        html += '<div class="quick-till-line">' + longProse(q.till.lines[t]) + '</div>';
+      }
+      html += '</div>';
+    }
     for (var b = 0; b < q.bases.length; b++) {
       var base = q.bases[b];
       html += '<div class="eat-card">';
@@ -1378,6 +1475,7 @@
     // (three of them across twenty-one days) and a cuisine guide belongs to a
     // DISH. Neither has a day it could be folded onto. Both ship collapsed.
     html += renderQuickCard(food);
+    html += renderDishGuides(food);
 
     // Per-day food cards
     if (food.days && food.days.length > 0) {
@@ -1461,6 +1559,30 @@
             if (rest.order_how) {
               html += '<div class="food-how">';
               html += '<span class="food-order-label">How to order:</span> ' + longProse(rest.order_how);
+              html += '</div>';
+            }
+            // The ticket machine, as the words printed on its buttons (user,
+            // 2026-09-21: "no one will be listening at the machine"). order_jp is a
+            // SPOKEN sentence and appears on no button, so this is a separate,
+            // visual match target: no 🔊, no 📋 — nobody to speak to, nothing to
+            // paste into. Each tile opens the same full-screen overlay as the order
+            // line, for a glance from arm's length.
+            if (rest.machine_buttons && rest.machine_buttons.length) {
+              html += '<div class="food-machine">';
+              html += '<div class="food-machine-title">🎫 Find these words on the machine</div>';
+              for (var mbi = 0; mbi < rest.machine_buttons.length; mbi++) {
+                var mb = rest.machine_buttons[mbi];
+                html += '<div class="machine-btn' + (mb.pick ? ' machine-btn-pick' : '') + '"' +
+                  ' role="button" tabindex="0"' +
+                  ' data-mb-jp="' + esc(mb.jp) + '" data-mb-en="' + esc(mb.en) + '">' +
+                  '<span class="machine-jp">' + esc(mb.jp) + '</span>' +
+                  '<span class="machine-en">' + esc(mb.en) + '</span></div>';
+              }
+              if (rest.machine_hint) {
+                html += '<div class="machine-hint">' + esc(rest.machine_hint) + '</div>';
+              }
+              // Language, not a venue claim: the same word is printed several ways.
+              html += '<div class="machine-hint">Spelling varies — ラーメン / らーめん / らぁ麺, つけ麺 / つけめん. Match the leading kanji.</div>';
               html += '</div>';
             }
             if (rest.order) {
@@ -1930,6 +2052,19 @@
         });
       });
     }
+    // Ticket-machine button words: same overlay, NOT speakable — there is nobody at
+    // a machine to say anything to. Its own attribute (data-mb-*) so that
+    // bindShowToStaff's `[data-fs-jp]` sweep does not also claim it and add 🔊.
+    var mbs = root.querySelectorAll('.machine-btn');
+    for (var mb = 0; mb < mbs.length; mb++) {
+      mbs[mb].addEventListener('click', function (e) {
+        e.stopPropagation();
+        showFullscreen({
+          jp: this.getAttribute('data-mb-jp'),
+          en: this.getAttribute('data-mb-en')
+        });
+      });
+    }
   }
 
   function bindShowToStaff(root) {
@@ -2391,6 +2526,224 @@
     return almanacPromise;
   }
 
+  // ─── Almanac read-aloud ─────────────────────────────────
+  // Requested 2026-09-21: walk with headphones, press a button, hear the entry
+  // while looking around. It is speechSynthesis on the handset — the same engine
+  // as 🔊 Say it — so it needs no signal and no audio files (the almanac is ~6 h of
+  // speech; recorded, it would be ~130 MB of cache).
+  // ⚠ UNVERIFIED ON HIS PHONE: whether iOS keeps speaking with the screen LOCKED.
+  // The wake lock below keeps the screen on while it plays so the feature does not
+  // depend on the answer; his lock-screen test decides whether that is still needed.
+  // The text is NOT DATA.almanac[id].text: that field is the lower-cased search
+  // index and carries every `.source` line ("checked 2026-08-15"), URLs and the
+  // 🔴 ⚑ ⚠ markers — read aloud, that is citation noise in his ear.
+  var narr = { chunks: [], heads: [], idx: 0, playing: false, gen: 0, rate: 1,
+               wake: null, wakeOn: true, bar: null };
+
+  function narrClean(t) {
+    return t
+      // Japanese script: an English voice cannot read it and mangles the line.
+      .replace(/[\u3000-\u303F\u3040-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uFF00-\uFFEF]+/g, '')
+      .replace(/[\u{1F300}-\u{1FAFF}\u2600-\u27BF\u2B00-\u2BFF\uFE0F\u200D]/gu, '')
+      .replace(/\u21D2/g, ' - ')          // the implication arrow becomes a pause
+      .replace(/\u2192/g, ' to ')
+      .replace(/(\d)\s*[\u2013\u2014-]\s*(\d)/g, '$1 to $2')
+      .replace(/~\s*(\d)/g, 'about $1')
+      .replace(/\(\s*[,;:]?\s*\)/g, '')
+      .replace(/\s+([,.;:!?)])/g, '$1')
+      .replace(/\(\s+/g, '(')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  // Sentence-split anything long: short utterances are the reliable ones on iOS.
+  function narrSplit(text) {
+    if (text.length <= 420) return [text];
+    var parts = text.match(/[^.!?]+[.!?]+["')\]]*\s*|[^.!?]+$/g) || [text];
+    var out = [], cur = '';
+    for (var i = 0; i < parts.length; i++) {
+      if (cur && (cur + parts[i]).length > 420) { out.push(cur.trim()); cur = ''; }
+      cur += parts[i];
+    }
+    if (cur.trim()) out.push(cur.trim());
+    return out;
+  }
+
+  function narrBuild(entryHtml) {
+    var doc = new DOMParser().parseFromString('<div id="r">' + entryHtml + '</div>', 'text/html');
+    var root = doc.getElementById('r');
+    var chunks = [], heads = [];
+    var nodes = root.querySelectorAll('.section-title, p, li, .unverified');
+    for (var i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      if (n.classList.contains('source') || n.closest('.links')) continue;
+      // A .unverified box holds <p>s of its own; read the box's text only through them.
+      if (n.classList.contains('unverified') && n.querySelector('p')) continue;
+      var isHead = n.classList.contains('section-title');
+      var t = narrClean(n.textContent || '');
+      if (!/[A-Za-z]{2}/.test(t)) continue;
+      if (isHead) {
+        heads.push(chunks.length);
+        chunks.push({ text: t.replace(/[.:]?$/, '.'), head: t });
+      } else {
+        var pieces = narrSplit(t);
+        for (var j = 0; j < pieces.length; j++) chunks.push({ text: pieces[j] });
+      }
+    }
+    return { chunks: chunks, heads: heads };
+  }
+
+  function narrVoice() {
+    var voices = (window.speechSynthesis.getVoices && window.speechSynthesis.getVoices()) || [];
+    var best = null, bestScore = -1;
+    for (var i = 0; i < voices.length; i++) {
+      var v = voices[i];
+      if (!v.lang || v.lang.toLowerCase().indexOf('en') !== 0) continue;
+      var sc = 1;
+      if (/premium|enhanced/i.test(v.name)) sc += 4;
+      if (v.localService) sc += 2;
+      if (/^en[-_](us|gb)$/i.test(v.lang)) sc += 1;
+      if (sc > bestScore) { best = v; bestScore = sc; }
+    }
+    return best;
+  }
+
+  function narrHeadIndexAt(idx) {
+    var h = -1;
+    for (var i = 0; i < narr.heads.length; i++) { if (narr.heads[i] <= idx) h = i; }
+    return h;
+  }
+
+  function narrUpdateUi() {
+    var bar = narr.bar;
+    if (!bar) return;
+    var toggle = bar.querySelector('[data-narr="toggle"]');
+    if (toggle) toggle.textContent = narr.playing ? '⏸ Pause' : (narr.idx > 0 && narr.idx < narr.chunks.length ? '▶ Resume' : '🎧 Listen');
+    var st = bar.querySelector('.almanac-listen-status');
+    if (st) {
+      var h = narrHeadIndexAt(narr.idx);
+      if (narr.idx >= narr.chunks.length && narr.chunks.length) st.textContent = 'Finished';
+      else if (h >= 0) st.textContent = 'Section ' + (h + 1) + ' of ' + narr.heads.length + ' · ' + narr.chunks[narr.heads[h]].head;
+      else st.textContent = narr.chunks.length ? 'Ready' : 'Nothing to read';
+    }
+  }
+
+  function narrWake(on) {
+    try {
+      if (on && narr.wakeOn && navigator.wakeLock && !narr.wake) {
+        navigator.wakeLock.request('screen').then(function (l) {
+          narr.wake = l;
+          l.addEventListener('release', function () { narr.wake = null; });
+        }).catch(function () {});
+      } else if (!on && narr.wake) {
+        narr.wake.release(); narr.wake = null;
+      }
+    } catch (e) {}
+  }
+
+  function narrSpeak(gen) {
+    if (gen !== narr.gen || !narr.playing) return;
+    if (narr.idx >= narr.chunks.length) {
+      narr.playing = false; narrWake(false); narrUpdateUi(); return;
+    }
+    var u = new SpeechSynthesisUtterance(narr.chunks[narr.idx].text);
+    u.rate = narr.rate;
+    var v = narrVoice();
+    if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-US'; }
+    u.onend = function () {
+      if (gen !== narr.gen) return;
+      narr.idx++; narrUpdateUi(); narrSpeak(gen);
+    };
+    u.onerror = function (ev) {
+      if (gen !== narr.gen) return;
+      if (ev && (ev.error === 'interrupted' || ev.error === 'canceled')) return;
+      narr.idx++; narrSpeak(gen);   // one bad chunk must not end the walk
+    };
+    window.speechSynthesis.speak(u);
+    narrUpdateUi();
+  }
+
+  function narrStart(fromIdx) {
+    narr.gen++;
+    var gen = narr.gen;
+    narr.idx = fromIdx;
+    narr.playing = true;
+    // cancel() straight before speak() can swallow the new utterance on iOS (see
+    // speakJapanese) — so cancel only if something is queued, and speak on the
+    // next tick.
+    if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+      window.speechSynthesis.cancel();
+    }
+    narrWake(true);
+    narrUpdateUi();
+    setTimeout(function () { narrSpeak(gen); }, 80);
+  }
+
+  function narrStop() {
+    narr.gen++;
+    narr.playing = false;
+    narr.idx = 0;
+    try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {}
+    narrWake(false);
+    narrUpdateUi();
+  }
+
+  function narrPause() {
+    narr.gen++;
+    narr.playing = false;
+    try { window.speechSynthesis.cancel(); } catch (e) {}
+    narrWake(false);
+    narrUpdateUi();
+  }
+
+  function narrJump(dir) {
+    if (!narr.heads.length) return;
+    var h = narrHeadIndexAt(narr.idx);
+    // Past the first chunk of a section, ⏮ restarts that section rather than
+    // jumping to the one before it.
+    if (dir < 0 && h >= 0 && narr.idx > narr.heads[h] + 1) dir = 0;
+    var target = Math.max(0, Math.min(narr.heads.length - 1, h + dir));
+    if (h < 0 && dir > 0) target = 0;
+    var at = narr.heads[target];
+    if (narr.playing) narrStart(at); else { narr.idx = at; narrUpdateUi(); }
+  }
+
+  function bindAlmanacListen(content, entry) {
+    narrStop();
+    var bar = content.querySelector('.almanac-listen');
+    narr.bar = bar;
+    if (!bar || !entry) return;
+    var built = narrBuild(entry.html);
+    narr.chunks = built.chunks;
+    narr.heads = built.heads;
+    narr.idx = 0;
+    narrUpdateUi();
+    bar.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-narr]');
+      if (!b) return;
+      var act = b.getAttribute('data-narr');
+      if (act === 'toggle') {
+        if (narr.playing) narrPause();
+        else narrStart(narr.idx >= narr.chunks.length ? 0 : narr.idx);
+      } else if (act === 'prev') narrJump(-1);
+      else if (act === 'next') narrJump(1);
+      else if (act === 'rate') {
+        narr.rate = narr.rate >= 1.4 ? 1 : (narr.rate >= 1.2 ? 1.4 : 1.2);
+        b.textContent = narr.rate + '×';
+        if (narr.playing) narrStart(narr.idx);   // the rate applies from the current paragraph
+      } else if (act === 'wake') {
+        narr.wakeOn = !narr.wakeOn;
+        b.textContent = narr.wakeOn ? '🔆 Screen on' : '🌙 Screen off';
+        if (narr.playing) narrWake(narr.wakeOn);
+      }
+    });
+  }
+
+  document.addEventListener('visibilitychange', function () {
+    // A wake lock is released when the page is hidden; take it back on return.
+    if (document.visibilityState === 'visible' && narr.playing) narrWake(true);
+  });
+
   function openAlmanac(placeId) {
     var modal = document.getElementById('almanac-modal');
     var content = document.getElementById('almanac-content');
@@ -2419,6 +2772,17 @@
       if (entry && entry.sub) {
         html += '<div class="almanac-sub">' + esc(entry.sub) + '</div>';
       }
+      if (entry && 'speechSynthesis' in window) {
+        html += '<div class="almanac-listen">' +
+          '<div class="almanac-listen-row">' +
+          '<button type="button" class="jp-btn" data-narr="prev" aria-label="Previous section">⏮</button>' +
+          '<button type="button" class="jp-btn almanac-listen-main" data-narr="toggle">🎧 Listen</button>' +
+          '<button type="button" class="jp-btn" data-narr="next" aria-label="Next section">⏭</button>' +
+          '<button type="button" class="jp-btn" data-narr="rate" aria-label="Speed">' + narr.rate + '×</button>' +
+          '<button type="button" class="jp-btn" data-narr="wake">' + (narr.wakeOn ? '🔆 Screen on' : '🌙 Screen off') + '</button>' +
+          '</div>' +
+          '<div class="almanac-listen-status"></div></div>';
+      }
       if (entry) {
         html += '<div class="almanac-entry">' + entry.html + '</div>';
       } else {
@@ -2426,6 +2790,7 @@
       }
       content.innerHTML = html;
       bindCopyables(content);
+      bindAlmanacListen(content, entry);
       content.scrollTop = 0;
     }).catch(function () {
       content.innerHTML = '<div class="section-empty">The almanac could not be loaded. ' +
@@ -2438,6 +2803,7 @@
     if (!modal || modal.hidden) return;
     modal.hidden = true;
     document.body.classList.remove('modal-open');
+    narrStop();
     var pushed = almanacPushedState;
     almanacPushedState = false;
     if (pushed && !fromPopstate) history.back();
@@ -2504,7 +2870,7 @@
     var currentDay = tripDayNumber(meta);
 
     if (currentDay < 1) {
-      var diff = -currentDay + 1;
+      var diff = daysUntilDeparture(meta);
       sub.textContent = diff + ' day' + (diff !== 1 ? 's' : '') + ' until departure';
       if (title) title.textContent = meta.trip_name || 'Japan 2026';
     } else if (currentDay <= meta.total_days) {
@@ -2816,6 +3182,12 @@
               fParts.push(rest.cuisine, rest.order, rest.note, rest.price,
                 rest.order_how, rest.order_jp, rest.order_romaji,
                 rest.order_why, rest.order_backup);
+              // The machine button words, so 特製 or 海老つけ麺 finds the card too.
+              if (rest.machine_buttons) {
+                for (var sb = 0; sb < rest.machine_buttons.length; sb++) {
+                  fParts.push(rest.machine_buttons[sb].jp, rest.machine_buttons[sb].en);
+                }
+              }
               var rPlace = rest.place_id ? placeById(rest.place_id) : null;
               if (rPlace) fParts.push(rPlace.name_en, rPlace.name_jp);
             }
@@ -2833,12 +3205,18 @@
 
       // One row per base, routed to Food where its head-of-tab card lives.
       // Without it, searching "Yoshinoya" finds nothing at all — that prose
-      // belongs to no day. (The companion cuisine-guide rows went with the
-      // feature on 2026-08-23.)
+      // belongs to no day. ⚑ The `till` block is folded into EVERY base row
+      // rather than getting a row of its own: it is one card that all the bases
+      // share, so "atatamemasu" should land wherever he is looking.
       if (DATA.food.quick && DATA.food.quick.bases) {
+        var tillText = '';
+        if (DATA.food.quick.till && DATA.food.quick.till.lines) {
+          tillText = [DATA.food.quick.till.title]
+            .concat(DATA.food.quick.till.lines).filter(Boolean).join(' ');
+        }
         for (var qb = 0; qb < DATA.food.quick.bases.length; qb++) {
           var qbase = DATA.food.quick.bases[qb];
-          var qParts = [qbase.title, qbase.nights, qbase.note];
+          var qParts = [qbase.title, qbase.nights, qbase.note, tillText];
           for (var qo = 0; qo < qbase.options.length; qo++) {
             var opt = qbase.options[qo];
             qParts.push(opt.name_en, opt.name_jp, opt.kind, opt.hours,
@@ -2850,6 +3228,29 @@
             icon: '🏪',
             title: 'Quick food — ' + qbase.title,
             detail: qbase.nights
+          });
+        }
+      }
+
+      // One row per dish guide, routed to Food. A guide belongs to no day, so
+      // without this "soba-yu" or "sūpu-wari" finds nothing — which is exactly
+      // what the 2026-08-23 delete left behind and its commit message recorded.
+      // ⚠ Only `text` is indexed, never the source URLs: a hit on a hostname
+      // would open a card that does not show the URL it matched.
+      if (DATA.food.dish_guides && DATA.food.dish_guides.guides) {
+        var dgs = DATA.food.dish_guides.guides;
+        for (var gi = 0; gi < dgs.length; gi++) {
+          var gRec = dgs[gi];
+          var gParts = [gRec.title, gRec.id];
+          for (var gs = 0; gs < (gRec.steps || []).length; gs++) {
+            gParts.push(gRec.steps[gs].text);
+          }
+          searchIndex.push({
+            text: gParts.filter(Boolean).join(' ').toLowerCase(),
+            section: 'food',
+            icon: gRec.icon || '🥢',
+            title: gRec.title,
+            detail: 'How it is eaten'
           });
         }
       }

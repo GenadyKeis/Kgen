@@ -1196,13 +1196,17 @@ main {
 .place-info span {
   white-space: nowrap;
 }
-/* ⚠ …except the address, which is the one item here that is a SENTENCE rather than a chip.
+/* ⚠ …except the address AND the price, which are SENTENCES rather than chips.
    Japanese addresses run to 40+ unbroken characters — 〒600-8175 京都府… measured 615px against
    a 393px screen — and nowrap made that a 615px box. It was invisible while every ancestor
    clipped it; making an open day card `overflow: visible` for the sticky header took the
-   clipping away and it started widening the whole document instead. The hours and the price
-   still must not break mid-token, so only this one wraps. */
-.place-info .copyable {
+   clipping away and it started widening the whole document instead.
+   🔴 2026-08-25: the 08-22 fix wrapped only the address and the SAME defect shipped in the
+   price — Nara National Museum's is 99 characters (570px), Sanbō-in's 114 — so Days 10 and
+   the Daigo-ji day were still shrunk to two thirds. Every free-text field in this row wraps;
+   only the hours chip ("Today (JST): 09:00–17:00") is short enough to stay nowrap. */
+.place-info .copyable,
+.place-info .place-price {
   white-space: normal;
   overflow-wrap: anywhere;
 }
@@ -1924,6 +1928,67 @@ a.food-badge.rating:active {
   line-height: 1.5;
 }
 
+/* ─── Ticket-machine button words ────────────────────────────
+   A visual MATCH target read at the machine, so the Japanese is large and the
+   English small. Tiles are tap targets (full-screen overlay) and meet the 44 px
+   minimum. No speaker or copy controls: nobody is listening at a machine. */
+.today-card-machine {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 4px;
+  word-break: break-word;
+}
+.food-machine {
+  background: var(--card-open);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin: 8px 0 8px 14px;
+}
+.food-machine-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.machine-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-height: 44px;
+  padding: 7px 10px;
+  margin-top: 6px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.machine-btn:active {
+  background: var(--tint-neutral);
+}
+.machine-btn-pick {
+  border: 2px solid var(--accent);
+}
+.machine-jp {
+  font-size: 22px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--text);
+  word-break: break-word;
+}
+.machine-en {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.machine-hint {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
 /* ─── Show-the-screen Japanese block ─────────────────────────
    Sized to be read by a member of staff at arm's length across a
    counter, not by the phone's owner. Everything else on the card is
@@ -2100,8 +2165,58 @@ a.jp-btn {
    The ones left are load-bearing: a base card sits inside the collapsible Food
    card, so it cannot reuse .card-body / .chevron, which are descendant
    selectors an open parent would force open. */
-.quick-card .eat-card {
+.quick-card .eat-card,
+.dish-guides-card .eat-card {
   margin-left: 0;
+}
+
+/* ─── Dish guides ─────────────────────────────────────────────
+   Numbered action steps inside a nested .eat-card. New names, deliberately:
+   .eat-stage / .eat-lines / .eat-jp / .eat-src / .eat-index were retired with
+   the 2026-08-23 delete and are not revived. Citations are in the data and are
+   never rendered, so there is no source rule here and there should not be one. */
+.dg-steps {
+  margin: 0;
+  padding: 0 0 0 20px;
+  list-style: decimal;
+}
+.dg-step {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  padding-left: 2px;
+}
+.dg-step::marker {
+  color: var(--accent);
+  font-weight: 600;
+}
+.dg-step:last-child {
+  margin-bottom: 0;
+}
+
+/* ─── Quick food: the till block ───────────────────────────── */
+.quick-till {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+.quick-till-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.quick-till-line {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+.quick-till-line:last-child {
+  margin-bottom: 0;
 }
 
 /* ─── Quick prepared food ─────────────────────────────────── */
@@ -2600,6 +2715,33 @@ body.modal-open {
      it; on iOS 13+ the scrolling behaves identically. */
   overscroll-behavior: contain;
   padding: 16px 16px calc(28px + env(safe-area-inset-bottom));
+}
+/* Read-aloud bar: sticky so Pause is under the thumb wherever the entry has scrolled to. */
+.almanac-listen {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+  margin-bottom: 10px;
+}
+.almanac-listen-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.almanac-listen .jp-btn {
+  min-height: 44px;
+}
+.almanac-listen-main {
+  flex: 1 1 110px;
+}
+.almanac-listen-status {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 6px;
+  min-height: 1.3em;
 }
 .almanac-name {
   font-size: 20px;
