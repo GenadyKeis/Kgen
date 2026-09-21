@@ -1196,17 +1196,13 @@ main {
 .place-info span {
   white-space: nowrap;
 }
-/* ⚠ …except the address AND the price, which are SENTENCES rather than chips.
+/* ⚠ …except the address, which is the one item here that is a SENTENCE rather than a chip.
    Japanese addresses run to 40+ unbroken characters — 〒600-8175 京都府… measured 615px against
    a 393px screen — and nowrap made that a 615px box. It was invisible while every ancestor
    clipped it; making an open day card `overflow: visible` for the sticky header took the
-   clipping away and it started widening the whole document instead.
-   🔴 2026-08-25: the 08-22 fix wrapped only the address and the SAME defect shipped in the
-   price — Nara National Museum's is 99 characters (570px), Sanbō-in's 114 — so Days 10 and
-   the Daigo-ji day were still shrunk to two thirds. Every free-text field in this row wraps;
-   only the hours chip ("Today (JST): 09:00–17:00") is short enough to stay nowrap. */
-.place-info .copyable,
-.place-info .place-price {
+   clipping away and it started widening the whole document instead. The hours and the price
+   still must not break mid-token, so only this one wraps. */
+.place-info .copyable {
   white-space: normal;
   overflow-wrap: anywhere;
 }
@@ -2104,58 +2100,8 @@ a.jp-btn {
    The ones left are load-bearing: a base card sits inside the collapsible Food
    card, so it cannot reuse .card-body / .chevron, which are descendant
    selectors an open parent would force open. */
-.quick-card .eat-card,
-.dish-guides-card .eat-card {
+.quick-card .eat-card {
   margin-left: 0;
-}
-
-/* ─── Dish guides ─────────────────────────────────────────────
-   Numbered action steps inside a nested .eat-card. New names, deliberately:
-   .eat-stage / .eat-lines / .eat-jp / .eat-src / .eat-index were retired with
-   the 2026-08-23 delete and are not revived. Citations are in the data and are
-   never rendered, so there is no source rule here and there should not be one. */
-.dg-steps {
-  margin: 0;
-  padding: 0 0 0 20px;
-  list-style: decimal;
-}
-.dg-step {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--text-dim);
-  margin-bottom: 8px;
-  padding-left: 2px;
-}
-.dg-step::marker {
-  color: var(--accent);
-  font-weight: 600;
-}
-.dg-step:last-child {
-  margin-bottom: 0;
-}
-
-/* ─── Quick food: the till block ───────────────────────────── */
-.quick-till {
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  border-radius: 10px;
-  padding: 10px 12px;
-  margin-bottom: 10px;
-}
-.quick-till-title {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 6px;
-}
-.quick-till-line {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--text-dim);
-  margin-bottom: 6px;
-}
-.quick-till-line:last-child {
-  margin-bottom: 0;
 }
 
 /* ─── Quick prepared food ─────────────────────────────────── */

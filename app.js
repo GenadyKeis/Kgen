@@ -28,21 +28,6 @@
     return Math.floor((today - start) / 86400000) + 1;
   }
 
-  // Days until he LEAVES — the outbound flight's date, in the phone's own time, not Day 1.
-  // tripDayNumber() counts to meta.start_date (2026-10-22, Narita arrival) in Japan time,
-  // and both countdowns also added 1 to it, so on 24 Aug 2026 the app said 59 while El Al
-  // said 57: one day for the +1, one for counting to the arrival instead of the departure
-  // (LY91 leaves TLV on 21 Oct). Before the trip he is not in Japan, so local midnight is
-  // the right day boundary. Falls back to start_date if reservations failed to load.
-  function daysUntilDeparture(meta) {
-    var flights = DATA.reservations && DATA.reservations.flights;
-    var dep = (flights && flights[0] && flights[0].depart) ? flights[0].depart.slice(0, 10) : meta.start_date;
-    var now = new Date();
-    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    var target = new Date(dep + 'T00:00:00');
-    return Math.round((target - today) / 86400000);
-  }
-
   // textContent -> innerHTML escapes & < > but NOT the double quote, and this
   // app puts esc() output inside double-quoted attributes everywhere
   // (data-copy, data-speak, data-fs-jp, href="tel:…"). Five data strings today
@@ -422,8 +407,7 @@
     var infoParts = [];
     var hoursTxt = todayHoursSummary(place);
     if (hoursTxt) infoParts.push('<span class="place-hours">' + esc(hoursTxt) + '</span>');
-    // ⚠ NOT nowrap: a price is often a sentence (Sanbō-in's runs 114 characters) — see .place-price.
-    if (place.price) infoParts.push('<span class="place-price">' + esc(place.price) + '</span>');
+    if (place.price) infoParts.push('<span>' + esc(place.price) + '</span>');
     if (place.address_jp) {
       infoParts.push('<span class="copyable" data-copy="' + esc(place.address_jp) + '">' + esc(place.address_jp) + '</span>');
     }
@@ -841,7 +825,7 @@
     if (cur < 1) {
       // Before departure there is no day to show, so it says what it does know and points at
       // what matters now, rather than pretending to be a trip day.
-      var diff = daysUntilDeparture(meta);
+      var diff = -cur + 1;
       html += '<div class="today-pre">' +
         '<div class="today-pre-count">' + diff + '</div>' +
         '<div class="today-pre-label">day' + (diff !== 1 ? 's' : '') + ' until departure</div>' +
@@ -1288,22 +1272,11 @@
   // tonkatsu's entire first step. Generic cuisine advice attached to a specific
   // restaurant is how a card comes to say something untrue at the counter.
   //
-  // ⇒ REPLACED 2026-08-23 by `food.dish_guides`, on a plan the user commissioned
-  // the same day (`planning/EATING-GUIDES-PLAN.md`, drafts and sourcing in
-  // `EATING-GUIDES-DRAFTS.md`). This block used to end "do not rebuild this";
-  // read that as the standard the replacement had to meet, because it is the one
-  // it was designed against. What changed is not the formatting — it is that
-  // **no sentence in a guide asserts what any venue does.** Venue-dependent gear
-  // is written as a condition ("If a small mortar of sesame seeds is on the
-  // table…"), so a card cannot be wrong about a table it has never seen. Every
-  // step carries its source URL in the data, recipe and cooking pages were
-  // refused at the URL before being read, and five steps that still asserted
-  // gear — an oshibori, a tonsui, salt, a whole egg, a hera — were rewritten in
-  // a separate cross-check pass rather than by the reasoning that drafted them.
-  //
-  // ⚠ `checkDishGuides()` in sanity-check.js is SHAPE-ONLY and says so in its own
-  // comment. It is not the reason to trust this; the reason is the sourcing, and
-  // the test is the user opening guides at random on his phone.
+  // ⛔ Do not rebuild this from `cuisine`, or from a dish name, or from any
+  // general source about a cuisine. The bar it failed is: about the dish the card
+  // ORDERS · verified AT THAT VENUE · and not knowing it leaves him stuck rather
+  // than inelegant. Anything that clears all three belongs on the venue's own
+  // fields, where the venue is the subject.
   //
   // ⚑ `.eat-card` / `.eat-header` / `.eat-body` / `.eat-icon` / `.eat-title` /
   // `.eat-chevron` SURVIVE this deletion — renderQuickCard() uses them for its
@@ -1311,50 +1284,7 @@
   // They are nested inside an already-collapsible card and so cannot reuse
   // `.card-body` / `.chevron`: those are DESCENDANT selectors and an open parent
   // would force every child open. Only the guide-only rules went (`.eat-stage`,
-  // `.eat-lines`, `.eat-jp`, `.eat-src`, `.eat-index`). renderDishGuides()
-  // below reuses the six survivors and adds its own `.dg-*` rules — the retired
-  // names are not revived, so an old flags.json stays readable.
-
-  // ─── Dish guides — what to do at the table, by dish ────────
-  // Sibling of renderQuickCard() in every structural respect: one collapsible
-  // card at the head of the Food tab holding eleven nested `.eat-card`
-  // collapsibles, all of them shut on load. It earns head-of-tab space on the
-  // same stated condition the deleted ekiben card failed — a dish belongs to no
-  // single day, the way a base belongs to no single day.
-  //
-  // ⚠ Citations live in the data and are deliberately NOT rendered. They are how
-  // the claim was checked, which is a fact about my work rather than about his
-  // dinner; a card that argues for itself is the thing he ruled out on
-  // 2026-08-21 ("I won't be wasting time on the trip reading you justifications").
-  function renderDishGuides(food) {
-    var dg = food.dish_guides;
-    if (!dg || !dg.guides || !dg.guides.length) return '';
-    var html = '<div class="payment-rules dish-guides-card">';
-    html += '<div class="card-header" data-toggle>';
-    html += '<span class="payment-rules-icon">🥢</span>';
-    html += '<span class="payment-rules-title">How each dish is eaten</span>';
-    html += '<span class="chevron">▶</span>';
-    html += '</div>';
-    html += '<div class="card-body">';
-    if (dg.intro) html += '<div class="quick-intro">' + longProse(dg.intro) + '</div>';
-    for (var i = 0; i < dg.guides.length; i++) {
-      var guide = dg.guides[i];
-      if (!guide.steps || !guide.steps.length) continue;
-      html += '<div class="eat-card">';
-      html += '<div class="eat-header" data-toggle>';
-      html += '<span class="eat-icon">' + esc(guide.icon || '🍽') + '</span>';
-      html += '<span class="eat-title">' + esc(guide.title) + '</span>';
-      html += '<span class="eat-chevron">▶</span>';
-      html += '</div>';
-      html += '<div class="eat-body"><ol class="dg-steps">';
-      for (var s = 0; s < guide.steps.length; s++) {
-        html += '<li class="dg-step">' + longProse(guide.steps[s].text) + '</li>';
-      }
-      html += '</ol></div></div>';
-    }
-    html += '</div></div>';
-    return html;
-  }
+  // `.eat-lines`, `.eat-jp`, `.eat-src`, `.eat-index`).
 
   // ─── Quick prepared food near each base ────────────────────
   // The other half of the 2026-08-22 request: not every meal is a restaurant.
@@ -1398,20 +1328,6 @@
     html += '</div>';
     html += '<div class="card-body">';
     if (q.intro) html += '<div class="quick-intro">' + longProse(q.intro) + '</div>';
-    // The eat-in/takeaway tax question, "atatamemasu ka", the three
-    // discount-sticker waves and the missing street bins. These shipped inside
-    // the deleted `bought-food` cuisine guide and the delete took them out of
-    // the app entirely — a consequence its own commit message flagged. Re-homed
-    // here on the user's instruction: they belong to a BASE and to every konbini
-    // and supermarket in this card, not to any one dish.
-    if (q.till && q.till.lines && q.till.lines.length) {
-      html += '<div class="quick-till">';
-      html += '<div class="quick-till-title">' + esc(q.till.title || 'At the till') + '</div>';
-      for (var t = 0; t < q.till.lines.length; t++) {
-        html += '<div class="quick-till-line">' + longProse(q.till.lines[t]) + '</div>';
-      }
-      html += '</div>';
-    }
     for (var b = 0; b < q.bases.length; b++) {
       var base = q.bases[b];
       html += '<div class="eat-card">';
@@ -1462,7 +1378,6 @@
     // (three of them across twenty-one days) and a cuisine guide belongs to a
     // DISH. Neither has a day it could be folded onto. Both ship collapsed.
     html += renderQuickCard(food);
-    html += renderDishGuides(food);
 
     // Per-day food cards
     if (food.days && food.days.length > 0) {
@@ -2589,7 +2504,7 @@
     var currentDay = tripDayNumber(meta);
 
     if (currentDay < 1) {
-      var diff = daysUntilDeparture(meta);
+      var diff = -currentDay + 1;
       sub.textContent = diff + ' day' + (diff !== 1 ? 's' : '') + ' until departure';
       if (title) title.textContent = meta.trip_name || 'Japan 2026';
     } else if (currentDay <= meta.total_days) {
@@ -2918,18 +2833,12 @@
 
       // One row per base, routed to Food where its head-of-tab card lives.
       // Without it, searching "Yoshinoya" finds nothing at all — that prose
-      // belongs to no day. ⚑ The `till` block is folded into EVERY base row
-      // rather than getting a row of its own: it is one card that all the bases
-      // share, so "atatamemasu" should land wherever he is looking.
+      // belongs to no day. (The companion cuisine-guide rows went with the
+      // feature on 2026-08-23.)
       if (DATA.food.quick && DATA.food.quick.bases) {
-        var tillText = '';
-        if (DATA.food.quick.till && DATA.food.quick.till.lines) {
-          tillText = [DATA.food.quick.till.title]
-            .concat(DATA.food.quick.till.lines).filter(Boolean).join(' ');
-        }
         for (var qb = 0; qb < DATA.food.quick.bases.length; qb++) {
           var qbase = DATA.food.quick.bases[qb];
-          var qParts = [qbase.title, qbase.nights, qbase.note, tillText];
+          var qParts = [qbase.title, qbase.nights, qbase.note];
           for (var qo = 0; qo < qbase.options.length; qo++) {
             var opt = qbase.options[qo];
             qParts.push(opt.name_en, opt.name_jp, opt.kind, opt.hours,
@@ -2941,29 +2850,6 @@
             icon: '🏪',
             title: 'Quick food — ' + qbase.title,
             detail: qbase.nights
-          });
-        }
-      }
-
-      // One row per dish guide, routed to Food. A guide belongs to no day, so
-      // without this "soba-yu" or "sūpu-wari" finds nothing — which is exactly
-      // what the 2026-08-23 delete left behind and its commit message recorded.
-      // ⚠ Only `text` is indexed, never the source URLs: a hit on a hostname
-      // would open a card that does not show the URL it matched.
-      if (DATA.food.dish_guides && DATA.food.dish_guides.guides) {
-        var dgs = DATA.food.dish_guides.guides;
-        for (var gi = 0; gi < dgs.length; gi++) {
-          var gRec = dgs[gi];
-          var gParts = [gRec.title, gRec.id];
-          for (var gs = 0; gs < (gRec.steps || []).length; gs++) {
-            gParts.push(gRec.steps[gs].text);
-          }
-          searchIndex.push({
-            text: gParts.filter(Boolean).join(' ').toLowerCase(),
-            section: 'food',
-            icon: gRec.icon || '🥢',
-            title: gRec.title,
-            detail: 'How it is eaten'
           });
         }
       }
