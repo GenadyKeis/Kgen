@@ -21,7 +21,7 @@
         "id": "tokyo-akihabara",
         "title": "Tokyo — Akihabara",
         "anchor_place_id": "akihabara-washington",
-        "nights": "Nights 1–6 and 19–21",
+        "nights": "Nights 1–6 and 19–20",
         "note": "🔴 The late answer here is Yoshinoya, 250 m up Shōwa-dōri and open to 02:00 — nothing else in this list is open past midnight. For a cold box, Life runs to 24:00, and the deepest discounts land one to two hours before a store closes: at this one that is roughly 22:00–23:00, which is exactly when a long day gets back.",
         "options": [
           {
@@ -425,6 +425,972 @@
       "⛔ No supermarket sits on the Dormy Inn’s own side of Kyoto Station. Fresco’s nearest 24-hour branch (Gojō) is about 1.2 km. The free 21:30 ramen downstairs is what replaces it.",
       "⚠ Microwaves: only the Sotetsu Fresa in Hiroshima lists one on its own site. Akihabara Washington publishes a 3F coin laundry and nothing else; the Dormy Inn publishes 9F laundry and vending on 2F/5F/9F, and a third-party listing claiming service corners on floors 2–8 is not confirmed by the hotel. ⇒ At the Tokyo and Kyoto bases, assume a cold box stays cold.",
       "⛔ Two hubs have no shop worth walking to: Yoshino station, and Uji station itself. Both are covered above — buy in Kyoto before you board."
+    ]
+  },
+  "balanced": {
+    "intro": "Set meals with fish or meat, vegetables and rice. First the pick at each chain, then the branches near each base and hub.",
+    "order_rules": [
+      "If there’s a tablet on the table, order on it; if it has a language button, switch it to English.",
+      "No tablet, but a call button: press it and show the Japanese line.",
+      "🔴 Never point at a menu picture with カキ or 牡蠣 in its name — that’s oyster. Several chains are selling oyster fry this autumn.",
+      "Office lunch hour is 12:00–13:00, and the set-meal chains fill up then. Go either side of it."
+    ],
+    "chains": {
+      "ootoya": {
+        "name_en": "Ōtoya",
+        "name_jp": "大戸屋",
+        "kind": "set-meal chain",
+        "order": "The every-day set (mainichi teishoku) — a tray of small dishes: meat, fish, egg and vegetables. ¥1,480.",
+        "order_jp": "毎日定食を ひとつ お願いします",
+        "order_romaji": "Mainichi teishoku o hitotsu onegai shimasu",
+        "alt": "Or: charcoal-grilled Atka mackerel set, ¥1,150.",
+        "alt_jp": "しまほっけの炭火焼きを お願いします",
+        "sources": [
+          "https://store.ootoya.com/detail/22356",
+          "https://www.ootoya.com/shokuiku/"
+        ],
+        "verified_on": "2026-09-23"
+      },
+      "yayoiken": {
+        "name_en": "Yayoi-ken",
+        "name_jp": "やよい軒",
+        "kind": "set-meal chain",
+        "order": "Salt-grilled mackerel set, plus a side salad. ¥990 + ¥100.",
+        "order_jp": "サバの塩焼定食と 野菜サラダを お願いします",
+        "order_romaji": "Saba no shioyaki teishoku to yasai sarada o onegai shimasu",
+        "alt": "Or: Atka mackerel set, ¥1,150.",
+        "alt_jp": "しまほっけ定食を お願いします",
+        "notes": [
+          "Rice refills are free. You can switch to barley rice (もち麦ごはん); after that, only white rice is refilled.",
+          "If there’s a ticket machine by the door, buy first — the button reads サバの塩焼定食."
+        ],
+        "sources": [
+          "https://www.yayoiken.com/menu_list/index/13"
+        ],
+        "verified_on": "2026-09-23"
+      },
+      "gusto": {
+        "name_en": "Gusto",
+        "name_jp": "ガスト",
+        "kind": "family restaurant",
+        "order": "Lean beef steak (about 100 g), with the rice + steamed-chicken salad set. ¥1,099 + ¥549.",
+        "order_jp": "赤身ビーフステーキと、ライスの蒸し鶏サラダセットを お願いします",
+        "order_romaji": "Akami bīfu sutēki to, raisu no mushidori sarada setto o onegai shimasu",
+        "notes": [
+          "⚠ The autumn menu is built around oyster fry — カキフライ和膳, and combos with カキフライ.",
+          "⚠ Orders after 22:00 cost 10% more."
+        ],
+        "sources": [
+          "https://www.skylark.co.jp/gusto/menu/json/index.json"
+        ],
+        "verified_on": "2026-09-23"
+      },
+      "jonathan": {
+        "name_en": "Jonathan’s",
+        "name_jp": "ジョナサン",
+        "kind": "family restaurant",
+        "order": "The “PFC balance” bowl — charcoal-grilled beef and vegetables on thirteen-grain rice, bibimbap style, with miso soup.",
+        "order_jp": "炭火焼肉と彩り野菜の十三穀米美ビンバを お願いします",
+        "order_romaji": "Sumibi yakiniku to irodori yasai no jūsankokumai bibinba o onegai shimasu",
+        "alt": "Add, for more vegetables: Jonathan’s salad.",
+        "alt_jp": "ジョナサンサラダを お願いします",
+        "notes": [
+          "⚠ Oyster fry is on the menu this season — 広島県産カキフライ膳, and hamburg + カキフライ.",
+          "⚠ Orders after 22:00 cost 10% more."
+        ],
+        "sources": [
+          "https://www.skylark.co.jp/jonathan/menu/json/index.json"
+        ],
+        "verified_on": "2026-09-23"
+      },
+      "royalhost": {
+        "name_en": "Royal Host",
+        "name_jp": "ロイヤルホスト",
+        "kind": "family restaurant",
+        "order": "Grilled swordfish with ginger sauce — rice, miso soup, pickles. ¥2,013.",
+        "order_jp": "気仙沼産メカジキのしょうが焼き膳を お願いします",
+        "order_romaji": "Kesennuma-san mekajiki no shōgayaki zen o onegai shimasu",
+        "alt": "Or: grilled salmon salad, ¥1,628.",
+        "alt_jp": "グリルサーモンサラダを お願いします",
+        "notes": [
+          "🔴 The menu has two versions of this set. The ¥2,508 one comes with 牡蠣フライ — oyster fry. Point at the ¥2,013 one."
+        ],
+        "sources": [
+          "https://www.royalhost.jp/menu/images/260916_grandmenu_AB.pdf"
+        ],
+        "verified_on": "2026-09-23"
+      },
+      "cocos": {
+        "name_en": "Coco’s",
+        "name_jp": "ココス",
+        "kind": "family restaurant",
+        "order": "Nagasaki horse mackerel and vegetables in black-vinegar sauce, as a set, plus the green salad.",
+        "order_jp": "長崎県産鰺と野菜の黒酢あん膳と、彩り野菜のグリーンサラダを お願いします",
+        "order_romaji": "Nagasaki-ken-san aji to yasai no kurozu-an zen to, irodori yasai no gurīn sarada o onegai shimasu",
+        "notes": [
+          "⚠ Two of the five sets on the same menu page are oyster fry — 牡蠣フライ膳, and the hamburg with 牡蠣フライ."
+        ],
+        "sources": [
+          "https://www.cocos-jpn.co.jp/menu/grand/japanese/",
+          "https://www.cocos-jpn.co.jp/menu/grand/salad/"
+        ],
+        "verified_on": "2026-09-23"
+      },
+      "sukiya": {
+        "name_en": "Sukiya",
+        "name_jp": "すき家",
+        "kind": "beef-bowl chain",
+        "order": "The beef meal-salad — seven vegetables topped with beef, smoked bacon and a scoop of sixteen-grain rice — plus pork miso soup (tonjiru).",
+        "order_jp": "牛・お食事サラダと、とん汁を お願いします",
+        "order_romaji": "Gyū o-shokuji sarada to, tonjiru o onegai shimasu",
+        "alt": "Or: the chicken version.",
+        "alt_jp": "チキン・お食事サラダを お願いします",
+        "sources": [
+          "https://www.sukiya.jp/menu/in/oshokujisalad/",
+          "https://www.sukiya.jp/menu/in/side/"
+        ],
+        "verified_on": "2026-09-23"
+      },
+      "yoshinoya": {
+        "name_en": "Yoshinoya",
+        "name_jp": "吉野家",
+        "kind": "beef-bowl chain",
+        "order": "Beef-and-grilled-salmon set, plus a green salad. ¥844 + ¥162. Rice refills are free.",
+        "order_jp": "牛鮭定食と、生野菜サラダを お願いします",
+        "order_romaji": "Gyū-shake teishoku to, nama-yasai sarada o onegai shimasu",
+        "alt": "Only some branches sell the salmon set. If it’s not on the menu: the beef-plate set, ¥789, with the same salad.",
+        "alt_jp": "牛皿定食と、生野菜サラダを お願いします",
+        "sources": [
+          "https://www.yoshinoya.com/menu/set/gyushake_tei/",
+          "https://www.yoshinoya.com/menu/sidemenu/"
+        ],
+        "verified_on": "2026-09-23"
+      },
+      "dennys": {
+        "name_en": "Denny’s",
+        "name_jp": "デニーズ",
+        "kind": "family restaurant",
+        "order": "Green mixed salad, ¥451 — then add a main from the menu.",
+        "order_jp": "グリーンミックスサラダを お願いします",
+        "order_romaji": "Gurīn mikkusu sarada o onegai shimasu",
+        "notes": [
+          "⚠ From 22:00 to 05:00, prices are 10% higher."
+        ],
+        "sources": [
+          "https://www.dennys.jp/menu/salad/"
+        ],
+        "verified_on": "2026-09-23"
+      },
+      "bikkuri": {
+        "name_en": "Bikkuri Donkey",
+        "name_jp": "びっくりドンキー",
+        "kind": "hamburg-steak family restaurant",
+        "order": "The regular hamburg dish — hamburg, rice and a radish-based salad on one plate — with the rice swapped for cauliflower rice and the salad made large.",
+        "order_jp": "レギュラーバーグディッシュ、カリフラワーライスに変更、大盛ディッシュサラダで お願いします",
+        "order_romaji": "Regyurā bāgu disshu, karifurawā raisu ni henkō, ōmori disshu sarada de onegai shimasu",
+        "notes": [
+          "⚠ Before 10:00, only the morning menu is served."
+        ],
+        "sources": [
+          "https://www.bikkuri-donkey.com/menu/menu_1/"
+        ],
+        "verified_on": "2026-09-23"
+      },
+      "withgreen": {
+        "name_en": "With Green",
+        "name_jp": "ウィズグリーン",
+        "kind": "salad-bowl shop",
+        "order": "A large red-chilli chicken cobb salad — chicken and egg.",
+        "order_jp": "レッドチリチキンのコブサラダ、Lで お願いします",
+        "order_romaji": "Reddo chiri chikin no kobu sarada, eru de onegai shimasu",
+        "alt": "Or: steamed chicken and apple.",
+        "alt_jp": "蒸し鶏とりんごのサラダを お願いします",
+        "notes": [
+          "Salads come in S and L. Eat-in last order is 19:30; takeaway runs until closing."
+        ],
+        "sources": [
+          "https://withgreen.club/menu/"
+        ],
+        "verified_on": "2026-09-23"
+      },
+      "subway": {
+        "name_en": "Subway",
+        "name_jp": "サブウェイ",
+        "kind": "sandwich chain",
+        "order": "The salad-chicken salad — the sandwich filling served as a salad, no bread.",
+        "order_jp": "サラダチキンの サラダを お願いします",
+        "order_romaji": "Sarada chikin no sarada o onegai shimasu",
+        "notes": [
+          "You build it step by step at the counter — vegetables, then dressing. Point as you go."
+        ],
+        "sources": [
+          "https://subway.co.jp/menu/category/salad/",
+          "https://subway.co.jp/menu/howtoorder/"
+        ],
+        "verified_on": "2026-09-23"
+      }
+    },
+    "hubs": [
+      {
+        "id": "tokyo-akihabara",
+        "title": "Tokyo — Akihabara",
+        "when": "Nights 1–6 and 19–20",
+        "anchor": "Distances are straight-line from the hotel.",
+        "note": "The hotel is on the Shōwa-dōri (east) side; anything on the Electric Town side means crossing under the tracks. Denny’s (in the hotel building) and Yoshinoya are in Quick food — their picks are in the chain list.",
+        "options": [
+          {
+            "name_en": "Machiyakuba",
+            "name_jp": "町役場",
+            "kind": "basement shokudō and izakaya",
+            "hours": "Mon–Fri 11:00–23:00, last order 22:30 · Sat 16:00–22:00, last order 21:30 · closed Sundays and holidays",
+            "walk": "≈70 m — the next block over from the hotel, basement",
+            "address_jp": "東京都千代田区神田佐久間町1-14 第二東ビルB1F",
+            "lat": 35.697792,
+            "lon": 139.774374,
+            "confidence": "medium",
+            "url": "https://tabelog.com/en/tokyo/A1310/A131001/13024016/",
+            "order": "The daily set.",
+            "order_jp": "日替わり定食を お願いします",
+            "order_romaji": "Higawari teishoku o onegai shimasu",
+            "alt": "Or, in the evening: salt-grilled Atka mackerel.",
+            "alt_jp": "ホッケの塩焼きを お願いします",
+            "pay": "Cash only.",
+            "note": "Big portions. Quiet after 13:00.",
+            "sources": [
+              "https://tabelog.com/en/tokyo/A1310/A131001/13024016/"
+            ],
+            "pin_source": "Tabelog, checked against Google Maps (within 15 m)",
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "gusto",
+            "name_en": "Gusto Akihabara Shōwa-dōri",
+            "name_jp": "ガスト 秋葉原昭和通店",
+            "kind": "family restaurant",
+            "hours": "07:00–23:30 daily",
+            "walk": "≈75 m, same side as the hotel",
+            "address_jp": "東京都千代田区神田佐久間町1-15 川初ビル2F",
+            "lat": 35.697723,
+            "lon": 139.774512,
+            "confidence": "high",
+            "url": "https://store-info.skylark.co.jp/gusto/map/018951",
+            "pay": "Cards, Suica, barcode apps.",
+            "sources": [
+              "https://store-info.skylark.co.jp/gusto/map/018951"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "jonathan",
+            "name_en": "Jonathan’s Akihabara Ekimae",
+            "name_jp": "ジョナサン 秋葉原駅前店",
+            "kind": "family restaurant",
+            "hours": "06:30–03:00 daily",
+            "walk": "≈105 m",
+            "address_jp": "東京都千代田区外神田1-17-4",
+            "lat": 35.697791,
+            "lon": 139.772645,
+            "confidence": "high",
+            "url": "https://store-info.skylark.co.jp/jonathan/map/020522",
+            "pay": "Cards, Suica, barcode apps.",
+            "sources": [
+              "https://store-info.skylark.co.jp/jonathan/map/020522"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "gusto",
+            "name_en": "Gusto Akihabara Ekimae",
+            "name_jp": "ガスト 秋葉原駅前店",
+            "kind": "family restaurant",
+            "hours": "06:30–22:30 daily",
+            "walk": "≈190 m",
+            "address_jp": "東京都千代田区外神田1-18-18 秋葉原駅前プラザ4F",
+            "lat": 35.698743,
+            "lon": 139.772291,
+            "confidence": "medium",
+            "url": "https://store-info.skylark.co.jp/gusto/map/017715",
+            "pay": "Cards, Suica, barcode apps.",
+            "sources": [
+              "https://store-info.skylark.co.jp/gusto/map/017715"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "ootoya",
+            "name_en": "Ōtoya Akihabara Ekimae",
+            "name_jp": "大戸屋ごはん処 秋葉原駅前店",
+            "kind": "set meals",
+            "hours": "11:00–23:00 daily, last order 22:30",
+            "walk": "≈215 m, by the Electric Town north exit",
+            "address_jp": "東京都千代田区外神田1-18-19 BiTO AKIBA 4F",
+            "lat": 35.698771,
+            "lon": 139.771921,
+            "confidence": "medium",
+            "url": "https://store.ootoya.com/detail/22356",
+            "pay": "Cards, Suica, QR apps.",
+            "note": "Order on the touch panel.",
+            "sources": [
+              "https://store.ootoya.com/detail/22356"
+            ],
+            "pin_source": "Google Maps place listing — the store page's pin was 69 m off (checked 2026-09-23)",
+            "verified_on": "2026-09-23"
+          },
+          {
+            "name_en": "Komaki Shokudō",
+            "name_jp": "こまきしょくどう 鎌倉不識庵",
+            "kind": "vegetarian temple-style set meals (shōjin)",
+            "hours": "11:00–20:00 daily, last order 19:30",
+            "walk": "≈250 m, under the tracks on the Electric Town side, inside the CHABARA arcade",
+            "address_jp": "東京都千代田区神田練塀町8-2 CHABARA内",
+            "lat": 35.699687,
+            "lon": 139.773135,
+            "confidence": "medium",
+            "url": "https://www.kamakura-komaki.com/",
+            "order": "The Komaki set — crisp wheat-gluten cutlets, three side dishes of the day, salad, pickles, rice and miso soup. ¥2,310. The menu is in English too.",
+            "order_jp": "こまき定食を お願いします",
+            "order_romaji": "Komaki teishoku o onegai shimasu",
+            "pay": "Cards, Suica, PayPay.",
+            "note": "⚠ Reservations get priority and there are only 20 seats, so a walk-in can be turned away when it’s full. Go outside the lunch hour.",
+            "sources": [
+              "https://www.kamakura-komaki.com/",
+              "https://tabelog.com/en/tokyo/A1310/A131001/13157986/"
+            ],
+            "pin_source": "Tabelog, checked against Google Maps (within 15 m)",
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "sukiya",
+            "name_en": "Sukiya Akihabara-eki Iwamotochō",
+            "name_jp": "すき家 秋葉原駅岩本町店",
+            "kind": "beef bowls",
+            "hours": "04:00–03:00 daily (shut 03:00–04:00)",
+            "walk": "≈335 m south",
+            "address_jp": "東京都千代田区岩本町3-3-5",
+            "lat": 35.695248,
+            "lon": 139.776262,
+            "confidence": "high",
+            "url": "https://maps.sukiya.jp/jp/detail/1714.html",
+            "pay": "Cards, Suica, QR apps.",
+            "sources": [
+              "https://maps.sukiya.jp/jp/detail/1714.html"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "subway",
+            "name_en": "Subway Akihabara Times Tower",
+            "name_jp": "サブウェイ 秋葉原タイムズタワー店",
+            "kind": "sandwiches",
+            "hours": "Weekdays 08:00–21:00 · weekends and holidays 10:00–20:00",
+            "walk": "≈465 m north",
+            "address_jp": "東京都千代田区外神田4-14-2 東京タイムズタワー1F",
+            "lat": 35.701513,
+            "lon": 139.77245,
+            "confidence": "medium",
+            "url": "https://www.subway.co.jp/shops/kanto/tokyo/tokyo23/chiyoda-ku/shop861/",
+            "sources": [
+              "https://www.subway.co.jp/shops/kanto/tokyo/tokyo23/chiyoda-ku/shop861/"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "royalhost",
+            "name_en": "Royal Host Akihabara",
+            "name_jp": "ロイヤルホスト 秋葉原店",
+            "kind": "family restaurant",
+            "hours": "08:00–23:00 daily, last order 22:00",
+            "walk": "≈500 m north",
+            "address_jp": "東京都千代田区外神田4-5-4",
+            "lat": 35.701715,
+            "lon": 139.77194,
+            "confidence": "high",
+            "url": "https://locations.royalhost.jp/detail/107409",
+            "pay": "Cards, Suica, QR apps.",
+            "sources": [
+              "https://locations.royalhost.jp/detail/107409"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "cocos",
+            "name_en": "Coco’s Akihabara",
+            "name_jp": "ココス 秋葉原店",
+            "kind": "family restaurant",
+            "hours": "06:00–04:00 daily, last order 03:30",
+            "walk": "≈500 m west",
+            "address_jp": "東京都千代田区外神田2-4-4",
+            "lat": 35.699625,
+            "lon": 139.768871,
+            "confidence": "high",
+            "url": "https://maps.cocos-jpn.co.jp/jp/detail/2875.html",
+            "pay": "Cards, QR apps (Suica not listed).",
+            "sources": [
+              "https://maps.cocos-jpn.co.jp/jp/detail/2875.html"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "yayoiken",
+            "name_en": "Yayoi-ken Sotokanda 3-chōme",
+            "name_jp": "やよい軒 外神田3丁目店",
+            "kind": "set meals",
+            "hours": "09:00–23:00 daily, last order 22:30",
+            "walk": "≈655 m north-west",
+            "address_jp": "東京都千代田区外神田3-6-2",
+            "lat": 35.702316,
+            "lon": 139.769569,
+            "confidence": "high",
+            "url": "https://store.yayoiken.com/b/yayoiken/info/2202",
+            "pay": "Cash, cards, Suica, QR apps.",
+            "sources": [
+              "https://store.yayoiken.com/b/yayoiken/info/2202"
+            ],
+            "verified_on": "2026-09-23"
+          }
+        ]
+      },
+      {
+        "id": "ueno",
+        "title": "Ueno",
+        "when": "Day 3 · Sat Oct 24",
+        "anchor": "Distances are straight-line from JR Ueno station.",
+        "options": [
+          {
+            "chain": "yayoiken",
+            "name_en": "Yayoi-ken Higashi-Ueno",
+            "name_jp": "やよい軒 東上野店",
+            "kind": "set meals",
+            "hours": "07:00–23:00 daily, last order 22:30",
+            "walk": "≈330 m east (Asakusa-dōri side)",
+            "address_jp": "東京都台東区東上野3-37-9 かみちビル1F",
+            "lat": 35.711662,
+            "lon": 139.779473,
+            "confidence": "high",
+            "url": "https://store.yayoiken.com/b/yayoiken/info/2079",
+            "sources": [
+              "https://store.yayoiken.com/b/yayoiken/info/2079"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "ootoya",
+            "name_en": "Ōtoya Ueno Kōen",
+            "name_jp": "大戸屋ごはん処 上野公園店",
+            "kind": "set meals",
+            "hours": "10:00–23:00 daily, last order 22:30",
+            "walk": "≈630 m south, toward Ueno-Hirokōji",
+            "address_jp": "東京都台東区上野2-12-1 セントラル21ビル3F",
+            "lat": 35.709668,
+            "lon": 139.77309,
+            "confidence": "high",
+            "url": "https://store.ootoya.com/detail/27302",
+            "sources": [
+              "https://store.ootoya.com/detail/27302"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "gusto",
+            "name_en": "Gusto Ueno-Hirokōji",
+            "name_jp": "ガスト 上野広小路店",
+            "kind": "family restaurant",
+            "hours": "07:00–05:00 daily",
+            "walk": "≈740 m south",
+            "address_jp": "東京都台東区上野4-4-4 広小路2000ビルB1",
+            "lat": 35.708216,
+            "lon": 139.77353,
+            "confidence": "high",
+            "url": "https://store-info.skylark.co.jp/gusto/map/018988",
+            "sources": [
+              "https://store-info.skylark.co.jp/gusto/map/018988"
+            ],
+            "verified_on": "2026-09-23"
+          }
+        ]
+      },
+      {
+        "id": "ginza",
+        "title": "Ginza",
+        "when": "Days 2 and 4 · Fri Oct 23, Sun Oct 25",
+        "anchor": "Distances are straight-line from the Ginza 4-chōme crossing.",
+        "note": "Jonathan’s Yūrakuchō, which some maps still show, has closed.",
+        "options": [
+          {
+            "chain": "ootoya",
+            "name_en": "Ōtoya Ginza Mitsukoshi-mae",
+            "name_jp": "大戸屋ごはん処 銀座三越前店",
+            "kind": "set meals",
+            "hours": "Mon–Fri 10:00–23:00 · Sat–Sun 10:00–22:00 · last order 30 min before closing",
+            "walk": "≈145 m",
+            "address_jp": "東京都中央区銀座5-9-1 銀座コティビルB1F",
+            "lat": 35.670508,
+            "lon": 139.765631,
+            "confidence": "high",
+            "url": "https://store.ootoya.com/detail/27224",
+            "sources": [
+              "https://store.ootoya.com/detail/27224"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "royalhost",
+            "name_en": "Royal Host Ginza Inz",
+            "name_jp": "ロイヤルホスト 銀座インズ店",
+            "kind": "family restaurant",
+            "hours": "09:30–23:00 daily, last order 22:00",
+            "walk": "≈330 m north, under the expressway",
+            "address_jp": "東京都中央区銀座西2-2 銀座インズ2 2F",
+            "lat": 35.674654,
+            "lon": 139.764791,
+            "confidence": "medium",
+            "url": "https://locations.royalhost.jp/detail/199598",
+            "sources": [
+              "https://locations.royalhost.jp/detail/199598"
+            ],
+            "pin_source": "Google Maps place listing — the store page's pin was 56 m off (checked 2026-09-23)",
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "yayoiken",
+            "name_en": "Yayoi-ken Ginza Inz",
+            "name_jp": "やよい軒 銀座インズ店",
+            "kind": "set meals",
+            "hours": "11:00–23:00 daily, last order 22:30",
+            "walk": "≈340 m north, same building as Royal Host",
+            "address_jp": "東京都中央区銀座西2-2 銀座インズ2 2F",
+            "lat": 35.674765,
+            "lon": 139.764853,
+            "confidence": "medium",
+            "url": "https://store.yayoiken.com/b/yayoiken/info/2148",
+            "sources": [
+              "https://store.yayoiken.com/b/yayoiken/info/2148"
+            ],
+            "pin_source": "Google Maps place listing (checked 2026-09-23)",
+            "verified_on": "2026-09-23"
+          }
+        ]
+      },
+      {
+        "id": "shinjuku",
+        "title": "Shinjuku",
+        "when": "Days 2 and 4 · Fri Oct 23, Sun Oct 25",
+        "anchor": "Distances are straight-line from the JR east exit.",
+        "options": [
+          {
+            "chain": "ootoya",
+            "name_en": "Ōtoya Shinjuku Higashiguchi Chūō-dōri",
+            "name_jp": "大戸屋ごはん処 新宿東口中央通り店",
+            "kind": "set meals",
+            "hours": "10:00–23:00 daily, last order 22:30",
+            "walk": "≈225 m",
+            "address_jp": "東京都新宿区新宿3-34-11 ピースビル2F",
+            "lat": 35.690557,
+            "lon": 139.702795,
+            "confidence": "high",
+            "url": "https://store.ootoya.com/detail/27230",
+            "sources": [
+              "https://store.ootoya.com/detail/27230"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "yayoiken",
+            "name_en": "Yayoi-ken Shinjuku Yasukuni-dōri",
+            "name_jp": "やよい軒 新宿靖国通り店",
+            "kind": "set meals",
+            "hours": "07:00–23:00 daily, last order 22:30",
+            "walk": "≈400 m north-east",
+            "address_jp": "東京都新宿区歌舞伎町1-6-1 シロービル2F",
+            "lat": 35.693577,
+            "lon": 139.702759,
+            "confidence": "high",
+            "url": "https://store.yayoiken.com/b/yayoiken/info/2143",
+            "sources": [
+              "https://store.yayoiken.com/b/yayoiken/info/2143"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "gusto",
+            "name_en": "Gusto Shinjuku Yasukuni-dōri",
+            "name_jp": "ガスト 新宿靖国通店",
+            "kind": "family restaurant",
+            "hours": "06:00–05:00 daily",
+            "walk": "≈455 m north-east",
+            "address_jp": "東京都新宿区歌舞伎町1-1-17",
+            "lat": 35.693195,
+            "lon": 139.704172,
+            "confidence": "high",
+            "url": "https://store-info.skylark.co.jp/gusto/map/018933",
+            "sources": [
+              "https://store-info.skylark.co.jp/gusto/map/018933"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "bikkuri",
+            "name_en": "Bikkuri Donkey Shinjuku Yasukuni-dōri",
+            "name_jp": "びっくりドンキー 新宿靖国通り店",
+            "kind": "hamburg-steak family restaurant",
+            "hours": "08:00–05:00 daily, last order 04:30 · morning menu only until 10:00",
+            "walk": "≈500 m east",
+            "address_jp": "東京都新宿区新宿5-17-13 オリエンタルウェーブビル",
+            "lat": 35.692847,
+            "lon": 139.705091,
+            "confidence": "high",
+            "url": "https://www.bikkuri-donkey.com/shop/shop_1062/",
+            "sources": [
+              "https://www.bikkuri-donkey.com/shop/shop_1062/"
+            ],
+            "verified_on": "2026-09-23"
+          }
+        ]
+      },
+      {
+        "id": "shibuya",
+        "title": "Shibuya",
+        "when": "Days 2 and 4 · Fri Oct 23, Sun Oct 25",
+        "anchor": "Distances are straight-line from the scramble crossing.",
+        "options": [
+          {
+            "chain": "ootoya",
+            "name_en": "Ōtoya Shibuya Dōgenzaka",
+            "name_jp": "大戸屋ごはん処 渋谷道玄坂店",
+            "kind": "set meals",
+            "hours": "10:00–23:00 daily, last order 22:30",
+            "walk": "≈190 m, up Dōgenzaka",
+            "address_jp": "東京都渋谷区道玄坂2-6-11 渋谷プラザビル2F",
+            "lat": 35.658785,
+            "lon": 139.698593,
+            "confidence": "medium",
+            "url": "https://store.ootoya.com/detail/142928",
+            "sources": [
+              "https://store.ootoya.com/detail/142928"
+            ],
+            "pin_source": "Google Maps place listing (checked 2026-09-23)",
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "royalhost",
+            "name_en": "Royal Host Dōgenzaka",
+            "name_jp": "ロイヤルホスト 道玄坂店",
+            "kind": "family restaurant",
+            "hours": "09:00–23:00 daily, last order 22:00",
+            "walk": "≈230 m, up Dōgenzaka",
+            "address_jp": "東京都渋谷区道玄坂2-29-8 道玄坂センタービル3F",
+            "lat": 35.659259,
+            "lon": 139.697947,
+            "confidence": "high",
+            "url": "https://locations.royalhost.jp/detail/108405",
+            "sources": [
+              "https://locations.royalhost.jp/detail/108405"
+            ],
+            "verified_on": "2026-09-23"
+          }
+        ]
+      },
+      {
+        "id": "kyoto-station",
+        "title": "Kyoto — Kyoto Station",
+        "when": "Nights 7–16",
+        "anchor": "Distances are straight-line from the hotel (Dormy Inn Kyoto Ekimae).",
+        "note": "After Gusto shuts at 22:00: Yayoi-ken until 23:00, or Yoshinoya Hachijō-guchi (24 h) in Quick food. Kyoto Yamaroku’s grilled miso-cured fish set (Isetan basement) is on the Day 7, 11 and 14 food cards.",
+        "options": [
+          {
+            "name_en": "Himono Terasu, Kyoto Porta",
+            "name_jp": "ヒモノ照ラス 京都ポルタ店",
+            "kind": "grilled-fish set meals",
+            "hours": "11:00–22:00, last order 21:30 · irregular closing days",
+            "walk": "≈140 m, in the Porta underground mall under the station’s north side",
+            "address_jp": "京都府京都市下京区東塩小路町902 京都駅前地下街ポルタ",
+            "lat": 34.986951,
+            "lon": 135.760279,
+            "confidence": "medium",
+            "url": "https://www.porta.co.jp/shopguide/detail/141",
+            "order": "The my-way set (jibunryū teishoku): point at the fish you want — there are 10+, grilled when you order — and choose your side dishes. Miso soup and sliced onion are free refills; rice refills are charged.",
+            "order_jp": "自分流定食で、この魚を お願いします",
+            "order_romaji": "Jibunryū teishoku de, kono sakana o onegai shimasu",
+            "pay": "Cards, Suica, PayPay.",
+            "note": "🔴 Don’t point at anything labelled カキ or 牡蠣 — that’s oyster.",
+            "sources": [
+              "https://www.porta.co.jp/shopguide/detail/141",
+              "https://himono.miejin.jp/",
+              "https://tabelog.com/en/kyoto/A2601/A260101/26035950/"
+            ],
+            "pin_source": "Tabelog, checked against Google Maps (within 15 m)",
+            "verified_on": "2026-09-23"
+          },
+          {
+            "name_en": "Kamado Gohan Doi, Hachijō-guchi",
+            "name_jp": "竈炊き立てごはん 土井 京都駅八条口店",
+            "kind": "set meals with kamado-cooked rice",
+            "hours": "09:00–22:00 daily, last order 21:30",
+            "walk": "≈365 m, inside the station on the Hachijō (south) side, in the ASTY Road arcade",
+            "address_jp": "京都府京都市下京区東塩小路高倉町8-3 アスティロード京都1F",
+            "lat": 34.984706,
+            "lon": 135.759333,
+            "confidence": "medium",
+            "url": "https://www.doishibazuke.co.jp/kamadopost/179/",
+            "order": "Spanish mackerel cured in white miso, as a set. ¥2,970.",
+            "order_jp": "さわら西京漬膳を お願いします",
+            "order_romaji": "Sawara saikyō-zuke zen o onegai shimasu",
+            "note": "Every set comes with the pickle buffet. That’s a lot of salt — take a little.",
+            "sources": [
+              "https://www.doishibazuke.co.jp/kamadopost/179/",
+              "https://tabelog.com/en/kyoto/A2601/A260101/26026058/"
+            ],
+            "pin_source": "Tabelog, checked against Google Maps (within 15 m)",
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "gusto",
+            "name_en": "Gusto Kyoto Avanti",
+            "name_jp": "ガスト 京都アバンティ店",
+            "kind": "family restaurant",
+            "hours": "10:00–22:00 daily",
+            "walk": "≈440 m, south side of the station (Hachijō exit)",
+            "address_jp": "京都府京都市南区東九条西山王町31 アバンティB1",
+            "lat": 34.983521,
+            "lon": 135.760486,
+            "confidence": "medium",
+            "url": "https://store-info.skylark.co.jp/gusto/map/017761",
+            "sources": [
+              "https://store-info.skylark.co.jp/gusto/map/017761"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "yayoiken",
+            "name_en": "Yayoi-ken Kyoto-eki Hachijō-guchi",
+            "name_jp": "やよい軒 京都駅八条口店",
+            "kind": "set meals",
+            "hours": "07:00–23:00 daily, last order 22:30",
+            "walk": "≈770 m, south-west along Hachijō-dōri",
+            "address_jp": "京都府京都市南区西九条北ノ内町45",
+            "lat": 34.984496,
+            "lon": 135.754033,
+            "confidence": "high",
+            "url": "https://store.yayoiken.com/b/yayoiken/info/2153",
+            "sources": [
+              "https://store.yayoiken.com/b/yayoiken/info/2153"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "royalhost",
+            "name_en": "Royal Host Horikawa Gojō",
+            "name_jp": "ロイヤルホスト 堀川五条店",
+            "kind": "family restaurant",
+            "hours": "08:00–23:00 daily, last order 22:00",
+            "walk": "≈1.2 km north-west — a walk, not a drop-in",
+            "address_jp": "京都府京都市下京区醒ヶ井通六条上ル佐女牛井町143",
+            "lat": 34.99502,
+            "lon": 135.752934,
+            "confidence": "high",
+            "url": "https://locations.royalhost.jp/detail/197437",
+            "sources": [
+              "https://locations.royalhost.jp/detail/197437"
+            ],
+            "verified_on": "2026-09-23"
+          }
+        ]
+      },
+      {
+        "id": "kyoto-shijo",
+        "title": "Kyoto — Shijō / Karasuma",
+        "when": "Kyoto days · nights 7–16",
+        "anchor": "Distances are straight-line from the Shijō-Karasuma crossing.",
+        "options": [
+          {
+            "chain": "withgreen",
+            "name_en": "With Green LAQUE Shijō Karasuma",
+            "name_jp": "WithGreen 京都ラクエ四条烏丸店",
+            "kind": "salad bowls",
+            "hours": "10:30–20:00 daily · eat-in last order 19:30 · 20 seats",
+            "walk": "≈50 m, basement",
+            "address_jp": "京都府京都市下京区四条通室町東入函谷鉾町101 ラクエ四条烏丸B1F",
+            "lat": 35.003954,
+            "lon": 135.759274,
+            "confidence": "medium",
+            "url": "https://store.withgreen.club/detail/19",
+            "sources": [
+              "https://store.withgreen.club/detail/19"
+            ],
+            "pin_source": "Google Maps place listing — the store page's pin was 65 m off (checked 2026-09-23)",
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "ootoya",
+            "name_en": "Ōtoya Kyoto Nishikikōji",
+            "name_jp": "大戸屋ごはん処 京都錦小路店",
+            "kind": "set meals",
+            "hours": "10:00–22:00 daily, last order 21:30",
+            "walk": "≈280 m north-east, by Nishiki Market",
+            "address_jp": "京都府京都市中京区錦小路通高倉西入西魚屋町601",
+            "lat": 35.00517,
+            "lon": 135.762228,
+            "confidence": "high",
+            "url": "https://store.ootoya.com/detail/27286",
+            "sources": [
+              "https://store.ootoya.com/detail/27286"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "yayoiken",
+            "name_en": "Yayoi-ken Shijō Karasuma",
+            "name_jp": "やよい軒 四条烏丸店",
+            "kind": "set meals",
+            "hours": "Open 24 hours",
+            "walk": "≈330 m west along Shijō",
+            "address_jp": "京都府京都市下京区四条通西洞院東入新釜座町716-1-2 四条平野ビル",
+            "lat": 35.003549,
+            "lon": 135.756069,
+            "confidence": "high",
+            "url": "https://store.yayoiken.com/b/yayoiken/info/2050",
+            "sources": [
+              "https://store.yayoiken.com/b/yayoiken/info/2050"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "withgreen",
+            "name_en": "With Green Kyoto Takashimaya",
+            "name_jp": "WithGreen 京都高島屋S.C.店",
+            "kind": "salad bowls",
+            "hours": "10:30–20:00 daily · eat-in last order 19:30 · 10 seats",
+            "walk": "≈780 m east, Kawaramachi end",
+            "address_jp": "京都府京都市下京区四条通寺町東入2丁目御旅町35 京都高島屋S.C. B1F",
+            "lat": 35.003527,
+            "lon": 135.768255,
+            "confidence": "medium",
+            "url": "https://store.withgreen.club/detail/44",
+            "sources": [
+              "https://store.withgreen.club/detail/44"
+            ],
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "royalhost",
+            "name_en": "Royal Host Kyoto Takashimaya",
+            "name_jp": "ロイヤルホスト 京都髙島屋S.C.店",
+            "kind": "family restaurant",
+            "hours": "11:00–21:30 daily",
+            "walk": "≈815 m east, same building as With Green, 7F",
+            "address_jp": "京都府京都市下京区四条通河原町西入真町52 京都髙島屋S.C. 7F",
+            "lat": 35.003477,
+            "lon": 135.768639,
+            "confidence": "medium",
+            "url": "https://locations.royalhost.jp/detail/197724",
+            "sources": [
+              "https://locations.royalhost.jp/detail/197724"
+            ],
+            "verified_on": "2026-09-23"
+          }
+        ]
+      },
+      {
+        "id": "nara",
+        "title": "Nara",
+        "when": "Days 8–10 · Oct 29–31",
+        "anchor": "Distances are straight-line from JR Nara and Kintetsu Nara stations.",
+        "options": [
+          {
+            "chain": "yayoiken",
+            "name_en": "Yayoi-ken Nara-eki",
+            "name_jp": "やよい軒 奈良駅店",
+            "kind": "set meals",
+            "hours": "07:00–23:00 daily, last order 22:30",
+            "walk": "at JR Nara (≈30 m) · ≈985 m from Kintetsu Nara",
+            "address_jp": "奈良県奈良市三条本町1-1",
+            "lat": 34.681014,
+            "lon": 135.819097,
+            "confidence": "medium",
+            "url": "https://store.yayoiken.com/b/yayoiken/info/2152",
+            "sources": [
+              "https://store.yayoiken.com/b/yayoiken/info/2152"
+            ],
+            "pin_source": "Google Maps place listing (checked 2026-09-23)",
+            "verified_on": "2026-09-23"
+          },
+          {
+            "chain": "gusto",
+            "name_en": "Gusto Nara Sanjō",
+            "name_jp": "ガスト 奈良三条店",
+            "kind": "family restaurant",
+            "hours": "Weekdays 07:00–23:30 · weekends and holidays 06:30–23:30",
+            "walk": "≈400 m from JR Nara · ≈610 m from Kintetsu Nara, on Sanjō-dōri between the two",
+            "address_jp": "奈良県奈良市下三条町31-1",
+            "lat": 34.682212,
+            "lon": 135.822939,
+            "confidence": "high",
+            "url": "https://store-info.skylark.co.jp/gusto/map/012950",
+            "sources": [
+              "https://store-info.skylark.co.jp/gusto/map/012950"
+            ],
+            "verified_on": "2026-09-23"
+          }
+        ]
+      }
+    ],
+    "konbini": {
+      "intro": "Any 7-Eleven, FamilyMart or Lawson. Look for these words on the label. The till notes in Quick food apply here too.",
+      "lines": [
+        {
+          "jp": "サラダチキン",
+          "en": "Salad chicken — ready-cooked chicken breast, eaten cold"
+        },
+        {
+          "jp": "ゆで卵",
+          "en": "Boiled egg (often seasoned — 味付)"
+        },
+        {
+          "jp": "焼き魚 · 焼さば · 焼鮭",
+          "en": "Grilled fish — mackerel, salmon — in a tray; staff will offer to heat it at the till"
+        },
+        {
+          "jp": "冷奴 · 豆腐",
+          "en": "Tofu"
+        },
+        {
+          "jp": "納豆",
+          "en": "Natto (fermented soybeans)"
+        },
+        {
+          "jp": "高たんぱく · プロテイン",
+          "en": "High-protein (yogurt, drinks, bars)"
+        },
+        {
+          "jp": "サラダ",
+          "en": "Salad (bowls and cups by the sandwiches)"
+        },
+        {
+          "jp": "野菜スティック",
+          "en": "Vegetable sticks"
+        },
+        {
+          "jp": "ざるそば · そば",
+          "en": "Cold soba — the lighter noodle choice"
+        },
+        {
+          "jp": "もち麦",
+          "en": "Barley — on onigiri, as もち麦おにぎり"
+        },
+        {
+          "jp": "バナナ",
+          "en": "Banana, usually by the till"
+        },
+        {
+          "jp": "無糖",
+          "en": "Unsweetened — on teas and coffee"
+        }
+      ]
+    },
+    "gaps": [
+      "⛔ No Yayoi-ken near Shibuya station.",
+      "⛔ No Ōtoya at Kyoto Station. The nearest is Nishikikōji, in the Shijō / Karasuma list.",
+      "⛔ No Bikkuri Donkey near Akihabara. The nearest is at Tokyo Dome City (Suidōbashi)."
     ]
   },
   "dish_guides": {

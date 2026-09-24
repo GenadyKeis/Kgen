@@ -1452,6 +1452,150 @@
     return html;
   }
 
+  // ─── Balanced meals — set meals at chains, by hub ──────────
+  // Third head-of-tab card, after Quick food (plan: planning/BALANCED-FOOD-APP-PLAN.md).
+  // Same condition as its two siblings: a chain's pick belongs to no single day.
+  // The pick lives ONCE on the chain (food.balanced.chains, like food.venues);
+  // a hub row with `chain` set shows that chain's pick inline, so standing
+  // outside a Gusto the Japanese is right there without scrolling back up.
+  // ⚠ `sources`, `verified_on` and `pin_source` are never rendered — how a fact
+  // was checked is about my work, not his meal.
+
+  // The show-the-screen block, same construction and bindings as the food card's
+  // (bindJpSay: .jp-say-tap → overlay, [data-speak] → 🔊, [data-copy] → 📋).
+  // `compact` drops the romaji and Translate for the per-branch copies.
+  function balancedSay(jp, en, romaji, compact) {
+    var html = '<div class="jp-say' + (compact ? ' bal-say-compact' : '') + '">';
+    html += '<div class="jp-say-text jp-say-tap" role="button" tabindex="0"' +
+      ' data-fs-jp="' + esc(jp) + '"' +
+      ' data-fs-en="' + esc((en || '').split('—')[0].trim()) + '"' +
+      ' data-fs-romaji="' + esc(romaji || '') + '">' + esc(jp) + '</div>';
+    if (romaji && !compact) html += '<div class="jp-say-romaji">' + esc(romaji) + '</div>';
+    html += '<div class="jp-say-actions">';
+    html += '<button type="button" class="jp-btn" data-speak="' + esc(jp) + '">🔊 Say it</button>';
+    if (!compact) {
+      html += '<a class="jp-btn" target="_blank" rel="noopener" href="https://translate.google.com/?sl=ja&amp;tl=en&amp;op=translate&amp;text=' +
+        esc(encodeURIComponent(jp)) + '">🌐 Translate</a>';
+    }
+    html += '<button type="button" class="jp-btn" data-copy="' + esc(jp) + '">📋 Copy</button>';
+    html += '</div></div>';
+    return html;
+  }
+
+  // The order block: pick, optional second pick, then the chain's notes.
+  function balancedOrder(src, compact) {
+    var html = '<div class="food-order"><span class="food-order-label">Order:</span> ' + esc(src.order) + '</div>';
+    html += balancedSay(src.order_jp, src.order, src.order_romaji, compact);
+    if (src.alt) {
+      html += '<div class="quick-opt-what">' + esc(src.alt) + '</div>';
+      if (src.alt_jp) html += balancedSay(src.alt_jp, src.alt.replace(/^(Or|Add)[^:]*:\s*/, ''), '', true);
+    }
+    for (var n = 0; n < (src.notes || []).length; n++) {
+      html += '<div class="quick-opt-note">' + longProse(src.notes[n]) + '</div>';
+    }
+    return html;
+  }
+
+  function renderBalancedRow(o, chains) {
+    var html = '<div class="quick-opt">';
+    html += '<div class="quick-opt-name">' + esc(o.name_en);
+    if (o.name_jp) html += ' <span class="quick-opt-jp">' + esc(o.name_jp) + '</span>';
+    html += '</div>';
+    html += '<div class="quick-opt-meta">' + esc(o.kind) + ' · ' + esc(o.walk) + '</div>';
+    html += '<div class="quick-opt-hours">🕒 ' + esc(o.hours) + '</div>';
+    var src = o.chain ? chains[o.chain] : o;
+    if (src && src.order_jp) html += balancedOrder(src, true);
+    if (o.pay) html += '<div class="quick-opt-note">💳 ' + esc(o.pay) + '</div>';
+    if (o.note) html += '<div class="quick-opt-note">' + longProse(o.note) + '</div>';
+    var btns = '';
+    if (typeof o.lat === 'number' && typeof o.lon === 'number') {
+      btns += '<a class="btn btn-maps" href="' + esc(mapsPinUrl(o)) +
+        '" target="_blank" rel="noopener">📍 Map</a>';
+    }
+    if (o.url) {
+      btns += '<a class="btn btn-web" href="' + esc(o.url) + '" target="_blank" rel="noopener">🔗 Web</a>';
+    }
+    if (btns) html += '<div class="quick-opt-actions">' + btns + '</div>';
+    return html + '</div>';
+  }
+
+  function balancedSection(icon, title, sub, body) {
+    var html = '<div class="eat-card">';
+    html += '<div class="eat-header" data-toggle>';
+    html += '<span class="eat-icon">' + icon + '</span>';
+    html += '<span class="eat-title">' + esc(title) +
+      (sub ? ' <span class="quick-nights">' + esc(sub) + '</span>' : '') + '</span>';
+    html += '<span class="eat-chevron">▶</span>';
+    html += '</div>';
+    return html + '<div class="eat-body">' + body + '</div></div>';
+  }
+
+  function renderBalancedCard(food) {
+    var b = food.balanced;
+    if (!b || !b.hubs || !b.hubs.length || !b.chains) return '';
+    var html = '<div class="payment-rules balanced-card">';
+    html += '<div class="card-header" data-toggle>';
+    html += '<span class="payment-rules-icon">🥗</span>';
+    html += '<span class="payment-rules-title">Balanced meals</span>';
+    html += '<span class="chevron">▶</span>';
+    html += '</div>';
+    html += '<div class="card-body">';
+    if (b.intro) html += '<div class="quick-intro">' + longProse(b.intro) + '</div>';
+    if (b.order_rules && b.order_rules.length) {
+      html += '<div class="quick-till">';
+      html += '<div class="quick-till-title">Ordering at any sit-down chain</div>';
+      for (var r = 0; r < b.order_rules.length; r++) {
+        html += '<div class="quick-till-line">' + longProse(b.order_rules[r]) + '</div>';
+      }
+      html += '<div class="quick-till-line">Tap any Japanese line to show it full-screen, or 🔊 to play it aloud.</div>';
+      html += '</div>';
+    }
+
+    var ids = Object.keys(b.chains);
+    var chainsHtml = '';
+    for (var c = 0; c < ids.length; c++) {
+      var ch = b.chains[ids[c]];
+      chainsHtml += '<div class="quick-opt">';
+      chainsHtml += '<div class="quick-opt-name">' + esc(ch.name_en) +
+        (ch.name_jp ? ' <span class="quick-opt-jp">' + esc(ch.name_jp) + '</span>' : '') + '</div>';
+      chainsHtml += '<div class="quick-opt-meta">' + esc(ch.kind) + '</div>';
+      chainsHtml += balancedOrder(ch, false);
+      chainsHtml += '</div>';
+    }
+    html += balancedSection('🍱', 'What to order at each chain', '', chainsHtml);
+
+    for (var h = 0; h < b.hubs.length; h++) {
+      var hub = b.hubs[h];
+      var body = '';
+      if (hub.anchor) body += '<div class="quick-note">' + esc(hub.anchor) + '</div>';
+      if (hub.note) body += '<div class="quick-note">' + longProse(hub.note) + '</div>';
+      for (var o = 0; o < hub.options.length; o++) body += renderBalancedRow(hub.options[o], b.chains);
+      html += balancedSection('📍', hub.title, hub.when, body);
+    }
+
+    if (b.konbini && b.konbini.lines && b.konbini.lines.length) {
+      var kb = '';
+      if (b.konbini.intro) kb += '<div class="quick-note">' + longProse(b.konbini.intro) + '</div>';
+      kb += '<div class="bal-konbini">';
+      for (var k = 0; k < b.konbini.lines.length; k++) {
+        kb += '<div class="bal-konbini-jp">' + esc(b.konbini.lines[k].jp) + '</div>' +
+          '<div class="bal-konbini-en">' + esc(b.konbini.lines[k].en) + '</div>';
+      }
+      kb += '</div>';
+      html += balancedSection('🏪', 'Konbini — what the labels say', '', kb);
+    }
+
+    if (b.gaps && b.gaps.length) {
+      html += '<div class="quick-gaps"><div class="quick-gaps-title">Checked and not available</div>';
+      for (var g = 0; g < b.gaps.length; g++) {
+        html += '<div class="quick-gap">' + longProse(b.gaps[g]) + '</div>';
+      }
+      html += '</div>';
+    }
+    html += '</div></div>';
+    return html;
+  }
+
   // ─── Food section renderer ─────────────────────────────────
   function renderFood() {
     var container = document.getElementById('section-food');
@@ -1475,6 +1619,7 @@
     // (three of them across twenty-one days) and a cuisine guide belongs to a
     // DISH. Neither has a day it could be folded onto. Both ship collapsed.
     html += renderQuickCard(food);
+    html += renderBalancedCard(food);
     html += renderDishGuides(food);
 
     // Per-day food cards
@@ -3018,6 +3163,54 @@
             icon: '🏪',
             title: 'Quick food — ' + qbase.title,
             detail: qbase.nights
+          });
+        }
+      }
+
+      // Balanced meals: one row per hub (its branches, and the picks of the
+      // chains it lists, English and Japanese), plus one row for the chain
+      // list and one for the konbini labels. Routed to Food like the quick rows.
+      var bal = DATA.food.balanced;
+      if (bal && bal.hubs && bal.chains) {
+        var pickParts = function (src) {
+          return src ? [src.name_en, src.name_jp, src.order, src.order_jp, src.order_romaji,
+            src.alt, src.alt_jp].concat(src.notes || []) : [];
+        };
+        for (var bh = 0; bh < bal.hubs.length; bh++) {
+          var bhub = bal.hubs[bh];
+          var bParts = [bhub.title, bhub.when, bhub.note];
+          for (var bo = 0; bo < bhub.options.length; bo++) {
+            var brow = bhub.options[bo];
+            bParts.push(brow.name_en, brow.name_jp, brow.kind, brow.hours, brow.walk,
+              brow.address_jp, brow.note, brow.pay);
+            bParts = bParts.concat(pickParts(brow.chain ? bal.chains[brow.chain] : brow));
+          }
+          searchIndex.push({
+            text: bParts.filter(Boolean).join(' ').toLowerCase(),
+            section: 'food',
+            icon: '🥗',
+            title: 'Balanced meals — ' + bhub.title,
+            detail: bhub.when
+          });
+        }
+        var cParts = ['balanced meals', 'what to order at each chain'].concat(bal.order_rules || []);
+        Object.keys(bal.chains).forEach(function (id) { cParts = cParts.concat(pickParts(bal.chains[id])); });
+        searchIndex.push({
+          text: cParts.filter(Boolean).join(' ').toLowerCase(),
+          section: 'food',
+          icon: '🥗',
+          title: 'Balanced meals — what to order at each chain',
+          detail: Object.keys(bal.chains).length + ' chains'
+        });
+        if (bal.konbini && bal.konbini.lines) {
+          var kParts = ['konbini', 'balanced meals', bal.konbini.intro];
+          bal.konbini.lines.forEach(function (l) { kParts.push(l.jp, l.en); });
+          searchIndex.push({
+            text: kParts.filter(Boolean).join(' ').toLowerCase(),
+            section: 'food',
+            icon: '🥗',
+            title: 'Balanced meals — konbini labels',
+            detail: '7-Eleven · FamilyMart · Lawson'
           });
         }
       }

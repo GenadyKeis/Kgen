@@ -2166,6 +2166,7 @@ a.jp-btn {
    card, so it cannot reuse .card-body / .chevron, which are descendant
    selectors an open parent would force open. */
 .quick-card .eat-card,
+.balanced-card .eat-card,
 .dish-guides-card .eat-card {
   margin-left: 0;
 }
@@ -2274,6 +2275,43 @@ a.jp-btn {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 8px;
+}
+/* ─── Balanced meals ─────────────────────────────────────────
+   Reuses the quick-food row classes and the food card's .jp-say block. The
+   per-branch copies are compact: no romaji, no Translate, no indent, smaller
+   type — the chain list above carries the full version. */
+.balanced-card .jp-say {
+  margin-left: 0;
+}
+.balanced-card .food-order {
+  margin: 6px 0 4px;
+}
+.bal-say-compact {
+  padding: 8px 10px;
+  margin: 6px 0;
+}
+.bal-say-compact .jp-say-text {
+  font-size: 17px;
+}
+.bal-say-compact .jp-say-actions {
+  margin-top: 6px;
+}
+.bal-konbini {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: 6px 12px;
+  align-items: baseline;
+}
+.bal-konbini-jp {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  word-break: break-word;
+}
+.bal-konbini-en {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-dim);
 }
 .quick-gaps {
   margin-top: 12px;
