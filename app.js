@@ -1372,7 +1372,9 @@
   // ─── Quick prepared food near each base ────────────────────
   // The other half of the 2026-08-22 request: not every meal is a restaurant.
   // The useful axis is "open when I get back", not "near" — so each option
-  // leads with its hours, and the gaps are stated rather than papered over.
+  // leads with its hours. ⛔ No "Checked and not available" list (removed
+  // 2026-09-24, user: "a log that leaked into the app") — a limit that changes
+  // what he does goes on the base note or the option it belongs to.
   // Head-of-tab is the right home because these belong to a BASE, not to a day
   // (three bases, twenty-one days) — which is the exact condition the deleted
   // ekiben tips card failed to meet.
@@ -1440,13 +1442,6 @@
         html += renderQuickOption(base.options[o]);
       }
       html += '</div></div>';
-    }
-    if (q.gaps && q.gaps.length) {
-      html += '<div class="quick-gaps"><div class="quick-gaps-title">Checked and not available</div>';
-      for (var gp = 0; gp < q.gaps.length; gp++) {
-        html += '<div class="quick-gap">' + longProse(q.gaps[gp]) + '</div>';
-      }
-      html += '</div>';
     }
     html += '</div></div>';
     return html;
@@ -1551,18 +1546,6 @@
       html += '</div>';
     }
 
-    var ids = Object.keys(b.chains);
-    var chainsHtml = '';
-    for (var c = 0; c < ids.length; c++) {
-      var ch = b.chains[ids[c]];
-      chainsHtml += '<div class="quick-opt">';
-      chainsHtml += '<div class="quick-opt-name">' + esc(ch.name_en) +
-        (ch.name_jp ? ' <span class="quick-opt-jp">' + esc(ch.name_jp) + '</span>' : '') + '</div>';
-      chainsHtml += '<div class="quick-opt-meta">' + esc(ch.kind) + '</div>';
-      chainsHtml += balancedOrder(ch, false);
-      chainsHtml += '</div>';
-    }
-    html += balancedSection('🍱', 'What to order at each chain', '', chainsHtml);
 
     for (var h = 0; h < b.hubs.length; h++) {
       var hub = b.hubs[h];
@@ -1585,13 +1568,23 @@
       html += balancedSection('🏪', 'Konbini — what the labels say', '', kb);
     }
 
-    if (b.gaps && b.gaps.length) {
-      html += '<div class="quick-gaps"><div class="quick-gaps-title">Checked and not available</div>';
-      for (var g = 0; g < b.gaps.length; g++) {
-        html += '<div class="quick-gap">' + longProse(b.gaps[g]) + '</div>';
-      }
-      html += '</div>';
+    // Last, on purpose (user, 2026-09-24): the areas come first and this reads as
+    // the fallback it is — Hiroshima, day trips, the beef-bowl chains on every main
+    // street, and the Akihabara Denny’s / Yoshinoya that live in Quick food.
+    // ⛔ No "Checked and not available" list here: it only recorded where I had
+    // looked, which changes nothing he does — the areas list what IS there.
+    var ids = Object.keys(b.chains);
+    var chainsHtml = '';
+    for (var c = 0; c < ids.length; c++) {
+      var ch = b.chains[ids[c]];
+      chainsHtml += '<div class="quick-opt">';
+      chainsHtml += '<div class="quick-opt-name">' + esc(ch.name_en) +
+        (ch.name_jp ? ' <span class="quick-opt-jp">' + esc(ch.name_jp) + '</span>' : '') + '</div>';
+      chainsHtml += '<div class="quick-opt-meta">' + esc(ch.kind) + '</div>';
+      chainsHtml += balancedOrder(ch, false);
+      chainsHtml += '</div>';
     }
+    html += balancedSection('🍱', 'At any other branch', '', chainsHtml);
     html += '</div></div>';
     return html;
   }
@@ -3193,13 +3186,13 @@
             detail: bhub.when
           });
         }
-        var cParts = ['balanced meals', 'what to order at each chain'].concat(bal.order_rules || []);
+        var cParts = ['balanced meals', 'at any other branch', 'what to order at each chain'].concat(bal.order_rules || []);
         Object.keys(bal.chains).forEach(function (id) { cParts = cParts.concat(pickParts(bal.chains[id])); });
         searchIndex.push({
           text: cParts.filter(Boolean).join(' ').toLowerCase(),
           section: 'food',
           icon: '🥗',
-          title: 'Balanced meals — what to order at each chain',
+          title: 'Balanced meals — at any other branch',
           detail: Object.keys(bal.chains).length + ' chains'
         });
         if (bal.konbini && bal.konbini.lines) {

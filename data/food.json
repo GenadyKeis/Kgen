@@ -1,6 +1,6 @@
 {
   "quick": {
-    "intro": "Not every night ends in a restaurant. These are the places near each base that are still open when a day runs late, checked against their operators’ own pages. Read the closing time, not the distance.",
+    "intro": "Not every night ends in a restaurant. These are the places near each base that are still open when a day runs late. Read the closing time, not the distance.",
     "till": {
       "title": "At the till, and on the way out",
       "lines": [
@@ -22,7 +22,7 @@
         "title": "Tokyo — Akihabara",
         "anchor_place_id": "akihabara-washington",
         "nights": "Nights 1–6 and 19–20",
-        "note": "🔴 The late answer here is Yoshinoya, 250 m up Shōwa-dōri and open to 02:00 — nothing else in this list is open past midnight. For a cold box, Life runs to 24:00, and the deepest discounts land one to two hours before a store closes: at this one that is roughly 22:00–23:00, which is exactly when a long day gets back.",
+        "note": "🔴 The late answer here is Yoshinoya, 250 m up Shōwa-dōri and open to 02:00 — nothing else in this list is open past midnight. For a cold box, Life runs to 24:00, and the deepest discounts land one to two hours before a store closes: at this one that is roughly 22:00–23:00, which is exactly when a long day gets back. ⚠ The hotel lists no microwave, so a cold box stays cold.",
         "options": [
           {
             "name_en": "Yoshinoya Akihabara",
@@ -76,7 +76,7 @@
               "https://store.hottomotto.com/b/hottomotto/info/63110/"
             ],
             "verified_on": "2026-08-22",
-            "note": "⚑ This is the only Hotto Motto within reach on the whole trip — the Kyoto and Hiroshima bases have none. Cards, IC and QR all work. Coordinate published by the operator."
+            "note": "Cards, IC and QR all work."
           },
           {
             "name_en": "Hanamasa Akihabara",
@@ -120,7 +120,7 @@
         "title": "Kyoto — Kyoto Station",
         "anchor_place_id": "dormy-inn-kyoto",
         "nights": "Nights 7–16",
-        "note": "🔴 The Kyoto base answers this question in the lobby: the Dormy Inn serves a free bowl of ramen every night, 21:30–23:00, which lands on top of every late return from Nara and Yoshino. ⛔ There is no Hotto Motto near Kyoto Station and no Fresco within a comfortable walk — that was checked against both operators’ own store lists, not assumed. ⚠ The supermarket and the 24-hour Yoshinoya are both on the Hachijō (south) side, so add the walk through or under the station.",
+        "note": "🔴 The Kyoto base answers this question in the lobby: the Dormy Inn serves a free bowl of ramen every night, 21:30–23:00, which lands on top of every late return from Nara and Yoshino. ⚠ The supermarket and the 24-hour Yoshinoya are both on the Hachijō (south) side, so add the walk through or under the station.",
         "options": [
           {
             "name_en": "Dormy Inn — free yonaki-soba",
@@ -199,7 +199,7 @@
         "title": "Hiroshima — Hiroshima Station",
         "anchor_place_id": "sotetsu-fresa-hiroshima",
         "nights": "Nights 17–18",
-        "note": "Everything here is inside the station buildings, three to five minutes from the hotel door, and the whole cluster shuts between 22:00 and 22:30 — ⛔ after that there is nothing but konbini. ⚠ Miyajima day (8 Nov) is the one to watch: be back across the tracks by 22:00 or the plan is a convenience store. There is no Hotto Motto and no Fresta near this station; both were checked against the operators’ own lists.",
+        "note": "Everything here is inside the station buildings, three to five minutes from the hotel door, and the whole cluster shuts between 22:00 and 22:30 — ⛔ after that there is nothing but konbini. ⚠ Miyajima day (8 Nov) is the one to watch: be back across the tracks by 22:00 or the plan is a convenience store.",
         "options": [
           {
             "name_en": "Yours ekie Hiroshima",
@@ -419,12 +419,6 @@
           }
         ]
       }
-    ],
-    "gaps": [
-      "⛔ Hotto Motto reaches only the Tokyo base. The nearest branch to Kyoto Station is Nishi-Ōji-Shichijō, and to Hiroshima Station it is Midori 3-chōme — both far enough out to be pointless. Checked against the chain’s own city lists on 2026-08-22.",
-      "⛔ No supermarket sits on the Dormy Inn’s own side of Kyoto Station. Fresco’s nearest 24-hour branch (Gojō) is about 1.2 km. The free 21:30 ramen downstairs is what replaces it.",
-      "⚠ Microwaves: only the Sotetsu Fresa in Hiroshima lists one on its own site. Akihabara Washington publishes a 3F coin laundry and nothing else; the Dormy Inn publishes 9F laundry and vending on 2F/5F/9F, and a third-party listing claiming service corners on floors 2–8 is not confirmed by the hotel. ⇒ At the Tokyo and Kyoto bases, assume a cold box stays cold.",
-      "⛔ Two hubs have no shop worth walking to: Yoshino station, and Uji station itself. Both are covered above — buy in Kyoto before you board."
     ]
   },
   "balanced": {
@@ -914,7 +908,6 @@
         "title": "Ginza",
         "when": "Days 2 and 4 · Fri Oct 23, Sun Oct 25",
         "anchor": "Distances are straight-line from the Ginza 4-chōme crossing.",
-        "note": "Jonathan’s Yūrakuchō, which some maps still show, has closed.",
         "options": [
           {
             "chain": "ootoya",
@@ -1386,12 +1379,7 @@
           "en": "Unsweetened — on teas and coffee"
         }
       ]
-    },
-    "gaps": [
-      "⛔ No Yayoi-ken near Shibuya station.",
-      "⛔ No Ōtoya at Kyoto Station. The nearest is Nishikikōji, in the Shijō / Karasuma list.",
-      "⛔ No Bikkuri Donkey near Akihabara. The nearest is at Tokyo Dome City (Suidōbashi)."
-    ]
+    }
   },
   "dish_guides": {
     "intro": "What to do at the table, by dish — not by restaurant. Every line is true of the dish wherever it is served, and anything that depends on what the shop puts in front of you is written as a condition, so nothing here tells you a table has something on it that it may not.",
