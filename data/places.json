@@ -7499,5 +7499,253 @@
     "verified_on": "2026-09-04",
     "confidence": "medium",
     "notes": "JR Nara line, two stops from Kyoto Station and one from Tōfukuji. The shrine's approach begins directly outside the station, per Kyoto City's tourism register. The street address is OpenStreetMap's, resolved by the station's name."
+  },
+  {
+    "id": "seiko-house-ginza",
+    "name_en": "Seiko House Ginza (Wako)",
+    "name_jp": "セイコーハウス銀座（和光本店）",
+    "search_jp": "和光",
+    "lat": 35.6716635,
+    "lon": 139.7650241,
+    "address_jp": "〒104-8105 東京都中央区銀座4-5-11",
+    "category": "shop",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "19:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "19:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "19:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "19:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "19:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "19:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "19:00"
+        ]
+      ]
+    },
+    "url": "https://www.wako.co.jp/f/store_information/main/main_building/",
+    "sources": [
+      "https://www.wako.co.jp/f/store_information/main/main_building/",
+      "https://www.seiko.co.jp/en/seiko_house_ginza/access/"
+    ],
+    "verified_on": "2026-09-25",
+    "confidence": "medium",
+    "notes": "The clock-tower building on the Ginza 4-chome crossing. 1F Watch Square: Grand Seiko, Seiko, Credor and Swiss brands. 2F: the Grand Seiko Flagship Boutique and the Credor salon. 11:00–19:00 every day except the New Year holidays. Direct from Ginza station exit B1; A9 and A10 are a few steps away. Pin: the building, resolved by name in OpenStreetMap."
+  },
+  {
+    "id": "grand-seiko-namiki",
+    "name_en": "Grand Seiko Flagship Boutique, Ginza Namiki-dori",
+    "name_jp": "グランドセイコーフラッグシップブティック 銀座並木通り",
+    "lat": 35.6708664,
+    "lon": 139.762533,
+    "address_jp": "〒104-0061 東京都中央区銀座6-6-5",
+    "category": "shop",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "19:00"
+        ]
+      ]
+    },
+    "url": "https://www.grand-seiko.com/jp-ja/special/ginzanamiki-gs/",
+    "sources": [
+      "https://www.grand-seiko.com/jp-ja/special/ginzanamiki-gs/",
+      "https://www.gltjp.com/en/directory/item/grand-seiko/"
+    ],
+    "verified_on": "2026-09-25",
+    "confidence": "medium",
+    "notes": "Grand Seiko’s largest boutique in Japan, opened June 2023, about 218 m² over two floors; boutique-only models are always stocked. 11:00–20:00 Monday to Saturday, 11:00–19:00 on Sundays and public holidays. Pin: resolved by name in Google Maps (OpenStreetMap does not carry it); reverse-geocodes into Ginza 6-chome, the block its address names."
+  },
+  {
+    "id": "bic-camera-yurakucho",
+    "name_en": "Bic Camera Yurakucho",
+    "name_jp": "ビックカメラ 有楽町店",
+    "search_jp": "ビックカメラ",
+    "lat": 35.6755023,
+    "lon": 139.7630127,
+    "address_jp": "〒100-0006 東京都千代田区有楽町1-11-1",
+    "category": "shop",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "22:00"
+        ]
+      ],
+      "tue": [
+        [
+          "10:00",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "10:00",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:00",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "22:00"
+        ]
+      ]
+    },
+    "url": "https://www.biccamera.com/bc/i/shop/shoplist/shop014.jsp",
+    "sources": [
+      "https://www.biccamera.com/bc/i/shop/shoplist/shop014.jsp",
+      "https://livejapan.com/public/operation/coupon/biccamera/en.html"
+    ],
+    "verified_on": "2026-09-25",
+    "confidence": "medium",
+    "notes": "Watches are on 6F, with watch repair and battery changes on the same floor; cameras are on B2F. Open 10:00–22:00 every day of the year, with a tax-free service. One minute from JR Yurakucho (Hibiya exit), and five to ten minutes underground from Ginza station. Pin: resolved by name in OpenStreetMap."
+  },
+  {
+    "id": "yodobashi-akiba",
+    "name_en": "Yodobashi Camera Multimedia Akiba",
+    "name_jp": "ヨドバシカメラ マルチメディアAkiba",
+    "search_jp": "ヨドバシカメラ",
+    "lat": 35.6990631,
+    "lon": 139.7745532,
+    "address_jp": "〒101-0028 東京都千代田区神田花岡町1-1",
+    "category": "shop",
+    "hours": {
+      "mon": [
+        [
+          "09:30",
+          "22:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:30",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:30",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:30",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:30",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:30",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:30",
+          "22:00"
+        ]
+      ]
+    },
+    "url": "https://www.yodobashi.com/ec/store/0018/",
+    "sources": [
+      "https://www.yodobashi.com/ec/store/0018/",
+      "https://www.yodobashi.com/ec/store/floor/0018/",
+      "https://www.yodobashi-akiba.com/information/access_map.html"
+    ],
+    "verified_on": "2026-09-25",
+    "confidence": "medium",
+    "notes": "Watches (Japanese and foreign brands) are on 3F, the same floor as the cameras. 09:30–22:00 every day. One minute from the JR Akihabara central exit. Pin: resolved by name in OpenStreetMap."
   }
 ]

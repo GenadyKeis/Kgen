@@ -700,6 +700,16 @@
             html += '<div class="item">';
             html += '<div class="item-name">' + esc(item.label) + '</div>';
             if (item.detail) html += '<div class="item-detail">' + esc(item.detail) + '</div>';
+            // A picture he SHOWS at a counter (the Bic coupon barcodes, 2026-09-25). The file is
+            // in SHELL_ASSETS so it opens offline; tapping opens it alone, for the scanner.
+            if (item.image) {
+              html += '<a class="item-image" href="' + esc(item.image) + '" target="_blank" rel="noopener">' +
+                '<img src="' + esc(item.image) + '" alt="' + esc(item.image_alt || item.label) + '" loading="lazy"></a>';
+            }
+            if (item.link && item.link.url) {
+              html += '<div class="btn-row"><a class="btn btn-web" href="' + esc(item.link.url) +
+                '" target="_blank" rel="noopener">🔗 ' + esc(item.link.label || 'Web') + '</a></div>';
+            }
             html += '</div>';
           }
         }
@@ -2600,10 +2610,10 @@
   // almanac.html is the single source of truth and stays editable standalone.
   // It is fetched once, parsed with DOMParser, and indexed by the data-place-id
   // each entry carries. The invariant the file guarantees: every places.json entry
-  // whose category is not hotel/station/restaurant has exactly one almanac entry,
+  // whose category is not hotel/station/restaurant/shop has exactly one almanac entry,
   // which is why the 📖 button gates on category alone and never has to check the
   // map (which is empty until the lazy load resolves).
-  var ALMANAC_NO_ENTRY = ['hotel', 'station', 'restaurant'];
+  var ALMANAC_NO_ENTRY = ['hotel', 'station', 'restaurant', 'shop'];
   var almanacPromise = null;
   var almanacRendered = false;
   var almanacPushedState = false;

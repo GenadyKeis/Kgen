@@ -1,4 +1,4 @@
-const CACHE_NAME = 'japan-v2-shell-74';
+const CACHE_NAME = 'japan-v2-shell-76';
 
 const SHELL_ASSETS = [
   './',
@@ -13,7 +13,9 @@ const SHELL_ASSETS = [
   './listen.html',
   './manifest.json',
   './icon-192.png',
-  './icon-512.png'
+  './icon-512.png',
+  // Day 2's Bic Camera coupon (both barcodes). Precached so it opens at the till with no signal.
+  './bic-coupon.png'
 ];
 
 const DATA_ASSETS = [

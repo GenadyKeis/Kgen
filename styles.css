@@ -1144,6 +1144,21 @@ main {
 .item-detail:last-child {
   margin-bottom: 0;
 }
+/* A picture shown at a counter (Day 2's coupon). White behind it so the barcodes scan in dark mode. */
+.item-image {
+  display: block;
+  margin: 4px 0 8px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.item-image img {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  margin: 0 auto;
+}
 
 /* ─── Day notes & backup ─────────────────────────────────── */
 .day-notes {

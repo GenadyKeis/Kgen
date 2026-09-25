@@ -85,11 +85,11 @@
         "items": [
           {
             "label": "What to buy",
-            "detail": "Photo camera · fountain pen and stationery · Seiko wristwatch · Uniqlo clothes. The order and the areas are yours on the day."
+            "detail": "Photo camera · fountain pen and stationery · Seiko or Grand Seiko wristwatch · Uniqlo clothes. The order and the areas are yours on the day."
           },
           {
             "label": "Where",
-            "detail": "Akihabara · Shibuya · Shinjuku · Ginza. The watch and the Uniqlo flagship are Ginza. The pen and stationery are the one that can go either way — Ginza, or Sekaido in Shinjuku, below."
+            "detail": "Akihabara · Shibuya · Shinjuku · Ginza. The watch and the Uniqlo flagship are Ginza — the watch shops are on their own card below. The pen and stationery are the one that can go either way — Ginza, or Sekaido in Shinjuku, below."
           },
           {
             "label": "Sekaido, Shinjuku — pens and stationery",
@@ -97,11 +97,47 @@
           },
           {
             "label": "Tax-free is free today",
-            "detail": "Anything bought on or before Oct 31 is exempted at the register, with nothing to do at Narita. From Nov 1 Japan switches to charging the tax up front and refunding it only after customs confirms export. Carry your passport."
+            "detail": "Anything bought on or before Oct 31 is exempted at the register, with nothing to do at Narita. From Nov 1 Japan switches to charging the tax up front and refunding it only after customs confirms export. Carry your passport. The purchase must come to ¥5,000 or more before tax, at one store on one day."
+          },
+          {
+            "label": "Bic Camera tourist coupon — 7% more on a Seiko",
+            "detail": "Tap the coupon to open it full screen and show it with your passport at the till, before paying. The cashier scans both barcodes, ① and ②. Bic takes the 10% tax off, then another 7% off watches — Seiko yes, Grand Seiko no, and no foreign-brand watches. Any payment method. Valid at every Bic Camera until Oct 31. If the till won't take it, open the live page with the button below.",
+            "image": "bic-coupon.png",
+            "image_alt": "Bic Camera tourist coupon — barcodes ① and ②, valid to 2026-10-31",
+            "link": {
+              "label": "Coupon page (LIVE JAPAN)",
+              "url": "https://livejapan.com/public/operation/coupon/biccamera/en.html"
+            }
           },
           {
             "label": "A Friday is the transaction day",
             "detail": "Weekday operation and the shortest tax-free desks. Neither Ginza’s nor Akihabara’s car-free street runs on a Friday — both are Sunday only, and that is the second shopping day, Oct 25."
+          }
+        ]
+      },
+      {
+        "type": "afternoon",
+        "title": "The watch — Seiko or Grand Seiko",
+        "items": [
+          {
+            "label": "Which shop for which watch",
+            "detail": "Grand Seiko: buy at one of the two Ginza boutiques below. No shop takes more than the 10% tax off a Grand Seiko, and the boutiques have the widest range, including models sold only there. Seiko (Presage, Prospex and the rest): try it on at Seiko House, then buy at Bic Camera Yurakucho with the coupon — 10% tax plus 7% off. Bic is about 500 m from Seiko House, or underground from Ginza station."
+          },
+          {
+            "place_id": "seiko-house-ginza",
+            "detail": "Try both brands on here. 1F Watch Square carries Seiko and Grand Seiko; 2F is the Grand Seiko Flagship Boutique. Opens at 11:00. To buy, show your passport before paying and ask for tax-free — 免税でお願いします (menzei de onegai shimasu)."
+          },
+          {
+            "place_id": "grand-seiko-namiki",
+            "detail": "Grand Seiko only — its largest shop in Japan, with the boutique-only models. About 300 m west of Seiko House, on Namiki-dori. To buy, show your passport before paying and ask for tax-free — 免税でお願いします (menzei de onegai shimasu)."
+          },
+          {
+            "place_id": "bic-camera-yurakucho",
+            "detail": "Where to buy a Seiko. Watches are on 6F. Show the coupon (top of this day) and your passport at the till before paying."
+          },
+          {
+            "place_id": "yodobashi-akiba",
+            "detail": "One minute from the hotel and open until 22:00 — for trying watches on any evening, or if Ginza doesn't happen. Watches are on 3F, the same floor as the cameras. Tax-free with your passport, but no tourist coupon: the Bic 7% doesn't apply here."
           }
         ]
       },
@@ -237,6 +273,10 @@
           {
             "label": "Tax-free, still the old way",
             "detail": "Oct 25 is before the Nov 1 switch: exemption at the register, no customs step on the departure morning."
+          },
+          {
+            "label": "The watch carries over",
+            "detail": "If Friday didn't settle it, Day 2's watch card holds today unchanged: the Bic coupon runs to Oct 31. Sunday hours: Seiko House 11:00–19:00, the Grand Seiko Namiki boutique 11:00–19:00, Bic Yurakucho 10:00–22:00."
           },
           {
             "label": "Sekaido is open today too",
