@@ -330,7 +330,7 @@
         "transit": [
           {
             "label": "JR + Keiō — Akihabara → Takaosanguchi",
-            "detail": "JR out to Shinjuku, then the Keiō Takao line to the end of the line; the Keiō half alone is about an hour, and the whole trip about an hour and a half. Stay off the all-JR route to Takao that a phone may offer first — it costs ¥1,174 instead of ¥639. Takaosanguchi is the terminus and the trailhead — Trail 1 starts a few minutes from the ticket gate.",
+            "detail": "Leave the hotel at about 08:30. JR out to Shinjuku, then the Keiō Takao line to the end of the line; the Keiō half alone is about an hour, and the whole trip about an hour and a half. Stay off the all-JR route to Takao that a phone may offer first — it costs ¥1,174 instead of ¥639. Takaosanguchi is the terminus and the trailhead — Trail 1 starts a few minutes from the ticket gate.",
             "origin_id": "akihabara-station",
             "destination_id": "takaosanguchi-station",
             "mode": "train",
@@ -533,6 +533,9 @@
     "notes_top": [
       "💴 A cash day from the gates to the table — Engaku-ji, Meigetsu-in, Kenchō-ji and the rest of the Kamakura temples take cash and nothing else, and so does tonight's dinner on Komachi-dōri. Draw enough before you leave Tokyo to cover the day — the lunch counter by Kenchō-ji's gate publishes no payment methods at all, so treat it as cash too."
     ],
+    "notes": [
+      "💴 Tonight, pay the Akihabara bill at the front desk: ¥175,695 for the six nights plus ¥1,200 of lodging tax. Tomorrow’s train is 09:30 and the morning has no room for it."
+    ],
     "backup": {
       "title": "If it rains — the temples hold, the climb goes",
       "detail": "The Zen temples are the day and they are open in rain; what a wet forecast actually costs is the hilltop climb behind Kenchō-ji, which the card for that piece already tells you to drop. Spend the freed hour at Tokei-ji instead — four minutes from Kita-Kamakura station, on the same street as everything else, no admission charged, 9:00–16:00, and its treasure house is open on this date. The day shrinks rather than moves, and the loss is small."
@@ -550,11 +553,11 @@
     "blocks": [
       {
         "type": "logistics",
-        "title": "Check out — leave ~08:50",
+        "title": "Check out — leave ~08:25",
         "items": [
           {
             "place_id": "akihabara-washington",
-            "detail": "Breakfast on the 3rd floor is included and the buffet runs from 06:30; eat around 07:00–07:45, settle at the desk about 08:45 and leave at ~08:50. Nothing here was prepaid: ¥175,695 for the six nights plus ¥1,200 of lodging tax is paid at the property, so unless you settled it earlier in the stay you settle it at this desk — leave room for that in the 08:45."
+            "detail": "Breakfast on the 3rd floor is included and the buffet runs from 06:30; eat 06:30–07:15. Nothing here was prepaid: ¥175,695 for the six nights plus ¥1,200 of lodging tax is paid at the property. If you did not settle it last night, be at the desk by 08:10. Leave at 08:25."
           }
         ]
       },
@@ -565,7 +568,7 @@
         "transit": [
           {
             "label": "JR Yamanote or Keihin-Tōhoku — Akihabara → Tokyo",
-            "detail": "Five minutes — two stops by way of Kanda, on the Yamanote or the Keihin-Tōhoku, whichever comes first. Leave the hotel about 08:50 and you are at the counter by about 09:10, twenty minutes before the 09:30 Nozomi. You stay inside the ordinary JR gates the whole way, which is what makes that stop work.",
+            "detail": "Five minutes — two stops by way of Kanda, on the Yamanote or the Keihin-Tōhoku, whichever comes first. This is the weekday rush and you have a trolley, so you may have to let a full train go. Leave the hotel at 08:25: about five minutes to walk the 150 m, pass the Akihabara gate and reach the platform, a wait of up to five minutes for a train, five minutes riding, so you step off at Tokyo about 08:40 and walk on to the ekiben shop by about 08:45. You stay inside the ordinary JR gates the whole way, which is what makes the ekiben stop work.",
             "origin_id": "akihabara-station",
             "destination_id": "tokyo-station",
             "mode": "train",
@@ -581,7 +584,7 @@
         "items": [
           {
             "place_id": "ekibenya-matsuri",
-            "detail": "About 09:10, allow twenty minutes. The shop is on the in-gate central passage on the 1st floor of GRANSTA — inside the ordinary JR gates but outside the Tōkaidō Shinkansen transfer gate. Buy first, then pass the gate: once you are through, you cannot come back for it. About 150 kinds, varying with the deliveries and the hour, and it opens at 05:30 every day. Suica, credit cards and JRE POINT are all taken — this is not a cash purchase. Eat it on board, roughly 11:00–11:35."
+            "detail": "08:45–09:00. Be walking to the Shinkansen gate by 09:00 with whatever you have in hand. The shop is on the in-gate central passage on the 1st floor of GRANSTA — inside the ordinary JR gates but outside the Tōkaidō Shinkansen transfer gate. Buy first, then pass the gate: once you are through, you cannot come back for it. About 150 kinds, varying with the deliveries and the hour, and it opens at 05:30 every day. Suica, credit cards and JRE POINT are all taken — this is not a cash purchase. Eat it on board, roughly 11:00–11:35. Through the Tōkaidō Shinkansen transfer gate by about 09:05 — tap the Wallet Suica registered to smartEX; there is nothing to collect — then up to the platform the departure board names, about ten minutes from the shop. You are on the platform around 09:15; the car number is on your smartEX booking and the floor markings show where each car stops."
           }
         ]
       },
@@ -663,7 +666,7 @@
         "transit": [
           {
             "label": "JR — Kyoto → Hōryūji",
-            "detail": "The Nara line down to Nara, then the Yamatoji line west; Hōryūji is eleven minutes on from Nara. From the station the temple is about twenty minutes on foot north, or a short ride on the bus signed Hōryūji-sandō.",
+            "detail": "Leave the hotel at 07:45 for the 08:02, in at Hōryūji at 09:26. The Nara line down to Nara, then the Yamatoji line west; Hōryūji is eleven minutes on from Nara. From the station the temple is about twenty minutes on foot north, or a short ride on the bus signed Hōryūji-sandō.",
             "origin_id": "kyoto-station",
             "destination_id": "horyuji-station",
             "mode": "train",
@@ -752,6 +755,7 @@
       }
     ],
     "notes": [
+      "🎫 Tonight, at the Kintetsu counter or machine at Kyoto Station, buy the ¥520 limited-express seat ticket for tomorrow’s 07:05 to Kashihara. Tomorrow you leave at 06:45.",
       "✈ Read Kaidashimen Kitada's Instagram tonight. It is the single venue carrying four of the trip's dinner slots — the first choice on Oct 30 and Nov 5, the fallback tonight and on Nov 3 — and it closes on irregular days that it publishes nowhere. A reading from before the trip proves nothing about now."
     ],
     "backup": {
@@ -776,7 +780,7 @@
         "transit": [
           {
             "label": "Kintetsu 07:05 — Kyoto → Tenri 07:56, changing at Yamato-Saidaiji",
-            "detail": "The 07:05 limited express to Kashihara (reserved, ¥520 seat ticket from the Kintetsu machine before you board), off at Yamato-Saidaiji at 07:34, and the 07:39 express to Tenri from the same station — in at 07:56, which is what puts you at Isonokami for half past eight. The cheap version leaves earlier: the 06:49 semi-express, changing at Ōkubo and again at Yamato-Saidaiji onto that same 07:39, ¥910 and the same 07:56. Missed both: the 07:16 express runs straight through to Tenri with no change, but it is in at 08:23, and that half hour comes off the daylight in hand at Ōmiwa tonight. JR and Kintetsu share one station building at Tenri, and the walk starts from it either way.",
+            "detail": "Leave the hotel at 06:45: the Kintetsu gates are about ten minutes away, on the south side of the station. The hotel breakfast opens at 06:30, too late to sit down to, so buy breakfast at a konbini on the way and eat it on the train. The 07:05 limited express to Kashihara (reserved: the ¥520 seat ticket — bought last night, or at the Kintetsu counter or machine this morning before you board), off at Yamato-Saidaiji at 07:34, and the 07:39 express to Tenri from the same station — in at 07:56, which is what puts you at Isonokami for half past eight. The cheap version leaves earlier: the 06:49 semi-express, changing at Ōkubo and again at Yamato-Saidaiji onto that same 07:39, ¥910 and the same 07:56. Missed both: the 07:16 express runs straight through to Tenri with no change, but it is in at 08:23, and that half hour comes off the daylight in hand at Ōmiwa tonight. JR and Kintetsu share one station building at Tenri, and the walk starts from it either way.",
             "origin_id": "kyoto-station",
             "destination_id": "tenri-station",
             "mode": "train",
@@ -922,6 +926,7 @@
       "💴 A rural walking day — carry cash. The roadside stalls with their honesty boxes and the small shrines along the road take nothing else."
     ],
     "notes": [
+      "🎫 Tonight, at the Kintetsu counter or machine as you come back through Kyoto Station, buy the ¥520 limited-express seat ticket for tomorrow’s 08:30 to Kintetsu Nara.",
       "🌐 Re-read two channels tonight, for Sunday Nov 1: Kurama-dera's own front page, where it posts dated path closures, and Kifune Shrine's news page, where it posts single-day changes to its hours. The traverse over the ridge is the whole of that day, and a reading made before you flew is two weeks stale by Sunday."
     ],
     "backup": {
@@ -946,7 +951,7 @@
         "transit": [
           {
             "label": "Kintetsu 08:30 limited express — Kyoto → Kintetsu Nara 09:04",
-            "detail": "Direct, thirty-four minutes, from platform 2 at the Kintetsu gates on the south side of the station building — about ten minutes on foot from the hotel, so out of the door by 08:10 is enough. Every seat is reserved: buy the ¥520 seat ticket at the Kintetsu machine or counter before you board; the ¥760 fare is the IC card at the gate. Missed it: the 08:55 limited express is in at about 09:30, and the 08:56 express behind it needs no seat ticket and is in at 09:42. Not JR this morning — on a Saturday the first Miyakoji rapid is the 09:04, and the locals before it take over an hour — so it is Kintetsu both ways today, and Kintetsu Nara is the station nearer the park.",
+            "detail": "Direct, thirty-four minutes, from platform 2 at the Kintetsu gates on the south side of the station building — about ten minutes on foot from the hotel, so leave at 08:00. Every seat is reserved: the ¥520 seat ticket — bought last night, or at the Kintetsu counter or machine this morning before you board; the ¥760 fare is the IC card at the gate. Missed it: the 08:55 limited express is in at about 09:30, and the 08:56 express behind it needs no seat ticket and is in at 09:42. Not JR this morning — on a Saturday the first Miyakoji rapid is the 09:04, and the locals before it take over an hour — so it is Kintetsu both ways today, and Kintetsu Nara is the station nearer the park.",
             "origin_id": "kyoto-station",
             "destination_id": "kintetsu-nara-station",
             "mode": "train",
@@ -1074,7 +1079,7 @@
         "transit": [
           {
             "label": "JR + Keihan — Kyoto → Demachiyanagi",
-            "detail": "One stop on the JR Nara line to Tōfukuji, then the Keihan north to the end of the line at Demachiyanagi — twenty to thirty minutes all told.",
+            "detail": "Leave the hotel at 07:45 for the 08:01: Demachiyanagi at 08:30 and the 08:45 up the mountain. One stop on the JR Nara line to Tōfukuji, then the Keihan north to the end of the line at Demachiyanagi — twenty to thirty minutes all told.",
             "origin_id": "kyoto-station",
             "destination_id": "demachiyanagi-station",
             "mode": "train",
@@ -1191,7 +1196,7 @@
         "transit": [
           {
             "label": "On foot — down the valley road to Kibuneguchi",
-            "detail": "About two kilometres down past the ryokan street and the Hotaru-iwa: the shrine’s own figure is thirty minutes, the temple’s forty. Kyoto Bus 33 runs the same stretch in about five minutes if the legs are gone — a different company from the city buses, but it pays the same way: on at the back, one tap as you get off.",
+            "detail": "About two kilometres down past the ryokan street and the Hotaru-iwa: the shrine’s own figure is thirty minutes, the temple’s forty. ⏱ If you are not walking down the valley by 14:30, Sanjūsangen-dō is off for today: it stops admitting at 16:30. Kyoto Bus 33 runs the same stretch in about five minutes — a different company from the city buses, but it pays the same way: on at the back, one tap as you get off.",
             "origin_id": "kifune-shrine",
             "destination_id": "kibuneguchi-station",
             "mode": "walking",
@@ -1274,7 +1279,7 @@
         "transit": [
           {
             "label": "City bus — Kyoto Station → the Kamo delta",
-            "detail": "North across town to the delta where the two rivers meet, about half an hour.",
+            "detail": "Leave the hotel at about 08:45. North across town to the delta where the two rivers meet, about half an hour.",
             "payment": "Kyoto is the reverse of Nara: board by the REAR door and do nothing at all. You pay on the way OUT — one tap on the reader beside the driver as you leave by the front door. The city fare is a flat ¥230, so it is one tap whatever the distance. If the card is short, the same box takes cash.",
             "origin_id": "kyoto-station",
             "destination_id": "tadasu-no-mori",
@@ -1344,7 +1349,7 @@
         "items": [
           {
             "place_id": "shake-machi",
-            "detail": "Two minutes from the gate: the lane of the shrine’s own priestly families, following the Myōjin-gawa as it leaves the precinct — earthen bridges and walls, gates and front gardens, and the gable member particular to these houses. A nationally selected preservation district, about 500 metres of it, exterior only, twenty to thirty minutes."
+            "detail": "Two minutes from the gate: the lane of the shrine’s own priestly families, following the Myōjin-gawa as it leaves the precinct — earthen bridges and walls, gates and front gardens, and the gable member particular to these houses. A nationally selected preservation district, about 500 metres of it, exterior only, twenty to thirty minutes. ⏱ Be on the bus west by 15:00: Sōken-in stops admitting at 16:00 and Kōrin-in at 16:30. If Kamigamo has run long, drop this lane."
           }
         ]
       },
@@ -1613,7 +1618,7 @@
         "transit": [
           {
             "label": "JR — Kyoto → Yamashina",
-            "detail": "The Tōzai subway does not reach Kyoto Station, which is why the day changes at Yamashina.",
+            "detail": "Leave the hotel at about 08:30; Sanbō-in opens at 09:00. The Tōzai subway does not reach Kyoto Station, which is why the day changes at Yamashina.",
             "origin_id": "kyoto-station",
             "destination_id": "yamashina-station",
             "mode": "train",
@@ -1755,7 +1760,7 @@
         "transit": [
           {
             "label": "Kintetsu 07:06 — Kyoto → Yoshino 09:22, changing at Kashiharajingū-mae",
-            "detail": "South on the Kintetsu with a change at Kashiharajingū-mae. The 07:06 express is in at 09:22 — two hours sixteen each way, four and a half hours of train in the day, the longest of the trip’s day trips — and it is the train that meets the 09:35 bus up the hill. Nothing gets there earlier: the limited expresses cost ¥3,070 instead of ¥1,480 and the best of them is in at 09:26. What they buy is a later start, 07:30 instead of 07:06, not an earlier arrival. The next ¥1,480 train after the 07:06 is the 07:34, in at 09:52, which misses the 09:35 bus for the 10:35.",
+            "detail": "Leave the hotel at 06:45: the Kintetsu gates are about ten minutes away, on the south side of the station, and this is the one train that meets the first bus up the hill. The hotel breakfast opens at 06:30, too late to sit down to, so buy breakfast at a konbini on the way and eat it on the train. South on the Kintetsu with a change at Kashiharajingū-mae. The 07:06 express is in at 09:22 — two hours sixteen each way, four and a half hours of train in the day, the longest of the trip’s day trips — and it is the train that meets the 09:35 bus up the hill. Nothing gets there earlier: the limited expresses cost ¥3,070 instead of ¥1,480 and the best of them is in at 09:26. What they buy is a later start, 07:30 instead of 07:06, not an earlier arrival. The next ¥1,480 train after the 07:06 is the 07:34, in at 09:52, which misses the 09:35 bus for the 10:35.",
             "origin_id": "kyoto-station",
             "destination_id": "yoshino-station",
             "mode": "train",
@@ -1856,7 +1861,7 @@
         "transit": [
           {
             "label": "On foot — down the village road",
-            "detail": "All downhill, an hour and a quarter to an hour and a half back past the Kami-senbon and the Naka-senbon to the cable station below the Zaō-dō. The turn-around that matters: sunset at Yoshino on this date is 17:00 and civil dusk 17:26, and you leave the upper village about a quarter to two and reach the foot about a quarter past three — about an hour clear of the 16:20 last bus down, and about an hour and three quarters clear of the light. Nothing here needs planning around, but the bus is the tighter of the two.",
+            "detail": "All downhill, an hour and a quarter to an hour and a half back past the Kami-senbon and the Naka-senbon to the cable station below the Zaō-dō. The turn-around that matters: sunset at Yoshino on this date is 17:00 and civil dusk 17:26, and you leave the upper village about a quarter to two and reach the foot about a quarter past three — about an hour clear of the 16:20 last bus down, and about an hour and three quarters clear of the light. Nothing here needs planning around, but the bus is the tighter of the two. ⏱ If you are still at Yoshino Mikumari-jinja at 14:30, start down then: at the slow end the descent is an hour and a half.",
             "origin_id": "kinpu-jinja",
             "destination_id": "kinpusenji",
             "mode": "walking",
@@ -1917,7 +1922,7 @@
         "transit": [
           {
             "label": "JR Nara line — Kyoto → Uji",
-            "detail": "About twenty minutes by rapid, then ten minutes on foot to Byōdō-in. Arrive before half past nine: the Phoenix Hall interior is a same-day timed ticket that cannot be booked, so the early arrival is what gets you a slot.",
+            "detail": "Leave the hotel at 08:30. About twenty minutes by rapid, then ten minutes on foot to Byōdō-in. Arrive before half past nine: the Phoenix Hall interior is a same-day timed ticket that cannot be booked, so the early arrival is what gets you a slot.",
             "origin_id": "kyoto-station",
             "destination_id": "uji-station",
             "mode": "train",
@@ -2023,11 +2028,11 @@
     "blocks": [
       {
         "type": "logistics",
-        "title": "Check out — leave ~09:40",
+        "title": "Check out — leave ~09:30",
         "items": [
           {
             "place_id": "dormy-inn-kyoto",
-            "detail": "Settle up and leave at about 09:40 — the Shinkansen central gate is ten minutes away and the train is 10:02. The train, not the check-out deadline, is what sets this morning. The ten nights and the city lodging tax were paid at this desk on arrival, so nothing is owed here."
+            "detail": "Leave at 09:30 — the Shinkansen gate is about ten minutes from the hotel door and the train is 10:02. The train, not the check-out deadline, is what sets this morning. The ten nights and the city lodging tax were paid at this desk on arrival, so nothing is owed here."
           }
         ]
       },
@@ -2038,7 +2043,7 @@
         "transit": [
           {
             "label": "Walk — the Dormy Inn to Kyoto Station",
-            "detail": "Three minutes back to the Central (Karasuma) gate on the north side, then through to the Shinkansen central gate at about 09:50.",
+            "detail": "Three minutes back to the Central (Karasuma) gate on the north side, then on inside the station to the Shinkansen transfer gate — about ten minutes door to gate, so through it by about 09:40 and on the platform with twenty minutes in hand.",
             "origin_id": "dormy-inn-kyoto",
             "destination_id": "kyoto-station",
             "mode": "walking",
@@ -2174,6 +2179,9 @@
     "notes_top": [
       "💴 The okonomiyaki counters take cash and nothing else, and the Peace Museum's ¥200 and Shukkei-en's ¥350 are both paid at the gate. Draw at the station on arrival if you are short."
     ],
+    "notes": [
+      "🍳 At check-in, ask the desk what time breakfast starts. If it is served by 06:30, tomorrow you can eat and take the 06:58; if not, it is a konbini breakfast and the 06:40."
+    ],
     "backup": {
       "title": "If it rains — the art museum takes Shukkei-en's hour",
       "detail": "You only have two days in Hiroshima, so there is nothing to swap with — the answer has to be inside the day. The Hiroshima Prefectural Art Museum is next door to Shukkei-en and shares its tram stop, no transfer at all, open Saturday 9:00 to 17:00 with last entry 16:30, ¥510. The garden is the only piece exposed to rain; everything else is indoors or is the park itself. A moderate loss, because the garden is a hibaku site as well as a stroll garden, and the museum is no substitute for that. ⚑ The same swap covers you if you are simply too tired for the garden — and the day has the room for it either way."
@@ -2196,7 +2204,7 @@
         "transit": [
           {
             "label": "JR Sanyō line — Hiroshima → Miyajimaguchi",
-            "detail": "Twenty-six minutes on the Sanyō line, all stations — 06:25, 06:40 and 06:58 out of Hiroshima. Go early: the shrine opens at 06:30, and the mountain has to be behind you in daylight.",
+            "detail": "Twenty-six minutes on the Sanyō line, all stations — 06:25, 06:40 and 06:58 out of Hiroshima, four minutes from the hotel. Take the 06:40 with a konbini breakfast. If the hotel breakfast is already being served when you come down, a quick plate and the 06:58 costs about twenty minutes, which the day can spare. Go early: the shrine opens at 06:30, and the mountain has to be behind you in daylight.",
             "origin_id": "jr-hiroshima-station",
             "destination_id": "miyajimaguchi-station",
             "mode": "train",
@@ -2283,7 +2291,7 @@
         "transit": [
           {
             "label": "On foot — down to Momijidani and the town",
-            "detail": "The gentler of the two courses, an hour and a quarter to an hour and a half down — faster than the ascent but not half of it, because it is stone step and root the whole way. It lands at Momijidani Park, fifteen minutes from the Omotesandō street where the late lunch sits: anago-meshi, and momiji-manjū off the griddle. The pier is the far end of that same street. If the climb has run long, come down the way you went up: the temple's own advice is that the Daishō-in course stays light longer, and Momijidani is a valley that darkens early. If your legs are finished at the top, the ropeway is the alternative descent — and 8 November is one of its reservation-only days, so you hold a booking: no. 0000139725, 14:00–14:15, one person. Show the QR code in the confirmation email (Reservations tab) at the platform; be at the summit station inside that window, because the booking lapses once its time has passed. Even with it you may wait for a car — November is the ropeway's busiest month — the last car down is 16:30, and the only fallback to a queue is this walk, which you do not want to begin at dusk.",
+            "detail": "The gentler of the two courses, an hour and a quarter to an hour and a half down — faster than the ascent but not half of it, because it is stone step and root the whole way. It lands at Momijidani Park, fifteen minutes from the Omotesandō street where the late lunch sits: anago-meshi, and momiji-manjū off the griddle. The pier is the far end of that same street. If the climb has run long, come down the way you went up: the temple's own advice is that the Daishō-in course stays light longer, and Momijidani is a valley that darkens early. If your legs are finished at the top, the ropeway is the alternative descent — and 8 November is one of its reservation-only days, so you hold a booking: no. 0000139725, 14:00–14:15, one person. Show the QR code in the confirmation email (Reservations tab) at the platform; be at the summit station inside that window, because the booking lapses once its time has passed. The ropeway’s upper station (Shishiiwa) is about thirty minutes on foot from the summit, so leave the top by 13:30 to use it. Even with it you may wait for a car — November is the ropeway's busiest month — the last car down is 16:30, and the only fallback to a queue is this walk, which you do not want to begin at dusk.",
             "origin_id": "mt-misen",
             "destination_id": "miyajima-ferry-terminal",
             "mode": "walking",
@@ -2540,11 +2548,15 @@
       },
       {
         "type": "logistics",
-        "title": "One errand for today — the Skyliner seat",
+        "title": "Two errands for today — the Skyliner seat and the hotel bill",
         "items": [
           {
             "label": "Reserve the seat for tomorrow’s Skyliner",
-            "detail": "The return half of the round-trip Skyliner ticket carries no seat, and tomorrow morning is not the time to discover that. Take the coupon and your passport to either the Keisei Ueno ticket counter or the Nippori JR-connection counter today, while you are in town all day, and have the 11:05 out of Nippori reserved."
+            "detail": "Tomorrow’s one-way Skyliner e-ticket carries no seat until it is exchanged for one, and tomorrow morning is not the time to discover that. Take the e-ticket and your passport to either the Keisei Ueno ticket counter or the Nippori JR-connection counter today, while you are in town all day, and have the 11:05 out of Nippori reserved."
+          },
+          {
+            "label": "Pay the hotel bill tonight",
+            "detail": "¥48,360 for the two nights plus about ¥400 of lodging tax, at the front desk. Tomorrow you leave at 10:30 for the Skyliner, so settle it tonight."
           }
         ]
       }
@@ -2569,7 +2581,7 @@
         "items": [
           {
             "place_id": "akihabara-washington",
-            "detail": "Check-out is 11:00 and breakfast is served early, but leave at about 10:30. That half hour costs you nothing and it is the only cushion you have between the tax-refund customs step and El Al's check-in close, which the ticket never states."
+            "detail": "Check-out is 11:00 and breakfast is served early, but leave at about 10:30. The ¥48,360 for the two nights is paid at this desk: if you did not settle it last night, be at the desk by 10:15. That half hour costs you nothing and it is the only cushion you have between the tax-refund customs step and El Al's check-in close, which the ticket never states."
           }
         ]
       },

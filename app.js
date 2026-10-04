@@ -1064,6 +1064,27 @@
         var med = sos.medical[m];
         html += '<div class="medical-card">';
         html += '<div class="medical-city">' + esc(med.city) + ' — ' + esc(med.dates) + '</div>';
+        // English walk-in clinics come FIRST: a fever or flu is a clinic visit, and the
+        // hospital below is for the emergency the clinic cannot handle.
+        if (med.clinics) {
+          for (var ci = 0; ci < med.clinics.length; ci++) {
+            var cl = med.clinics[ci];
+            html += '<div class="medical-detail" style="margin-top:' + (ci ? '10' : '0') + 'px;font-weight:600">🩺 ' + esc(cl.name_en) + '</div>';
+            if (cl.name_jp) html += '<div class="medical-detail copyable" data-copy="' + esc(cl.name_jp) + '">' + esc(cl.name_jp) + '</div>';
+            if (cl.address) html += '<div class="medical-detail copyable" data-copy="' + esc(cl.address) + '">' + esc(cl.address) + '</div>';
+            if (cl.hours) html += '<div class="medical-detail">' + esc(cl.hours) + '</div>';
+            if (cl.note) html += '<div class="medical-detail">' + esc(cl.note) + '</div>';
+            if (cl.distance) html += '<div class="medical-detail">' + esc(cl.distance) + '</div>';
+            if (cl.tel || cl.url || (cl.lat && cl.lon)) {
+              html += '<div class="btn-row" style="margin-top:6px">';
+              if (cl.tel) html += '<a class="btn btn-call" href="' + esc(cl.tel) + '">📞 ' + esc(cl.phone) + ' (English)</a>';
+              if (cl.url) html += '<a class="btn btn-maps" href="' + esc(cl.url) + '" target="_blank" rel="noopener">🌐 Website</a>';
+              if (cl.lat && cl.lon) html += '<a class="btn btn-maps" href="' + mapsPinUrl(cl) + '" target="_blank" rel="noopener">📍 Map</a>';
+              html += '</div>';
+            }
+          }
+          html += '<div style="margin-top:10px"></div>';
+        }
         if (med.hospital) {
           html += '<div class="medical-name">' + esc(med.hospital.name_en) + '</div>';
           if (med.hospital.name_jp) html += '<div class="medical-detail copyable" data-copy="' + esc(med.hospital.name_jp) + '">' + esc(med.hospital.name_jp) + '</div>';
@@ -1080,6 +1101,20 @@
               html += '<a class="btn btn-maps" href="' + mapsPinUrl(med.hospital) + '" target="_blank" rel="noopener">📍 Map</a>';
             }
             html += '</div>';
+          }
+        }
+        if (med.english_pharmacies) {
+          for (var ep = 0; ep < med.english_pharmacies.length; ep++) {
+            var eph = med.english_pharmacies[ep];
+            html += '<div class="medical-detail" style="margin-top:8px;font-weight:600">💊 ' + esc(eph.name) + '</div>';
+            if (eph.location) html += '<div class="medical-detail">' + esc(eph.location) + '</div>';
+            if (eph.hours) html += '<div class="medical-detail">' + esc(eph.hours) + '</div>';
+            if (eph.note) html += '<div class="medical-detail">' + esc(eph.note) + '</div>';
+            if (eph.lat && eph.lon) {
+              html += '<div class="btn-row" style="margin-top:6px">';
+              html += '<a class="btn btn-maps" href="' + mapsPinUrl(eph) + '" target="_blank" rel="noopener">📍 Map</a>';
+              html += '</div>';
+            }
           }
         }
         if (med.pharmacy) {
@@ -1654,11 +1689,10 @@
 
           // Exactly one meal in the trip carries two backups — day 5's dinner,
           // ethiopia-akihabara then fish-shinjuku — and their order IS the
-          // ranking, because it is the only signal there is. Two identical
-          // "Backup" badges hid that, and the second one reads as the stronger
-          // of the pair (it carries a tabelog score and an award line; the
-          // first carries neither). Numbering them only when there is more than
-          // one leaves the other 31 meals byte-identical on screen.
+          // ranking. Two identical "Backup" badges hid that. (Both now show a
+          // tabelog score, 3.68 then 3.79 — the order is ratified and stays.)
+          // Numbering them only when there is more than one leaves the other
+          // 31 meals byte-identical on screen.
           var backupTotal = 0;
           for (var bc = 0; bc < meal.restaurants.length; bc++) {
             if (meal.restaurants[bc].role === 'backup') backupTotal++;
@@ -3300,9 +3334,11 @@
       if (sos.medical) {
         for (var md = 0; md < sos.medical.length; md++) {
           var med = sos.medical[md];
-          var medParts = ['medical', 'hospital', 'pharmacy', med.city, med.dates];
+          var medParts = ['medical', 'hospital', 'pharmacy', 'clinic', 'doctor', 'flu', 'fever', 'english', med.city, med.dates];
           if (med.hospital) medParts.push(med.hospital.name_en, med.hospital.name_jp, med.hospital.note);
           if (med.pharmacy) medParts.push(med.pharmacy.name, med.pharmacy.location);
+          (med.clinics || []).forEach(function (c) { medParts.push(c.name_en, c.name_jp); });
+          (med.english_pharmacies || []).forEach(function (p) { medParts.push(p.name, p.location); });
           searchIndex.push({
             text: medParts.filter(Boolean).join(' ').toLowerCase(),
             section: 'sos',

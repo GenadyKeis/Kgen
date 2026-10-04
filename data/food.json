@@ -1922,7 +1922,7 @@
       "order_jp": "奈良ランチを ひとつ お願いします",
       "order_romaji": "Nara ranchi o hitotsu onegai shimasu",
       "order_why": "Kakinoha-zushi is cured fish pressed onto vinegared rice and wrapped in a persimmon leaf — a mountain food that let sea fish keep in a Yoshino with no coast. It was a household dish there before Hiraso, founded in 1861, turned it into something sold; the house styles itself sōhonke on that ground rather than on having invented it. The set is the way to eat it as a meal rather than as a souvenir box.",
-      "order_backup": "The plain kakinoha-zushi set — three mackerel, three salmon, with a clear soup — is the unadorned version. ⚑ Unwrap the leaf and leave it: the tannin in it keeps the fish and takes the smell off, but it is not eaten."
+      "order_backup": "The plain kakinoha-zushi set — three mackerel, two salmon, with a clear soup — is the unadorned version. ⚑ Unwrap the leaf and leave it: the tannin in it keeps the fish and takes the smell off, but it is not eaten."
     },
     "matsumotoya-horyuji": {
       "tabelog_url": "https://tabelog.com/en/nara/A2902/A290203/29001232/",
@@ -2337,8 +2337,8 @@
               "place_id": "hiraso-horyuji",
               "role": "backup",
               "cuisine": "Kakinoha-zushi and Nara set meals",
-              "price": "¥1,500–2,000",
-              "note": "The certainty in this slot: open every day of the year, on the gate street, no detour. ⚑ The shop trades 10:00 to 16:00, but the dining room is narrower — 11:00 to 15:00, last order — and that is the figure a sit-down meal runs on, so an arrival after 13:00 still has room. ⚠ The house announced a price revision from 1 September 2026 and published no new figures, so the band above is the old one — expect a little more."
+              "price": "¥1,500–2,200",
+              "note": "The certainty in this slot: open every day of the year, on the gate street, no detour. ⚑ The shop trades 10:00 to 16:00, but the dining room is narrower — 11:00 to 15:00, last order — and that is the figure a sit-down meal runs on, so an arrival after 13:00 still has room. The Nara lunch set is ¥2,200 and the plain set ¥1,500."
             },
             {
               "place_id": "matsumotoya-horyuji",
@@ -2441,7 +2441,7 @@
               "role": "backup",
               "badges": ["tabelog ↗"],
               "cuisine": "Kamameshi — rice cooked to order over a flame",
-              "note": "In Nara Park itself, by the museum door — the only one of the day’s three that needs no walk west into the arcades. ⚠ At 12:30 on a peak Saturday expect its queue, so walk past unless the door is clear. 🔴 16:00 is the last order, not the close; by 15:00 the queue is gone, which makes it the answer if you come off the hillside hungry instead of eating at midday. ⚠ It declares one irregular closure a month. If that closure lands on the 31st, the primary answers at any hour and the only cost is the walk west into the arcade."
+              "note": "In Nara Park itself, by the museum door — the only one of the day’s three that needs no walk west into the arcades. ⚠ At 12:30 on a peak Saturday expect its queue, so walk past unless the door is clear. 🔴 16:00 is the last order, not the close; by 15:00 the queue is gone, which makes it the answer if you come off the hillside hungry instead of eating at midday. Its one irregular closure in October is the 19th, so it is open on the 31st."
             }
           ]
         },

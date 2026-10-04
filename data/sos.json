@@ -48,6 +48,45 @@
     {
       "city": "Tokyo",
       "dates": "Oct 22–28 · Nov 9–11",
+      "clinics": [
+        {
+          "name_en": "Tokyo Station International Clinic",
+          "name_jp": "東京ステーションインターナショナルクリニック",
+          "address": "〒100-0005 東京都千代田区丸の内1-9-1 グランルーフ1F",
+          "hours": "Every day 9:00–21:00, last reception 20:30 — Saturdays, Sundays and holidays included.",
+          "note": "English-speaking doctors, set up for foreign patients. Walk in — people who booked online are seen first. Rapid flu test, about 30 min. Bring your passport; you pay yourself, by cash, card or e-money. The clinic's Access page shows how many people are waiting right now. The pin is the GranRoof building; the clinic is on its ground floor.",
+          "distance": "JR Akihabara → Tokyo, 2 stops on the Yamanote or Keihin-Tōhoku line. Leave by the Yaesu South Exit; the clinic is 1 min away, next to the JR highway-bus terminal.",
+          "phone": "+81 3-6206-3070",
+          "tel": "tel:+81362063070",
+          "url": "https://www.international-clinic.tokyo/access/",
+          "lat": 35.6791262,
+          "lon": 139.7677273,
+          "verified_on": "2026-10-04",
+          "confidence": "medium"
+        }
+      ],
+      "english_pharmacies": [
+        {
+          "name": "Ain Pharmacy, Tekko Building (アイン薬局 鉄鋼ビルディング地下1階)",
+          "location": "Tekko Building B1F, Marunouchi 1-8-2 — ~500 m north of the clinic along the Yaesu side of Tokyo Station.",
+          "hours": "Every day 9:00–21:00, Sundays and holidays included — the clinic's own hours.",
+          "note": "Takes the clinic's prescription. English: everyday conversation, no need to warn them first. The pin is the Tekko Building.",
+          "lat": 35.682977,
+          "lon": 139.770235,
+          "verified_on": "2026-10-04",
+          "confidence": "medium"
+        },
+        {
+          "name": "Todokusuri Pharmacy (とどくすり薬局)",
+          "location": "8F, 燦坤日本電器ビル, Taitō 1-24-1 — ~600 m north-east of the hotel.",
+          "hours": "Mon–Fri 10:00–22:00, Sat 10:00–13:00 & 14:00–19:00; closed Sun and holidays (Sun Oct 25 → use Ain above).",
+          "note": "English: everyday conversation, no need to warn them first. Open until 22:00 on weekdays.",
+          "lat": 35.701497,
+          "lon": 139.778747,
+          "verified_on": "2026-10-04",
+          "confidence": "medium"
+        }
+      ],
       "hospital": {
         "name_en": "Mitsui Memorial Hospital",
         "name_jp": "三井記念病院",
@@ -66,7 +105,7 @@
         "name": "Welcia Akihabara Ekimae (ウエルシア秋葉原駅前店)",
         "location": "BiTO AKIBA 1F, Sotokanda 1-18-19 — at Akihabara Station, Electric Town exit side.",
         "hours": "Store open 24 hours. Dispensing counter Mon–Sat 9:00–21:00, Sun 10:00–14:00 & 15:00–19:00; closed public holidays.",
-        "note": "Outside those dispensing hours it is over-the-counter only.",
+        "note": "Outside those dispensing hours it is over-the-counter only. English: a few words, and they ask to be warned first — for an English conversation use the two above.",
         "lat": 35.6988,
         "lon": 139.7719,
         "verified_on": "2026-08-15",
@@ -76,6 +115,48 @@
     {
       "city": "Kyoto",
       "dates": "Oct 28 – Nov 7",
+      "clinics": [
+        {
+          "name_en": "Dr.coming International Clinic Kyoto Station",
+          "name_jp": "ドクターカミング インターナショナルクリニック京都ステーション",
+          "address": "〒600-8216 京都市下京区東塩小路町901 ホテルグランヴィア京都 6F",
+          "hours": "Every day, holidays included: 9:00–13:00 & 14:00–18:00. Last registration 12:00 / 17:00.",
+          "note": "English-speaking doctor; walk in. Send your details first on WhatsApp or the web form and you are seen first. Flat ¥65,000: consultation, the tests the doctor decides on, and medicine handed over at the clinic (usually — otherwise a prescription for a nearby pharmacy). They quote anything extra before doing it. Bring your passport; card or cash. The pin is Hotel Granvia; the clinic is on its 6th floor.",
+          "distance": "Inside Hotel Granvia Kyoto, the hotel built into JR Kyoto Station — reached from the station without going outside.",
+          "phone": "+81 75-366-5723",
+          "tel": "tel:+81753665723",
+          "url": "https://coming.doctor/international-clinic-kyoto/",
+          "lat": 34.9858585,
+          "lon": 135.7589822,
+          "verified_on": "2026-10-04",
+          "confidence": "medium"
+        },
+        {
+          "name_en": "Kurita Internal Medicine & Endoscopy Clinic — the cheaper option",
+          "name_jp": "くりた内科・内視鏡クリニック",
+          "address": "〒600-8383 京都市下京区綾大宮町62 シェルブリュー四条大宮1階",
+          "hours": "Reception Mon, Tue, Wed, Fri 8:45–11:45 & 15:45–17:45; Sat 8:45–11:45. Closed Thu, Sun and holidays — on your dates shut Oct 29, Nov 1, Nov 3 and Nov 5.",
+          "note": "¥22,000 consultation plus tests; the clinic's stated typical total is ¥30,000–50,000. Basic English with the doctor. Walk-ins are taken when they have room — book on the 24-hour web form or by email (kurita.clinic62@gmail.com) to be sure. Bring your passport. The prescription goes to a pharmacy: Shijō-Ōmiya Pharmacy is next door. The pin sits on Ōmiya-dōri at the building.",
+          "distance": "Taxi from the Kyoto Station Karasuma-exit rank, 10–11 min. Or 2 min on foot from Hankyū / Randen Shijō-Ōmiya.",
+          "url": "https://www.kurita-naika.jp/tourists",
+          "lat": 35.001549,
+          "lon": 135.7488004,
+          "verified_on": "2026-10-04",
+          "confidence": "medium"
+        }
+      ],
+      "english_pharmacies": [
+        {
+          "name": "Matsui Pharmacy (松井薬局)",
+          "location": "Shichijō-dōri, Zaimokuchō 478 — ~260 m north-east of the hotel.",
+          "hours": "Mon–Fri 9:00–20:00, Sat 9:00–18:00; closed Sun and holidays.",
+          "note": "English: everyday conversation, no need to warn them first. Dr.coming usually hands over its own medicine; this is for anything else.",
+          "lat": 34.989425,
+          "lon": 135.763016,
+          "verified_on": "2026-10-04",
+          "confidence": "medium"
+        }
+      ],
       "hospital": {
         "name_en": "Takeda Hospital",
         "name_jp": "康生会武田病院",
@@ -104,6 +185,43 @@
     {
       "city": "Hiroshima",
       "dates": "Nov 7–9",
+      "clinics": [
+        {
+          "name_en": "Hiroshima International Clinic (Hiroshima Hatchōbori Internal Medicine & GI Endoscopy Clinic)",
+          "name_jp": "広島八丁堀内科・胃腸内視鏡クリニック",
+          "address": "〒730-0013 広島市中区八丁堀11-19 坪井第二ビル3階",
+          "hours": "Walk-in reception every day 9:00–11:45, Saturday and Sunday included. 12:00–15:00 is booked appointments only. Weekdays also 14:45–17:45. Closed on public holidays — none fall on Nov 7–9.",
+          "note": "Sees travellers without Japanese insurance; multilingual staff or a translation app. Fever, cough and sore throat are on its list. Bring your passport. Consultation ¥16,500; flu and COVID test ¥5,500 each; English medical certificate ¥11,000. Cash or card. You leave with a prescription and they point you to a partner pharmacy nearby. To ask for a 12:00–15:00 slot, use the contact form on the English site. 3rd floor; the pin is the building.",
+          "distance": "Tram from JR Hiroshima Station on the line towards Kamiyachō (the hospital's tram, below) — get off at Hatchōbori, 2 min on foot.",
+          "url": "https://english.8chobori-naishikyo.clinic/",
+          "lat": 34.3951503,
+          "lon": 132.4622723,
+          "verified_on": "2026-10-04",
+          "confidence": "medium"
+        }
+      ],
+      "english_pharmacies": [
+        {
+          "name": "Kōjin Pharmacy, Socio Kamiyachō (康仁薬局 ソシオ紙屋町店)",
+          "location": "Socio Square Kamiyachō Building 1F, Kamiyachō 2-3-20 — ~600 m west of the clinic.",
+          "hours": "Mon, Tue, Thu, Fri 9:00–19:00; Wed 9:00–18:30; Sat 9:00–18:00; closed Sun and holidays.",
+          "note": "English: everyday conversation, no need to warn them first. Sat Nov 7 and Mon Nov 9.",
+          "lat": 34.393822,
+          "lon": 132.456031,
+          "verified_on": "2026-10-04",
+          "confidence": "medium"
+        },
+        {
+          "name": "Cosmos Pharmacy, Kamiyachō (コスモス薬局 紙屋町二丁目)",
+          "location": "Kamiyachō 2-2-6 — ~500 m west of the clinic, ~100 m from Kōjin.",
+          "hours": "Sun and holidays 11:00–18:00. Mon–Fri 9:00–19:00 (Wed to 18:30), Sat 9:00–18:00.",
+          "note": "The Sunday answer for Nov 8: the clinic's walk-in window ends 11:45 and this opens 11:00. English: a few words only, no need to warn them first.",
+          "lat": 34.394371,
+          "lon": 132.45704,
+          "verified_on": "2026-10-04",
+          "confidence": "medium"
+        }
+      ],
       "hospital": {
         "name_en": "Hiroshima City Hospital",
         "name_jp": "広島市立広島市民病院",
@@ -162,5 +280,5 @@
       "romaji": "keisatsu wo yonde kudasai"
     }
   ],
-  "pharmacy_tip": "Japanese pharmacies (ドラッグストア) sell OTC painkillers, cold medicine, bandages, and stomach remedies. For anything prescription-strength, you need a hospital. Show the pharmacist what's wrong — many understand basic English medical terms."
+  "pharmacy_tip": "Japanese pharmacies (ドラッグストア) sell OTC painkillers, cold medicine, bandages, and stomach remedies. Prescription medicine — flu antivirals included — needs a Japanese doctor's prescription: the walk-in clinic for each city, above, writes one. Show the pharmacist what's wrong — many understand basic English medical terms."
 }

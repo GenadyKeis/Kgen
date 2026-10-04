@@ -266,13 +266,13 @@
           "en": "Do you have medicine for this?",
           "jp": "これに効く薬はありますか？",
           "romaji": "kore ni kiku kusuri wa arimasu ka?",
-          "context": "At a pharmacy counter — say it and point at what hurts. The Emergency tab pins one pharmacy in each of your three cities"
+          "context": "At a pharmacy counter — say it and point at what hurts. The Emergency tab pins pharmacies in each of your three cities"
         },
         {
           "en": "Cold medicine / headache / stomach",
           "jp": "風邪薬・頭痛薬・胃薬",
           "romaji": "kazegusuri · zutsūyaku · igusuri",
-          "context": "The three words to show a pharmacist. Anything stronger than these needs a hospital, not a shop"
+          "context": "The three words to show a pharmacist. Anything stronger needs a doctor — the Emergency tab has a walk-in English clinic for each city"
         }
       ]
     }
