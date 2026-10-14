@@ -2432,7 +2432,12 @@
     95: 'Thunderstorm', 96: 'Thunderstorm + hail', 99: 'Thunderstorm + hail'
   };
 
-  var WX_CACHE_KEY = 'japan_trip_v2_weather';
+  // `_m4` = the four-model shape (2026-10-15). A new key, so a phone holding the old
+  // single-model cache simply refetches instead of rendering half-empty rows.
+  var WX_CACHE_KEY = 'japan_trip_v2_weather_m4';
+  var WX_REFRESH_MS = 30 * 60 * 1000; // ~200 of Open-Meteo's 10,000 free daily calls per fetch
+  try { localStorage.removeItem('japan_trip_v2_weather'); } catch (e) { } // the pre-m4 cache, now unread
+  var WX_HORIZON_DAYS = 14; // see the note in wxFetch
 
   function wxGetCache() {
     try {
@@ -2487,8 +2492,8 @@
 
       bar.innerHTML =
         '<span class="wx-icon">' + icon + '</span>' +
-        '<span class="wx-temps"><span class="wx-hi">' + Math.round(data.hi) + '°</span> / ' +
-        '<span class="wx-lo">' + Math.round(data.lo) + '°</span></span>' +
+        '<span class="wx-temps"><span class="wx-hi">' + wxTemp(data.hi) + '</span> / ' +
+        '<span class="wx-lo">' + wxTemp(data.lo) + '</span></span>' +
         '<span class="wx-desc">' + esc(desc) + '</span>' +
         (hasRain ? '<span class="wx-rain">💧' + data.rain + '%</span>' : '') +
         staleHtml;
@@ -2498,9 +2503,9 @@
         alert.className = 'rain-alert';
         var tags = dayEl.querySelectorAll('.tag-hike');
         if (tags.length > 0) {
-          alert.textContent = '⚠ Heavy rain expected on hike day — consider alternatives';
+          alert.textContent = '⚠ Rain likely on a walking day — read its rain note tonight';
         } else {
-          alert.textContent = '🌧 ' + data.rain + '% chance of rain — pack umbrella';
+          alert.textContent = '🌧 ' + data.rain + '% chance of rain — pack the umbrella';
         }
         body.insertBefore(alert, body.firstChild);
       }
@@ -2514,13 +2519,17 @@
     var todayStr = isoDate(jstNow());
     if (dayDate < todayStr) return null; // past day — show nothing
     var horizon = new Date(jstNow());
-    horizon.setDate(horizon.getDate() + 15);
+    horizon.setDate(horizon.getDate() + WX_HORIZON_DAYS);
     if (dayDate > isoDate(horizon)) return '🌏 Forecast available ~2 weeks before this day';
     return '🌏 Forecast unavailable — offline?';
   }
 
   function renderAllWeather(weatherData, staleTime) {
     if (!DATA.days) return;
+    // The Weather page reads the same fetch and the same cache as the day bars, so the two
+    // cannot disagree.
+    wxLast = { days: weatherData, stale: staleTime };
+    renderWeatherPage();
     // ⚑ Today first. Its bar is the same component reading the same cache — the Days card for
     // today keeps its own, so the two cannot disagree.
     var todayWx = document.querySelector('#section-today .today-weather');
@@ -2563,81 +2572,487 @@
     }
     var stale = wxFormatStale(cached.fetched);
     renderAllWeather(cached.days, stale);
-    return true;
+    // The age, so startup can skip a fetch the runs have not moved on from.
+    return cached.fetched ? Math.max(1, Date.now() - new Date(cached.fetched).getTime()) : 1;
   }
+
+  // ─── Forecast fetch: four models + two sets of forecast runs, one request each ─────────
+  // ⚑ ONE fetch feeds the day-card bars, Today and the Weather page, so they cannot disagree.
+  //   • icon + temperatures: Open-Meteo's `best_match` — its own pick of the best model for the
+  //     place (it does not publish which; on 2026-10-15 it tracked ECMWF almost exactly).
+  //   • rain in mm and hours: each of four national models, by name.
+  //   • rain CHANCE: the share of 82 forecast runs (51 ECMWF, 31 US GEFS) giving ≥ 1 mm that
+  //     day. One definition everywhere — the bar's 💧 is this number too. Beyond the runs' reach
+  //     (~10 days) the chance is null and prints "—"; it never falls back to Open-Meteo's
+  //     `precipitation_probability_max`, which counts 0.1 mm in any single hour and is what put
+  //     "34%" beside "64.8 mm" on the first version of this page.
+  // `forecast_days=15`, not start/end dates: days past a model's reach come back null instead
+  // of the whole request failing (see WX_HORIZON_DAYS).
+  var WX_MODELS = [
+    { id: 'ecmwf_ifs025', label: 'Europe', full: 'Europe — ECMWF' },
+    { id: 'gfs_seamless', label: 'US', full: 'US — GFS' },
+    { id: 'jma_seamless', label: 'Japan', full: 'Japan — JMA' },
+    { id: 'icon_seamless', label: 'Germany', full: 'Germany — ICON' }
+  ];
+  var WX_RUNS = [
+    { match: 'ecmwf_ifs025_ensemble', label: 'European' },
+    { match: 'ncep_gefs025', label: 'US' }
+  ];
+  var WX_WET_MM = 1;
+
+  function wxNum(v) { return typeof v === 'number' && isFinite(v) ? v : null; }
+
+  function wxAsArray(json) { return Array.isArray(json) ? json : [json]; }
 
   function wxFetch() {
     if (!DATA.days || !DATA.meta) return Promise.resolve(false);
 
-    var locGroups = {};
+    var todayStr = isoDate(jstNow());
+    var end = jstNow();
+    end.setDate(end.getDate() + WX_HORIZON_DAYS);
+    var endStr = isoDate(end);
+
+    var locs = [];
+    var locIndex = {};
     for (var d = 0; d < DATA.days.length; d++) {
       var day = DATA.days[d];
-      var loc = day.location;
-      if (!loc) continue;
-      var key = loc.lat + ',' + loc.lon;
-      if (!locGroups[key]) locGroups[key] = { lat: loc.lat, lon: loc.lon, days: [] };
-      locGroups[key].days.push({ num: day.day, date: day.date });
-    }
-
-    // JST calendar dates throughout — toISOString() is UTC and can be a day off (audit S8)
-    var todayStr = isoDate(jstNow());
-    var maxForecast = jstNow();
-    maxForecast.setDate(maxForecast.getDate() + 15);
-    var maxStr = isoDate(maxForecast);
-
-    var keys = Object.keys(locGroups);
-    var results = {};
-    var fetches = [];
-
-    for (var k = 0; k < keys.length; k++) {
-      (function (g) {
-        var dates = g.days.map(function (d) { return d.date; });
-        var startDate = dates.reduce(function (a, b) { return a < b ? a : b; });
-        var endDate = dates.reduce(function (a, b) { return a > b ? a : b; });
-
-        if (startDate < todayStr) startDate = todayStr;
-        if (endDate > maxStr) endDate = maxStr;
-        if (startDate > maxStr || endDate < todayStr) return;
-
-        var url = 'https://api.open-meteo.com/v1/forecast?' +
-          'latitude=' + g.lat + '&longitude=' + g.lon +
-          '&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weather_code' +
-          '&timezone=Asia/Tokyo&start_date=' + startDate + '&end_date=' + endDate;
-
-        fetches.push(
-          fetch(url).then(function (resp) {
-            if (!resp.ok) return;
-            return resp.json().then(function (json) {
-              if (json.daily && json.daily.time) {
-                var dateMap = {};
-                for (var i = 0; i < json.daily.time.length; i++) {
-                  dateMap[json.daily.time[i]] = {
-                    hi: json.daily.temperature_2m_max[i],
-                    lo: json.daily.temperature_2m_min[i],
-                    rain: json.daily.precipitation_probability_max[i],
-                    code: json.daily.weather_code[i]
-                  };
-                }
-                for (var j = 0; j < g.days.length; j++) {
-                  if (dateMap[g.days[j].date]) {
-                    results[g.days[j].num] = dateMap[g.days[j].date];
-                  }
-                }
-              }
-            });
-          }).catch(function () { /* network error */ })
-        );
-      })(locGroups[keys[k]]);
-    }
-
-    return Promise.all(fetches).then(function () {
-      if (Object.keys(results).length > 0) {
-        wxSetCache(results);
-        renderAllWeather(results, null);
-        return true;
+      if (!day.location || day.date < todayStr || day.date > endStr) continue;
+      var key = day.location.lat + ',' + day.location.lon;
+      if (locIndex[key] === undefined) {
+        locIndex[key] = locs.length;
+        locs.push({ lat: day.location.lat, lon: day.location.lon, days: [] });
       }
-      return false;
+      locs[locIndex[key]].days.push({ num: day.day, date: day.date });
+    }
+    if (!locs.length) return Promise.resolve(false);
+
+    var latStr = locs.map(function (l) { return l.lat; }).join(',');
+    var lonStr = locs.map(function (l) { return l.lon; }).join(',');
+    var common = 'latitude=' + latStr + '&longitude=' + lonStr + '&timezone=Asia/Tokyo&forecast_days=15';
+    var fcUrl = 'https://api.open-meteo.com/v1/forecast?' + common +
+      '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_hours' +
+      '&models=best_match,' + WX_MODELS.map(function (m) { return m.id; }).join(',');
+    var runUrl = 'https://ensemble-api.open-meteo.com/v1/ensemble?' + common +
+      '&daily=precipitation_sum&models=ecmwf_ifs025,gfs025';
+
+    function getJson(url) {
+      return fetch(url).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+    }
+
+    return Promise.all([getJson(fcUrl), getJson(runUrl)]).then(function (res) {
+      // The model forecast is the page. Without it there is nothing to show; keep the cache.
+      if (!res[0]) return false;
+      var fc = wxAsArray(res[0]);
+      var runs = res[1] ? wxAsArray(res[1]) : [];
+      var results = {};
+
+      for (var li = 0; li < locs.length; li++) {
+        var f = fc[li] && fc[li].daily;
+        if (!f || !f.time) continue;
+        var r = runs[li] && runs[li].daily;
+        var runKeys = r ? Object.keys(r).filter(function (k) { return k !== 'time'; }) : [];
+
+        for (var di = 0; di < locs[li].days.length; di++) {
+          var dd = locs[li].days[di];
+          var i = f.time.indexOf(dd.date);
+          if (i === -1) continue;
+
+          var models = {};
+          var any = false;
+          for (var m = 0; m < WX_MODELS.length; m++) {
+            var id = WX_MODELS[m].id;
+            var mm = wxNum(f['precipitation_sum_' + id] && f['precipitation_sum_' + id][i]);
+            var md = {
+              mm: mm,
+              hrs: wxNum(f['precipitation_hours_' + id] && f['precipitation_hours_' + id][i]),
+              hi: wxNum(f['temperature_2m_max_' + id] && f['temperature_2m_max_' + id][i]),
+              lo: wxNum(f['temperature_2m_min_' + id] && f['temperature_2m_min_' + id][i])
+            };
+            models[id] = md;
+            if (mm !== null) any = true;
+          }
+
+          var hi = wxNum(f.temperature_2m_max_best_match && f.temperature_2m_max_best_match[i]);
+          var lo = wxNum(f.temperature_2m_min_best_match && f.temperature_2m_min_best_match[i]);
+          var code = wxNum(f.weather_code_best_match && f.weather_code_best_match[i]);
+          // A day with no temperatures from the best pick and no model rain is not a forecast.
+          if ((hi === null || lo === null) && !any) continue;
+
+          var ens = [];
+          var wetAll = 0, nAll = 0;
+          var ri = r && r.time ? r.time.indexOf(dd.date) : -1;
+          for (var e = 0; e < WX_RUNS.length; e++) {
+            var wet = 0, n = 0;
+            if (ri !== -1) {
+              for (var k = 0; k < runKeys.length; k++) {
+                if (runKeys[k].indexOf(WX_RUNS[e].match) === -1) continue;
+                var v = wxNum(r[runKeys[k]][ri]);
+                if (v === null) continue;
+                n++;
+                if (v >= WX_WET_MM) wet++;
+              }
+            }
+            ens.push({ label: WX_RUNS[e].label, wet: wet, n: n });
+            wetAll += wet;
+            nAll += n;
+          }
+
+          results[dd.num] = {
+            hi: hi, lo: lo, code: code,
+            rain: nAll ? Math.round(100 * wetAll / nAll) : null,
+            runs: nAll ? ens : null,
+            models: models
+          };
+        }
+      }
+
+      if (!Object.keys(results).length) return false;
+      wxSetCache(results);
+      renderAllWeather(results, null);
+      return true;
     });
+  }
+
+  // ─── Typhoon watch — JMA's own feed, English fields where JMA gives them ─────────────
+  // targetTc.json lists the active storms; specifications.json carries the analysis and the
+  // track to 5 days. 🔴 A failed check must NEVER read as "no storms": it says it failed.
+  // JMA's forecast circle is drawn so the centre falls inside it with 70% probability.
+  // Place names in the feed are Japanese only, so a storm is placed by distance and compass
+  // direction from the nearest base instead.
+  var TY_BASES = [
+    { name: 'Tokyo', lat: 35.699, lon: 139.773 },
+    { name: 'Kyoto', lat: 34.986, lon: 135.759 },
+    { name: 'Hiroshima', lat: 34.396, lon: 132.454 }
+  ];
+  var TY_NEAR_KM = 800; // Today shows a banner when the edge of a forecast circle comes this close
+  var TY_CACHE_KEY = 'japan_trip_v2_typhoon';
+  var tyLast = { state: 'loading', storms: [], checked: null };
+
+  var TY_CATEGORY = {
+    TD: 'tropical depression, not yet a typhoon',
+    TS: 'tropical-storm strength',
+    STS: 'severe tropical storm',
+    TY: 'full typhoon strength'
+  };
+
+  function tyKm(lat1, lon1, lat2, lon2) {
+    var R = 6371, rad = Math.PI / 180;
+    var dLat = (lat2 - lat1) * rad, dLon = (lon2 - lon1) * rad;
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * rad) * Math.cos(lat2 * rad) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    return 2 * R * Math.asin(Math.sqrt(a));
+  }
+
+  function tyCompass(lat1, lon1, lat2, lon2) {
+    var rad = Math.PI / 180;
+    var y = Math.sin((lon2 - lon1) * rad) * Math.cos(lat2 * rad);
+    var x = Math.cos(lat1 * rad) * Math.sin(lat2 * rad) -
+      Math.sin(lat1 * rad) * Math.cos(lat2 * rad) * Math.cos((lon2 - lon1) * rad);
+    var deg = (Math.atan2(y, x) / rad + 360) % 360;
+    return ['north', 'north-east', 'east', 'south-east', 'south', 'south-west', 'west', 'north-west'][Math.round(deg / 45) % 8];
+  }
+
+  function tyNearest(lat, lon) {
+    var best = null;
+    for (var b = 0; b < TY_BASES.length; b++) {
+      var km = tyKm(TY_BASES[b].lat, TY_BASES[b].lon, lat, lon);
+      if (!best || km < best.km) best = { base: TY_BASES[b], km: km };
+    }
+    best.dir = tyCompass(best.base.lat, best.base.lon, lat, lon);
+    return best;
+  }
+
+  function tyParse(spec) {
+    var title = spec[0] || {};
+    var now = null, closest = null;
+    for (var p = 1; p < spec.length; p++) {
+      var part = spec[p];
+      if (!part || !part.position || !part.position.deg) continue;
+      var lat = part.position.deg[0], lon = part.position.deg[1];
+      var near = tyNearest(lat, lon);
+      var radius = part.probabilityCircleRadius ? part.probabilityCircleRadius.km : 0;
+      var point = {
+        near: near, radius: radius, edge: Math.max(0, near.km - radius),
+        when: part.validtime ? part.validtime.JST : null,
+        wind: part.maximumWind && part.maximumWind.sustained ? part.maximumWind.sustained['m/s'] : null,
+        category: part.category ? part.category.en : null
+      };
+      if (part.advancedHours === 0) now = point;
+      else if (!closest || point.edge < closest.edge) closest = point;
+    }
+    var num = String(title.typhoonNumber || '');
+    return {
+      number: /^\d{4}$/.test(num) ? +num.slice(2) : null,
+      name: title.name && title.name.en ? title.name.en : null,
+      category: (now && now.category) || (title.category && title.category.en) || '',
+      now: now,
+      closest: closest
+    };
+  }
+
+  function tyFetch() {
+    return fetch('https://www.jma.go.jp/bosai/typhoon/data/targetTc.json')
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (list) {
+        // LOW = no longer a tropical storm (became an ordinary low); it is over.
+        var active = (list || []).filter(function (t) { return t.category !== 'LOW' && t.tropicalCyclone; });
+        return Promise.all(active.map(function (t) {
+          return fetch('https://www.jma.go.jp/bosai/typhoon/data/' + encodeURIComponent(t.tropicalCyclone) + '/specifications.json')
+            .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+            .then(tyParse);
+        }));
+      })
+      .then(function (storms) {
+        tyLast = { state: 'ok', storms: storms, checked: new Date().toISOString() };
+        try { localStorage.setItem(TY_CACHE_KEY, JSON.stringify(tyLast)); } catch (e) { }
+      })
+      .catch(function () {
+        var cached = null;
+        try { cached = JSON.parse(localStorage.getItem(TY_CACHE_KEY) || 'null'); } catch (e) { }
+        tyLast = { state: 'failed', storms: cached ? cached.storms : [], checked: cached ? cached.checked : null };
+      })
+      .then(function () { renderWeatherPage(); renderTyphoonBanner(); });
+  }
+
+  function tyWhen(jst) {
+    if (!jst) return '';
+    var p = jst.slice(0, 10).split('-');
+    var d = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]));
+    return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][d.getUTCDay()] + ' ' + WX_MONTHS[+p[1] - 1] + ' ' + (+p[2]);
+  }
+
+  function tyKmText(km) { return Math.round(km / 10) * 10 >= 1000 ? (Math.round(km / 10) * 10).toLocaleString('en-US') : String(Math.round(km / 10) * 10); }
+
+  function tyStormTitle(s) {
+    var phrase = TY_CATEGORY[s.category] || s.category;
+    if (!s.number) return phrase.charAt(0).toUpperCase() + phrase.slice(1);
+    return 'Typhoon No. ' + s.number + (s.name ? ' (' + s.name + ')' : '') + ' — ' + phrase;
+  }
+
+  function renderTyphoonBlock() {
+    var html = '<div class="ty-block">';
+    var stamp = tyLast.checked ? wxFormatStale(tyLast.checked) : '';
+    if (tyLast.state === 'loading') {
+      html += '<div class="ty-line">🌀 Checking JMA for typhoons…</div>';
+    } else if (tyLast.state === 'failed') {
+      html += '<div class="ty-line ty-warn">🌀 Typhoon check failed just now — open the JMA map below.' +
+        (stamp ? ' Last good check ' + esc(stamp) + (tyLast.storms.length ? ':' : ': none active.') : '') + '</div>';
+    } else if (!tyLast.storms.length) {
+      html += '<div class="ty-line">🌀 No typhoons or tropical depressions active (JMA, checked ' + esc(stamp) + ').</div>';
+    }
+    for (var i = 0; i < tyLast.storms.length; i++) {
+      var s = tyLast.storms[i];
+      html += '<div class="ty-storm"><div class="ty-title">🌀 ' + esc(tyStormTitle(s)) + '</div>';
+      if (s.now) {
+        html += '<div class="ty-fact">Now ' + tyKmText(s.now.near.km) + ' km ' + esc(s.now.near.dir) + ' of ' +
+          esc(s.now.near.base.name) + (s.now.wind ? ', winds ' + esc(s.now.wind) + ' m/s' : '') + '.</div>';
+      }
+      if (s.closest) {
+        html += '<div class="ty-fact">Closest in JMA\'s 5-day track: ' + tyKmText(s.closest.near.km) + ' km ' +
+          esc(s.closest.near.dir) + ' of ' + esc(s.closest.near.base.name) + ' on ' + esc(tyWhen(s.closest.when)) +
+          (s.closest.radius ? ', give or take ' + tyKmText(s.closest.radius) + ' km' : '') + '.</div>';
+      }
+      html += '</div>';
+    }
+    if (tyLast.storms.length) {
+      html += '<div class="ty-note">The track reaches 5 days ahead. "Give or take" is JMA\'s forecast circle: the centre lands inside it 7 times in 10.</div>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  // Today's banner: only when the edge of a forecast circle comes within TY_NEAR_KM of a base.
+  function renderTyphoonBanner() {
+    var section = document.getElementById('section-today');
+    if (!section) return;
+    var old = section.querySelector('.ty-banner');
+    if (old) old.remove();
+    var hit = null;
+    for (var i = 0; i < tyLast.storms.length; i++) {
+      var s = tyLast.storms[i];
+      var pts = [s.now, s.closest];
+      for (var p = 0; p < pts.length; p++) {
+        if (pts[p] && pts[p].edge <= TY_NEAR_KM && (!hit || pts[p].edge < hit.pt.edge)) hit = { s: s, pt: pts[p] };
+      }
+    }
+    if (!hit) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'ty-banner';
+    b.textContent = '🌀 ' + (hit.s.number ? 'Typhoon No. ' + hit.s.number : 'A tropical depression') +
+      ' is forecast within ' + TY_NEAR_KM + ' km of ' + hit.pt.near.base.name +
+      (hit.pt === hit.s.now ? ' now' : ' by ' + tyWhen(hit.pt.when)) + ' — tap for the details';
+    b.addEventListener('click', function () { switchSection('weather'); });
+    section.insertBefore(b, section.firstChild);
+  }
+
+  // ─── Weather page (under More) ────────────────────────────
+  // Every remaining day on one screen, each at its own place (day.location — Kurama, Yoshino,
+  // Misen, not the base city). Then the typhoon watch and the sites, each with when to use it.
+  // ⚑ Links checked in a browser 2026-10-14. JMA's &lang=en pages are English; tenki.jp and the
+  // one-month outlook have no English version.
+  var wxLast = { days: null, stale: null };
+
+  var WX_SITES = [
+    { title: 'JMA — the official forecast, in English',
+      when: '7 days, with a reliability grade from the third day out (A is solid, C is a guess). Decide a swap on this one, the evening before.',
+      links: [
+        ['Tokyo', 'https://www.jma.go.jp/bosai/forecast/#area_type=offices&area_code=130000&lang=en'],
+        ['Kanagawa', 'https://www.jma.go.jp/bosai/forecast/#area_type=offices&area_code=140000&lang=en'],
+        ['Kyoto', 'https://www.jma.go.jp/bosai/forecast/#area_type=offices&area_code=260000&lang=en'],
+        ['Nara', 'https://www.jma.go.jp/bosai/forecast/#area_type=offices&area_code=290000&lang=en'],
+        ['Hiroshima', 'https://www.jma.go.jp/bosai/forecast/#area_type=offices&area_code=340000&lang=en']
+      ] },
+    { title: 'Windy — the models hour by hour',
+      when: 'The same models through each day, 4 days ahead (free). Use it to see WHEN in the day the rain falls.',
+      links: [
+        ['Tokyo', 'https://www.windy.com/multimodel/35.699/139.773'],
+        ['Kyoto', 'https://www.windy.com/multimodel/34.986/135.759'],
+        ['Hiroshima', 'https://www.windy.com/multimodel/34.396/132.454']
+      ] },
+    { title: 'tenki.jp — two weeks (Japanese)',
+      when: 'Japan Weather Association: rain in mm every 6 hours for 10 days, then days 11–14 with a confidence grade (A to E).',
+      links: [
+        ['Tokyo', 'https://tenki.jp/forecast/3/16/4410/13101/10days.html'],
+        ['Kyoto', 'https://tenki.jp/forecast/6/29/6110/26100/10days.html'],
+        ['Hiroshima', 'https://tenki.jp/forecast/7/37/6710/34100/10days.html']
+      ] },
+    { title: 'Typhoon map — JMA, in English',
+      when: 'The track and forecast circles on a map, for any storm in the watch above.',
+      links: [['Track map', 'https://www.jma.go.jp/bosai/map.html#contents=typhoon&lang=en']] },
+    { title: 'One-month outlook — JMA (Japanese)',
+      when: 'Before you fly: whether the coming weeks lean wetter or drier than normal. New every Thursday.',
+      links: [['Outlook', 'https://www.data.jma.go.jp/cpd/longfcst/kaisetsu/?term=P1M']] }
+  ];
+
+  var WX_MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  function wxMm(v) {
+    if (v === null || v === undefined) return '—';
+    if (v < 0.05) return '0';
+    return v < 10 ? String(Math.round(v * 10) / 10) : String(Math.round(v));
+  }
+
+  function wxMmClass(v) {
+    if (v === null || v === undefined) return ' wxc-none';
+    if (v >= 10) return ' wxc-heavy';
+    if (v >= WX_WET_MM) return ' wxc-wet';
+    return '';
+  }
+
+  function wxTemp(v) { return v === null || v === undefined ? '—' : Math.round(v) + '°'; }
+
+  function renderWeatherPage() {
+    var el = document.getElementById('section-weather');
+    if (!el) return;
+    var html = '<h2 class="info-heading">Typhoon watch</h2>' + renderTyphoonBlock();
+    html += '<h2 class="info-heading wxp-sites-h">Rain by day</h2>';
+
+    if (DATA.days) {
+      html += '<p class="phrase-intro">Each day is forecast at its own place — Kurama, Yoshino, Misen — not the city you sleep in. 🥾 = a walking day.<br>' +
+        '<b>💧</b> = rain chance: how many of 82 forecast runs give at least 1 mm that day (they reach about 10 days). ' +
+        '<b>The row under it</b>: rain in mm from four national weather models — when they disagree, the forecast is not settled yet. Tap a day for hours of rain and each model\'s temperatures.</p>';
+      var todayStr = isoDate(jstNow());
+      var horizon = jstNow();
+      horizon.setDate(horizon.getDate() + WX_HORIZON_DAYS);
+      var horizonStr = isoDate(horizon);
+      var data = wxLast.days || {};
+      html += '<div class="wxp-list">';
+      var shown = 0;
+      for (var i = 0; i < DATA.days.length; i++) {
+        var day = DATA.days[i];
+        if (day.date < todayStr) continue;
+        shown++;
+        var p = day.date.split('-');
+        var hike = (day.tags || []).indexOf('hike') !== -1;
+        var w = data[day.day];
+        var head = '<div class="wxp-l1"><div class="wxp-day"><span class="wxp-date">' + esc(day.weekday || '') + ' ' +
+          esc(WX_MONTHS[+p[1] - 1] + ' ' + (+p[2])) + '</span>' +
+          '<span class="wxp-place">Day ' + day.day + ' · ' + esc(day.city || '') + (hike ? ' 🥾' : '') + '</span></div>';
+        if (!w || !w.models) {
+          html += '<div class="wxp-row wxp-empty">' + head +
+            '<span class="wxp-none">' + (day.date > horizonStr ? 'too far out' : 'no forecast — offline?') + '</span></div></div>';
+          continue;
+        }
+        var chance = typeof w.rain === 'number' ? w.rain + '%' : '—';
+        head += '<span class="wxp-chance' + (typeof w.rain === 'number' && w.rain >= 60 ? ' wxp-likely' : '') +
+          '" title="Rain chance">💧' + chance + '</span>' +
+          '<span class="wxp-icon" title="' + esc(WX_DESC[w.code] || '') + '">' + (WX_ICONS[w.code] || '🌡️') + '</span>' +
+          '<span class="wxp-temps"><span class="wx-hi">' + wxTemp(w.hi) + '</span> / <span class="wx-lo">' + wxTemp(w.lo) + '</span></span></div>';
+
+        var l2 = '<div class="wxp-l2">';
+        for (var m = 0; m < WX_MODELS.length; m++) {
+          var md = w.models[WX_MODELS[m].id] || {};
+          l2 += '<span class="wxc' + wxMmClass(md.mm) + '"><small>' + esc(WX_MODELS[m].label) + '</small> ' + wxMm(md.mm) + '</span>';
+        }
+        l2 += '<span class="wxc-unit">mm</span></div>';
+
+        var det = '<div class="wxp-detail"><table class="wxp-table"><thead><tr><th>Model</th><th>Rain</th><th>Hours</th><th>High / low</th></tr></thead><tbody>';
+        var missing = [];
+        for (var n = 0; n < WX_MODELS.length; n++) {
+          var mdl = w.models[WX_MODELS[n].id] || {};
+          if (mdl.mm === null || mdl.mm === undefined) missing.push(WX_MODELS[n].label);
+          det += '<tr><td>' + esc(WX_MODELS[n].full) + '</td><td>' + wxMm(mdl.mm) + (mdl.mm !== null && mdl.mm !== undefined ? ' mm' : '') + '</td>' +
+            '<td>' + (mdl.hrs === null || mdl.hrs === undefined ? '—' : Math.round(mdl.hrs) + ' h') + '</td>' +
+            '<td>' + wxTemp(mdl.hi) + ' / ' + wxTemp(mdl.lo) + '</td></tr>';
+        }
+        det += '</tbody></table>';
+        if (w.runs) {
+          det += '<div class="wxp-runs">Rain (1 mm or more) in ' + w.runs.map(function (r) {
+            return r.wet + ' of ' + r.n + ' ' + esc(r.label) + ' runs';
+          }).join(' · ') + '.</div>';
+        } else {
+          det += '<div class="wxp-runs">No chance figure yet: the forecast runs reach about 10 days ahead.</div>';
+        }
+        if (missing.length) {
+          det += '<div class="wxp-runs">— = beyond that model\'s reach (' + esc(missing.join(', ')) + '). Germany\'s reaches about 7 days, Japan\'s about 10, Europe\'s and the US\'s about 14.</div>';
+        }
+        det += '</div>';
+
+        html += '<details class="wxp-row"><summary>' + head + l2 + '</summary>' + det + '</details>';
+      }
+      html += '</div>';
+      if (!shown) html += '<p class="phrase-intro">The trip is over.</p>';
+      html += '<p class="wxp-meta">' +
+        (wxLast.days ? (wxLast.stale ? 'Fetched ' + esc(wxLast.stale) : 'Fetched just now') : 'Not fetched yet — open the app online') +
+        ' · <button type="button" class="wxp-refresh">Refresh</button><br>Icon and temperatures: Open-Meteo\'s pick of the best model for each place. Forecasts reach about 2 weeks ahead. ' +
+        'Data: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (CC BY 4.0) · typhoons: JMA.</p>';
+    }
+
+    html += '<h2 class="info-heading wxp-sites-h">Forecast sites</h2>';
+    html += '<p class="phrase-intro">These need a signal; none of them works offline.</p>';
+    for (var s = 0; s < WX_SITES.length; s++) {
+      var site = WX_SITES[s];
+      html += '<div class="wxp-site"><div class="wxp-site-title">' + esc(site.title) + '</div>' +
+        '<div class="wxp-site-when">' + esc(site.when) + '</div><div class="wxp-links">';
+      for (var l = 0; l < site.links.length; l++) {
+        html += '<a class="wxp-link" href="' + esc(site.links[l][1]) + '" target="_blank" rel="noopener">' + esc(site.links[l][0]) + '</a>';
+      }
+      html += '</div></div>';
+    }
+
+    // Keep any day the reader had open across a re-render (a refresh lands while reading).
+    var open = {};
+    var prev = el.querySelectorAll('details.wxp-row[open] .wxp-date');
+    for (var o = 0; o < prev.length; o++) open[prev[o].textContent] = 1;
+    el.innerHTML = html;
+    var rows = el.querySelectorAll('details.wxp-row');
+    for (var q = 0; q < rows.length; q++) {
+      var dEl = rows[q].querySelector('.wxp-date');
+      if (dEl && open[dEl.textContent]) rows[q].open = true;
+    }
+    var btn = el.querySelector('.wxp-refresh');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        this.disabled = true;
+        this.textContent = 'Refreshing…';
+        Promise.all([wxFetch().catch(function () { return false; }), tyFetch()]).then(function (r) {
+          // Re-query: the typhoon check re-renders the page, so this button may be a new one.
+          var b = el.querySelector('.wxp-refresh');
+          if (!r[0] && b) { b.disabled = false; b.textContent = 'Refresh failed — offline? Showing the last fetch'; }
+        });
+      });
+    }
   }
 
   // ─── Almanac ──────────────────────────────────────────────
@@ -2944,14 +3359,15 @@
   var navLinks = document.querySelectorAll('.bottom-nav a');
   var sections = document.querySelectorAll('.content-section');
 
-  var VALID_SECTIONS = ['today', 'days', 'food', 'transit', 'phrases', 'sos', 'info', 'almanac', 'more'];
+  var VALID_SECTIONS = ['today', 'days', 'food', 'transit', 'phrases', 'sos', 'info', 'almanac', 'weather', 'more'];
 
   // Sections that no longer have a tab of their own. Reaching one keeps More lit, so the bar
   // never shows nothing selected — and SOS lights nothing, because its control is the header
   // button that is already visible on that screen.
-  var UNDER_MORE = { transit: 1, info: 1, almanac: 1 };
+  var UNDER_MORE = { transit: 1, info: 1, almanac: 1, weather: 1 };
 
   var MORE_ITEMS = [
+    { id: 'weather', icon: '🌦', title: 'Weather', sub: 'Rain for every day at its own place, and the forecast sites' },
     { id: 'transit', icon: '🚃', title: 'Transit', sub: 'Every leg of every day, and the payment rules' },
     { id: 'info', icon: '📋', title: 'Bookings', sub: 'Flights, hotels, confirmation numbers' },
     { id: 'almanac', icon: '📖', title: 'Almanac', sub: 'What each place is, read at length' },
@@ -3694,6 +4110,8 @@
     if (DATA.meta) updateHeaderSub();
     renderToday();
     renderMore();
+    // Links first; the per-day rows fill in when renderAllWeather runs below.
+    renderWeatherPage();
     renderDays();
     renderFood();
     renderTransit();
@@ -3724,7 +4142,9 @@
 
     // Weather
     var hadCache = wxRenderFromCache();
-    if (navigator.onLine) {
+    // Typhoon watch: every open — it is two or three small JMA files, and a failure says so.
+    tyFetch();
+    if (navigator.onLine && (!hadCache || hadCache > WX_REFRESH_MS)) {
       wxFetch().catch(function () { return false; }).then(function (fetched) {
         if (!fetched && !hadCache) {
           renderAllWeather(null, null);

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'japan-v2-shell-77';
+const CACHE_NAME = 'japan-v2-shell-85';
 
 const SHELL_ASSETS = [
   './',
@@ -68,8 +68,10 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  // Network-only for weather API
-  if (url.hostname === 'api.open-meteo.com') {
+  // Network-only for the forecast, the ensemble runs and JMA's typhoon feed — a cached copy
+  // would show an old forecast, or an old "no storms", as if it were current.
+  if (url.hostname === 'api.open-meteo.com' || url.hostname === 'ensemble-api.open-meteo.com' ||
+      url.hostname === 'www.jma.go.jp') {
     event.respondWith(fetch(event.request));
     return;
   }

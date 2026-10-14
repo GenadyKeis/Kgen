@@ -2517,6 +2517,249 @@ a.jp-btn {
   color: var(--text-dim);
   opacity: 0.6;
 }
+/* ─── Weather page (More → Weather) ─────────────────────────
+   Two lines per day: when · where · sky · temperatures, then the rain chance and each model's mm.
+   A day is a <details>, so the per-model table needs no JS and works with VoiceOver. */
+.wxp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.wxp-row {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.wxp-row > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 8px 12px 9px;
+}
+.wxp-row > summary::-webkit-details-marker {
+  display: none;
+}
+.wxp-row.wxp-empty {
+  padding: 8px 12px;
+}
+.wxp-row[open] {
+  background: var(--card-open);
+}
+.wxp-l1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.wxp-day {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.wxp-date {
+  font-size: 14px;
+  font-weight: 600;
+}
+.wxp-place {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.wxp-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+.wxp-temps {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  min-width: 58px;
+  text-align: right;
+}
+.wxp-temps .wx-hi { color: var(--wx-hi); }
+.wxp-temps .wx-lo { color: var(--wx-lo); }
+.wxp-l2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-top: 7px;
+}
+.wxc {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+.wxc small {
+  font-weight: 400;
+  color: var(--text-dim);
+  font-size: 11px;
+}
+.wxc-wet {
+  background: var(--tint-link);
+  border-color: var(--tint-link-strong);
+}
+.wxc-heavy {
+  background: var(--tint-link-strong);
+  border-color: var(--link);
+}
+.wxc-none {
+  opacity: 0.55;
+}
+.wxp-chance {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.wxp-chance.wxp-likely {
+  color: var(--accent);
+}
+.wxc-unit {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+.wxp-none {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.wxp-detail {
+  padding: 0 12px 10px;
+}
+.wxp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.wxp-table th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-dim);
+  padding: 4px 4px 4px 0;
+  border-bottom: 1px solid var(--border);
+}
+.wxp-table td {
+  padding: 5px 4px 5px 0;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.wxp-table td:first-child {
+  white-space: normal;
+}
+.wxp-runs {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.45;
+  margin-top: 7px;
+}
+.wxp-meta {
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin: 0 2px 20px;
+}
+.wxp-meta a,
+.wxp-link {
+  color: var(--link);
+}
+.wxp-refresh {
+  font: inherit;
+  font-size: 12px;
+  color: var(--link);
+  background: none;
+  border: none;
+  padding: 6px 2px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.wxp-sites-h {
+  margin-top: 4px;
+}
+.wxp-site {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+.wxp-site-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+.wxp-site-when {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.45;
+  margin: 3px 0 8px;
+}
+.wxp-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.wxp-link {
+  display: inline-block;
+  font-size: 13px;
+  padding: 8px 12px;
+  min-height: 36px;
+  border: 1px solid var(--tint-link-strong);
+  background: var(--tint-link);
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+/* Typhoon watch — a one-line status when quiet, a card per storm when not. */
+.ty-block {
+  margin-bottom: 20px;
+}
+.ty-line {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding: 2px 2px;
+}
+.ty-line.ty-warn {
+  color: var(--accent);
+  font-weight: 600;
+}
+.ty-storm {
+  background: var(--tint-accent);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-top: 8px;
+}
+.ty-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.ty-fact {
+  font-size: 13px;
+  line-height: 1.45;
+}
+.ty-note {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 6px;
+  padding: 0 2px;
+}
+.ty-banner {
+  font: inherit;
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--tint-accent);
+  border: 1px solid var(--accent);
+  border-left-width: 4px;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin: 0 0 12px;
+  cursor: pointer;
+}
 .weather-bar.wx-unavailable {
   justify-content: center;
   font-size: 12px;

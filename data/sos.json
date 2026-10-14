@@ -23,6 +23,13 @@
       "number": "03-6233-9266",
       "tel": "tel:0362339266",
       "note_en": "Free multilingual medical phone line — helps find a doctor and can interpret. Mon–Fri 10:00–16:00, closed public holidays. Toll-free from a Japanese line: 0120-339-266."
+    },
+    {
+      "label": "Travel insurance — IMA medical assistance (Migdal) 24/7",
+      "number": "+972-3-920-6912",
+      "tel": "tel:+97239206912",
+      "note_en": "Your insurer's medical assistance centre, around the clock. WhatsApp +972-54-994-0911 · migdal@ima-mc.com. Have the policy number ready — it is on the insurance PDF and in the Migdal app.",
+      "document": "./trip-data/insurance-migdal-202610.pdf"
     }
   ],
   "embassy": {
