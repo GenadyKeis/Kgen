@@ -1646,8 +1646,9 @@ main {
   margin-bottom: 2px;
 }
 .phrase-romaji {
-  font-size: 13px;
-  color: var(--text-dim);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
 }
 .phrase-context {
   font-size: 12px;
@@ -2037,8 +2038,14 @@ a.food-badge.rating:active {
   background: var(--tint-neutral);
 }
 .jp-say-romaji {
-  font-size: 13px;
-  color: var(--text-dim);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 6px;
+}
+.jp-say-en {
+  font-size: 15px;
+  color: var(--text);
   margin-top: 4px;
 }
 .jp-say-actions {
@@ -3225,3 +3232,8 @@ a.almanac-listen-main {
   cursor: pointer;
   text-decoration: underline;
 }
+
+/* About — the reading layer under a card's practical text (2026-10-17) */
+.item-about { margin-top: 6px; }
+.item-about > summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--accent); }
+.item-about-body { margin-top: 4px; font-size: 14px; line-height: 1.5; color: var(--text-dim); }

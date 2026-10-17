@@ -9,7 +9,7 @@
           "en": "One person",
           "jp": "一人です",
           "romaji": "hitori desu",
-          "context": "Say this when entering — they'll seat you immediately"
+          "context": "Say this as you walk in, so staff can seat you straight away."
         },
         {
           "en": "Counter seat please",
@@ -30,7 +30,7 @@
           "en": "How long is the wait?",
           "jp": "待ち時間はどのくらいですか？",
           "romaji": "machi-jikan wa dono kurai desu ka?",
-          "context": "Ask before you commit — if the answer is more than a couple of minutes, thank them and walk. Every venue in this app has a backup"
+          "context": "Ask this at the door. If the wait is more than a couple of minutes, thank them and leave. Every restaurant in this app has a backup listed."
         },
         {
           "en": "Check please",
@@ -41,13 +41,13 @@
           "en": "It's delicious!",
           "jp": "美味しいです！",
           "romaji": "oishii desu!",
-          "context": "Chefs love hearing this — especially at counter seats"
+          "context": "Chefs like hearing this, especially when you sit at the counter."
         },
         {
           "en": "Thank you for the meal [when leaving]",
           "jp": "ごちそうさまでした",
           "romaji": "gochisōsama deshita",
-          "context": "Say this when finished — shows appreciation"
+          "context": "Say this when you finish or as you leave. It thanks the staff for the meal."
         },
         {
           "en": "Water please",
@@ -75,7 +75,7 @@
           "en": "Does this bus go to ___?",
           "jp": "このバスは＿＿＿に行きますか？",
           "romaji": "kono basu wa ___ ni ikimasu ka?",
-          "context": "Ask the driver from the door before you board — nine of this trip's rides are buses or trams, and two of them take cash only"
+          "context": "Ask the driver from the door before you get on. Nine rides on this trip are buses or trams, and two of them take cash only."
         },
         {
           "en": "What time is the next train?",
@@ -101,7 +101,7 @@
           "en": "Top up my IC card please",
           "jp": "チャージお願いします",
           "romaji": "chāji onegai shimasu",
-          "context": "Hand over the card and a note. Works at a station machine, a convenience-store till, or a bus driver's console"
+          "context": "Hand over the card and a banknote. You can top up at a station machine, a convenience-store till or a bus driver's console."
         }
       ]
     },
@@ -129,7 +129,7 @@
           "en": "Is there a private bath I can book?",
           "jp": "貸切風呂はありますか？",
           "romaji": "kashikiri-buro wa arimasu ka?",
-          "context": "The Kyoto hotel has a large shared bath, which is not what you're after. This asks for the reservable private one instead"
+          "context": "The Kyoto hotel has a large shared bath. Use this phrase to ask for a private bath you can book instead."
         },
         {
           "en": "What is the Wi-Fi password?",
@@ -147,7 +147,7 @@
           "en": "Hello [greeting other hikers]",
           "jp": "こんにちは",
           "romaji": "konnichiwa",
-          "context": "Standard trail greeting — everyone says it when passing"
+          "context": "Hikers in Japan say this to each other when they pass on a trail."
         },
         {
           "en": "Is this the trail to ___?",
@@ -168,7 +168,7 @@
           "en": "After you / Please go ahead",
           "jp": "お先にどうぞ",
           "romaji": "osaki ni dōzo",
-          "context": "When letting someone pass on a narrow trail"
+          "context": "Say this when you let someone pass on a narrow trail."
         },
         {
           "en": "Take care [said to others heading out]",
@@ -186,7 +186,7 @@
           "en": "Excuse me [to get someone's attention]",
           "jp": "すみません",
           "romaji": "sumimasen",
-          "context": "Also covers sorry and thanks-for-the-trouble — use it to open any interaction"
+          "context": "It also means \"sorry\" and \"thanks for the trouble\". Use it to start any conversation with staff or a stranger."
         },
         {
           "en": "How much is this?",
@@ -194,7 +194,7 @@
           "romaji": "kore wa ikura desu ka?"
         },
         {
-          "en": "Can I get tax-free?",
+          "en": "Can I buy this tax-free?",
           "jp": "免税できますか？",
           "romaji": "menzei dekimasu ka?"
         },
@@ -202,7 +202,7 @@
           "en": "Do you take cards?",
           "jp": "カードは使えますか？",
           "romaji": "kādo wa tsukaemasu ka?",
-          "context": "Worth asking before you order or queue. Small counters and two of this trip's buses are cash only"
+          "context": "Ask before you order or join a line. Small counter restaurants and two of the buses on this trip take cash only."
         },
         {
           "en": "Where is the toilet?",
@@ -223,7 +223,7 @@
           "en": "I'm fine / No thank you / It's okay",
           "jp": "大丈夫です",
           "romaji": "daijōbu desu",
-          "context": "Swiss army knife phrase — use to decline offers politely"
+          "context": "A polite way to say no to an offer. It can also mean \"I'm fine\" or \"it's okay\"."
         }
       ]
     },
@@ -266,13 +266,13 @@
           "en": "Do you have medicine for this?",
           "jp": "これに効く薬はありますか？",
           "romaji": "kore ni kiku kusuri wa arimasu ka?",
-          "context": "At a pharmacy counter — say it and point at what hurts. The Emergency tab pins pharmacies in each of your three cities"
+          "context": "Say this at a pharmacy counter and point at what hurts. The Emergency tab lists pharmacies, with map pins, in each of your three cities."
         },
         {
-          "en": "Cold medicine / headache / stomach",
+          "en": "Cold medicine / headache medicine / stomach medicine",
           "jp": "風邪薬・頭痛薬・胃薬",
           "romaji": "kazegusuri · zutsūyaku · igusuri",
-          "context": "The three words to show a pharmacist. Anything stronger needs a doctor — the Emergency tab has a walk-in English clinic for each city"
+          "context": "Show these three words to a pharmacist. For anything stronger you need a doctor. The Emergency tab lists a walk-in clinic for foreign visitors in each city."
         }
       ]
     }

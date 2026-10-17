@@ -390,6 +390,11 @@
     return 'Today (JST): ' + parts.join(', ');
   }
 
+  // The reading layer (guide/PROSE-STYLE.md): background below the practical text, shut by default.
+  function aboutBlock(text) {
+    return '<details class="item-about"><summary>About</summary><div class="item-about-body">' + esc(text) + '</div></details>';
+  }
+
   function renderPlaceCard(place, detail, opts) {
     opts = opts || {};
     var html = '';
@@ -417,6 +422,7 @@
     if (detail) {
       html += '<div class="item-detail">' + esc(detail) + '</div>';
     }
+    if (opts && opts.about) html += aboutBlock(opts.about);
 
     // Place info row (hours summary, price, address)
     var infoParts = [];
@@ -695,11 +701,12 @@
           var place = item.place_id ? placeById(item.place_id) : null;
 
           if (place) {
-            html += renderPlaceCard(place, item.detail, { offlineMap: dayHasWalk });
+            html += renderPlaceCard(place, item.detail, { offlineMap: dayHasWalk, about: item.about });
           } else if (item.label) {
             html += '<div class="item">';
             html += '<div class="item-name">' + esc(item.label) + '</div>';
             if (item.detail) html += '<div class="item-detail">' + esc(item.detail) + '</div>';
+            if (item.about) html += aboutBlock(item.about);
             // A picture he SHOWS at a counter (the Bic coupon barcodes, 2026-09-25). The file is
             // in SHELL_ASSETS so it opens offline; tapping opens it alone, for the scanner.
             if (item.image) {
@@ -1796,6 +1803,9 @@
                 esc(rest.order_jp) + '</div>';
               if (rest.order_romaji) {
                 html += '<div class="jp-say-romaji">' + esc(rest.order_romaji) + '</div>';
+              }
+              if (rest.order_en) {
+                html += '<div class="jp-say-en">= ' + esc(rest.order_en) + '</div>';
               }
               html += '<div class="jp-say-actions">';
               html += '<button type="button" class="jp-btn" data-speak="' + esc(rest.order_jp) + '">🔊 Say it</button>';
@@ -3529,6 +3539,7 @@
             var item = bItems[it];
             if (item.label) dayParts.push(item.label);
             if (item.detail) dayParts.push(item.detail);
+            if (item.about) dayParts.push(item.about);
           }
         }
         if (day.notes_top) dayParts = dayParts.concat(day.notes_top);
