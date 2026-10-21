@@ -4164,6 +4164,15 @@
     } else if (!hadCache) {
       renderAllWeather(null, null);
     }
+
+    // A home-screen app on iOS is usually RESUMED, not reloaded, so the block above can run once
+    // and then not again for days. Coming back to the foreground refetches by the same rule.
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState !== 'visible' || !navigator.onLine) return;
+      var age = wxRenderFromCache();
+      tyFetch();
+      if (!age || age > WX_REFRESH_MS) wxFetch().catch(function () { return false; });
+    });
   });
 
 })();
