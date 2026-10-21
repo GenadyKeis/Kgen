@@ -280,10 +280,10 @@
         "note": "🔴 Buy food at a station you pass through. The places you are going have little or nothing. The days are in trip order.",
         "options": [
           {
-            "name_en": "Day 5 · Takaosanguchi — 7-Eleven Keiō Takao Kaede",
+            "name_en": "Day 2 · Takaosanguchi — 7-Eleven Keiō Takao Kaede",
             "name_jp": "セブン-イレブン 京王高尾楓kaede店",
             "kind": "konbini, straight out of the ticket gate",
-            "hours": "⚠ Weekdays 09:00–17:00 · weekends and holidays 08:00–18:00 (April–November). 26 Oct is a Monday, so it opens at 09:00.",
+            "hours": "⚠ Weekdays 09:00–17:00 · weekends and holidays 08:00–18:00 (April–November). 23 Oct is a Friday, so it opens at 09:00.",
             "walk": "At the gate — about 9 m",
             "what": "Onigiri, sandwiches, drinks, grilled dango and a mont-bell corner. If you get there before it opens, two 24-hour konbini are 4–5 minutes away: 7-Eleven Takaosan Inter and FamilyMart Hachiōji Takao-chō.",
             "address_jp": "東京都八王子市高尾町",
@@ -295,7 +295,7 @@
               "https://takao-fumoto.com/takaosan-navi/takaosanguchi-convenience-store/"
             ],
             "verified_on": "2026-08-22",
-            "note": "🔴 Use this shop only as a backup. The day 5 plan is to buy lunch in Akihabara before you board, because an early start gets you here before this shop opens at 09:00."
+            "note": "🔴 Use this shop only as a backup. The day 2 plan is to buy lunch in Akihabara before you board, because an early start gets you here before this shop opens at 09:00."
           },
           {
             "name_en": "Day 6 · Kita-Kamakura — Lawson Three-F, and NewDays at Kamakura for the way back",
@@ -906,7 +906,7 @@
       {
         "id": "ginza",
         "title": "Ginza",
-        "when": "Days 2 and 4 · Fri Oct 23, Sun Oct 25",
+        "when": "Days 4 and 5 · Sun Oct 25, Mon Oct 26",
         "anchor": "Distances are straight-line from the Ginza 4-chōme crossing.",
         "options": [
           {
@@ -967,7 +967,7 @@
       {
         "id": "shinjuku",
         "title": "Shinjuku",
-        "when": "Days 2 and 4 · Fri Oct 23, Sun Oct 25",
+        "when": "Days 4 and 5 · Sun Oct 25, Mon Oct 26",
         "anchor": "Distances are straight-line from the JR east exit.",
         "options": [
           {
@@ -1043,7 +1043,7 @@
       {
         "id": "shibuya",
         "title": "Shibuya",
-        "when": "Days 2 and 4 · Fri Oct 23, Sun Oct 25",
+        "when": "Days 4 and 5 · Sun Oct 25, Mon Oct 26",
         "anchor": "Distances are straight-line from the scramble crossing.",
         "options": [
           {
@@ -2118,27 +2118,52 @@
       "day": 2,
       "date": "2026-10-23",
       "city": "Tokyo",
-      "subtitle": "a proper dinner out",
+      "subtitle": "something easy, on the way home",
       "meals": [
         {
-          "slot": "dinner",
-          "time_hint": "In Akihabara, on the way back to the hotel.",
+          "slot": "lunch",
+          "time_hint": "At the summit, roughly 12:30–13:30",
           "restaurants": [
             {
-              "place_id": "tonkatsu-marugo",
               "role": "primary",
+              "cuisine": "Carried konbini lunch",
+              "note": "⛔ Buy onigiri or sandwiches at a konbini in Akihabara before you board the train, and eat them on the summit deck. No teahouse on the mountain publishes a calendar of closing days, so a hot meal up there is a bonus if one is open. The two summit teahouses are open 10:00–15:00. On the way up are Jūitchōme-chaya (last order 15:00) and Gongen-jaya (open to 16:00). 🔴 Takahashiya, at the foot of the mountain, serves tororo soba (soba with grated yam) until last order 16:30. 16:30 is also when you need to be at the tsukemen shop in Shinjuku for dinner, so eating soba here means skipping that dinner."
+            }
+          ]
+        },
+        {
+          "slot": "dinner",
+          "time_hint": "🔴 If you can reach the tsukemen shop in Shinjuku by 16:30: eat there. Later: tonkatsu or curry in Akihabara, by the hotel.",
+          "restaurants": [
+            {
+              "place_id": "gonokami-seisakusho",
+              "role": "primary",
+              "badges": ["tabelog ↗", "Ramen TOKYO Hyakumeiten 2017–2023 · 2025"],
+              "cuisine": "Prawn tsukemen",
+              "price": "¥1,000–1,999",
+              "note": "Prawn tsukemen shop in Shinjuku, 14 counter seats. ⛔ Be at the door by about 16:30. If you can't make it, eat in Akihabara instead: Marugo if there is no queue, otherwise Ethiopia Curry. Before 16:30 there is no wait. Just after 17:00 the queue is out on the street, and at 19:25 the wait is 35 min. You can decide on the platform at Takaosanguchi. If the descent goes to plan, you reach Shinjuku at about 16:00 and walk straight in. A slow descent, soba at Takahashiya or a long stop at the summit will make you too late. ⚠ The nearest stations are Shinjuku-sanchōme and Shinjuku-gyoenmae, not JR Shinjuku. Allow more than 4 min for the walk: your legs will be tired after three hours on the mountain."
+            },
+            {
+              "place_id": "tonkatsu-marugo",
+              "role": "backup",
               "badges": ["tabelog ↗", "Tonkatsu Hyakumeiten 2026"],
               "cuisine": "Tonkatsu",
               "price": "¥3,000–3,999",
-              "note": "Tonkatsu (breaded pork cutlet) restaurant, 6 min from the hotel. Open until 21:00, last order 20:00. ⚠ The shop has no website or social account, so its hours can't be confirmed before the trip. If it is closed: go to the backup, Kamayoshi."
+              "note": "Tonkatsu (breaded pork cutlet) restaurant, 6 min from the hotel. Open on Fridays until 21:00, 🔴 last order 20:00. Cash only. There is often a short queue at dinner: about 10 min at the 17:00 opening, longer later. Look at the door: if people are waiting, go on to Ethiopia Curry. ⚠ The shop has no website or social account, so its hours can't be confirmed before the trip."
             },
             {
-              "place_id": "kamayoshi",
+              "place_id": "ethiopia-akihabara",
               "role": "backup",
-              "badges": ["tabelog ↗", "Udon EAST Hyakumeiten 2024"],
-              "cuisine": "Sanuki and Hakata udon",
-              "price": "¥1,000–1,999",
-              "note": "Udon shop, 8 min on foot from Marugo. 🔴 Last order 20:00, the same as Marugo. If you are in the queue at Marugo and want to switch, leave by about 19:00. After 19:00, go instead to Ethiopia Curry Kitchen (エチオピア) in Atre Akihabara: last order 22:00, 150 m from the hotel, on the way back."
+              "badges": ["tabelog ↗"],
+              "cuisine": "Curry",
+              "note": "Curry restaurant in Atre at Akihabara station, 150 m from the hotel and on your way home. 🔴 Take this one if you come off the mountain later than planned, or if Marugo has a queue or is past its 20:00 last order. Open until 22:30, last order 22:00. Table service, 26 seats. Cards and IC accepted. You don't have to decide before you board: if you reach Shinjuku after about 16:30, stay on the train."
+            },
+            {
+              "place_id": "fish-shinjuku",
+              "role": "backup",
+              "badges": ["tabelog ↗", "Curry TOKYO Hyakumeiten 2022–2024 · 2026"],
+              "cuisine": "Indian street food and spice curry",
+              "note": "Indian street food and spice curry, about 10 min on foot from the Keiō concourse in Shinjuku. ⛔ Closed 15:00–17:00, which is when you are likely to reach Shinjuku. So it is no help if the tsukemen shop has a queue at that time. People queue before it reopens at 17:00, and you can't know in advance how long the wait will be. ✅ Cards, IC and QR accepted. It is the cashless choice in Shinjuku; lunch and the tsukemen shop are both cash only. Use it only if you are eating at 17:30 or later and will accept a queue of any length."
             }
           ]
         }
@@ -2208,44 +2233,26 @@
       "day": 5,
       "date": "2026-10-26",
       "city": "Tokyo",
-      "subtitle": "something easy, on the way home",
+      "subtitle": "udon on the way back",
       "meals": [
         {
-          "slot": "lunch",
-          "time_hint": "At the summit, roughly 12:30–13:30",
-          "restaurants": [
-            {
-              "role": "primary",
-              "cuisine": "Carried konbini lunch",
-              "note": "⛔ Buy onigiri or sandwiches at a konbini in Akihabara before you board the train, and eat them on the summit deck. No teahouse on the mountain publishes a calendar of closing days, so a hot meal up there is a bonus if one is open. The two summit teahouses are open 10:00–15:00. On the way up are Jūitchōme-chaya (last order 15:00) and Gongen-jaya (open to 16:00). 🔴 Takahashiya, at the foot of the mountain, serves tororo soba (soba with grated yam) until last order 16:30. 16:30 is also when you need to be at the tsukemen shop in Shinjuku for dinner, so eating soba here means skipping that dinner."
-            }
-          ]
-        },
-        {
           "slot": "dinner",
-          "time_hint": "🔴 If you can reach the tsukemen shop in Shinjuku by 16:30: eat there. Later: curry in Akihabara, by the hotel.",
+          "time_hint": "In Kanda, on the way back to the hotel. Last order 20:00.",
           "restaurants": [
             {
-              "place_id": "gonokami-seisakusho",
+              "place_id": "kamayoshi",
               "role": "primary",
-              "badges": ["tabelog ↗", "Ramen TOKYO Hyakumeiten 2017–2023 · 2025"],
-              "cuisine": "Prawn tsukemen",
+              "badges": ["tabelog ↗", "Udon EAST Hyakumeiten 2024"],
+              "cuisine": "Sanuki and Hakata udon",
               "price": "¥1,000–1,999",
-              "note": "Prawn tsukemen shop in Shinjuku, 14 counter seats. ⛔ Be at the door by about 16:30. If you can't make it, eat at Ethiopia Curry in Akihabara instead. Before 16:30 there is no wait. Just after 17:00 the queue is out on the street, and at 19:25 the wait is 35 min. You can decide on the platform at Takaosanguchi. If the descent goes to plan, you reach Shinjuku at about 16:00 and walk straight in. A slow descent, soba at Takahashiya or a long stop at the summit will make you too late. ⚠ The nearest stations are Shinjuku-sanchōme and Shinjuku-gyoenmae, not JR Shinjuku. Allow more than 4 min for the walk: your legs will be tired after three hours on the mountain."
+              "note": "Udon shop in Kanda, about 10 min on foot from the hotel. Open on Mondays 17:30–20:20. 🔴 Last order 20:00. Leave the shopping bags at the hotel first: the shop has no room for luggage. If you get back after about 19:00, or there is a queue at the door, go to the backup instead."
             },
             {
               "place_id": "ethiopia-akihabara",
               "role": "backup",
               "badges": ["tabelog ↗"],
               "cuisine": "Curry",
-              "note": "Curry restaurant in Atre at Akihabara station, 150 m from the hotel and on your way home. 🔴 Take this one if you come off the mountain later than planned. Open until 22:30, last order 22:00. Table service, 26 seats. Cards and IC accepted. You don't have to decide before you board: if you reach Shinjuku after about 16:30, stay on the train."
-            },
-            {
-              "place_id": "fish-shinjuku",
-              "role": "backup",
-              "badges": ["tabelog ↗", "Curry TOKYO Hyakumeiten 2022–2024 · 2026"],
-              "cuisine": "Indian street food and spice curry",
-              "note": "Indian street food and spice curry, about 10 min on foot from the Keiō concourse in Shinjuku. ⛔ Closed 15:00–17:00, which is when you are likely to reach Shinjuku. So it is no help if the tsukemen shop has a queue at that time. People queue before it reopens at 17:00, and you can't know in advance how long the wait will be. ✅ Cards, IC and QR accepted. It is the cashless choice in Shinjuku; lunch and the tsukemen shop are both cash only. Use it only if you are eating at 17:30 or later and will accept a queue of any length."
+              "note": "Curry restaurant in Atre at Akihabara station, 150 m from the hotel. Open until 22:30, last order 22:00. Table service, 26 seats. Cards and IC accepted. Take this one if you get back after about 19:00 or Kamayoshi has a queue."
             }
           ]
         }

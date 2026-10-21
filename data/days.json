@@ -74,91 +74,131 @@
     "date": "2026-10-23",
     "weekday": "Fri",
     "city": "Tokyo",
-    "title": "Shopping day 1",
-    "tags": ["shopping"],
-    "location": { "lat": 35.6762, "lon": 139.6503 },
+    "title": "Mount Takao",
+    "tags": ["hike"],
+    "location": { "lat": 35.6255, "lon": 139.2433 },
     "hotel_id": "akihabara-washington",
     "blocks": [
       {
-        "type": "morning",
-        "title": "Shopping day 1 — the four purchases",
+        "type": "logistics",
+        "title": "Before you board",
         "items": [
           {
-            "label": "What to buy",
-            "detail": "Four things to buy: a camera, a fountain pen and stationery, a Seiko or Grand Seiko watch, and Uniqlo clothes. Choose the order and the areas on the day."
-          },
-          {
-            "label": "Where",
-            "detail": "Shopping areas: Akihabara, Shibuya, Shinjuku and Ginza. Buy the watch and the Uniqlo clothes in Ginza: the Uniqlo flagship store is there, and the watch shops are listed in the watch section below. Buy the pen and stationery either in Ginza or at Sekaido in Shinjuku (next item)."
-          },
-          {
-            "label": "Sekaido, Shinjuku — pens and stationery",
-            "detail": "Art and stationery shop: Sekaido main store (世界堂 新宿本店), Shinjuku 3-1-1. 1 min from Shinjuku-sanchōme station exit C-4, 7 min from JR Shinjuku station. 🔴 Open 09:30–20:00 every day except the New Year holidays, so it works on either shopping day. 5 floors: 1F stationery, office supplies and fountain pens · 2F paper, drafting and design · 3F paints and art materials · 4F–5F framing. ⚑ Come for the discount. Stationery, art, design and comic supplies are 5–20% off the list price, and oil paints and painting media are 30% off. The point card gives back a further 7% of the discounted price. ⚠ Sekaido does not advertise tax-free shopping. Count on the discount only, and ask about tax-free at the register."
-          },
-          {
-            "label": "Tax-free is free today",
-            "detail": "Until Oct 31, the shop takes the tax off at the register, and there is nothing to do at Narita. From Nov 1, Japan changes the system: you pay the tax in the shop and get it back only after customs confirms you took the goods out of Japan. Carry your passport. To qualify, spend ¥5,000 or more before tax, at one store on one day."
-          },
-          {
-            "label": "Bic Camera tourist coupon — 7% more on a Seiko",
-            "detail": "Tap the coupon to open it full screen. At the till, before you pay, show it with your passport. The cashier scans both barcodes, ① and ②. Bic takes off the 10% tax, then another 7% off watches. The extra 7% applies to Seiko watches. It does not apply to Grand Seiko or to foreign-brand watches. Any payment method. Valid at every Bic Camera until Oct 31. If the till won't accept it: open the live coupon page with the button below.",
-            "image": "bic-coupon.png",
-            "image_alt": "Bic Camera tourist coupon — barcodes ① and ②, valid to 2026-10-31",
-            "link": {
-              "label": "Coupon page (LIVE JAPAN)",
-              "url": "https://livejapan.com/public/operation/coupon/biccamera/en.html"
-            }
-          },
-          {
-            "label": "A Friday is the transaction day",
-            "detail": "Buy today: on a weekday the tax-free desks have the shortest queues. Ginza and Akihabara close their main streets to cars on Sundays only, so you will see that on the second shopping day, Sunday Oct 25."
-          }
-        ]
-      },
-      {
-        "type": "afternoon",
-        "title": "The watch — Seiko or Grand Seiko",
-        "items": [
-          {
-            "label": "Which shop for which watch",
-            "detail": "Grand Seiko: buy at one of the two Ginza boutiques below. No shop gives more than the 10% tax off a Grand Seiko, and the boutiques have the widest range, including models sold only there. Seiko (Presage, Prospex and other lines): try it on at Seiko House, then buy at Bic Camera Yurakucho with the coupon, for the 10% tax plus 7% off. Bic is about 500 m from Seiko House on foot, or you can get there underground from Ginza station."
-          },
-          {
-            "place_id": "seiko-house-ginza",
-            "detail": "Seiko's store in the clock-tower building (Wako) at the Ginza 4-chome crossing, directly connected to Ginza station exit B1. Try on both brands here. 1F (Watch Square): Seiko and Grand Seiko. 2F: the Grand Seiko Flagship Boutique. Opens at 11:00. To buy: show your passport before you pay and say 免税でお願いします (menzei de onegai shimasu, “tax-free, please”)."
-          },
-          {
-            "place_id": "grand-seiko-namiki",
-            "detail": "Grand Seiko's largest shop in Japan. It sells only Grand Seiko, including the models sold only in its boutiques. On Namiki-dori, about 300 m west of Seiko House. To buy: show your passport before you pay and say 免税でお願いします (menzei de onegai shimasu, “tax-free, please”)."
-          },
-          {
-            "place_id": "bic-camera-yurakucho",
-            "detail": "Electronics store, 1 min from JR Yūrakuchō station (Hibiya exit). Buy a Seiko here, with the coupon. Watches are on 6F. At the till, before you pay, show the coupon (at the top of this day) and your passport."
-          },
-          {
-            "place_id": "yodobashi-akiba",
-            "detail": "Electronics store 1 min from the hotel, open until 22:00. Use it to try on watches any evening, or to buy if you don't get to Ginza. Watches are on 3F, the same floor as the cameras. Tax-free with your passport. The Bic Camera 7% coupon does not work here."
+            "label": "Buy lunch at the konbini",
+            "detail": "Buy onigiri or sandwiches at a konbini in Akihabara before you board the train, and eat them on the summit deck. You can't count on any place to eat on the mountain. The two teahouses at the summit, the two you pass on Trail 1 and the old soba house at the foot of the mountain all close on irregular days, and none of them publishes a calendar. If that soba house is open on your way down, it serves hot tororo soba (soba with grated yam) until last order at 16:30 on weekdays. There is time for it on the descent, but eating there means skipping the tsukemen dinner in Shinjuku, where you need to arrive by 16:30."
           }
         ]
       },
       {
         "type": "logistics",
-        "title": "Getting around",
+        "title": "Out to the mountain",
         "items": [],
         "transit": [
           {
-            "label": "In-town hops — Ginza / Shinjuku / Akihabara",
-            "detail": "Trains and subways run by different companies. Suica works on all of them.",
-            "mode": "transit",
-            "cost_jpy": 500,
-            "cost_note": "rough estimate for the day"
+            "label": "JR + Keiō — Akihabara → Takaosanguchi",
+            "detail": "Leave the hotel at about 08:30. Take JR to Shinjuku, then the Keiō Takao line to Takaosanguchi, the last stop. About 1½ hours in all; the Keiō part alone is about an hour. ⚠ A map app may suggest an all-JR route to Takao first. Ignore it: it costs ¥1,174 instead of ¥639. Takaosanguchi is the trailhead. Trail 1 starts a few minutes' walk from the ticket gate.",
+            "origin_id": "akihabara-station",
+            "destination_id": "takaosanguchi-station",
+            "mode": "train",
+            "cost_jpy": 639,
+            "cost_note": "one way; ¥1,278 round trip"
+          }
+        ]
+      },
+      {
+        "type": "hike",
+        "title": "Up Trail 1 — 1号路",
+        "maps": [
+          { "label": "Trail map — Tokyo's Takao Visitor Centre", "url": "https://takaovc.ces-net.jp/?page_id=257", "note": "All six numbered trails plus Inariyama. Same office that posts trail closures." },
+          { "label": "AllTrails — Trail 6, the way down", "url": "https://www.alltrails.com/trail/japan/tokyo/mount-takao-trail-6", "note": "Covers the descent only. ⚠ AllTrails has no Trail 1 route of its own — its Takao entries are Trails 2, 3, 4, 5, 6, Inariyama, and a combined Inariyama + Trail 1 — so our ascent is not mapped there as we walk it. ⚠ Ignore the orange \"Takao Partial Closure\" alert on that page — it is dated October 2025 and says Trail 6 is shut to downhill walkers. Tokyo's own visitor centre lifted that on 8 May 2026: \"Trail 6 can now be used for descent as well.\" The visitor centre link above is the live source." }
+        ],
+        "items": [],
+        "transit": [
+          {
+            "label": "On foot — Takaosanguchi → Yakuō-in (Trail 1 · 1号路)",
+            "detail": "A paved path with an even slope up through cedar forest and the Jōshinmon gate (浄心門). Allow 1–1¼ hours at an easy pace. The cable car runs alongside if you need it, but the walk up is the point of the day. ⚑ Phone maps label the trails in Japanese only. Look for 1号路 (Trail 1), written in full as 自然研究路1号路. It is also signed 表参道 (the temple approach). Past the Jōshinmon gate the path splits into 男坂 (Otokozaka, a staircase of 108 steps) and 女坂 (Onnazaka, a gentler curving path). They join again, so take either.",
+            "origin_id": "takaosanguchi-station",
+            "destination_id": "yakuoin",
+            "mode": "walking",
+            "duration_min": 75
+          }
+        ]
+      },
+      {
+        "type": "hike",
+        "title": "Yakuō-in",
+        "items": [
+          {
+            "place_id": "yakuoin",
+            "detail": "Temple about two-thirds of the way up Trail 1. Allow 30–45 min. Free to enter. It stands on the open mountain and has no gate hours. ⏱ Be past the temple by 14:50, and leave the summit by 15:25. From here it is 30 min to the summit and up to 1½ hours down Trail 6, so that gets you down by sunset (16:59; last light 17:25). If you reach the temple after 14:50: skip the summit and walk back down Trail 1 to the cable car (last car down 18:00). If you are still at the summit after 15:25: go back down Trail 1 to the cable car instead of taking Trail 6.",
+            "about": "A working Shingon Buddhist temple on the mountain. Look for the Niōmon gate, the main hall, the Gongen-dō and the okunoin (inner sanctuary), and the statues of tengu (long-nosed mountain goblins) Mt Takao is known for."
+          }
+        ]
+      },
+      {
+        "type": "hike",
+        "title": "On to the summit",
+        "items": [],
+        "transit": [
+          {
+            "label": "On foot — Yakuō-in → the 599 m summit",
+            "detail": "30 min more on the upper part of Trail 1.",
+            "origin_id": "yakuoin",
+            "destination_id": "mt-takao",
+            "mode": "walking",
+            "duration_min": 30
+          }
+        ]
+      },
+      {
+        "type": "hike",
+        "title": "The summit",
+        "items": [
+          {
+            "place_id": "mt-takao",
+            "detail": "Allow about 30 min at the viewing deck, plus lunch there: roughly 12:30–13:30.",
+            "about": "The summit of Mt Takao is 599 m high. The viewing deck looks out over the Kantō plain and, on a clear day, to Mt Fuji."
+          }
+        ]
+      },
+      {
+        "type": "hike",
+        "title": "Down Trail 6 — 6号路",
+        "items": [],
+        "transit": [
+          {
+            "label": "On foot — the summit → Takaosanguchi (Trail 6 · 6号路)",
+            "detail": "An unpaved path down the Biwa-taki valley, beside a stream. Of the two unpaved trails down, this is the gentler one. Allow 1¼–1½ hours. If your legs are tired at the summit: walk down Trail 1 instead, and take the cable car (until 18:00) or the chairlift (until about 16:30) from its top station. ⚑ On a phone map look for 6号路 (Trail 6) or 自然研究路6号路. The visitor centre also signs it 琵琶滝コース (Biwa-taki course), after the waterfall it passes. ⚠ Do not take 稲荷山コース (Inariyama course) or 3号路 (Trail 3) by mistake. Both are signposted at the summit, and neither is this route.",
+            "origin_id": "mt-takao",
+            "destination_id": "takaosanguchi-station",
+            "mode": "walking",
+            "duration_min": 90
+          }
+        ]
+      },
+      {
+        "type": "logistics",
+        "title": "Back to Akihabara",
+        "items": [],
+        "transit": [
+          {
+            "label": "Keiō + JR — Takaosanguchi → Akihabara",
+            "detail": "The Keiō line back to Shinjuku, then JR on to Akihabara.",
+            "origin_id": "takaosanguchi-station",
+            "destination_id": "akihabara-station",
+            "mode": "train",
+            "cost_jpy": 639,
+            "cost_note": "one way; ¥1,278 round trip"
           }
         ]
       }
     ],
+    "notes_top": [
+      "💴 Bring cash. The teahouses and stalls on the mountain are cash only. One listing says the highest teahouse at the summit takes JCB and AMEX cards, but don't rely on it. The first-choice dinner, Gonokami Seisakusho in Shinjuku, is cash only too, and so is Marugo, the tonkatsu backup in Akihabara. The two curry backups take cards."
+    ],
     "backup": {
-      "title": "Not a weather day — but if the day is given up for something else",
-      "detail": "Everything on this day is indoors, so rain changes nothing. If you give up the day for another reason, replace it with a trip in the Tokyo area that needs no change of trains. The best fit is Yokohama and Sankei-en."
+      "title": "If it rains — the day moves, and if it cannot move it shrinks",
+      "detail": "Rain takes away what this day is for: the walk up and the view from the summit. First choice: swap it with Monday's shopping day (Day 5), which is all indoors, or with Tuesday's Kamakura day (Day 6). If you can't swap, do a shorter version. Take the cable car up to Yakuō-in, then visit the TAKAO 599 MUSEUM by Takaosanguchi station (free, 8:00–17:00, last entry 16:30). You keep the temple but lose the mountain walk."
     }
   },
   {
@@ -258,18 +298,18 @@
     "date": "2026-10-25",
     "weekday": "Sun",
     "city": "Tokyo",
-    "title": "Shopping / flex day 2",
+    "title": "Shopping / flex day 1",
     "tags": ["shopping"],
     "location": { "lat": 35.6762, "lon": 139.6503 },
     "hotel_id": "akihabara-washington",
     "blocks": [
       {
         "type": "morning",
-        "title": "Shopping / flex day 2",
+        "title": "Shopping / flex day 1",
         "items": [
           {
             "label": "The day has two jobs",
-            "detail": "Finish any shopping left over from Friday (Day 2). Use the rest of the day for anything from Saturday's Ueno day (Day 3) that you didn't get to before dark."
+            "detail": "Start the shopping today if you like; the full plan is on Monday (Day 5). Use the rest of the day for anything from Saturday's Ueno day (Day 3) that you didn't get to before dark."
           },
           {
             "label": "Sunday is the only day the streets close",
@@ -281,11 +321,11 @@
           },
           {
             "label": "The watch carries over",
-            "detail": "If you didn't buy the watch on Friday, the watch plan on Day 2 still applies today. The Bic Camera coupon is valid until Oct 31. Sunday hours: Seiko House 11:00–19:00, Grand Seiko Namiki boutique 11:00–19:00, Bic Camera Yurakucho 10:00–22:00."
+            "detail": "The watch plan is on Day 5 (Monday), and it works today too. The Bic Camera coupon is valid until Oct 31. Sunday hours: Seiko House 11:00–19:00, Grand Seiko Namiki boutique 11:00–19:00, Bic Camera Yurakucho 10:00–22:00."
           },
           {
             "label": "Sekaido is open today too",
-            "detail": "Sekaido Shinjuku main store (世界堂 新宿本店), the stationery stop from Day 2, is open 09:30–20:00 every day of the year. ⚑ The car-free streets end at 17:00 and Sekaido stays open until 20:00, so go to Shinjuku after Ginza and Akihabara. Full details on Day 2."
+            "detail": "Sekaido Shinjuku main store (世界堂 新宿本店), the stationery stop on Day 5, is open 09:30–20:00 every day of the year. ⚑ The car-free streets end at 17:00 and Sekaido stays open until 20:00, so go to Shinjuku after Ginza and Akihabara. Full details on Day 5."
           }
         ]
       },
@@ -304,8 +344,8 @@
       }
     ],
     "backup": {
-      "title": "If Monday or Tuesday looks rainy, swap it with today",
-      "detail": "Everything today is indoors, the shops are open every day of the week, and none of it needs daylight, so today can swap with either outdoor Tokyo day. If the forecast shows heavy rain all day for Monday (Mount Takao, Day 5) or Tuesday (Kamakura, Day 6), do that day today and go shopping on the wet day. Decide this morning: once today has passed, the swap is no longer possible. What you give up: the car-free streets in Ginza and Akihabara (Sundays only), and the time set aside for anything left over from Saturday's Ueno day. By this morning you will know whether you need that time."
+      "title": "If Tuesday looks rainy, swap it with today",
+      "detail": "Everything today is indoors, the shops are open every day of the week, and none of it needs daylight, so today can swap with the one outdoor Tokyo day still ahead. If the forecast shows heavy rain all day for Tuesday (Kamakura, Day 6), do Kamakura today and go shopping on Tuesday. Decide this morning. If you miss that, Monday's shopping day (Day 5) can swap with Tuesday the same way. What you give up: the car-free streets in Ginza and Akihabara (Sundays only), and the time set aside for anything left over from Saturday's Ueno day. By this morning you will know whether you need that time."
     }
   },
   {
@@ -313,131 +353,91 @@
     "date": "2026-10-26",
     "weekday": "Mon",
     "city": "Tokyo",
-    "title": "Mount Takao",
-    "tags": ["hike"],
-    "location": { "lat": 35.6255, "lon": 139.2433 },
+    "title": "Shopping day 2",
+    "tags": ["shopping"],
+    "location": { "lat": 35.6762, "lon": 139.6503 },
     "hotel_id": "akihabara-washington",
     "blocks": [
       {
-        "type": "logistics",
-        "title": "Before you board",
+        "type": "morning",
+        "title": "Shopping day 2 — the four purchases",
         "items": [
           {
-            "label": "Buy lunch at the konbini",
-            "detail": "Buy onigiri or sandwiches at a konbini in Akihabara before you board the train, and eat them on the summit deck. You can't count on any place to eat on the mountain. The two teahouses at the summit, the two you pass on Trail 1 and the old soba house at the foot of the mountain all close on irregular days, and none of them publishes a calendar. If that soba house is open on your way down, it serves hot tororo soba (soba with grated yam) until last order at 16:30 on weekdays. There is time for it on the descent, but eating there means skipping the tsukemen dinner in Shinjuku, where you need to arrive by 16:30."
-          }
-        ]
-      },
-      {
-        "type": "logistics",
-        "title": "Out to the mountain",
-        "items": [],
-        "transit": [
+            "label": "What to buy",
+            "detail": "Four things to buy: a camera, a fountain pen and stationery, a Seiko or Grand Seiko watch, and Uniqlo clothes. Choose the order and the areas on the day."
+          },
           {
-            "label": "JR + Keiō — Akihabara → Takaosanguchi",
-            "detail": "Leave the hotel at about 08:30. Take JR to Shinjuku, then the Keiō Takao line to Takaosanguchi, the last stop. About 1½ hours in all; the Keiō part alone is about an hour. ⚠ A map app may suggest an all-JR route to Takao first. Ignore it: it costs ¥1,174 instead of ¥639. Takaosanguchi is the trailhead. Trail 1 starts a few minutes' walk from the ticket gate.",
-            "origin_id": "akihabara-station",
-            "destination_id": "takaosanguchi-station",
-            "mode": "train",
-            "cost_jpy": 639,
-            "cost_note": "one way; ¥1,278 round trip"
-          }
-        ]
-      },
-      {
-        "type": "hike",
-        "title": "Up Trail 1 — 1号路",
-        "maps": [
-          { "label": "Trail map — Tokyo's Takao Visitor Centre", "url": "https://takaovc.ces-net.jp/?page_id=257", "note": "All six numbered trails plus Inariyama. Same office that posts trail closures." },
-          { "label": "AllTrails — Trail 6, the way down", "url": "https://www.alltrails.com/trail/japan/tokyo/mount-takao-trail-6", "note": "Covers the descent only. ⚠ AllTrails has no Trail 1 route of its own — its Takao entries are Trails 2, 3, 4, 5, 6, Inariyama, and a combined Inariyama + Trail 1 — so our ascent is not mapped there as we walk it. ⚠ Ignore the orange \"Takao Partial Closure\" alert on that page — it is dated October 2025 and says Trail 6 is shut to downhill walkers. Tokyo's own visitor centre lifted that on 8 May 2026: \"Trail 6 can now be used for descent as well.\" The visitor centre link above is the live source." }
-        ],
-        "items": [],
-        "transit": [
+            "label": "Where",
+            "detail": "Shopping areas: Akihabara, Shibuya, Shinjuku and Ginza. Buy the watch and the Uniqlo clothes in Ginza: the Uniqlo flagship store is there, and the watch shops are listed in the watch section below. Buy the pen and stationery either in Ginza or at Sekaido in Shinjuku (next item)."
+          },
           {
-            "label": "On foot — Takaosanguchi → Yakuō-in (Trail 1 · 1号路)",
-            "detail": "A paved path with an even slope up through cedar forest and the Jōshinmon gate (浄心門). Allow 1–1¼ hours at an easy pace. The cable car runs alongside if you need it, but the walk up is the point of the day. ⚑ Phone maps label the trails in Japanese only. Look for 1号路 (Trail 1), written in full as 自然研究路1号路. It is also signed 表参道 (the temple approach). Past the Jōshinmon gate the path splits into 男坂 (Otokozaka, a staircase of 108 steps) and 女坂 (Onnazaka, a gentler curving path). They join again, so take either.",
-            "origin_id": "takaosanguchi-station",
-            "destination_id": "yakuoin",
-            "mode": "walking",
-            "duration_min": 75
+            "label": "Sekaido, Shinjuku — pens and stationery",
+            "detail": "Art and stationery shop: Sekaido main store (世界堂 新宿本店), Shinjuku 3-1-1. 1 min from Shinjuku-sanchōme station exit C-4, 7 min from JR Shinjuku station. 🔴 Open 09:30–20:00 every day except the New Year holidays, so it works on either shopping day. 5 floors: 1F stationery, office supplies and fountain pens · 2F paper, drafting and design · 3F paints and art materials · 4F–5F framing. ⚑ Come for the discount. Stationery, art, design and comic supplies are 5–20% off the list price, and oil paints and painting media are 30% off. The point card gives back a further 7% of the discounted price. ⚠ Sekaido does not advertise tax-free shopping. Count on the discount only, and ask about tax-free at the register."
+          },
+          {
+            "label": "Tax-free is free today",
+            "detail": "Until Oct 31, the shop takes the tax off at the register, and there is nothing to do at Narita. From Nov 1, Japan changes the system: you pay the tax in the shop and get it back only after customs confirms you took the goods out of Japan. Carry your passport. To qualify, spend ¥5,000 or more before tax, at one store on one day."
+          },
+          {
+            "label": "Bic Camera tourist coupon — 7% more on a Seiko",
+            "detail": "Tap the coupon to open it full screen. At the till, before you pay, show it with your passport. The cashier scans both barcodes, ① and ②. Bic takes off the 10% tax, then another 7% off watches. The extra 7% applies to Seiko watches. It does not apply to Grand Seiko or to foreign-brand watches. Any payment method. Valid at every Bic Camera until Oct 31. If the till won't accept it: open the live coupon page with the button below.",
+            "image": "bic-coupon.png",
+            "image_alt": "Bic Camera tourist coupon — barcodes ① and ②, valid to 2026-10-31",
+            "link": {
+              "label": "Coupon page (LIVE JAPAN)",
+              "url": "https://livejapan.com/public/operation/coupon/biccamera/en.html"
+            }
+          },
+          {
+            "label": "A weekday is the transaction day",
+            "detail": "Buy today: on a weekday the tax-free desks have the shortest queues. Ginza and Akihabara close their main streets to cars on Sundays only, so you saw that yesterday, Sunday Oct 25."
           }
         ]
       },
       {
-        "type": "hike",
-        "title": "Yakuō-in",
+        "type": "afternoon",
+        "title": "The watch — Seiko or Grand Seiko",
         "items": [
           {
-            "place_id": "yakuoin",
-            "detail": "Temple about two-thirds of the way up Trail 1. Allow 30–45 min. Free to enter. It stands on the open mountain and has no gate hours. ⏱ Be past the temple by 14:50, and leave the summit by 15:25. From here it is 30 min to the summit and up to 1½ hours down Trail 6, so that gets you down by sunset (16:55; last light 17:21). If you reach the temple after 14:50: skip the summit and walk back down Trail 1 to the cable car (last car down 18:00). If you are still at the summit after 15:25: go back down Trail 1 to the cable car instead of taking Trail 6.",
-            "about": "A working Shingon Buddhist temple on the mountain. Look for the Niōmon gate, the main hall, the Gongen-dō and the okunoin (inner sanctuary), and the statues of tengu (long-nosed mountain goblins) Mt Takao is known for."
-          }
-        ]
-      },
-      {
-        "type": "hike",
-        "title": "On to the summit",
-        "items": [],
-        "transit": [
+            "label": "Which shop for which watch",
+            "detail": "Grand Seiko: buy at one of the two Ginza boutiques below. No shop gives more than the 10% tax off a Grand Seiko, and the boutiques have the widest range, including models sold only there. Seiko (Presage, Prospex and other lines): try it on at Seiko House, then buy at Bic Camera Yurakucho with the coupon, for the 10% tax plus 7% off. Bic is about 500 m from Seiko House on foot, or you can get there underground from Ginza station."
+          },
           {
-            "label": "On foot — Yakuō-in → the 599 m summit",
-            "detail": "30 min more on the upper part of Trail 1.",
-            "origin_id": "yakuoin",
-            "destination_id": "mt-takao",
-            "mode": "walking",
-            "duration_min": 30
-          }
-        ]
-      },
-      {
-        "type": "hike",
-        "title": "The summit",
-        "items": [
+            "place_id": "seiko-house-ginza",
+            "detail": "Seiko's store in the clock-tower building (Wako) at the Ginza 4-chome crossing, directly connected to Ginza station exit B1. Try on both brands here. 1F (Watch Square): Seiko and Grand Seiko. 2F: the Grand Seiko Flagship Boutique. Opens at 11:00. To buy: show your passport before you pay and say 免税でお願いします (menzei de onegai shimasu, “tax-free, please”)."
+          },
           {
-            "place_id": "mt-takao",
-            "detail": "Allow about 30 min at the viewing deck, plus lunch there: roughly 12:30–13:30.",
-            "about": "The summit of Mt Takao is 599 m high. The viewing deck looks out over the Kantō plain and, on a clear day, to Mt Fuji."
-          }
-        ]
-      },
-      {
-        "type": "hike",
-        "title": "Down Trail 6 — 6号路",
-        "items": [],
-        "transit": [
+            "place_id": "grand-seiko-namiki",
+            "detail": "Grand Seiko's largest shop in Japan. It sells only Grand Seiko, including the models sold only in its boutiques. On Namiki-dori, about 300 m west of Seiko House. To buy: show your passport before you pay and say 免税でお願いします (menzei de onegai shimasu, “tax-free, please”)."
+          },
           {
-            "label": "On foot — the summit → Takaosanguchi (Trail 6 · 6号路)",
-            "detail": "An unpaved path down the Biwa-taki valley, beside a stream. Of the two unpaved trails down, this is the gentler one. Allow 1¼–1½ hours. If your legs are tired at the summit: walk down Trail 1 instead, and take the cable car (until 18:00) or the chairlift (until about 16:30) from its top station. ⚑ On a phone map look for 6号路 (Trail 6) or 自然研究路6号路. The visitor centre also signs it 琵琶滝コース (Biwa-taki course), after the waterfall it passes. ⚠ Do not take 稲荷山コース (Inariyama course) or 3号路 (Trail 3) by mistake. Both are signposted at the summit, and neither is this route.",
-            "origin_id": "mt-takao",
-            "destination_id": "takaosanguchi-station",
-            "mode": "walking",
-            "duration_min": 90
+            "place_id": "bic-camera-yurakucho",
+            "detail": "Electronics store, 1 min from JR Yūrakuchō station (Hibiya exit). Buy a Seiko here, with the coupon. Watches are on 6F. At the till, before you pay, show the coupon (at the top of this day) and your passport."
+          },
+          {
+            "place_id": "yodobashi-akiba",
+            "detail": "Electronics store 1 min from the hotel, open until 22:00. Use it to try on watches any evening, or to buy if you don't get to Ginza. Watches are on 3F, the same floor as the cameras. Tax-free with your passport. The Bic Camera 7% coupon does not work here."
           }
         ]
       },
       {
         "type": "logistics",
-        "title": "Back to Akihabara",
+        "title": "Getting around",
         "items": [],
         "transit": [
           {
-            "label": "Keiō + JR — Takaosanguchi → Akihabara",
-            "detail": "The Keiō line back to Shinjuku, then JR on to Akihabara.",
-            "origin_id": "takaosanguchi-station",
-            "destination_id": "akihabara-station",
-            "mode": "train",
-            "cost_jpy": 639,
-            "cost_note": "one way; ¥1,278 round trip"
+            "label": "In-town hops — Ginza / Shinjuku / Akihabara",
+            "detail": "Trains and subways run by different companies. Suica works on all of them.",
+            "mode": "transit",
+            "cost_jpy": 500,
+            "cost_note": "rough estimate for the day"
           }
         ]
       }
     ],
-    "notes_top": [
-      "💴 Bring cash. The teahouses and stalls on the mountain are cash only. One listing says the highest teahouse at the summit takes JCB and AMEX cards, but don't rely on it. The first-choice dinner, Gonokami Seisakusho in Shinjuku, is cash only too. Both backup dinners take cards."
-    ],
     "backup": {
-      "title": "If it rains — the day moves, and if it cannot move it shrinks",
-      "detail": "Rain takes away what this day is for: the walk up and the view from the summit. First choice: swap it with Tuesday's Kamakura day. That is the only day left that can swap with this one. If you can't swap, do a shorter version. Take the cable car up to Yakuō-in, then visit the TAKAO 599 MUSEUM by Takaosanguchi station (free, 8:00–17:00, last entry 16:30). You keep the temple but lose the mountain walk."
+      "title": "Not a weather day — but if the day is given up for something else",
+      "detail": "Everything on this day is indoors, so rain changes nothing. If you give up the day for another reason, replace it with a trip in the Tokyo area that needs no change of trains. The best fit is Yokohama and Sankei-en."
     }
   },
   {
@@ -2331,7 +2331,7 @@
         "transit": [
           {
             "label": "On foot — Daishō-in → the summit of Misen",
-            "detail": "⏱ Start up by 10:15. Plan on 2–2½ hours up. The trail is 2.6 km long and climbs from sea level to 535 m, on stone steps almost all the way. Stone markers (chō stones, 24 in all) count off the distance. Near the bottom the trail enters the primeval forest that is part of the World Heritage site. Up and down on foot takes 3–5 hours in all. ⚠ This is the hardest climb of the trip. It is harder than the Momijidani trail (your way down) and steeper underfoot than Mt Takao (day 5). 🔴 Nothing is sold on the mountain: carry food and water.",
+            "detail": "⏱ Start up by 10:15. Plan on 2–2½ hours up. The trail is 2.6 km long and climbs from sea level to 535 m, on stone steps almost all the way. Stone markers (chō stones, 24 in all) count off the distance. Near the bottom the trail enters the primeval forest that is part of the World Heritage site. Up and down on foot takes 3–5 hours in all. ⚠ This is the hardest climb of the trip. It is harder than the Momijidani trail (your way down) and steeper underfoot than Mt Takao (day 2). 🔴 Nothing is sold on the mountain: carry food and water.",
             "origin_id": "daishoin-temple",
             "destination_id": "mt-misen",
             "mode": "walking",
