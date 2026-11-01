@@ -1462,6 +1462,188 @@
     }
   },
   {
+    "day": "12b",
+    "alt_of": 12,
+    "chosen": true,
+    "date": "2026-11-02",
+    "weekday": "Mon",
+    "city": "Kyoto",
+    "title": "Who held Kyoto — Tō-ji, the Reizei house, Shōkoku-ji, Daitoku-ji, Chion-in",
+    "tags": [
+      "temple"
+    ],
+    "location": {
+      "lat": 35.0302,
+      "lon": 135.7614
+    },
+    "hotel_id": "dormy-inn-kyoto",
+    "notes_top": [
+      "↔ Same date as Day 12. Do this OR Day 12 — this is the indoor version, built for the rain.",
+      "💴 Cash for entry fees, about ¥6,000: Tō-ji ¥1,200 · Reizei house ¥1,000 · Shōkoku-ji ¥800–1,000 (sources differ) · Sōken-in ¥800 cash only · Jukō-in ¥1,000 cash only · Chion-in gate about ¥1,000. Plus lunch."
+    ],
+    "blocks": [
+      {
+        "type": "logistics",
+        "title": "Out to Tō-ji",
+        "items": [
+          {
+            "label": "Kintetsu line, Kyoto → Tōji, one stop",
+            "detail": "Leave the hotel at 07:45. The Kintetsu gates are on the south side of Kyoto Station, about 10 min from the hotel. Ride one stop to Tōji station, then about 10 min on foot to the temple. Check the train in a route app."
+          }
+        ]
+      },
+      {
+        "type": "morning",
+        "title": "Tō-ji — the lecture hall and inside the pagoda",
+        "items": [
+          {
+            "label": "Tō-ji (東寺)",
+            "detail": "🔴 The ground floor of the five-storey pagoda is open only 31 Oct – 8 Nov this year. Entry 08:00–16:30, ¥1,200 for the special opening. Only the pagoda's ground floor is open. Allow about 1 hour 15 min: lecture hall, pagoda, main hall (Kondō).",
+            "about": "Part of the 62nd Kyoto Special Opening of Non-public Cultural Properties. The lecture hall (Kōdō) holds 21 statues arranged as a three-dimensional esoteric mandala; the pagoda's ground-floor sanctum is normally closed.",
+            "link": {
+              "url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E5%AF%BA",
+              "label": "Map"
+            }
+          }
+        ]
+      },
+      {
+        "type": "logistics",
+        "title": "North to Imadegawa",
+        "items": [
+          {
+            "label": "Kintetsu back to Kyoto, then the Karasuma subway line to Imadegawa",
+            "detail": "About 25 min in all. Leave Tō-ji by about 09:15."
+          }
+        ]
+      },
+      {
+        "type": "morning",
+        "title": "The Reizei family house",
+        "items": [
+          {
+            "label": "Reizei family house (冷泉家住宅)",
+            "detail": "🔴 Open only 30 Oct – 3 Nov. Reception 09:00–16:00, ¥1,000. Next to Imadegawa station. The opening is in its last days, so expect a short line at reception. Allow about 45 min.",
+            "about": "The house of the Reizei family, a house of court poetry descended from the line of the poet Fujiwara no Teika. It was rebuilt in 1790 on the site north of the palace the family has held since the 1610s–20s, and the Agency for Cultural Affairs describes it as a court noble's residence surviving in complete form.",
+            "link": {
+              "url": "https://www.google.com/maps/search/?api=1&query=%E5%86%B7%E6%B3%89%E5%AE%B6%E4%BD%8F%E5%AE%85",
+              "label": "Map"
+            }
+          }
+        ]
+      },
+      {
+        "type": "morning",
+        "title": "Shōkoku-ji",
+        "items": [
+          {
+            "label": "Shōkoku-ji (相国寺)",
+            "detail": "5 min on foot from the Reizei house. Autumn opening of the Dharma hall, the abbot's hall and the founder's hall: reception 10:00–16:00. ¥800 or ¥1,000 — carry ¥1,000. Allow about 50 min.",
+            "about": "Founded at the request of the shōgun Ashikaga Yoshimitsu. Its Dharma hall (hattō) is known as the oldest surviving Dharma hall in Japan, and the coiled dragon on its ceiling, by Kanō Mitsunobu, is called the 'crying dragon' (鳴き龍).",
+            "link": {
+              "url": "https://www.google.com/maps/search/?api=1&query=%E7%9B%B8%E5%9B%BD%E5%AF%BA",
+              "label": "Map"
+            }
+          }
+        ]
+      },
+      {
+        "type": "logistics",
+        "title": "North to Daitoku-ji",
+        "items": [
+          {
+            "label": "Karasuma subway two stops to Kitaōji, then west to Daitoku-ji",
+            "detail": "Leave Shōkoku-ji by about 11:30. From Kitaōji, take a city bus to the Daitokuji-mae stop or walk about 15 min west along Kitaōji street."
+          }
+        ]
+      },
+      {
+        "type": "afternoon",
+        "title": "Lunch inside Daitoku-ji",
+        "items": [
+          {
+            "label": "Izusen (泉仙), at Daiji-in inside Daitoku-ji",
+            "detail": "Buddhist temple food served in a set of bowls, from ¥3,800. Listed hours 11:00–16:00; one person walks in, no booking. ⚠ It closes on irregular days. If it is shut: go back to Kitaōji station and eat on the restaurant floor of the Kitaōji Vivre mall above it.",
+            "link": {
+              "url": "https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E4%BB%99%20%E5%A4%A7%E6%85%88%E9%99%A2",
+              "label": "Map"
+            }
+          }
+        ]
+      },
+      {
+        "type": "afternoon",
+        "title": "Sōken-in",
+        "items": [
+          {
+            "place_id": "sokenin",
+            "detail": "Arrive about 12:45. Reception ends 16:00. ¥800, cash only, no photos inside the hall. Allow about 40 min."
+          }
+        ]
+      },
+      {
+        "type": "afternoon",
+        "title": "Jukō-in",
+        "items": [
+          {
+            "label": "Jukō-in (聚光院)",
+            "detail": "Next door within Daitoku-ji. 09:30–15:30 (last entry), ¥1,000, cash only. No photos. Closed in November only on the 21st, 22nd and 27th–29th. Allow about 45 min.",
+            "about": "Sen no Rikyū's family temple, with his grave and the tea room Kan'in-seki. The National Treasure screen paintings by Kanō Eitoku and Kanō Shōei are shown as replicas. Opened 18 Sep – 6 Dec 2026 for the temple's 460th anniversary.",
+            "link": {
+              "url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E5%BE%B3%E5%AF%BA%20%E8%81%9A%E5%85%89%E9%99%A2",
+              "label": "Map"
+            }
+          }
+        ]
+      },
+      {
+        "type": "afternoon",
+        "title": "The main gate, on your way out",
+        "items": [
+          {
+            "place_id": "daitokuji",
+            "detail": "10 min, from outside. Look up at the Sanmon (main gate): its upper storey is the one Rikyū added in 1589. The gate, the Dharma hall and the abbot's hall are closed; the walled precinct and its lanes are free."
+          }
+        ]
+      },
+      {
+        "type": "logistics",
+        "title": "Across town to Chion-in",
+        "items": [
+          {
+            "label": "Subway: Kitaōji → Karasuma-Oike, change to the Tōzai line → Higashiyama, then walk",
+            "detail": "Leave Daitoku-ji by 14:30. About 50 min in all, including the walk back to Kitaōji station and about 10 min from Higashiyama station to the gate."
+          }
+        ]
+      },
+      {
+        "type": "afternoon",
+        "title": "Chion-in — up into the main gate",
+        "items": [
+          {
+            "label": "Chion-in Sanmon, upper storey (知恩院 三門)",
+            "detail": "Daytime special opening, 31 Oct – 13 Nov only. ⚠ 2026 hours not confirmed: last year it was 09:00–16:00, so be there by 15:30. About ¥1,000. If you are running late, skip it — nothing after it depends on it.",
+            "about": "Built in 1621, a National Treasure, and among the largest surviving wooden gates in Japan: about 50 m wide and 24 m high.",
+            "link": {
+              "url": "https://www.google.com/maps/search/?api=1&query=%E7%9F%A5%E6%81%A9%E9%99%A2%20%E4%B8%89%E9%96%80",
+              "label": "Map"
+            }
+          }
+        ]
+      },
+      {
+        "type": "logistics",
+        "title": "Back to base",
+        "items": [
+          {
+            "label": "Tōzai line Higashiyama → Karasuma-Oike, then the Karasuma line to Kyoto",
+            "detail": "About 25 min. Dinner as on Day 12: Arata, near Kyoto Station (Food tab, Day 12). It opens at 17:00."
+          }
+        ]
+      }
+    ]
+  },
+  {
     "day": 13,
     "date": "2026-11-03",
     "weekday": "Tue",

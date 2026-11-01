@@ -62,11 +62,26 @@
   // above the init.
   var DAY_KEYED_SECTIONS = ['days', 'food', 'transit'];
 
+  // An alternative day ("12b", `alt_of: 12`) shares its parent's date, so it takes its
+  // parent's number for past/today. parseInt("12b") is 12; a plain number passes through.
   function dayCardState(dayNum) {
+    if (typeof dayNum !== 'number') dayNum = parseInt(dayNum, 10);
     var cur = DATA.meta ? tripDayNumber(DATA.meta) : NaN;
     var total = DATA.meta ? DATA.meta.total_days : 0;
     var inTrip = cur >= 1 && cur <= total;
     return { isPast: inTrip && dayNum < cur, isToday: inTrip && dayNum === cur };
+  }
+
+  // The plan Today follows for trip day `n`: an alternative marked `chosen` (e.g. "12b") wins
+  // over the original, which stays on the Days tab untouched. Added 2026-11-01.
+  function dayForTrip(n) {
+    var base = null, alt = null;
+    for (var i = 0; i < (DATA.days || []).length; i++) {
+      var d = DATA.days[i];
+      if (d.day === n) base = d;
+      else if (d.alt_of === n && d.chosen) alt = d;
+    }
+    return alt || base;
   }
 
   function esc(s) {
@@ -890,10 +905,7 @@
       return;
     }
 
-    var day = null;
-    for (var i = 0; i < DATA.days.length; i++) {
-      if (DATA.days[i].day === cur) { day = DATA.days[i]; break; }
-    }
+    var day = dayForTrip(cur);
     if (!day) { container.innerHTML = '<div class="section-empty">No entry for today</div>'; return; }
 
     html += '<div class="today-title">' + esc(day.title) + '</div>';
@@ -1186,10 +1198,7 @@
   function todaysPlaceNames(dayNum) {
     var out = [], seen = {};
     if (!DATA.days) return out;
-    var day = null;
-    for (var i = 0; i < DATA.days.length; i++) {
-      if (DATA.days[i].day === dayNum) { day = DATA.days[i]; break; }
-    }
+    var day = dayForTrip(dayNum);
     if (!day) return out;
     var blocks = day.blocks || [];
     for (var b = 0; b < blocks.length; b++) {
