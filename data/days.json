@@ -1468,18 +1468,22 @@
     "date": "2026-11-02",
     "weekday": "Mon",
     "city": "Kyoto",
-    "title": "Who held Kyoto — Tō-ji, the Reizei house, Shōkoku-ji, Daitoku-ji, Chion-in",
+    "title": "Tō-ji, then Mount Hiei — Hiyoshi Taisha, the Honzaka path, Enryaku-ji",
     "tags": [
+      "hike",
       "temple"
     ],
     "location": {
-      "lat": 35.0302,
-      "lon": 135.7614
+      "lat": 35.07,
+      "lon": 135.84
     },
     "hotel_id": "dormy-inn-kyoto",
     "notes_top": [
-      "↔ Same date as Day 12. Do this OR Day 12 — this is the indoor version, built for the rain.",
-      "💴 Cash for entry fees, about ¥6,000: Tō-ji ¥1,200 · Reizei house ¥1,000 · Shōkoku-ji ¥800–1,000 (sources differ) · Sōken-in ¥800 cash only · Jukō-in ¥1,000 cash only · Chion-in gate about ¥1,000. Plus lunch."
+      "↔ Same date as Day 12. Do this OR Day 12.",
+      "☁ Forecast: light rain about 06:00–12:00 (around 1 mm an hour), cloud by about 15:00. Tō-ji is indoors for the wet start. Hourly check for the Sakamoto side: tenki.jp/forecast/6/28/6010/25201/1hour.html · Mount Hiei page: tenki.jp/mountain/normal/6/29/1073.html",
+      "⏱ Decide at Hiyoshi Taisha, about 10:40: still raining → Option B (cable car up, walk down once it is dry). Rain stopping → Option A (walk up, cable car down). Both are below.",
+      "💴 Cash: Tō-ji ¥1,200 · Hiyoshi Taisha ¥500 · Enryaku-ji ¥1,000 (one ticket for all areas) · Sakamoto Cable ¥960 one way. Buy lunch (onigiri) at Kyoto Station before the train: food at the top is not checked.",
+      "🧥 It is a few degrees colder on the mountain than in town. Bring a warm layer."
     ],
     "blocks": [
       {
@@ -1488,18 +1492,18 @@
         "items": [
           {
             "label": "Kintetsu line, Kyoto → Tōji, one stop",
-            "detail": "Leave the hotel at 07:45. The Kintetsu gates are on the south side of Kyoto Station, about 10 min from the hotel. Ride one stop to Tōji station, then about 10 min on foot to the temple. Check the train in a route app."
+            "detail": "Leave the hotel at 07:45. The Kintetsu gates are on the south side of Kyoto Station, about 10 min from the hotel. Ride one stop to Tōji station, then about 10 min on foot. Check the train in a route app."
           }
         ]
       },
       {
         "type": "morning",
-        "title": "Tō-ji — the lecture hall and inside the pagoda",
+        "title": "Tō-ji — inside the pagoda",
         "items": [
           {
             "label": "Tō-ji (東寺)",
-            "detail": "🔴 The ground floor of the five-storey pagoda is open only 31 Oct – 8 Nov this year. Entry 08:00–16:30, ¥1,200 for the special opening. Only the pagoda's ground floor is open. Allow about 1 hour 15 min: lecture hall, pagoda, main hall (Kondō).",
-            "about": "Part of the 62nd Kyoto Special Opening of Non-public Cultural Properties. The lecture hall (Kōdō) holds 21 statues arranged as a three-dimensional esoteric mandala; the pagoda's ground-floor sanctum is normally closed.",
+            "detail": "🔴 The pagoda's ground floor is open only 31 Oct – 8 Nov. Entry from 08:00, ¥1,200 for the special opening. Only the ground floor of the pagoda is open. Keep it to 1 hour: pagoda, lecture hall, main hall. Out by 09:00.",
+            "about": "Kūkai's temple. Part of the 62nd Kyoto Special Opening of Non-public Cultural Properties. The lecture hall (Kōdō) holds 21 statues arranged as a three-dimensional esoteric mandala.",
             "link": {
               "url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E5%AF%BA",
               "label": "Map"
@@ -1509,39 +1513,78 @@
       },
       {
         "type": "logistics",
-        "title": "North to Imadegawa",
+        "title": "Out to Sakamoto",
         "items": [
           {
-            "label": "Kintetsu back to Kyoto, then the Karasuma subway line to Imadegawa",
-            "detail": "About 25 min in all. Leave Tō-ji by about 09:15."
+            "label": "Kintetsu back to Kyoto, then the JR Kosei line to Hieizan-Sakamoto (比叡山坂本)",
+            "detail": "About 15–20 min on the JR train; check the time in a route app. Buy lunch at Kyoto Station first. From Hieizan-Sakamoto station walk up through Sakamoto to Hiyoshi Taisha, about 20 min uphill along the old temple-town lanes with their stone walls."
           }
         ]
       },
       {
         "type": "morning",
-        "title": "The Reizei family house",
+        "title": "Hiyoshi Taisha",
         "items": [
           {
-            "label": "Reizei family house (冷泉家住宅)",
-            "detail": "🔴 Open only 30 Oct – 3 Nov. Reception 09:00–16:00, ¥1,000. Next to Imadegawa station. The opening is in its last days, so expect a short line at reception. Allow about 45 min.",
-            "about": "The house of the Reizei family, a house of court poetry descended from the line of the poet Fujiwara no Teika. It was rebuilt in 1790 on the site north of the palace the family has held since the 1610s–20s, and the Agency for Cultural Affairs describes it as a court noble's residence surviving in complete form.",
+            "label": "Hiyoshi Taisha (日吉大社)",
+            "detail": "Open 09:00–16:30 (one listing says 16:00). ¥500. Allow 30–40 min for the West and East main shrines. Then decide: Option A or B.",
+            "about": "Head shrine of the Sannō shrines and the guardian shrine of Mount Hiei. Its buildings burned with the mountain in 1571; the West Main Shrine (Nishi Hongū) main hall was rebuilt in 1586 and is a National Treasure.",
             "link": {
-              "url": "https://www.google.com/maps/search/?api=1&query=%E5%86%B7%E6%B3%89%E5%AE%B6%E4%BD%8F%E5%AE%85",
+              "url": "https://www.google.com/maps/search/?api=1&query=%E6%97%A5%E5%90%89%E5%A4%A7%E7%A4%BE",
               "label": "Map"
             }
           }
         ]
       },
       {
-        "type": "morning",
-        "title": "Shōkoku-ji",
+        "type": "hike",
+        "title": "Option A — walk up the Honzaka path (本坂)",
         "items": [
           {
-            "label": "Shōkoku-ji (相国寺)",
-            "detail": "5 min on foot from the Reizei house. Autumn opening of the Dharma hall, the abbot's hall and the founder's hall: reception 10:00–16:00. ¥800 or ¥1,000 — carry ¥1,000. Allow about 50 min.",
-            "about": "Founded at the request of the shōgun Ashikaga Yoshimitsu. Its Dharma hall (hattō) is known as the oldest surviving Dharma hall in Japan, and the coiled dragon on its ceiling, by Kanō Mitsunobu, is called the 'crying dragon' (鳴き龍).",
+            "label": "Hiyoshi Taisha → Enryaku-ji Tōdō, on foot",
+            "detail": "Start from the stone steps to the left of the shrine's torii gate. About 550–600 m of climbing over roughly 3 km of forest path, much of it stone steps, some broken and steep in places, with a short paved stretch. Not signposted, but easy to follow. Allow 1½–2½ hours. It ends at the Monju-rō gate above the main hall. ⏱ Start by 11:00: the halls close at 16:00 and you want two hours at the top. Come down by the Sakamoto Cable (see below)."
+          }
+        ]
+      },
+      {
+        "type": "logistics",
+        "title": "Option B — cable car up",
+        "items": [
+          {
+            "label": "Sakamoto Cable (坂本ケーブル), Cable Sakamoto → Cable Enryakuji",
+            "detail": "About 10 min on foot from Hiyoshi Taisha to the lower station. Cars every 30 min, on the hour and half hour, 11 min up. ¥960 one way. From the top station about 10 min on foot to the Tōdō. Then walk down the Honzaka path in the afternoon, once it is dry (see below).",
             "link": {
-              "url": "https://www.google.com/maps/search/?api=1&query=%E7%9B%B8%E5%9B%BD%E5%AF%BA",
+              "url": "https://www.google.com/maps/search/?api=1&query=%E5%9D%82%E6%9C%AC%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%20%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%E5%9D%82%E6%9C%AC%E9%A7%85",
+              "label": "Map"
+            }
+          }
+        ]
+      },
+      {
+        "type": "afternoon",
+        "title": "Enryaku-ji — the Tōdō (main area)",
+        "items": [
+          {
+            "label": "Enryaku-ji Tōdō (延暦寺 東塔)",
+            "detail": "Halls 09:00–16:00. ¥1,000 covers the Tōdō, Saitō and Yokawa. The treasure museum (Kokuhōden) is extra, about ¥500. The main hall (Konpon-chūdō) is under repair and closed inside; see the roof works from the deck inside the scaffold, and the Eternal Flame in the Manpai-dō hall. Allow about 1 hour, plus lunch.",
+            "about": "Head temple of Tendai Buddhism, founded by Saichō. Nobunaga burned the mountain in 1571. While the main hall is closed, its lamp, said to have burned for about 1,200 years, is kept in the Manpai-dō, where you can stand close to it.",
+            "link": {
+              "url": "https://www.google.com/maps/search/?api=1&query=%E5%BB%B6%E6%9A%A6%E5%AF%BA%20%E6%A0%B9%E6%9C%AC%E4%B8%AD%E5%A0%82",
+              "label": "Map"
+            }
+          }
+        ]
+      },
+      {
+        "type": "afternoon",
+        "title": "Enryaku-ji — the Saitō",
+        "items": [
+          {
+            "label": "Enryaku-ji Saitō (延暦寺 西塔)",
+            "detail": "About 1 km along a forest path from the Tōdō, about 20 min; a shuttle bus also runs between the areas. Halls 09:00–16:00, same ticket. See the Shaka-dō and the Ruri-dō (a 10–15 min side path; cut it if short of time). Allow about 1 hour.",
+            "about": "The Shaka-dō is the oldest building on the mountain: built in 1347 as a hall of Mii-dera, Enryaku-ji's rival, and moved here in 1595 with Hideyoshi's backing. The Ruri-dō is said to be the only building the 1571 fire missed.",
+            "link": {
+              "url": "https://www.google.com/maps/search/?api=1&query=%E5%BB%B6%E6%9A%A6%E5%AF%BA%20%E9%87%88%E8%BF%A6%E5%A0%82",
               "label": "Map"
             }
           }
@@ -1549,85 +1592,15 @@
       },
       {
         "type": "logistics",
-        "title": "North to Daitoku-ji",
+        "title": "Down the mountain",
         "items": [
           {
-            "label": "Karasuma subway two stops to Kitaōji, then west to Daitoku-ji",
-            "detail": "Leave Shōkoku-ji by about 11:30. From Kitaōji, take a city bus to the Daitokuji-mae stop or walk about 15 min west along Kitaōji street."
-          }
-        ]
-      },
-      {
-        "type": "afternoon",
-        "title": "Lunch inside Daitoku-ji",
-        "items": [
+            "label": "After Option A: Sakamoto Cable down",
+            "detail": "Aim for the 16:00 car (11 min). Cars every 30 min; the last car down is 17:30, so the 16:30, 17:00 and 17:30 are your spares. From Cable Sakamoto walk back down through Sakamoto to Hieizan-Sakamoto station (or take the bus), then JR to Kyoto."
+          },
           {
-            "label": "Izusen (泉仙), at Daiji-in inside Daitoku-ji",
-            "detail": "Buddhist temple food served in a set of bowls, from ¥3,800. Listed hours 11:00–16:00; one person walks in, no booking. ⚠ It closes on irregular days. If it is shut: go back to Kitaōji station and eat on the restaurant floor of the Kitaōji Vivre mall above it.",
-            "link": {
-              "url": "https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E4%BB%99%20%E5%A4%A7%E6%85%88%E9%99%A2",
-              "label": "Map"
-            }
-          }
-        ]
-      },
-      {
-        "type": "afternoon",
-        "title": "Sōken-in",
-        "items": [
-          {
-            "place_id": "sokenin",
-            "detail": "Arrive about 12:45. Reception ends 16:00. ¥800, cash only, no photos inside the hall. Allow about 40 min."
-          }
-        ]
-      },
-      {
-        "type": "afternoon",
-        "title": "Jukō-in",
-        "items": [
-          {
-            "label": "Jukō-in (聚光院)",
-            "detail": "Next door within Daitoku-ji. 09:30–15:30 (last entry), ¥1,000, cash only. No photos. Closed in November only on the 21st, 22nd and 27th–29th. Allow about 45 min.",
-            "about": "Sen no Rikyū's family temple, with his grave and the tea room Kan'in-seki. The National Treasure screen paintings by Kanō Eitoku and Kanō Shōei are shown as replicas. Opened 18 Sep – 6 Dec 2026 for the temple's 460th anniversary.",
-            "link": {
-              "url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E5%BE%B3%E5%AF%BA%20%E8%81%9A%E5%85%89%E9%99%A2",
-              "label": "Map"
-            }
-          }
-        ]
-      },
-      {
-        "type": "afternoon",
-        "title": "The main gate, on your way out",
-        "items": [
-          {
-            "place_id": "daitokuji",
-            "detail": "10 min, from outside. Look up at the Sanmon (main gate): its upper storey is the one Rikyū added in 1589. The gate, the Dharma hall and the abbot's hall are closed; the walled precinct and its lanes are free."
-          }
-        ]
-      },
-      {
-        "type": "logistics",
-        "title": "Across town to Chion-in",
-        "items": [
-          {
-            "label": "Subway: Kitaōji → Karasuma-Oike, change to the Tōzai line → Higashiyama, then walk",
-            "detail": "Leave Daitoku-ji by 14:30. About 50 min in all, including the walk back to Kitaōji station and about 10 min from Higashiyama station to the gate."
-          }
-        ]
-      },
-      {
-        "type": "afternoon",
-        "title": "Chion-in — up into the main gate",
-        "items": [
-          {
-            "label": "Chion-in Sanmon, upper storey (知恩院 三門)",
-            "detail": "Daytime special opening, 31 Oct – 13 Nov only. ⚠ 2026 hours not confirmed: last year it was 09:00–16:00, so be there by 15:30. About ¥1,000. If you are running late, skip it — nothing after it depends on it.",
-            "about": "Built in 1621, a National Treasure, and among the largest surviving wooden gates in Japan: about 50 m wide and 24 m high.",
-            "link": {
-              "url": "https://www.google.com/maps/search/?api=1&query=%E7%9F%A5%E6%81%A9%E9%99%A2%20%E4%B8%89%E9%96%80",
-              "label": "Map"
-            }
+            "label": "After Option B: walk down the Honzaka path",
+            "detail": "From the Monju-rō gate above the main hall, down the same path to Hiyoshi Taisha. Allow about 1½ hours; steep stone steps, so take it slowly. ⏱ Start down by 15:00 so you are off the path well before dark. If your legs are done, take the cable car instead (last car 17:30). Then walk to Hieizan-Sakamoto station and take JR to Kyoto."
           }
         ]
       },
@@ -1636,8 +1609,8 @@
         "title": "Back to base",
         "items": [
           {
-            "label": "Tōzai line Higashiyama → Karasuma-Oike, then the Karasuma line to Kyoto",
-            "detail": "About 25 min. Dinner as on Day 12: Arata, near Kyoto Station (Food tab, Day 12). It opens at 17:00."
+            "label": "JR Kosei line, Hieizan-Sakamoto → Kyoto",
+            "detail": "About 15–20 min. Dinner as on Day 12: Arata, near Kyoto Station (Food tab, Day 12). It opens at 17:00."
           }
         ]
       }
